@@ -1,0 +1,17 @@
+## counter.db  
+## PATRICK TODO: This is used for testing purposes
+ 
+record(ai, "$(USER):one")
+{
+    field(DTYP, "asynFloat64")
+    field(INP, "@asyn($(PORT),$(ADDR),$(TIMEOUT))COUNTER")
+    field(SCAN, "I/O Intr")
+}
+ 
+record(ao, "$(USER):two")
+{
+    field(DTYP, "asynInt32")
+    field(OUT, "@asyn($(PORT),$(ADDR),$(TIMEOUT))STEP")
+    field(PINI, "1")
+    field(VAL, "23")
+}
