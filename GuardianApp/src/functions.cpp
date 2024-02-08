@@ -10,7 +10,8 @@ Note: These first 2 functions are the 'meat' of the script. The rest is mostly s
             consistently grabs updates from all of its pvs and stores them into 'stored'.
             They are then passed into 'trip_logic(stored, stats)' returns boolean 'trip', and string 'out'.
             Finally, write 'trip' value to the MPS:UNDS:1:SXRSS_GUARDIAN_OK and the 'out' message to display.
-    Conversion: seems like they run the script after they've set their values for the devices. 
+    Conversion: seems like they run the script after they've set their values for the devices. We can make a pv
+                that controls whether or not this guardian runs. And just use that as a conditional in the while loop.
 
 1) trip_logic() lines 712 - 1002
     Definition: Within script
@@ -22,11 +23,17 @@ Note: These first 2 functions are the 'meat' of the script. The rest is mostly s
 
 1) generate_pv_list() lines 340 - 708
     Definition: Within script
-    What: Creates 56 pvs, including the input pv to the MPS
-    Conversion: We can use epics templates to do most of this, and create asyn parameters for them to access in the code
-    Uses: setup_pv(), undulator_K_store_n(), CQMQctrl_store_n(), UNDlaunch_setpt_store_n(), undulator_K_n(), CQMQctrl_n(), UNDlaunch_setpt_n()
-        1.1) setup_pv()
-        1.2)
+    What: 1) Creates 56 'storage' pvs using setup_pv(), including the input pv to the MPS. 
+            2) Then at line 475, 'these are actual data PVs' is where the input pvs we are reading the device data from
+            3) Then at line 649, 'control PVs, for tolerances' is where the tolerance pvs are created using setup_pv()
+    Conversion: 1) Since the  storage pvs are already created on $APP/MatlabSupport/db/matlabAOSupport.db. We don't have to make templates for them. 
+                But we do have to set the fields. Which we can create a dictionary for, and just loop over them. 
+                ACTUALLY: instead of using the matlabAOSupport.db we can make our own db and just use templates and substitution files.
+                2) Then for the device data PVs, 
+                we can make them asyn parameters as well like how we did centralNodeIoc, and just reference those.  
+                3) Same as number 1.
+    Uses: setup_pv()
+        1.1) setup_pv() lines 1006 - 1029 - Function that doesnt create pvs in epics, but sets the fields, such as 'DESC', 'EGU', 'PREC'
 
 2) lcaSetSeverityWarnLevel()
     Definition: $MAT/src/

@@ -12,18 +12,24 @@ dbLoadDatabase "dbd/Guardian.dbd"
 Guardian_registerRecordDeviceDriver pdbbase
 
 ## Load record instances
-#dbLoadRecords("db/xxx.db","user=pnispero")
-dbLoadRecords("db/counter.db", "USER=pnispero,PORT=pnispero,ADDR=0,TIMEOUT=0") # PATRICK TODO: Temporarily add counter
+#dbLoadRecords("db/xxx.db","user=GUARDIAN")
+dbLoadRecords("db/test.db") # PATRICK TODO: Temp here for testing
+dbLoadRecords("db/counter.db", "USER=GUARDIAN,PORT=GUARDIAN,ADDR=0,TIMEOUT=0") # PATRICK TODO: Temporarily add counter
+dbLoadRecords("db/guardian_snapshot.db", "BASE=SIOC:B34:GD_PATRICK") # PATRICK TODO: Temp add patrick so its unique
+dbLoadRecords("db/guardian_device_data.db", "BASE=SIOC:B34:GD_PATRICK") # PATRICK TODO: Temp add patrick so its unique
 
 
 ## Configure Guardian driver
-GuardianDriverConfigure("pnispero")
+# GuardianDriverConfigure(
+#    Port Name,                 # Name given to this port driver
+GuardianDriverConfigure("GUARDIAN")
+
 ## Configure counter driver
-# CounterDriverConfigure("pnispero") # PATRICK TODO: Temporarily add counter
+# CounterDriverConfigure("GUARDIAN") # PATRICK TODO: Temporarily add counter
 
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
 ## Start any sequence programs
-#seq sncxxx,"user=pnispero"
+#seq sncxxx,"user=GUARDIAN"

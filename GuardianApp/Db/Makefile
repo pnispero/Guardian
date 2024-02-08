@@ -8,6 +8,8 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 #DB += xxx.db
 DB += counter.db
+DB += guardian_snapshot.db
+DB += guardian_device_data.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

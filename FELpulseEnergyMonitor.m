@@ -81,7 +81,9 @@ while 1 % Loop forever
     else
         continue; % nothing to do here
     end
-
+    % PATRICK COMMENT: 'd' uses channel access and grabs the current pvs data. It is then used to be indexed 
+    % in the following lines, and its value is set to 'stats' fields.
+    % 'stats' should be renamed to 'current_device_data' for readability. and 'd' should be renamed to 'all_pv_data'
     stats.saveNewSnapshot    = d(L.saveNewSnapshot_n);
     stats.FEL_pulse_energy   = d(L.BOD_pulse_energy_n);
     stats.BODscan            = d(L.BOD_scan_n);
@@ -164,6 +166,14 @@ while 1 % Loop forever
     %%
     % This is the snapshot:
     %
+    % PATRICK COMMENT - Code under this if statement
+    % has the goal of getting each FEL param pv name,
+    % and getting the current value from the actual device data pvs.
+    % Save that to a structure called 'output' with the 2 fields:
+    % output.pv = 'Storage PV Name'
+    % output.value = 'Device Data'
+    % And at the end of gathering data, it then calls lcaputSmart()
+    % to write all the device data to the storage PVs
     if stats.saveNewSnapshot || cycle == 1 % we want to force-save a snapshot of FEL parameters on startup
         output.pv{1,1} = L.pv{L.FEL_pulseE_store_n, 1}; % place to stash the FEL pulse energy
         output.value(1,1) = stats.FEL_pulse_energy; % use the value determined above
@@ -265,6 +275,13 @@ while 1 % Loop forever
 %%
 %This references those stored values, and issues the trip if required
 %
+% PATRICK COMMENT - The goal of these lines of code before 'trip_logic()'
+% is called, is to store the snapshot device data to structure 'stored'
+% which will be used to compare against 'stats' which is the CURRENT device
+% data. 'stored' should be renamed 'snapshot_device_data', and
+% 'stats' should be renamed 'current_device_data'.
+% Really this should be called within the snapshot branch above,
+% because these stored values never change until a new snapshot is taken
 stored.FEL_pulse_energy  = d(L.FEL_pulseE_store_n);
 stored.bunchq_setpt      = d(L.bunchq_setpt_store_n);
 stored.bunchq_state      = d(L.bunchq_state_store_n);
