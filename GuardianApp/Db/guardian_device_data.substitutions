@@ -14,7 +14,7 @@ file guardian_device_data.template
 #                              
 #           
 pattern {  NAME  ,                      ID  ,  EGU  ,  PREC ,   DESC    }
-        {  "FBCK:FB02:GN01:S1DES"       0    ,  "uJ" ,  3    ,   "bunch charge setpoint"  }
+        {  "FBCK:FB02:GN01:S2DES"       0    ,  "uJ" ,  3    ,   "bunch charge setpoint"  }
         
 }
 

@@ -24,6 +24,7 @@ GuardianDriver::GuardianDriver(const char *portName) : asynPortDriver           
     createParam(SNAPSHOT_TRIGGER_STRING, asynParamUInt32Digital, &SnapshotTriggerIndex);
     createParam(STORED_VALUE_STRING, asynParamFloat64, &StoredValueIndex);
     createParam(SNAPSHOT_VALUE_STRING, asynParamFloat64, &SnapshotValueIndex);
+    setDoubleParam(StoredValueIndex,1);
     asynStatus status;
     status = (asynStatus)(epicsThreadCreate("FELpulseEnergyMonitor", epicsThreadPriorityMedium, epicsThreadGetStackSize(epicsThreadStackMedium), (EPICSTHREADFUNC)::FELpulseEnergyMonitor, this) == NULL);
     if (status)
@@ -54,10 +55,10 @@ void GuardianDriver::takeSnapshot()
     // std::cout << "4: " << status << "\n";
     // status = setDoubleParam(paramIndex, StoredValueIndex, curVal); 
     // std::cout << "0: " << status << "\n";
-    status = getDoubleParam(paramIndex, StoredValueIndex, &curVal);
+    status = getDoubleParam(StoredValueIndex, &curVal);
     std::cout << "1: " << status << "\n";
     std::cout << "curVal after get : " << curVal << "\n"; 
-    status = setDoubleParam(paramIndex, SnapshotValueIndex, curVal);
+    status = setDoubleParam(SnapshotValueIndex, curVal);
     std::cout << "2: " << status << "\n";
     callParamCallbacks();
 

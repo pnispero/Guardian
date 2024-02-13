@@ -11,18 +11,18 @@
 
 # ex: FBCK:FB02:GN01:S1DES_OUT
 # This records purpose is to copy data from device data pvs, and push to ASYN PV
-record(ao, "$(NAME)_OUT") { 
-    field(DESC, "$(DESC)")
-    field(PINI, "YES")
-    field(EGU, "$(EGU)")
-    field(PREC, "$(PREC)")
-    field(SCAN, "Passive") # TODO: Do we need this scan field?
-	field(OMSL, "closed_loop") 
-    field(DOL, "$(NAME)_TEST CPP")  # TODO: Temporarily set as test
-    # field(DOL, "$(NAME) CPP")  # CP means this record will process each time the input record processes
-    field(OUT, "$(NAME)_STORED") 
-    info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
-}
+#record(ao, "$(NAME)_OUT") { 
+#    field(DESC, "$(DESC)")
+#    field(PINI, "YES")
+#    field(EGU, "$(EGU)")
+#    field(PREC, "$(PREC)")
+#    field(SCAN, "Passive") # TODO: Do we need this scan field?
+#	field(OMSL, "closed_loop") 
+#    field(DOL, "$(NAME)_TEST CPP")  # TODO: Temporarily set as test
+#    # field(DOL, "$(NAME) CPP")  # CP means this record will process each time the input record processes
+#    field(OUT, "$(NAME)_STORED") 
+#    info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
+#}
 
 
 # ex: FBCK:FB02:GN01:S1DES_STORED
@@ -38,13 +38,26 @@ record(ao, "$(NAME)_OUT") {
 # }
 
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
-record(ai, "$(NAME)_STORED") {
+record(ao, "$(NAME)_STORED") {
     field(DESC, "$(DESC)")
-    field(SCAN, "I/O Intr")
     field(PINI, "YES")
     field(EGU, "$(EGU)")
     field(PREC, "$(PREC)")
     field(DTYP, "asynFloat64")
+    field(DOL, "$(NAME)_TEST CPP")
+    field(OMSL, "closed_loop") 
+    field(OUT, "@asyn(GUARDIAN, $(ID), 0)STORED")
+    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
+}
+
+# ex: FBCK:FB02:GN01:S1DES_STORED_RBV
+record(ai, "$(NAME)_STORED_RBV") {
+    field(DESC, "$(DESC)")
+    field(PINI, "YES")
+    field(EGU, "$(EGU)")
+    field(PREC, "$(PREC)")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
     field(INP, "@asyn(GUARDIAN, $(ID), 0)STORED")
     # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
