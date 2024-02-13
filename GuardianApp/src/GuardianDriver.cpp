@@ -75,24 +75,6 @@ void GuardianDriver::takeSnapshot()
     //     setDoubleParam(paramIndex, SnapshotValueIndex, curVal);
     // }
 
-//     ## Patrick TODO: See if we need these 2 other records
-// # record(stringin, "SIOC:$(SYSTEM):$(MICRO):AO515TS") {
-// #   field(DESC, "time stamp")
-// #   field(PINI, "YES")
-// #   field(DTYP, "Soft Timestamp")
-// #   field(INP, "@%m/%d/%Y %H:%M:%S")
-// #   info(autosaveFields, "VAL")
-// # }
-
-// # record(calc, "SIOC:$(SYSTEM):$(MICRO):AO515CNT") {
-// #   field(DESC, "AO515 PROC Count")
-// #   field(FLNK, "SIOC:$(SYSTEM):$(MICRO):AO515TS")
-// #   field(CALC, "A + 1")
-// #   field(INPA, "SIOC:$(SYSTEM):$(MICRO):AO515CNT.VAL")
-// #   field(EGU, "each")
-// #   info(autosaveFields, "VAL")
-// # }
-
 }
 
 // Need this function in case ops want to access pvs directly
@@ -157,11 +139,6 @@ void GuardianDriver::FELpulseEnergyMonitor(void)
    
    */
 
-     // pseudocode
-
-//    float snapshot_device_data; // This should be a map, with key being the name, 
-//    takeSnapshot(&snapshot_device_data);
-
     // PATRICK TODO: try get and set, then call takeSnapshot()
 
     // Initalize parameters (you have to set the param, then )
@@ -188,14 +165,6 @@ void GuardianDriver::FELpulseEnergyMonitor(void)
     while (true) {
         sleep(10); // TEMP
 
-        // double count;
-        // status = getDoubleParam(CounterIndex, &count);
-        // std::cout << "status: " << status << "\n";
-        // std::cout << "count after get : " << count << "\n"; 
-        // setDoubleParam(CounterIndex, count + 1);
-        // callParamCallbacks();
-
-
         // 5) Check snapshot_trg param, take snapshot then reset if true
         uint32_t snapshotTriggerVal;
         getUIntDigitalParam(SnapshotTriggerIndex, &snapshotTriggerVal, 1);
@@ -221,25 +190,25 @@ void GuardianDriver::FELpulseEnergyMonitor(void)
     }
 
 
-   // Counter code - temporary
-    int step;
-    double count;
-    while(1)
-    {
-        asynStatus status;
-        // PATRICK - seems like the first getDoubleParam always has a status of 10, but once you use setDoubleParam()
-        // and callParamCallBacks() then it grabs the value
+//    // Counter code - temporary
+//     int step;
+//     double count;
+//     while(1)
+//     {
+//         asynStatus status;
+//         // PATRICK - seems like the first getDoubleParam always has a status of 10, but once you use setDoubleParam()
+//         // and callParamCallBacks() then it grabs the value
 
-        sleep(5); //Necessary because the thread will go faster than I/O Scan will accept and write inputs
-        status = getDoubleParam(CounterIndex, &count);
-        getIntegerParam(StepIndex, &step);
-        std::cout << status << "\n";
-        std::cout << "count: " << count << '\n';
+//         sleep(5); //Necessary because the thread will go faster than I/O Scan will accept and write inputs
+//         status = getDoubleParam(CounterIndex, &count);
+//         getIntegerParam(StepIndex, &step);
+//         std::cout << status << "\n";
+//         std::cout << "count: " << count << '\n';
  
-        setDoubleParam(CounterIndex, count + step);
-        setIntegerParam(StepIndex, step + 1);
-        callParamCallbacks();
-    }
+//         setDoubleParam(CounterIndex, count + step);
+//         setIntegerParam(StepIndex, step + 1);
+//         callParamCallbacks();
+//     }
 
 
 }

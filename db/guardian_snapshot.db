@@ -1,0 +1,67 @@
+#=================================================================#
+# Template file: guardian_snapshot.template
+# Database for snapshot of device data values within sxrss for the guardian
+# Uses guardian_snapshot.substitutions
+# Macro description:                                                             #
+#   - NAME       : Condition Name                                                #
+#   - DESC       : Condition Description                                         #
+#   - ID         : Condition ASYN ID                                             #
+#=====================================================================
+
+# Record for triggering a snapshot
+record(bo, "$(BASE):SNAPSHOT_TRG_EN") {
+    field(DESC, "Snaphot trigger")
+    field(DTYP, "asynUInt32Digital")
+    field(SCAN, "Passive")
+    field(VAL, "0")
+    field(PINI, "YES")
+    field(ZNAM, "Not Triggered")
+    field(ONAM, "Triggered")
+    field(OUT, "@asynMask(GUARDIAN, 0, 1, 0)SNAPSHOT_TRG")
+}
+
+# Record for snapshot trigger readback value (OPs read this one back not the _EN)
+record(bi, "$(BASE):SNAPSHOT_TRG_RBV") {
+    field(DESC, "Snaphot trigger")
+    field(DTYP, "asynUInt32Digital")
+    field(SCAN, "I/O Intr")
+    field(PINI, "NO")
+    field(ZNAM, "Not Triggered")
+    field(ONAM, "Triggered")
+    field(INP, "@asynMask(GUARDIAN, 0, 1, 0)SNAPSHOT_TRG")
+}
+
+# ex: SIOC:SYS0:ML04:AO500
+# record(ao, "$(BASE):FEL_PULSE_E") {
+#     field(DESC, "FEL pulse energy in use by guardian")
+#     field(SCAN, "Passive")
+#     field(PINI, "YES")
+#     field(EGU, "uJ")
+#     field(PREC, "3")
+#     field(DTYP, "asynFloat64")
+#     field(OUT, "@asyn(GUARDIAN, 0)SNAPSHOT")
+#     info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
+# }
+
+# ex: SIOC:SYS0:ML04:AO500
+record(ai, "$(BASE):FEL_PULSE_E") {
+    field(DESC, "FEL pulse energy in use by guardian")
+    field(SCAN, "I/O Intr")
+    field(PINI, "YES")
+    field(EGU, "uJ")
+    field(PREC, "3")
+    field(DTYP, "asynFloat64")
+    field(INP, "@asyn(GUARDIAN, 0, 0)SNAPSHOT")
+    info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
+}
+
+# Patrick - try the longout record instead see if that works (thats what central node has)
+# record(longout, "$(BASE):FEL_PULSE_E") {
+#     field(DESC, "FEL pulse energy in use by guardian")
+#     field(SCAN, "I/O Intr")
+#     field(PINI, "YES")
+#     field(VAL, "0")
+#     field(EGU, "uJ")
+#     field(DTYP, "asynInt32")
+#     field(OUT, "@asyn(GUARDIAN, 0)SNAPSHOT")
+# }
