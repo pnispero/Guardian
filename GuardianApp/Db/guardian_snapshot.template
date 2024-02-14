@@ -3,9 +3,9 @@
 # Database for snapshot of device data values within sxrss for the guardian
 # Uses guardian_snapshot.substitutions
 # Macro description:                                                             #
-#   - NAME       : Condition Name                                                #
-#   - DESC       : Condition Description                                         #
-#   - ID         : Condition ASYN ID                                             #
+#   - NAME       : Name                                                #
+#   - DESC       : Description                                         #
+#   - ID         : ASYN ID                                             #
 #=====================================================================
 
 # Record for triggering a snapshot
@@ -32,18 +32,6 @@ record(bi, "$(BASE):SNAPSHOT_TRG_RBV") {
 }
 
 # ex: SIOC:SYS0:ML04:AO500
-# record(ao, "$(BASE):$(NAME)") {
-#     field(DESC, "$(DESC)")
-#     field(SCAN, "Passive")
-#     field(PINI, "YES")
-#     field(EGU, "$(EGU)")
-#     field(PREC, "$(PREC)")
-#     field(DTYP, "asynFloat64")
-#     field(OUT, "@asyn(GUARDIAN, $(ID))SNAPSHOT")
-#     info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
-# }
-
-# ex: SIOC:SYS0:ML04:AO500
 record(ai, "$(BASE):$(NAME)") {
     field(DESC, "$(DESC)")
     field(SCAN, "I/O Intr")
@@ -54,14 +42,3 @@ record(ai, "$(BASE):$(NAME)") {
     field(INP, "@asyn(GUARDIAN, $(ID), 0)SNAPSHOT")
     info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
-
-# Patrick - try the longout record instead see if that works (thats what central node has)
-# record(longout, "$(BASE):$(NAME)") {
-#     field(DESC, "$(DESC)")
-#     field(SCAN, "I/O Intr")
-#     field(PINI, "YES")
-#     field(VAL, "0")
-#     field(EGU, "$(EGU)")
-#     field(DTYP, "asynInt32")
-#     field(OUT, "@asyn(GUARDIAN, $(ID))SNAPSHOT")
-# }
