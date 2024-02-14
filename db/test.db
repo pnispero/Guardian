@@ -7,3 +7,11 @@ record(ao, "FBCK:FB02:GN01:S1DES_TEST") {
   field(DESC, "Desired val for s1")
   field(PRIO, "LOW")
 }
+
+record(ao, "FBCK:FB02:GN01:S1P1_TEST") {
+  field(EGU, "mm")
+  field(PINI, "YES")
+  field(PREC, "4")
+  field(DESC, "Desired val for s1")
+  field(PRIO, "LOW")
+}

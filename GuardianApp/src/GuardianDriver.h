@@ -13,9 +13,7 @@
 #include <epicsTypes.h>
 #include <asynPortDriver.h>
  
-#define FEL_PARAMS_SIZE 56
-#define CounterString "COUNTER"
-#define StepString "STEP"
+#define FEL_PARAMS_SIZE 72
 #define SNAPSHOT_TRIGGER_STRING "SNAPSHOT_TRG"
 #define STORED_VALUE_STRING "STORED"
 #define SNAPSHOT_VALUE_STRING "SNAPSHOT"
@@ -32,8 +30,6 @@ class GuardianDriver : public asynPortDriver {
     
    
   protected:
-    int CounterIndex;
-    int StepIndex;
     int SnapshotTriggerIndex;
     int StoredValueIndex;
     int SnapshotValueIndex;

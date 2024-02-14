@@ -84,9 +84,9 @@ while 1 % Loop forever
     % PATRICK COMMENT: 'd' uses channel access and grabs the current pvs data. It is then used to be indexed 
     % in the following lines, and its value is set to 'stats' fields.
     % 'stats' should be renamed to 'current_device_data' for readability. and 'd' should be renamed to 'all_pv_data'
-    stats.saveNewSnapshot    = d(L.saveNewSnapshot_n);
-    stats.FEL_pulse_energy   = d(L.BOD_pulse_energy_n);
-    stats.BODscan            = d(L.BOD_scan_n);
+    stats.saveNewSnapshot    = d(L.saveNewSnapshot_n); % PATRICK COMMENT: not used in trip logic
+    stats.FEL_pulse_energy   = d(L.BOD_pulse_energy_n); 
+    stats.BODscan            = d(L.BOD_scan_n); % PATRICK COMMENT: not used in trip logic
     stats.bunchq_setpt       = d(L.bunchq_setpt_n);
     stats.bunchq_state       = d(L.bunchq_state_n);
     stats.bunchq_mat_setpt   = d(L.bunchq_mat_setpt_n);
@@ -98,7 +98,7 @@ while 1 % Loop forever
     stats.LH_power           = d(L.LH_power_n);
     stats.BC1_energy_setpt          = d(L.BC1_energy_setpt_n);
     stats.BC1_energy_state          = d(L.BC1_energy_state_n);
-    stats.BC1_energy_fbck_on        = d(L.BC1_energy_fbck_on_n);
+    stats.BC1_energy_fbck_on        = d(L.BC1_energy_fbck_on_n); % PATRICK COMMENT: Not used as tolerance, but used for if statement
     stats.BC1_vernier               = d(L.BC1_vernier_n);
     stats.BC1_current_setpt         = d(L.BC1_current_setpt_n);
     stats.BC1_current_state         = d(L.BC1_current_state_n);
@@ -169,11 +169,12 @@ while 1 % Loop forever
     % PATRICK COMMENT - Code under this if statement
     % has the goal of getting each FEL param pv name,
     % and getting the current value from the actual device data pvs.
-    % Save that to a structure called 'output' with the 2 fields:
+    % Save that to a new structure called 'output' with the 2 fields:
     % output.pv = 'Storage PV Name'
     % output.value = 'Device Data'
     % And at the end of gathering data, it then calls lcaputSmart()
     % to write all the device data to the storage PVs
+    % Note - not all pvs in "L" are in 'output', some are used only for the GUI
     if stats.saveNewSnapshot || cycle == 1 % we want to force-save a snapshot of FEL parameters on startup
         output.pv{1,1} = L.pv{L.FEL_pulseE_store_n, 1}; % place to stash the FEL pulse energy
         output.value(1,1) = stats.FEL_pulse_energy; % use the value determined above
@@ -275,7 +276,7 @@ while 1 % Loop forever
 %%
 %This references those stored values, and issues the trip if required
 %
-% PATRICK COMMENT - The goal of these lines of code before 'trip_logic()'
+% PATRICK COMMENT - The goal of these lines of code until 'trip_logic()'
 % is called, is to store the snapshot device data to structure 'stored'
 % which will be used to compare against 'stats' which is the CURRENT device
 % data. 'stored' should be renamed 'snapshot_device_data', and
@@ -371,7 +372,7 @@ L.saveNewSnapshot_n = n;
 n = n + 1;
 L.pv{n,1} = setup_pv(pvstart + n , 'FEL pulse energy from from SXRSS GUI?', '1=yes', 0, 'FELpulseEnergyMonitor.m');
 L.BOD_scan_n = n;
-n = n + 1;
+n = n + 1;                  
 L.pv{n,1} = setup_pv(pvstart + n , 'FEL pulse energy in use by guardian', 'uJ', 3, 'FELpulseEnergyMonitor.m');
 L.FEL_pulseE_store_n = n;
 n = n + 1;

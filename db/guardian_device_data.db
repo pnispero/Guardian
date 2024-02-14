@@ -2,65 +2,71 @@
 # Template file: guardian_device_data.template
 # Database for device data values within sxrss for the guardian
 # Uses guardian_device_data.substitutions
-# Macro description:                                                             #
-#   - NAME       : Condition Name                                                #
-#   - DESC       : Condition Description                                         #
-#   - ID         : Condition ASYN ID                                             #
+# Macro description:                                                   #
+#   - NAME       : Name                                                #
+#   - DESC       : Description                                         #
+#   - ID         : ASYN ID                                             #
 #=====================================================================
 
 
-# ex: FBCK:FB02:GN01:S1DES_OUT
-# This records purpose is to copy data from device data pvs, and push to ASYN PV
-record(ao, "FBCK:FB02:GN01:S1DES_OUT") { 
-    field(DESC, "bunch charge setpoint")
-    field(PINI, "YES")
-    field(EGU, "uJ")
-    field(PREC, "3")
-    field(SCAN, "Passive") # TODO: Do we need this scan field?
-	field(OMSL, "closed_loop") 
-    field(DOL, "FBCK:FB02:GN01:S1DES_TEST CPP")  # TODO: Temporarily set as test
-    # field(DOL, "FBCK:FB02:GN01:S1DES CPP")  # CP means this record will process each time the input record processes
-    field(OUT, "FBCK:FB02:GN01:S1DES_STORED") 
-    info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
-}
-
-
 # ex: FBCK:FB02:GN01:S1DES_STORED
-# record(ao, "FBCK:FB02:GN01:S1DES_STORED") { 
-#     field(DESC, "bunch charge setpoint")
-#     field(SCAN, "Passive")
-#     field(PINI, "YES")
-#     field(EGU, "uJ")
-#     field(PREC, "3")
-#     field(DTYP, "asynFloat64")
-#     field(OUT, "@asyn(GUARDIAN, 0)STORED")
-#     info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
-# }
-
-# ex: FBCK:FB02:GN01:S1DES_STORED_RBV
-record(ai, "FBCK:FB02:GN01:S1DES_STORED") {
+# This records purpose is to copy data from device data pvs, and push to ASYN PV
+record(ao, "FBCK:FB02:GN01:S1DES_STORED") { 
     field(DESC, "bunch charge setpoint")
-    field(SCAN, "I/O Intr")
     field(PINI, "YES")
     field(EGU, "uJ")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
-    field(INP, "@asyn(GUARDIAN, 0, 0)STORED")
+	field(OMSL, "closed_loop") 
+    field(DOL, "FBCK:FB02:GN01:S1DES_TEST CPP")  # TODO: Temporarily set as test
+    field(OUT, "@asyn(GUARDIAN, 0, 0)STORED") 
     # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
-# Other notes
-# 2 records, one to bring in for Analog data, AO, using DOL (poor mans way of gathering data from another IOC to your IOC. This is how its done in Fastfeedback)
-# then use that AO record to 'push out' its data to your AI record which is an ASYN record.
-# we want to avoid channel access code in c++ since too complex.
-# BLOCKER: How would I get the asyn address within the code itself? It would make sense for channel access. WAIT you might be able to use the record name?
-# maybe not directly, but indirectly with a map(id, name)?
+# ex: FBCK:FB02:GN01:S1DES_STORED_RBV
+record(ai, "FBCK:FB02:GN01:S1DES_STORED_RBV") {
+    field(DESC, "bunch charge setpoint")    
+    field(PINI, "YES")
+    field(EGU, "uJ")
+    field(PREC, "3")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn(GUARDIAN, 0, 0)STORED")
+    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
+}
+#=================================================================#
+# Template file: guardian_device_data.template
+# Database for device data values within sxrss for the guardian
+# Uses guardian_device_data.substitutions
+# Macro description:                                                   #
+#   - NAME       : Name                                                #
+#   - DESC       : Description                                         #
+#   - ID         : ASYN ID                                             #
+#=====================================================================
 
-# we are not going to create a million parameters hardcoded, instead we can create a 
-# dictionary like file (like what Jesus did in Central Node), and it will dynamically create the parameters for us
-# 'parameter' is also referred as 'signal'. So this way if any changes are made, we only have to change one file 
-# the dictionary file. 
 
-# Also what was mentioned, is that when it is 'active' we want to know which mode (NC vs SC) it is on, and which 
-# 'devices' we are monitoring based off the mode. So will think about how we can dynamically
-# choose which devices to monitor (will use a PV for the boolean, but we can store the PV list of devices as a map)
+# ex: FBCK:FB02:GN01:S1DES_STORED
+# This records purpose is to copy data from device data pvs, and push to ASYN PV
+record(ao, "FBCK:FB02:GN01:S1P1_STORED") { 
+    field(DESC, "bunch charge state")
+    field(PINI, "YES")
+    field(EGU, "uJ")
+    field(PREC, "3")
+    field(DTYP, "asynFloat64")
+	field(OMSL, "closed_loop") 
+    field(DOL, "FBCK:FB02:GN01:S1P1_TEST CPP")  # TODO: Temporarily set as test
+    field(OUT, "@asyn(GUARDIAN, 1, 0)STORED") 
+    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
+}
+
+# ex: FBCK:FB02:GN01:S1DES_STORED_RBV
+record(ai, "FBCK:FB02:GN01:S1P1_STORED_RBV") {
+    field(DESC, "bunch charge state")    
+    field(PINI, "YES")
+    field(EGU, "uJ")
+    field(PREC, "3")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn(GUARDIAN, 1, 0)STORED")
+    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
+}

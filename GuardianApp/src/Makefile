@@ -51,8 +51,6 @@ DBD += Guardian.dbd
 Guardian_DBD += base.dbd
 Guardian_DBD += Init.dbd
 
-# Guardian_DBD += counter.dbd # PATRICK TODO: Temporarily set to counter
-
 # Include dbd files from all support applications:
 Guardian_DBD += asyn.dbd
 # Guardian_DBD += yamlLoader.dbd
@@ -64,8 +62,6 @@ Guardian_DBD += asyn.dbd
 # Guardian_registerRecordDeviceDriver.cpp derives from Guardian.dbd
 Guardian_SRCS += Guardian_registerRecordDeviceDriver.cpp
 Guardian_SRCS += GuardianDriver.cpp 
-# Guardian_SRCS += main.cpp # PATRICK TODO
-# Guardian_SRCS += counter.cpp # PATRICK TODO: Temporarily set to counter
 
 # Build the main IOC entry point on workstation OSs.
 Guardian_SRCS_DEFAULT += GuardianMain.cpp

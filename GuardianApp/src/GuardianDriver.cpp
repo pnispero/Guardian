@@ -10,7 +10,7 @@ static GuardianDriver *pGDriver = NULL; // pGDriver - pointer to guardian driver
  
 GuardianDriver::GuardianDriver(const char *portName) : asynPortDriver                                                      (
                                                       portName,
-                                                      1,
+                                                      FEL_PARAMS_SIZE, // number to specify maximum parameter lists (starting from 0)
                                                       asynFloat64Mask | asynInt32Mask | asynUInt32DigitalMask | asynDrvUserMask, // interfaceMask
                                                       asynFloat64Mask | asynInt32Mask | asynUInt32DigitalMask, // interruptMask
                                                       ASYN_MULTIDEVICE, // asynFlags
@@ -19,8 +19,6 @@ GuardianDriver::GuardianDriver(const char *portName) : asynPortDriver           
                                                       0 // stackSize
                                                      )
 {
-    createParam(CounterString, asynParamFloat64, &CounterIndex);
-    createParam(StepString, asynParamInt32, &StepIndex);
     createParam(SNAPSHOT_TRIGGER_STRING, asynParamUInt32Digital, &SnapshotTriggerIndex);
     createParam(STORED_VALUE_STRING, asynParamFloat64, &StoredValueIndex);
     createParam(SNAPSHOT_VALUE_STRING, asynParamFloat64, &SnapshotValueIndex);
@@ -54,11 +52,15 @@ void GuardianDriver::takeSnapshot()
     // std::cout << "4: " << status << "\n";
     // status = setDoubleParam(paramIndex, StoredValueIndex, curVal); 
     // std::cout << "0: " << status << "\n";
-    status = getDoubleParam(paramIndex, StoredValueIndex, &curVal);
-    std::cout << "1: " << status << "\n";
-    std::cout << "curVal after get : " << curVal << "\n"; 
-    status = setDoubleParam(paramIndex, SnapshotValueIndex, curVal);
-    std::cout << "2: " << status << "\n";
+    for (paramIndex = 0; paramIndex < 2; paramIndex++) {
+        status = getDoubleParam(paramIndex, StoredValueIndex, &curVal);
+        std::cout << "1: " << status << "\n";
+        std::cout << "curVal after get : " << curVal << "\n"; 
+
+        status = setDoubleParam(paramIndex, SnapshotValueIndex, curVal);
+        std::cout << "2: " << status << "\n";
+    }
+
     callParamCallbacks();
 
     // >>>>>>>>>>>>>>>>>>>>
@@ -76,6 +78,11 @@ void GuardianDriver::takeSnapshot()
     // }
 
 }
+
+
+// void GuardianDriver::tripLogic() {
+//     // 2) May make multi value map 'trip_params' with (int key, int data_id, int optional data_id2(used for 'on' conditional) (default = true), int snapshot_id, string message) to be used in trip_logic. This can be used for like 70% of the trip logic, and you can put it in a loop. Although this map would have to be initialzed in the beginning (its still much less code than doing all of it explcitly). But the other 30% are special cases, which we can write out explicitly.
+// }
 
 // Need this function in case ops want to access pvs directly
 // asynStatus GuardianDriver::readInt32(asynUser *pasynUser, epicsInt32 *value) {
@@ -139,31 +146,38 @@ void GuardianDriver::FELpulseEnergyMonitor(void)
    
    */
 
-    // PATRICK TODO: try get and set, then call takeSnapshot()
+    // int numParams;
+    // getNumParams(&numParams);
+    // std::cout << "\nNum params: " << numParams; // TEMP
 
-    // Initalize parameters (you have to set the param, then )
+    // Initalize parameters - TODO: getDoubleParam() may be unecessary in initialization
     uint32_t paramIndex = 0;
     double curVal = 1;
     asynStatus status;
-    status = setDoubleParam(paramIndex, StoredValueIndex, curVal);
-    std::cout << "status: " << status << "\n";
-    std::cout << "curVal after get : " << curVal << "\n"; 
-    status = getDoubleParam(paramIndex, StoredValueIndex, &curVal);
-    std::cout << "status: " << status << "\n";
-    std::cout << "curVal after get : " << curVal << "\n"; 
+    for (paramIndex = 0; paramIndex < 2; paramIndex++) {
+        status = setDoubleParam(paramIndex, StoredValueIndex, curVal);
+        std::cout << "status: " << status << "\n";
+        std::cout << "curVal after set : " << curVal << "\n"; 
+        status = getDoubleParam(paramIndex, StoredValueIndex, &curVal);
+        std::cout << "status: " << status << "\n";
+        std::cout << "curVal after get : " << curVal << "\n"; 
 
-    status = setDoubleParam(paramIndex, SnapshotValueIndex, curVal);
-    std::cout << "status: " << status << "\n";
-    std::cout << "curVal after set : " << curVal << "\n"; 
-    status = getDoubleParam(paramIndex, SnapshotValueIndex, &curVal);
-    std::cout << "status: " << status << "\n";
-    std::cout << "curVal after get : " << curVal << "\n"; 
+        status = setDoubleParam(0, SnapshotValueIndex, curVal);
+        std::cout << "status: " << status << "\n";
+        std::cout << "curVal after set : " << curVal << "\n"; 
+        status = getDoubleParam(0, SnapshotValueIndex, &curVal);
+        std::cout << "status: " << status << "\n";
+        std::cout << "curVal after get : " << curVal << "\n"; 
+    }
+
+
 
     callParamCallbacks(); // Call this to write the values back into epics records
 
 
     while (true) {
-        sleep(10); // TEMP
+        sleep(10); // TEMP // TODO: instead of hardcode 10, make it a pv instead, so the cycle speed is adjustable
+        
 
         // 5) Check snapshot_trg param, take snapshot then reset if true
         uint32_t snapshotTriggerVal;
@@ -188,29 +202,6 @@ void GuardianDriver::FELpulseEnergyMonitor(void)
         // std::string trip_msg;
         // trip_logic(&snapshot_device_data, &current_device_data, &trip, &trip_msg);
     }
-
-
-//    // Counter code - temporary
-//     int step;
-//     double count;
-//     while(1)
-//     {
-//         asynStatus status;
-//         // PATRICK - seems like the first getDoubleParam always has a status of 10, but once you use setDoubleParam()
-//         // and callParamCallBacks() then it grabs the value
-
-//         sleep(5); //Necessary because the thread will go faster than I/O Scan will accept and write inputs
-//         status = getDoubleParam(CounterIndex, &count);
-//         getIntegerParam(StepIndex, &step);
-//         std::cout << status << "\n";
-//         std::cout << "count: " << count << '\n';
- 
-//         setDoubleParam(CounterIndex, count + step);
-//         setIntegerParam(StepIndex, step + 1);
-//         callParamCallbacks();
-//     }
-
-
 }
 
 /* Configure the guardian driver which may include the port, filepath maybe other ports */
