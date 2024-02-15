@@ -1,14 +1,5 @@
-# Test record, grabbed from $APP/FastFeeback/current/db/fbck_tempate.db
 
-record(ao, "FBCK:FB02:GN01:S1DES_TEST") {
-  field(EGU, "mm")
-  field(PINI, "YES")
-  field(PREC, "4")
-  field(DESC, "Desired val for s1")
-  field(PRIO, "LOW")
-}
-
-record(ao, "FBCK:FB02:GN01:S1P1_TEST") {
+record(ao, "SIOC:SYS0:ML01:AO861_TEST") {
   field(EGU, "mm")
   field(PINI, "YES")
   field(PREC, "4")

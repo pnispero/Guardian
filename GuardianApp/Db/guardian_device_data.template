@@ -1,6 +1,7 @@
 #=================================================================#
 # Template file: guardian_device_data.template
 # Database for device data values within sxrss for the guardian
+# And for snapshot data values
 # Uses guardian_device_data.substitutions
 # Macro description:                                                   #
 #   - NAME       : Name                                                #
@@ -32,5 +33,17 @@ record(ai, "$(NAME)_STORED_RBV") {
     field(DTYP, "asynFloat64")
     field(SCAN, "I/O Intr")
     field(INP, "@asyn(GUARDIAN, $(ID), 0)STORED")
+    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
+}
+
+# ex: FBCK:FB02:GN01:S1DES_SNAPSHOT
+record(ai, "$(NAME)_SNAPSHOT") {
+    field(DESC, "$(DESC)")
+    field(SCAN, "I/O Intr")
+    field(PINI, "YES")
+    field(EGU, "$(EGU)")
+    field(PREC, "$(PREC)")
+    field(DTYP, "asynFloat64")
+    field(INP, "@asyn(GUARDIAN, $(ID), 0)SNAPSHOT")
     # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }

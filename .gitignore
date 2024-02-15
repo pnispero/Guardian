@@ -9,6 +9,7 @@ bin/
 lib/
 include/
 dbd/
+db/
 startup/
 cfg/
 restor/

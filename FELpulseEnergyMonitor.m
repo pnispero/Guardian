@@ -86,7 +86,7 @@ while 1 % Loop forever
     % 'stats' should be renamed to 'current_device_data' for readability. and 'd' should be renamed to 'all_pv_data'
     stats.saveNewSnapshot    = d(L.saveNewSnapshot_n); % PATRICK COMMENT: not used in trip logic
     stats.FEL_pulse_energy   = d(L.BOD_pulse_energy_n); 
-    stats.BODscan            = d(L.BOD_scan_n); % PATRICK COMMENT: not used in trip logic
+    stats.BODscan            = d(L.BOD_scan_n); % PATRICK COMMENT: not used in trip logic or anywhere it seems (maybe display?)
     stats.bunchq_setpt       = d(L.bunchq_setpt_n);
     stats.bunchq_state       = d(L.bunchq_state_n);
     stats.bunchq_mat_setpt   = d(L.bunchq_mat_setpt_n);
@@ -104,24 +104,24 @@ while 1 % Loop forever
     stats.BC1_current_state         = d(L.BC1_current_state_n);
     stats.BC1_current_fbck_on       = d(L.BC1_current_fbck_on_n);
     stats.BC1_current_fbckSXR_setpt = d(L.BC1_current_fbckSXR_setpt_n);
-    stats.BC1_current_fbckSXR_on    = d(L.BC1_current_fbckSXR_on_n);
+    stats.BC1_current_fbckSXR_on    = d(L.BC1_current_fbckSXR_on_n); % PATRICK COMMENT: Not used as tolerance, but used for if statement
     stats.BC2_vernier               = d(L.BC2_vernier_n);
     stats.L1S_phase_setpt           = d(L.L1S_phase_setpt_n);
     stats.BC2_current_setpt         = d(L.BC2_current_setpt_n);
     stats.BC2_current_state         = d(L.BC2_current_state_n);
-    stats.BC2_current_fbck_on       = d(L.BC2_current_fbck_on_n);
+    stats.BC2_current_fbck_on       = d(L.BC2_current_fbck_on_n); % PATRICK COMMENT: Not used as tolerance, but used for if statement
     stats.BC2_current_fbckSXR_setpt = d(L.BC2_current_fbckSXR_setpt_n);
-    stats.BC2_current_fbckSXR_on    = d(L.BC2_current_fbckSXR_on_n);
+    stats.BC2_current_fbckSXR_on    = d(L.BC2_current_fbckSXR_on_n); % PATRICK COMMENT: Not used as tolerance, but used for if statement
     stats.L2_chirp_setpt            = d(L.L2_chirp_setpt_n);
     stats.L3ampl_fbckSXR_setpt      = d(L.L3ampl_fbckSXR_setpt_n);
     stats.L3ampl_fbckSXR_state      = d(L.L3ampl_fbckSXR_state_n);
-    stats.L3ampl_fbckSXR_on         = d(L.L3ampl_fbckSXR_on_n);
-    stats.DL2_energy_fbck_on        = d(L.DL2_energy_fbck_on_n);
+    stats.L3ampl_fbckSXR_on         = d(L.L3ampl_fbckSXR_on_n); % PATRICK COMMENT: Not used in tolerance or anywhere it seems (maybe display?)
+    stats.DL2_energy_fbck_on        = d(L.DL2_energy_fbck_on_n); % PATRICK COMMENT: Not used in tolerance or anywhere it seems (maybe display?)
     stats.DL2_vernier               = d(L.DL2_vernier_n);
     stats.dump_bend_bdes            = d(L.dump_bend_bdes_n);
     stats.dump_bend_bact            = d(L.dump_bend_bact_n);
-    stats.bunch_chg_fbck            = d(L.bunch_charge_fbck_on_n);
-    stats.matlab_chg_fbck_on        = d(L.matlab_charge_fbck_on_n);
+    stats.bunch_chg_fbck            = d(L.bunch_charge_fbck_on_n); % PATRICK COMMENT: Not used as tolerance, but used for if statement
+    stats.matlab_chg_fbck_on        = d(L.matlab_charge_fbck_on_n); % PATRICK COMMENT: Not used as tolerance, but used for if statement
     for iund = 1:9
         und_Kvalue(iund)         = d(L.undulator_K_n(iund));
         % PATRICK Comment:
@@ -140,14 +140,16 @@ while 1 % Loop forever
         CQMQpv.name{(iquad),1}   = L.pv{L.CQMQctrl_n(iquad),1};
     end
     stats.CQMQctrl          = CQMQctrlValue;
-    stats.CQMQpv            = CQMQpv.name;
+    stats.CQMQpv            = CQMQpv.name; %
     % UND Launch Setopints X, Xp, Y, Yp
     for iulsp = 1:4
         UNDlaunch_setpt(iulsp) = d(L.UNDlaunch_setpt_n(iulsp));
     end
     stats.UNDlaunch_setpt   = UNDlaunch_setpt;
+    % PATRICK COMMENT: The rest of these pvs are 'control PVs, for tolerances'
+    % These don't seem to be grabbing from other devices, they are just set manually
     stats.BC1tols           = d(L.BC1tols_n);
-    stats.L1Sphasetols      = d(L.L1Sphasetols_n);
+    stats.L1Sphasetols      = d(L.L1Sphasetols_n); 
     stats.BC2tols           = d(L.BC2tols_n);
     stats.bunchQtols        = d(L.bunchQtols_n);
     stats.L2chirptols       = d(L.L2chirptols_n);
@@ -676,52 +678,52 @@ pvstart2 = 700;
 m = 1;
 n = n + 1;
 L.pv{n,1} = setup_pv(pvstart2 + m  , 'bunch charge feedback tolerance', '%', 1, 'FELpulseEnergyMonitor.m');
-L.bunchQtols_n = n;
+L.bunchQtols_n = n; % PATRICK COMMENT: 701
 n = n + 1; m = m + 1;
 L.pv{n,1} = setup_pv(pvstart2 + m  , 'L1S phase setpoint tolerance', '%', 1, 'FELpulseEnergyMonitor.m');
-L.L1Sphasetols_n = n;
+L.L1Sphasetols_n = n; % PATRICK COMMENT: 702
 n = n + 1; m = m + 1;
 L.pv{n,1} = setup_pv(pvstart2 + m  , 'BC1 energy feedback tolerance', '%', 1, 'FELpulseEnergyMonitor.m');
-L.BC1_Etols_n = n;
+L.BC1_Etols_n = n; % PATRICK COMMENT: 703
 n = n + 1; m = m + 1;
 L.pv{n,1} = setup_pv(pvstart2 + m  , 'BC1 energy vernier tolerance, +/-', 'MeV', 2, 'FELpulseEnergyMonitor.m');
-L.BC1_verntols_n = n;
+L.BC1_verntols_n = n; % PATRICK COMMENT: 704
 n = n + 1; m = m + 1;
 L.pv{n,1} = setup_pv(pvstart2 + m  , 'BC1 current feedback tolerance', '%', 1, 'FELpulseEnergyMonitor.m');
-L.BC1tols_n = n;
+L.BC1tols_n = n; % PATRICK COMMENT: 705
 n = n + 1; m = m + 1;
 L.pv{n,1} = setup_pv(pvstart2 + m  , 'BC2 current feedback tolerance', '%', 1, 'FELpulseEnergyMonitor.m');
-L.BC2tols_n = n;
+L.BC2tols_n = n; % PATRICK COMMENT: 706
 n = n + 1; m = m + 1;
 L.pv{n,1} = setup_pv(pvstart2 + m  , 'BC2 energy vernier tolerance, +/-', 'MeV', 2, 'FELpulseEnergyMonitor.m');
-L.BC2_verntols_n = n;
+L.BC2_verntols_n = n; % PATRICK COMMENT: 707
 n = n + 1; m = m + 1;
 L.pv{n,1} = setup_pv(pvstart2 + m  , 'L2 chirp tolerance', '%', 1, 'FELpulseEnergyMonitor.m');
-L.L2chirptols_n = n;
+L.L2chirptols_n = n; % PATRICK COMMENT: 708
 n = n + 1; m = m + 1;
 L.pv{n,1} = setup_pv(pvstart2 + m  , 'DL2 energy vernier tolerance, +/-', 'MeV', 2, 'FELpulseEnergyMonitor.m');
-L.DL2_verntols_n = n;
+L.DL2_verntols_n = n; % PATRICK COMMENT: 709
 n = n + 1; m = m + 1;
 L.pv{n,1} = setup_pv(pvstart2 + m  , 'L3 energy tolerance', '%', 1, 'FELpulseEnergyMonitor.m');
-L.L3ampltols_n = n;
+L.L3ampltols_n = n; % PATRICK COMMENT: 710
 n = n + 1; m = m + 1;
 L.pv{n,1} = setup_pv(pvstart2 + m  , 'Laser Heater power tolerance', 'uJ', 1, 'FELpulseEnergyMonitor.m');
-L.LHpowertols_n = n;
+L.LHpowertols_n = n; % PATRICK COMMENT: 711
 n = n + 1; m = m + 1;
 L.pv{n,1} = setup_pv(pvstart2 + m  , 'Undulator K value tolerance', '%', 3, 'FELpulseEnergyMonitor.m');
-L.undKtols_n = n;
+L.undKtols_n = n; % PATRICK COMMENT: 712
 n = n + 1; m = m + 1;
 L.pv{n,1} = setup_pv(pvstart2 + m  , 'BC1 collimator jaws position tolerance', 'mm', 3, 'FELpulseEnergyMonitor.m');
-L.BC1colltols_n = n;
+L.BC1colltols_n = n; % PATRICK COMMENT: 713
 n = n + 1; m = m + 1;
 L.pv{n,1} = setup_pv(pvstart2 + m  , 'Slotted Foil position tolerance', '%', 1, 'FELpulseEnergyMonitor.m');
-L.SlottedFoiltols_n = n;
+L.SlottedFoiltols_n = n; % PATRICK COMMENT: 714
 n = n + 1; m = m + 1;
 L.pv{n,1} = setup_pv(pvstart2 + m  , 'Laser heater Waveplate angle tolerance', 'deg', 1, 'FELpulseEnergyMonitor.m');
-L.LHwaveplatetols_n = n;
+L.LHwaveplatetols_n = n; % PATRICK COMMENT: 715
 n = n + 1; m = m + 1;
 L.pv{n,1} = setup_pv(pvstart2 + m  , 'Matching quad/CQ BDES tolerance', '%', 1, 'FELpulseEnergyMonitor.m');
-L.CQMQctrltols_n = n;
+L.CQMQctrltols_n = n; % PATRICK COMMENT: 716
 n = n + 1;
 L.pv{n,1} = setup_pv(750 , 'Guardian Trip PV', '1=trip', 0, 'FELpulseEnergyMonitor.m');
 L.trip_PV_n = n;
@@ -740,6 +742,7 @@ trip = 0;
 out.message = ' All OK ';
 out.CQMQtrip = 0;
 % First check that the UND K values haven't changed
+% PATRICK COMMENT - type 1 (9 count)
 for iund = 1:9
     qq = stats.undulator_K(iund);
     QQ = stored.undulator_K(iund);
@@ -751,6 +754,7 @@ for iund = 1:9
     end
 end
 %only check the active bunch charge feedback
+% PATRICK COMMENT - Special case contains type 1 & 2 with additional logic
 if stats.bunch_chg_fbck > 0 % non matlab feedback active
     % Check bunch charge feedback setpoint unchanged
     if stats.bunchq_setpt ~= stored.bunchq_setpt
@@ -788,6 +792,7 @@ end
 %
 % Check if BC1 energy feedback is on, then check that the SXR state
 % is within (tols)% of stored setpoint
+% PATRICK COMMENT - Special case contains type 1 & 2 with additional logic
 if stats.BC1_energy_fbck_on > 0
     tols = stats.BC1_Etols * 0.01;
     qq = stats.BC1_energy_state;
@@ -809,6 +814,7 @@ end
 % Check if BC1 current feedback is on, then check if SXR dualE is
 % on. Use the appropriate setpoint (ACT is always the SXR one) and
 % check BC1 current feedback state within (tols)% of stored setpoint
+% PATRICK COMMENT - Special case contains type 1 & 2 with additional logic
 if stats.BC1_current_fbck_on > 0
     tols = stats.BC1tols * 0.01;
     qq = stats.BC1_current_state;
@@ -832,6 +838,7 @@ else
 end
 %
 % Check L1S phase setpoint within (tols)% stored state
+% PATRICK COMMENT - Type 6
 tols = stats.L1Sphasetols * 0.01;
 qq = abs(stats.L1S_phase_setpt);
 QQ = abs(stored.L1S_phase_setpt);
@@ -842,6 +849,7 @@ if qq > (tols*QQ + QQ) || qq < (QQ - tols*QQ)
 end
 %
 % Check BC2 Energy vernier for SXR has not changed beyond allowed range
+% PATRICK COMMENT - Type 3
 tols = stats.BC2_verntols;
 qq = abs(stats.BC2_vernier);
 QQ = abs(stored.BC2_vernier);
@@ -855,6 +863,7 @@ end
 % check first that it hasn't changed, then check that the BC2 current feedback 
 % state is within (tols)% of stored setpoint
 %
+% PATRICK COMMENT - Special case contains type 2 with additional logic
 if stats.BC2_current_fbck_on > 0
     tols = stats.BC2tols * 0.01;
     qq = stats.BC2_current_state;
@@ -887,6 +896,7 @@ else
     out.message = 'WARNING: BC2 Bunch Current Feedback is OFF';
 end
 % Check L2 chirp setpoint within user entered % of stored state
+% PATRICK COMMENT - Type 6
 tols = stats.L2chirptols * 0.01;
 qq = abs(stats.L2_chirp_setpt);
 QQ = abs(stored.L2_chirp_setpt);
@@ -896,6 +906,7 @@ if qq > (tols*QQ + QQ) || qq < (QQ - tols*QQ)
     return
 end
 % Check DL2 vernier is within allowed range (absolute +/- MeV)
+% PATRICK COMMENT - Type 3
 tols = stats.DL2_verntols;
 qq = abs(stats.DL2_vernier);
 QQ = abs(stored.DL2_vernier);
@@ -905,6 +916,7 @@ if qq > (tols + QQ) || qq < (QQ - tols)
     return
 end
 % Check Laser Heater 1 Waveplate angle unchanged
+% PATRICK COMMENT - Type 4
 tols = stats.LHwaveplatetols;
 qq = stats.LH1_waveplate;
 QQ = stored.LH1_waveplate;
@@ -915,12 +927,14 @@ if abs(QQ - qq) > abs(tols*QQ)
     return
 end
 % Check Laser Heater 1 delay unchanged
+% PATRIKC COMMENT - type 2
 if stats.LH1_delay ~= stored.LH1_delay
     trip = 1;
     out.message = 'Laser Heater 1 delay has been changed. Check FEL pulse energy';
     return
 end
 % Check Laser Heater 2 Waveplate angle unchanged
+% PATRICK COMMENT - type 4
 tols = stats.LHwaveplatetols;
 qq = stats.LH2_waveplate;
 QQ = stored.LH2_waveplate;
@@ -931,12 +945,14 @@ if abs(QQ - qq) > abs(tols*QQ)
     return
 end
 % Check Laser Heater 2 delay unchanged
+% PATRICK COMMENT - type 2
 if stats.LH2_delay ~= stored.LH2_delay
     trip = 1;
     out.message = 'Laser Heater 2 delay has been changed. Check FEL pulse energy';
     return
 end
 % Check Laser heater power is within (n) 1 uJ of stored state
+% PATRICK COMMENT - Type 3
 tols = stats.LHpowertols;
 qq = abs(stats.LH_power);
 QQ = abs(stored.LH_power);
@@ -946,6 +962,7 @@ if qq > (tols + QQ) || qq < (QQ - tols)
     return
 end
 % Check BC1 colls are within 0.030 mm (or user entered delta) of stored position
+% PATRICK COMMENT - Special case
 qql = abs(stats.BC1coll_L_pos);
 qqr = abs(stats.BC1coll_R_pos);
 QQL = abs(stored.BC1coll_L_pos);
@@ -965,6 +982,7 @@ if (qql > (colTolL + QQL) || qql < (QQL - colTolL)) ...
     return
 end
 % Check Slotted Foil 804 position is within user entered % of stored state
+% PATRICK COMMENT - Special case type 4 & added tols
 tols = stats.SlottedFoiltols * 0.01;
 qq = stats.SlottedFoil804_pos;
 QQ = stored.SlottedFoil804_pos;
@@ -975,6 +993,7 @@ if abs(QQ - qq) > abs(tols*QQ)
     return
 end
 % Check Slotted Foil 807 position is within user entered % of stored state
+% PATRICK COMMENT - Special case type 4 & added tols
 tols = stats.SlottedFoiltols * 0.01;
 qq = stats.SlottedFoil807_pos;
 QQ = stored.SlottedFoil807_pos;
@@ -985,12 +1004,14 @@ if abs(QQ - qq) > abs(tols*QQ)
     return
 end
 % Check Dump Bend BDES has not changed
+% PATRICK COMMENT - type 2
 if stats.dump_bend_bdes    ~= stored.dump_bend_bdes
     trip = 1;
     out.message = 'Dump/LTU Bend BDES has been changed. Check FEL pulse energy.';
     return
 end
 % Check Dump Bend BACT within 0.5% stored state
+% PATRICK COMMENT - Special case type 4 & added tols
 qq = stats.dump_bend_bact;
 QQ = stored.dump_bend_bact;
 tols = 0.005;
@@ -1001,6 +1022,7 @@ if abs(QQ - qq) > abs(tols*QQ)
 end
 % Check that no one's tweaking the matching Quads or CQs (BCTRL change
 % <0.1% )
+% PATRICK COMMENT - Special case type 4 & added tols & logic - quad type
 for iquad = 1:26
     qq = stats.CQMQctrl(iquad);
     QQ = stored.CQMQctrl(iquad);
@@ -1015,6 +1037,7 @@ for iquad = 1:26
 end
 % Check that no one's tweaking the Undulator Launch Feedback setpoints
 % (no change allowed)
+% PATRICK COMMENT - Special case type 4 (count 4) & added tols
 for iulsp = 1:4
     qq = stats.UNDlaunch_setpt(iulsp);
     QQ = stored.UNDlaunch_setpt(iulsp);

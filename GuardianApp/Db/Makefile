@@ -9,6 +9,7 @@ include $(TOP)/configure/CONFIG
 #DB += xxx.db
 DB += guardian_snapshot.db
 DB += guardian_device_data.db
+DB += guardian_tolerance_data.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

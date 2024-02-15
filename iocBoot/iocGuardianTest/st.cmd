@@ -16,6 +16,7 @@ Guardian_registerRecordDeviceDriver pdbbase
 dbLoadRecords("db/test.db") # PATRICK TODO: Temp here for testing
 dbLoadRecords("db/guardian_snapshot.db", "BASE=SIOC:B34:GD_PATRICK") # PATRICK TODO: Temp add patrick so its unique
 dbLoadRecords("db/guardian_device_data.db", "BASE=SIOC:B34:GD_PATRICK") # PATRICK TODO: Temp add patrick so its unique
+dbLoadRecords("db/guardian_tolerance_data.db", "BASE=SIOC:B34:GD_PATRICK") # PATRICK TODO: Temp add patrick so its unique
 
 
 ## Configure Guardian driver

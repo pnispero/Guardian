@@ -30,15 +30,3 @@ record(bi, "$(BASE):SNAPSHOT_TRG_RBV") {
     field(ONAM, "Triggered")
     field(INP, "@asynMask(GUARDIAN, 0, 1, 0)SNAPSHOT_TRG")
 }
-
-# ex: SIOC:SYS0:ML04:AO500
-record(ai, "$(BASE):$(NAME)") {
-    field(DESC, "$(DESC)")
-    field(SCAN, "I/O Intr")
-    field(PINI, "YES")
-    field(EGU, "$(EGU)")
-    field(PREC, "$(PREC)")
-    field(DTYP, "asynFloat64")
-    field(INP, "@asyn(GUARDIAN, $(ID), 0)SNAPSHOT")
-    info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
-}
