@@ -35,7 +35,6 @@ record(bi, "$(BASE):SNAPSHOT_TRG_RBV") {
 record(ai, "$(BASE):FEL_PULSE_E") {
     field(DESC, "FEL pulse energy in use by guardian")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "uJ")
     field(PREC, "3")
     field(DTYP, "asynFloat64")

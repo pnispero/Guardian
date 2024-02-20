@@ -52,6 +52,7 @@ void GuardianDriver::takeSnapshot()
 
 void GuardianDriver::FELpulseEnergyMonitor(void)
 {
+    sleep(5); // Important - Let epics records load first then initialize. C++ thread runs faster than epics can initalize itself
     // Initalize parameters
     uint32_t paramIndex = 0;
     double curVal = 1;

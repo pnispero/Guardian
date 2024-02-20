@@ -23,7 +23,6 @@ record(ao, "$(NAME)_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "$(NAME)_STORED_RBV") {
     field(DESC, "$(DESC)")
-    field(PINI, "YES")
     field(EGU, "$(EGU)")
     field(PREC, "$(PREC)")
     field(DTYP, "asynFloat64")

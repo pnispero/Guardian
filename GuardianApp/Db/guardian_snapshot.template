@@ -35,7 +35,6 @@ record(bi, "$(BASE):SNAPSHOT_TRG_RBV") {
 record(ai, "$(BASE):$(NAME)") {
     field(DESC, "$(DESC)")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "$(EGU)")
     field(PREC, "$(PREC)")
     field(DTYP, "asynFloat64")
