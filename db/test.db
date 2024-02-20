@@ -1,8 +1,0 @@
-
-record(ao, "SIOC:SYS0:ML01:AO861_TEST") {
-  field(EGU, "mm")
-  field(PINI, "YES")
-  field(PREC, "4")
-  field(DESC, "Desired val for s1")
-  field(PRIO, "LOW")
-}
