@@ -7,7 +7,8 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 #DB += xxx.db
-DB += guardian_snapshot.db
+DB += guardian_controls.db
+DB += guardian_metadata.db
 DB += guardian_device_data.db
 DB += guardian_tolerance_data.db
 

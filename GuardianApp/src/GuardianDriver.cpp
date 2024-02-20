@@ -10,7 +10,7 @@ static GuardianDriver *pGDriver = NULL; // pGDriver - pointer to guardian driver
  
 GuardianDriver::GuardianDriver(const char *portName) : asynPortDriver                                                      (
                                                       portName,
-                                                      FEL_PARAMS_SIZE, // number to specify maximum parameter lists (starting from 0)
+                                                      1000, // number to specify maximum parameter lists (starting from 0)
                                                       asynFloat64Mask | asynInt32Mask | asynUInt32DigitalMask | asynDrvUserMask, // interfaceMask
                                                       asynFloat64Mask | asynInt32Mask | asynUInt32DigitalMask, // interruptMask
                                                       ASYN_MULTIDEVICE, // asynFlags
@@ -19,7 +19,10 @@ GuardianDriver::GuardianDriver(const char *portName) : asynPortDriver           
                                                       0 // stackSize
                                                      )
 {
+    createParam(MONITOR_CYCLE_STRING, asynParamFloat64, &MonitorCycleIndex);
     createParam(SNAPSHOT_TRIGGER_STRING, asynParamUInt32Digital, &SnapshotTriggerIndex);
+    createParam(DEVICE_PARAM_SIZE_STRING, asynParamInt32, &DeviceParamSizeIndex);
+    createParam(TOLERANCE_PARAM_SIZE_STRING, asynParamInt32, &ToleranceParamSizeIndex);
     createParam(STORED_VALUE_STRING, asynParamFloat64, &StoredValueIndex);
     createParam(SNAPSHOT_VALUE_STRING, asynParamFloat64, &SnapshotValueIndex);
     createParam(TOLERANCE_VALUE_STRING, asynParamFloat64, &ToleranceValueIndex);
@@ -30,6 +33,7 @@ GuardianDriver::GuardianDriver(const char *portName) : asynPortDriver           
         printf("Thread didn't launch please do something else");
         return;
     }
+
 }
 
 void FELpulseEnergyMonitor(void* driverPointer)
@@ -39,17 +43,15 @@ void FELpulseEnergyMonitor(void* driverPointer)
 
 void GuardianDriver::takeSnapshot()
 {
-    uint32_t paramIndex = 0;
     double curVal;
-    asynStatus status;
-    for (paramIndex = 0; paramIndex < FEL_PARAMS_SIZE; paramIndex++) {
+    for (int paramIndex = 0; paramIndex < DEVICE_PARAMS_SIZE; paramIndex++) {
 
         // Get value from device storage PVs
-        status = getDoubleParam(paramIndex, StoredValueIndex, &curVal);
+        getDoubleParam(paramIndex, StoredValueIndex, &curVal);
         std::cout << "curVal after get : " << curVal << "\n"; 
 
         // Set device desired snapshot PVs to value
-        status = setDoubleParam(paramIndex, SnapshotValueIndex, curVal);
+        setDoubleParam(paramIndex, SnapshotValueIndex, curVal);
     }
     callParamCallbacks();
 }
@@ -207,23 +209,6 @@ void GuardianDriver::tripLogic() {
 
 void GuardianDriver::initializeNCTripParamMap() {
 
-    // Initialize 9 undulators
-
-    std::map<uint32_t, TripParam> testMap;
-    testMap.emplace(0, TripParam(logicType::outsideTolerancePercentage, 31, 31, "Undulator 1 K value has changed", 0, 11));
-    Patrick - Actually make it so a user can add logic just by adding to the .substitutions file. So Omit this dictionary
-    x) Send email to tonee about the logic types and why they are different. 
-    x) Mentioned hxr line may eventually use this guardian sioc as well (or may make it an engine)
-    1) Goal of making it as seamless as we can to add parameters
-        1.1) Change the #define FEL_PARAMS_SIZE and add it in the constructor of GuardianDriver by using findNumParam() instead
-        1.2) Also add tripMsg as a pv, we can just make another template
-        1.2) we can make the logic type a pv so it can be added to the substitutions file as well. ALSO try to make that 
-            logicType pv read only in channel access 
-        1.3) double check that there isnt any parameters that compare to different ones (i.e. current vs stored are the same parameter)
-
-    // for (int undIndex = 1; undIndex < 10; undIndex++) {
-    //     NCTripParamMap.emplace(1, TripParam(outsideTolerancePercentage, 31, 31, "Undulator 1 K value has changed", 0, 11));
-    // }
 }
 void GuardianDriver::initializeSCTripParamMap() {
     
@@ -232,28 +217,28 @@ void GuardianDriver::initializeSCTripParamMap() {
 // TODO: Convert this to an asynStatus function
 void GuardianDriver::FELpulseEnergyMonitor(void)
 {
+    sleep(5); // IMPORTANT - Let epics records load then initialize
 
-    // Initalize parameters
+    getIntegerParam(DeviceParamSizeIndex, &DEVICE_PARAMS_SIZE);
+    getIntegerParam(ToleranceParamSizeIndex, &TOL_PARAMS_SIZE);
+    std::cout << "Device param size: " << DEVICE_PARAMS_SIZE; // TEMP
+    std::cout << "\nTol param size: " << TOL_PARAMS_SIZE; // TEMP
 
-    pGDriver->initializeNCTripParamMap();
-
-    uint32_t paramIndex = 0;
     double curVal = 1;
-    for (paramIndex = 0; paramIndex < FEL_PARAMS_SIZE; paramIndex++) {
+    for (int paramIndex = 0; paramIndex < DEVICE_PARAMS_SIZE; paramIndex++) {
         setDoubleParam(paramIndex, StoredValueIndex, curVal);
         setDoubleParam(paramIndex, SnapshotValueIndex, curVal);
     }
-    for (paramIndex = 0; paramIndex < TOL_PARAMS_SIZE; paramIndex++) {
+    for (int paramIndex = 0; paramIndex < TOL_PARAMS_SIZE; paramIndex++) {
         setDoubleParam(paramIndex, ToleranceValueIndex, curVal);
     }
     callParamCallbacks(); // Call this to write the values back into epics records
 
     sleep(10); // Wait some time for every device data pv to populate with real values
-    // TODO: Actually test if you need to initialize parameters with setDoubleParam.
-    // Maybe since it has 'PINI' field its already initialized
 
     while (true) {
-        sleep(10); // TEMP // TODO: instead of hardcode 10, make it a pv instead, so the cycle speed is adjustable
+        getDoubleParam(MonitorCycleIndex, &MONITOR_CYCLE_TIME);
+        sleep(MONITOR_CYCLE_TIME); // TEMP // TODO: instead of hardcode 10, make it a pv instead, so the cycle speed is adjustable
 
         // 5) Check snapshot_trg param, take snapshot then reset if true
         uint32_t snapshotTriggerVal;

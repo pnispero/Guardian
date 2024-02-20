@@ -1,0 +1,47 @@
+#=================================================================#
+# Template file: guardian_metadata.template
+# Database for data about the device data and others within sxrss for the guardian
+# Macro description:                                                             #
+#   - BASE       : Base name                                                #                                     #
+#=====================================================================
+# How to update:
+# You only need to edit the "VAL" field. 
+# ex: if you added a device to guardian_device_data.substitions, then increase the "VAL" field
+# of DEVICE_PARAM_SIZE by 1
+
+# # Record for number of device data pvs
+record(longout, "$(BASE):DEVICE_PARAM_SIZE") {
+    field(DESC, "number of device data pvs")
+    field(PINI, "YES")
+    field(VAL, "$(DEVICE_PARAM_SIZE)") # Update this field if needed
+    field(DTYP, "asynInt32")
+    field(OUT, "@asyn(GUARDIAN, 0, 0)DEVICE_PARAM_SIZE")
+    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
+}
+
+# Record for number of tolerance 'control' pvs
+record(longout, "$(BASE):TOLERANCE_PARAM_SIZE") {
+    field(DESC, "number of tolerance control pvs")
+    field(PINI, "YES")
+    field(VAL, "$(TOLERANCE_PARAM_SIZE)") # Update this field if needed
+    field(DTYP, "asynInt32")
+    field(OUT, "@asyn(GUARDIAN, 0, 0)TOLERANCE_PARAM_SIZE")
+    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
+}
+
+record(longin, "$(BASE):DEVICE_PARAM_SIZE_RBV") {
+    field(DESC, "number of device data pvs")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn(GUARDIAN, 0, 0)DEVICE_PARAM_SIZE")
+    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
+}
+
+# Record for number of tolerance 'control' pvs
+record(longin, "$(BASE):TOLERANCE_PARAM_SIZE_RBV") {
+    field(DESC, "number of tolerance control pvs")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn(GUARDIAN, 0, 0)TOLERANCE_PARAM_SIZE")
+    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
+}

@@ -27,7 +27,6 @@ record(ao, "SIOC:SYS0:ML01:AO861_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "SIOC:SYS0:ML01:AO861_STORED_RBV") {
     field(DESC, "FEL pulse energy in use by guardian")    
-    field(PINI, "YES")
     field(EGU, "uJ")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -40,7 +39,6 @@ record(ai, "SIOC:SYS0:ML01:AO861_STORED_RBV") {
 record(ai, "SIOC:SYS0:ML01:AO861_SNAPSHOT") {
     field(DESC, "FEL pulse energy in use by guardian")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "uJ")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -76,7 +74,6 @@ record(ao, "FBCK:FB02:GN01:S1DES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "FBCK:FB02:GN01:S1DES_STORED_RBV") {
     field(DESC, "bunch charge feedback setpoint")    
-    field(PINI, "YES")
     field(EGU, "nC")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -89,7 +86,6 @@ record(ai, "FBCK:FB02:GN01:S1DES_STORED_RBV") {
 record(ai, "FBCK:FB02:GN01:S1DES_SNAPSHOT") {
     field(DESC, "bunch charge feedback setpoint")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "nC")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -125,7 +121,6 @@ record(ao, "FBCK:FB02:GN01:S1P1_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "FBCK:FB02:GN01:S1P1_STORED_RBV") {
     field(DESC, "bunch charge feedback state")    
-    field(PINI, "YES")
     field(EGU, "nC")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -138,7 +133,6 @@ record(ai, "FBCK:FB02:GN01:S1P1_STORED_RBV") {
 record(ai, "FBCK:FB02:GN01:S1P1_SNAPSHOT") {
     field(DESC, "bunch charge feedback state")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "nC")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -174,7 +168,6 @@ record(ao, "FBCK:BCI0:1:CHRGSP_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "FBCK:BCI0:1:CHRGSP_STORED_RBV") {
     field(DESC, "bunch charge matlab fbck setpt")    
-    field(PINI, "YES")
     field(EGU, "nC")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -187,7 +180,6 @@ record(ai, "FBCK:BCI0:1:CHRGSP_STORED_RBV") {
 record(ai, "FBCK:BCI0:1:CHRGSP_SNAPSHOT") {
     field(DESC, "bunch charge matlab fbck setpt")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "nC")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -223,7 +215,6 @@ record(ao, "FBCK:BCI0:1:CHRG_S_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "FBCK:BCI0:1:CHRG_S_STORED_RBV") {
     field(DESC, "bunch charge matlab fbck state")    
-    field(PINI, "YES")
     field(EGU, "nC")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -236,7 +227,6 @@ record(ai, "FBCK:BCI0:1:CHRG_S_STORED_RBV") {
 record(ai, "FBCK:BCI0:1:CHRG_S_SNAPSHOT") {
     field(DESC, "bunch charge matlab fbck state")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "nC")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -272,7 +262,6 @@ record(ao, "FBCK:FB04:LG01:S2DES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "FBCK:FB04:LG01:S2DES_STORED_RBV") {
     field(DESC, "BC1 energy setpoint")    
-    field(PINI, "YES")
     field(EGU, "MeV")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -285,7 +274,6 @@ record(ai, "FBCK:FB04:LG01:S2DES_STORED_RBV") {
 record(ai, "FBCK:FB04:LG01:S2DES_SNAPSHOT") {
     field(DESC, "BC1 energy setpoint")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "MeV")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -321,7 +309,6 @@ record(ao, "FBCK:FB04:LG01:S2P2_S_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "FBCK:FB04:LG01:S2P2_S_STORED_RBV") {
     field(DESC, "BC1 energy state for SXR")    
-    field(PINI, "YES")
     field(EGU, "MeV")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -334,7 +321,6 @@ record(ai, "FBCK:FB04:LG01:S2P2_S_STORED_RBV") {
 record(ai, "FBCK:FB04:LG01:S2P2_S_SNAPSHOT") {
     field(DESC, "BC1 energy state for SXR")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "MeV")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -370,7 +356,6 @@ record(ao, "FBCK:FB04:LG01:BC1VERNIER_SXR_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "FBCK:FB04:LG01:BC1VERNIER_SXR_STORED_RBV") {
     field(DESC, "BC1 energy vernier for SXR")    
-    field(PINI, "YES")
     field(EGU, "MeV")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -383,7 +368,6 @@ record(ai, "FBCK:FB04:LG01:BC1VERNIER_SXR_STORED_RBV") {
 record(ai, "FBCK:FB04:LG01:BC1VERNIER_SXR_SNAPSHOT") {
     field(DESC, "BC1 energy vernier for SXR")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "MeV")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -419,7 +403,6 @@ record(ao, "FBCK:FB04:LG01:S3DES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "FBCK:FB04:LG01:S3DES_STORED_RBV") {
     field(DESC, "BC1 current setpoint")    
-    field(PINI, "YES")
     field(EGU, "amps")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -432,7 +415,6 @@ record(ai, "FBCK:FB04:LG01:S3DES_STORED_RBV") {
 record(ai, "FBCK:FB04:LG01:S3DES_SNAPSHOT") {
     field(DESC, "BC1 current setpoint")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "amps")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -468,7 +450,6 @@ record(ao, "BLEN:LI21:265:AIMAXCUS1H_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "BLEN:LI21:265:AIMAXCUS1H_STORED_RBV") {
     field(DESC, "BC1 current state for SXR")    
-    field(PINI, "YES")
     field(EGU, "amps")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -481,7 +462,6 @@ record(ai, "BLEN:LI21:265:AIMAXCUS1H_STORED_RBV") {
 record(ai, "BLEN:LI21:265:AIMAXCUS1H_SNAPSHOT") {
     field(DESC, "BC1 current state for SXR")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "amps")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -517,7 +497,6 @@ record(ao, "SIOC:SYS0:ML04:AO403_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "SIOC:SYS0:ML04:AO403_STORED_RBV") {
     field(DESC, "BC1 current setpoint for SXR")    
-    field(PINI, "YES")
     field(EGU, "amps")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -530,7 +509,6 @@ record(ai, "SIOC:SYS0:ML04:AO403_STORED_RBV") {
 record(ai, "SIOC:SYS0:ML04:AO403_SNAPSHOT") {
     field(DESC, "BC1 current setpoint for SXR")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "amps")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -566,7 +544,6 @@ record(ao, "ACCL:LI21:1:L1S_PDES:SETDATA_1_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "ACCL:LI21:1:L1S_PDES:SETDATA_1_STORED_RBV") {
     field(DESC, "L1S phase setpoint for SXR")    
-    field(PINI, "YES")
     field(EGU, "deg")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -579,7 +556,6 @@ record(ai, "ACCL:LI21:1:L1S_PDES:SETDATA_1_STORED_RBV") {
 record(ai, "ACCL:LI21:1:L1S_PDES:SETDATA_1_SNAPSHOT") {
     field(DESC, "L1S phase setpoint for SXR")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "deg")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -615,7 +591,6 @@ record(ao, "FBCK:FB04:LG01:BC2VERNIER_SXR_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "FBCK:FB04:LG01:BC2VERNIER_SXR_STORED_RBV") {
     field(DESC, "BC2 energy vernier for SXR")    
-    field(PINI, "YES")
     field(EGU, "MeV")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -628,7 +603,6 @@ record(ai, "FBCK:FB04:LG01:BC2VERNIER_SXR_STORED_RBV") {
 record(ai, "FBCK:FB04:LG01:BC2VERNIER_SXR_SNAPSHOT") {
     field(DESC, "BC2 energy vernier for SXR")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "MeV")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -664,7 +638,6 @@ record(ao, "FBCK:FB04:LG01:S5DES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "FBCK:FB04:LG01:S5DES_STORED_RBV") {
     field(DESC, "BC2 current setpoint")    
-    field(PINI, "YES")
     field(EGU, "amps")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -677,7 +650,6 @@ record(ai, "FBCK:FB04:LG01:S5DES_STORED_RBV") {
 record(ai, "FBCK:FB04:LG01:S5DES_SNAPSHOT") {
     field(DESC, "BC2 current setpoint")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "amps")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -713,7 +685,6 @@ record(ao, "SIOC:SYS0:ML04:AO401_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "SIOC:SYS0:ML04:AO401_STORED_RBV") {
     field(DESC, "BC2 current setpt for SXR")    
-    field(PINI, "YES")
     field(EGU, "amps")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -726,7 +697,6 @@ record(ai, "SIOC:SYS0:ML04:AO401_STORED_RBV") {
 record(ai, "SIOC:SYS0:ML04:AO401_SNAPSHOT") {
     field(DESC, "BC2 current setpt for SXR")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "amps")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -762,7 +732,6 @@ record(ao, "BLEN:LI24:886:BIMAXCUS1H_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "BLEN:LI24:886:BIMAXCUS1H_STORED_RBV") {
     field(DESC, "BC2 current state for SXR")    
-    field(PINI, "YES")
     field(EGU, "amps")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -775,7 +744,6 @@ record(ai, "BLEN:LI24:886:BIMAXCUS1H_STORED_RBV") {
 record(ai, "BLEN:LI24:886:BIMAXCUS1H_SNAPSHOT") {
     field(DESC, "BC2 current state for SXR")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "amps")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -811,7 +779,6 @@ record(ao, "FBCK:FB04:LG01:CHIRPDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "FBCK:FB04:LG01:CHIRPDES_STORED_RBV") {
     field(DESC, "L2 chirp setpoint")    
-    field(PINI, "YES")
     field(EGU, "MeV")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -824,7 +791,6 @@ record(ai, "FBCK:FB04:LG01:CHIRPDES_STORED_RBV") {
 record(ai, "FBCK:FB04:LG01:CHIRPDES_SNAPSHOT") {
     field(DESC, "L2 chirp setpoint")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "MeV")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -860,7 +826,6 @@ record(ao, "SIOC:SYS0:ML04:AO406_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "SIOC:SYS0:ML04:AO406_STORED_RBV") {
     field(DESC, "L3 ampl setpt for SXR")    
-    field(PINI, "YES")
     field(EGU, "MeV")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -873,7 +838,6 @@ record(ai, "SIOC:SYS0:ML04:AO406_STORED_RBV") {
 record(ai, "SIOC:SYS0:ML04:AO406_SNAPSHOT") {
     field(DESC, "L3 ampl setpt for SXR")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "MeV")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -909,7 +873,6 @@ record(ao, "SIOC:SYS0:ML04:CALC405_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "SIOC:SYS0:ML04:CALC405_STORED_RBV") {
     field(DESC, "L3 ampl state for SXR")    
-    field(PINI, "YES")
     field(EGU, "MeV")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -922,7 +885,6 @@ record(ai, "SIOC:SYS0:ML04:CALC405_STORED_RBV") {
 record(ai, "SIOC:SYS0:ML04:CALC405_SNAPSHOT") {
     field(DESC, "L3 ampl state for SXR")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "MeV")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -958,7 +920,6 @@ record(ao, "FBCK:FB04:LG01:DL2VERNIER_SXR_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "FBCK:FB04:LG01:DL2VERNIER_SXR_STORED_RBV") {
     field(DESC, "DL2 energy vernier for SXR")    
-    field(PINI, "YES")
     field(EGU, "MeV")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -971,7 +932,6 @@ record(ai, "FBCK:FB04:LG01:DL2VERNIER_SXR_STORED_RBV") {
 record(ai, "FBCK:FB04:LG01:DL2VERNIER_SXR_SNAPSHOT") {
     field(DESC, "DL2 energy vernier for SXR")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "MeV")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -1007,7 +967,6 @@ record(ao, "BEND:DMPS:400:BDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "BEND:DMPS:400:BDES_STORED_RBV") {
     field(DESC, "Dump bend BDES")    
-    field(PINI, "YES")
     field(EGU, "GeV")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -1020,7 +979,6 @@ record(ai, "BEND:DMPS:400:BDES_STORED_RBV") {
 record(ai, "BEND:DMPS:400:BDES_SNAPSHOT") {
     field(DESC, "Dump bend BDES")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "GeV")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -1056,7 +1014,6 @@ record(ao, "BEND:DMPS:400:BACT_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "BEND:DMPS:400:BACT_STORED_RBV") {
     field(DESC, "Dump bend BACT")    
-    field(PINI, "YES")
     field(EGU, "GeV")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -1069,7 +1026,6 @@ record(ai, "BEND:DMPS:400:BACT_STORED_RBV") {
 record(ai, "BEND:DMPS:400:BACT_SNAPSHOT") {
     field(DESC, "Dump bend BACT")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "GeV")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -1105,7 +1061,6 @@ record(ao, "COLL:LI21:236:LVPOS_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "COLL:LI21:236:LVPOS_STORED_RBV") {
     field(DESC, "BC1 left (+) collimator position")    
-    field(PINI, "YES")
     field(EGU, "mm")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -1118,7 +1073,6 @@ record(ai, "COLL:LI21:236:LVPOS_STORED_RBV") {
 record(ai, "COLL:LI21:236:LVPOS_SNAPSHOT") {
     field(DESC, "BC1 left (+) collimator position")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "mm")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -1154,7 +1108,6 @@ record(ao, "COLL:LI21:235:LVPOS_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "COLL:LI21:235:LVPOS_STORED_RBV") {
     field(DESC, "BC1 right (-) collimator position")    
-    field(PINI, "YES")
     field(EGU, "mm")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -1167,7 +1120,6 @@ record(ai, "COLL:LI21:235:LVPOS_STORED_RBV") {
 record(ai, "COLL:LI21:235:LVPOS_SNAPSHOT") {
     field(DESC, "BC1 right (-) collimator position")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "mm")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -1203,7 +1155,6 @@ record(ao, "FOIL:LI24:804:MOTR_RBV_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "FOIL:LI24:804:MOTR_RBV_STORED_RBV") {
     field(DESC, "LI24 Slotted Foil 804 position")    
-    field(PINI, "YES")
     field(EGU, "mm")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -1216,7 +1167,6 @@ record(ai, "FOIL:LI24:804:MOTR_RBV_STORED_RBV") {
 record(ai, "FOIL:LI24:804:MOTR_RBV_SNAPSHOT") {
     field(DESC, "LI24 Slotted Foil 804 position")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "mm")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -1252,7 +1202,6 @@ record(ao, "FOIL:LI24:807:MOTR_RBV_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "FOIL:LI24:807:MOTR_RBV_STORED_RBV") {
     field(DESC, "LI24 Slotted Foil 807 position")    
-    field(PINI, "YES")
     field(EGU, "mm")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -1265,7 +1214,6 @@ record(ai, "FOIL:LI24:807:MOTR_RBV_STORED_RBV") {
 record(ai, "FOIL:LI24:807:MOTR_RBV_SNAPSHOT") {
     field(DESC, "LI24 Slotted Foil 807 position")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "mm")
     field(PREC, "1")
     field(DTYP, "asynFloat64")
@@ -1301,7 +1249,6 @@ record(ao, "WPLT:LR20:220:LHWP_ANGLE_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "WPLT:LR20:220:LHWP_ANGLE_STORED_RBV") {
     field(DESC, "Laser Heater 1 Waveplate Angle")    
-    field(PINI, "YES")
     field(EGU, "deg")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -1314,7 +1261,6 @@ record(ai, "WPLT:LR20:220:LHWP_ANGLE_STORED_RBV") {
 record(ai, "WPLT:LR20:220:LHWP_ANGLE_SNAPSHOT") {
     field(DESC, "Laser Heater 1 Waveplate Angle")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "deg")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -1350,7 +1296,6 @@ record(ao, "LHDL:LR20:260:TACT_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "LHDL:LR20:260:TACT_STORED_RBV") {
     field(DESC, "Laser Heater 1 Delay")    
-    field(PINI, "YES")
     field(EGU, "ps")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -1363,7 +1308,6 @@ record(ai, "LHDL:LR20:260:TACT_STORED_RBV") {
 record(ai, "LHDL:LR20:260:TACT_SNAPSHOT") {
     field(DESC, "Laser Heater 1 Delay")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "ps")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -1399,7 +1343,6 @@ record(ao, "WPLT:LR20:230:LHWP_ANGLE_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "WPLT:LR20:230:LHWP_ANGLE_STORED_RBV") {
     field(DESC, "Laser Heater 2 Waveplate Angle")    
-    field(PINI, "YES")
     field(EGU, "deg")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -1412,7 +1355,6 @@ record(ai, "WPLT:LR20:230:LHWP_ANGLE_STORED_RBV") {
 record(ai, "WPLT:LR20:230:LHWP_ANGLE_SNAPSHOT") {
     field(DESC, "Laser Heater 2 Waveplate Angle")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "deg")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -1448,7 +1390,6 @@ record(ao, "LHDL:LR20:270:TACT_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "LHDL:LR20:270:TACT_STORED_RBV") {
     field(DESC, "Laser Heater 2 Delay")    
-    field(PINI, "YES")
     field(EGU, "ps")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -1461,7 +1402,6 @@ record(ai, "LHDL:LR20:270:TACT_STORED_RBV") {
 record(ai, "LHDL:LR20:270:TACT_SNAPSHOT") {
     field(DESC, "Laser Heater 2 Delay")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "ps")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -1497,7 +1437,6 @@ record(ao, "LASR:IN20:475:PWR1H_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "LASR:IN20:475:PWR1H_STORED_RBV") {
     field(DESC, "Laser Heater Power")    
-    field(PINI, "YES")
     field(EGU, "uJ")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -1510,7 +1449,6 @@ record(ai, "LASR:IN20:475:PWR1H_STORED_RBV") {
 record(ai, "LASR:IN20:475:PWR1H_SNAPSHOT") {
     field(DESC, "Laser Heater Power")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "uJ")
     field(PREC, "3")
     field(DTYP, "asynFloat64")
@@ -1546,7 +1484,6 @@ record(ao, "USEG:UNDS:2650:KAct_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "USEG:UNDS:2650:KAct_STORED_RBV") {
     field(DESC, "Undulator 1 K value")    
-    field(PINI, "YES")
     field(EGU, "K")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -1559,7 +1496,6 @@ record(ai, "USEG:UNDS:2650:KAct_STORED_RBV") {
 record(ai, "USEG:UNDS:2650:KAct_SNAPSHOT") {
     field(DESC, "Undulator 1 K value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "K")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -1595,7 +1531,6 @@ record(ao, "USEG:UNDS:2750:KAct_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "USEG:UNDS:2750:KAct_STORED_RBV") {
     field(DESC, "Undulator 2 K value")    
-    field(PINI, "YES")
     field(EGU, "K")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -1608,7 +1543,6 @@ record(ai, "USEG:UNDS:2750:KAct_STORED_RBV") {
 record(ai, "USEG:UNDS:2750:KAct_SNAPSHOT") {
     field(DESC, "Undulator 2 K value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "K")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -1644,7 +1578,6 @@ record(ao, "USEG:UNDS:2850:KAct_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "USEG:UNDS:2850:KAct_STORED_RBV") {
     field(DESC, "Undulator 3 K value")    
-    field(PINI, "YES")
     field(EGU, "K")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -1657,7 +1590,6 @@ record(ai, "USEG:UNDS:2850:KAct_STORED_RBV") {
 record(ai, "USEG:UNDS:2850:KAct_SNAPSHOT") {
     field(DESC, "Undulator 3 K value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "K")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -1693,7 +1625,6 @@ record(ao, "USEG:UNDS:2950:KAct_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "USEG:UNDS:2950:KAct_STORED_RBV") {
     field(DESC, "Undulator 4 K value")    
-    field(PINI, "YES")
     field(EGU, "K")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -1706,7 +1637,6 @@ record(ai, "USEG:UNDS:2950:KAct_STORED_RBV") {
 record(ai, "USEG:UNDS:2950:KAct_SNAPSHOT") {
     field(DESC, "Undulator 4 K value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "K")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -1742,7 +1672,6 @@ record(ao, "USEG:UNDS:3050:KAct_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "USEG:UNDS:3050:KAct_STORED_RBV") {
     field(DESC, "Undulator 5 K value")    
-    field(PINI, "YES")
     field(EGU, "K")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -1755,7 +1684,6 @@ record(ai, "USEG:UNDS:3050:KAct_STORED_RBV") {
 record(ai, "USEG:UNDS:3050:KAct_SNAPSHOT") {
     field(DESC, "Undulator 5 K value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "K")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -1791,7 +1719,6 @@ record(ao, "USEG:UNDS:3150:KAct_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "USEG:UNDS:3150:KAct_STORED_RBV") {
     field(DESC, "Undulator 6 K value")    
-    field(PINI, "YES")
     field(EGU, "K")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -1804,7 +1731,6 @@ record(ai, "USEG:UNDS:3150:KAct_STORED_RBV") {
 record(ai, "USEG:UNDS:3150:KAct_SNAPSHOT") {
     field(DESC, "Undulator 6 K value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "K")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -1840,7 +1766,6 @@ record(ao, "USEG:UNDS:3250:KAct_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "USEG:UNDS:3250:KAct_STORED_RBV") {
     field(DESC, "Undulator 7 K value")    
-    field(PINI, "YES")
     field(EGU, "K")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -1853,7 +1778,6 @@ record(ai, "USEG:UNDS:3250:KAct_STORED_RBV") {
 record(ai, "USEG:UNDS:3250:KAct_SNAPSHOT") {
     field(DESC, "Undulator 7 K value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "K")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -1889,7 +1813,6 @@ record(ao, "USEG:UNDS:3350:KAct_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "USEG:UNDS:3350:KAct_STORED_RBV") {
     field(DESC, "Undulator 8 K value")    
-    field(PINI, "YES")
     field(EGU, "K")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -1902,7 +1825,6 @@ record(ai, "USEG:UNDS:3350:KAct_STORED_RBV") {
 record(ai, "USEG:UNDS:3350:KAct_SNAPSHOT") {
     field(DESC, "Undulator 8 K value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "K")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -1938,7 +1860,6 @@ record(ao, "USEG:UNDS:3450:KAct_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "USEG:UNDS:3450:KAct_STORED_RBV") {
     field(DESC, "Undulator 9 K value")    
-    field(PINI, "YES")
     field(EGU, "K")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -1951,7 +1872,6 @@ record(ai, "USEG:UNDS:3450:KAct_STORED_RBV") {
 record(ai, "USEG:UNDS:3450:KAct_SNAPSHOT") {
     field(DESC, "Undulator 9 K value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "K")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -1987,7 +1907,6 @@ record(ao, "QUAD:LI21:201:BDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "QUAD:LI21:201:BDES_STORED_RBV") {
     field(DESC, "CQ or Matching Quad 1 BDES Value")    
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2000,7 +1919,6 @@ record(ai, "QUAD:LI21:201:BDES_STORED_RBV") {
 record(ai, "QUAD:LI21:201:BDES_SNAPSHOT") {
     field(DESC, "CQ or Matching Quad 1 BDES Value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2036,7 +1954,6 @@ record(ao, "QUAD:LI21:211:BDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "QUAD:LI21:211:BDES_STORED_RBV") {
     field(DESC, "CQ or Matching Quad 2 BDES Value")    
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2049,7 +1966,6 @@ record(ai, "QUAD:LI21:211:BDES_STORED_RBV") {
 record(ai, "QUAD:LI21:211:BDES_SNAPSHOT") {
     field(DESC, "CQ or Matching Quad 2 BDES Value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2085,7 +2001,6 @@ record(ao, "QUAD:LI21:271:BDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "QUAD:LI21:271:BDES_STORED_RBV") {
     field(DESC, "CQ or Matching Quad 3 BDES Value")    
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2098,7 +2013,6 @@ record(ai, "QUAD:LI21:271:BDES_STORED_RBV") {
 record(ai, "QUAD:LI21:271:BDES_SNAPSHOT") {
     field(DESC, "CQ or Matching Quad 3 BDES Value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2134,7 +2048,6 @@ record(ao, "QUAD:LI21:278:BDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "QUAD:LI21:278:BDES_STORED_RBV") {
     field(DESC, "CQ or Matching Quad 4 BDES Value")    
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2147,7 +2060,6 @@ record(ai, "QUAD:LI21:278:BDES_STORED_RBV") {
 record(ai, "QUAD:LI21:278:BDES_SNAPSHOT") {
     field(DESC, "CQ or Matching Quad 4 BDES Value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2183,7 +2095,6 @@ record(ao, "QUAD:LI24:740:BDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "QUAD:LI24:740:BDES_STORED_RBV") {
     field(DESC, "CQ or Matching Quad 5 BDES Value")    
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2196,7 +2107,6 @@ record(ai, "QUAD:LI24:740:BDES_STORED_RBV") {
 record(ai, "QUAD:LI24:740:BDES_SNAPSHOT") {
     field(DESC, "CQ or Matching Quad 5 BDES Value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2232,7 +2142,6 @@ record(ao, "QUAD:LI24:860:BDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "QUAD:LI24:860:BDES_STORED_RBV") {
     field(DESC, "CQ or Matching Quad 6 BDES Value")    
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2245,7 +2154,6 @@ record(ai, "QUAD:LI24:860:BDES_STORED_RBV") {
 record(ai, "QUAD:LI24:860:BDES_SNAPSHOT") {
     field(DESC, "CQ or Matching Quad 6 BDES Value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2281,7 +2189,6 @@ record(ao, "QUAD:LI26:201:BDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "QUAD:LI26:201:BDES_STORED_RBV") {
     field(DESC, "CQ or Matching Quad 7 BDES Value")    
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2294,7 +2201,6 @@ record(ai, "QUAD:LI26:201:BDES_STORED_RBV") {
 record(ai, "QUAD:LI26:201:BDES_SNAPSHOT") {
     field(DESC, "CQ or Matching Quad 7 BDES Value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2330,7 +2236,6 @@ record(ao, "QUAD:LI26:301:BDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "QUAD:LI26:301:BDES_STORED_RBV") {
     field(DESC, "CQ or Matching Quad 8 BDES Value")    
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2343,7 +2248,6 @@ record(ai, "QUAD:LI26:301:BDES_STORED_RBV") {
 record(ai, "QUAD:LI26:301:BDES_SNAPSHOT") {
     field(DESC, "CQ or Matching Quad 8 BDES Value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2379,7 +2283,6 @@ record(ao, "QUAD:LI26:401:BDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "QUAD:LI26:401:BDES_STORED_RBV") {
     field(DESC, "CQ or Matching Quad 9 BDES Value")    
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2392,7 +2295,6 @@ record(ai, "QUAD:LI26:401:BDES_STORED_RBV") {
 record(ai, "QUAD:LI26:401:BDES_SNAPSHOT") {
     field(DESC, "CQ or Matching Quad 9 BDES Value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2428,7 +2330,6 @@ record(ao, "QUAD:LI26:501:BDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "QUAD:LI26:501:BDES_STORED_RBV") {
     field(DESC, "CQ or Matching Quad 10 BDES Value")    
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2441,7 +2342,6 @@ record(ai, "QUAD:LI26:501:BDES_STORED_RBV") {
 record(ai, "QUAD:LI26:501:BDES_SNAPSHOT") {
     field(DESC, "CQ or Matching Quad 10 BDES Value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2477,7 +2377,6 @@ record(ao, "QUAD:LI26:601:BDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "QUAD:LI26:601:BDES_STORED_RBV") {
     field(DESC, "CQ or Matching Quad 11 BDES Value")    
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2490,7 +2389,6 @@ record(ai, "QUAD:LI26:601:BDES_STORED_RBV") {
 record(ai, "QUAD:LI26:601:BDES_SNAPSHOT") {
     field(DESC, "CQ or Matching Quad 11 BDES Value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2526,7 +2424,6 @@ record(ao, "QUAD:LI26:701:BDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "QUAD:LI26:701:BDES_STORED_RBV") {
     field(DESC, "CQ or Matching Quad 12 BDES Value")    
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2539,7 +2436,6 @@ record(ai, "QUAD:LI26:701:BDES_STORED_RBV") {
 record(ai, "QUAD:LI26:701:BDES_SNAPSHOT") {
     field(DESC, "CQ or Matching Quad 12 BDES Value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2575,7 +2471,6 @@ record(ao, "QUAD:LI26:801:BDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "QUAD:LI26:801:BDES_STORED_RBV") {
     field(DESC, "CQ or Matching Quad 13 BDES Value")    
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2588,7 +2483,6 @@ record(ai, "QUAD:LI26:801:BDES_STORED_RBV") {
 record(ai, "QUAD:LI26:801:BDES_SNAPSHOT") {
     field(DESC, "CQ or Matching Quad 13 BDES Value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2624,7 +2518,6 @@ record(ao, "QUAD:LI26:901:BDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "QUAD:LI26:901:BDES_STORED_RBV") {
     field(DESC, "CQ or Matching Quad 14 BDES Value")    
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2637,7 +2530,6 @@ record(ai, "QUAD:LI26:901:BDES_STORED_RBV") {
 record(ai, "QUAD:LI26:901:BDES_SNAPSHOT") {
     field(DESC, "CQ or Matching Quad 14 BDES Value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2673,7 +2565,6 @@ record(ao, "QUAD:CLTS:590:BDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "QUAD:CLTS:590:BDES_STORED_RBV") {
     field(DESC, "CQ or Matching Quad 15 BDES Value")    
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2686,7 +2577,6 @@ record(ai, "QUAD:CLTS:590:BDES_STORED_RBV") {
 record(ai, "QUAD:CLTS:590:BDES_SNAPSHOT") {
     field(DESC, "CQ or Matching Quad 15 BDES Value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2722,7 +2612,6 @@ record(ao, "QUAD:CLTS:620:BDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "QUAD:CLTS:620:BDES_STORED_RBV") {
     field(DESC, "CQ or Matching Quad 16 BDES Value")    
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2735,7 +2624,6 @@ record(ai, "QUAD:CLTS:620:BDES_STORED_RBV") {
 record(ai, "QUAD:CLTS:620:BDES_SNAPSHOT") {
     field(DESC, "CQ or Matching Quad 16 BDES Value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2771,7 +2659,6 @@ record(ao, "QUAD:LTUS:110:BDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "QUAD:LTUS:110:BDES_STORED_RBV") {
     field(DESC, "CQ or Matching Quad 17 BDES Value")    
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2784,7 +2671,6 @@ record(ai, "QUAD:LTUS:110:BDES_STORED_RBV") {
 record(ai, "QUAD:LTUS:110:BDES_SNAPSHOT") {
     field(DESC, "CQ or Matching Quad 17 BDES Value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2820,7 +2706,6 @@ record(ao, "QUAD:LTUS:120:BDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "QUAD:LTUS:120:BDES_STORED_RBV") {
     field(DESC, "CQ or Matching Quad 18 BDES Value")    
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2833,7 +2718,6 @@ record(ai, "QUAD:LTUS:120:BDES_STORED_RBV") {
 record(ai, "QUAD:LTUS:120:BDES_SNAPSHOT") {
     field(DESC, "CQ or Matching Quad 18 BDES Value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2869,7 +2753,6 @@ record(ao, "QUAD:LTUS:620:BDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "QUAD:LTUS:620:BDES_STORED_RBV") {
     field(DESC, "CQ or Matching Quad 19 BDES Value")    
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2882,7 +2765,6 @@ record(ai, "QUAD:LTUS:620:BDES_STORED_RBV") {
 record(ai, "QUAD:LTUS:620:BDES_SNAPSHOT") {
     field(DESC, "CQ or Matching Quad 19 BDES Value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2918,7 +2800,6 @@ record(ao, "QUAD:LTUS:640:BDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "QUAD:LTUS:640:BDES_STORED_RBV") {
     field(DESC, "CQ or Matching Quad 20 BDES Value")    
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2931,7 +2812,6 @@ record(ai, "QUAD:LTUS:640:BDES_STORED_RBV") {
 record(ai, "QUAD:LTUS:640:BDES_SNAPSHOT") {
     field(DESC, "CQ or Matching Quad 20 BDES Value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2967,7 +2847,6 @@ record(ao, "QUAD:LTUS:660:BDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "QUAD:LTUS:660:BDES_STORED_RBV") {
     field(DESC, "CQ or Matching Quad 21 BDES Value")    
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -2980,7 +2859,6 @@ record(ai, "QUAD:LTUS:660:BDES_STORED_RBV") {
 record(ai, "QUAD:LTUS:660:BDES_SNAPSHOT") {
     field(DESC, "CQ or Matching Quad 21 BDES Value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -3016,7 +2894,6 @@ record(ao, "QUAD:LTUS:680:BDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "QUAD:LTUS:680:BDES_STORED_RBV") {
     field(DESC, "CQ or Matching Quad 22 BDES Value")    
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -3029,7 +2906,6 @@ record(ai, "QUAD:LTUS:680:BDES_STORED_RBV") {
 record(ai, "QUAD:LTUS:680:BDES_SNAPSHOT") {
     field(DESC, "CQ or Matching Quad 22 BDES Value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -3065,7 +2941,6 @@ record(ao, "QUAD:LTUS:820:BDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "QUAD:LTUS:820:BDES_STORED_RBV") {
     field(DESC, "CQ or Matching Quad 23 BDES Value")    
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -3078,7 +2953,6 @@ record(ai, "QUAD:LTUS:820:BDES_STORED_RBV") {
 record(ai, "QUAD:LTUS:820:BDES_SNAPSHOT") {
     field(DESC, "CQ or Matching Quad 23 BDES Value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -3114,7 +2988,6 @@ record(ao, "QUAD:LTUS:840:BDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "QUAD:LTUS:840:BDES_STORED_RBV") {
     field(DESC, "CQ or Matching Quad 24 BDES Value")    
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -3127,7 +3000,6 @@ record(ai, "QUAD:LTUS:840:BDES_STORED_RBV") {
 record(ai, "QUAD:LTUS:840:BDES_SNAPSHOT") {
     field(DESC, "CQ or Matching Quad 24 BDES Value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -3163,7 +3035,6 @@ record(ao, "QUAD:LTUS:860:BDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "QUAD:LTUS:860:BDES_STORED_RBV") {
     field(DESC, "CQ or Matching Quad 25 BDES Value")    
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -3176,7 +3047,6 @@ record(ai, "QUAD:LTUS:860:BDES_STORED_RBV") {
 record(ai, "QUAD:LTUS:860:BDES_SNAPSHOT") {
     field(DESC, "CQ or Matching Quad 25 BDES Value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -3212,7 +3082,6 @@ record(ao, "QUAD:LTUS:880:BDES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "QUAD:LTUS:880:BDES_STORED_RBV") {
     field(DESC, "CQ or Matching Quad 26 BDES Value")    
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -3225,7 +3094,6 @@ record(ai, "QUAD:LTUS:880:BDES_STORED_RBV") {
 record(ai, "QUAD:LTUS:880:BDES_SNAPSHOT") {
     field(DESC, "CQ or Matching Quad 26 BDES Value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "kG")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -3261,7 +3129,6 @@ record(ao, "FBCK:FB04:TR02:S1DES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "FBCK:FB04:TR02:S1DES_STORED_RBV") {
     field(DESC, "UND Launch Setpoint S1 DES value")    
-    field(PINI, "YES")
     field(EGU, "mm/mr")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -3274,7 +3141,6 @@ record(ai, "FBCK:FB04:TR02:S1DES_STORED_RBV") {
 record(ai, "FBCK:FB04:TR02:S1DES_SNAPSHOT") {
     field(DESC, "UND Launch Setpoint S1 DES value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "mm/mr")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -3310,7 +3176,6 @@ record(ao, "FBCK:FB04:TR02:S2DES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "FBCK:FB04:TR02:S2DES_STORED_RBV") {
     field(DESC, "UND Launch Setpoint S2 DES value")    
-    field(PINI, "YES")
     field(EGU, "mm/mr")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -3323,7 +3188,6 @@ record(ai, "FBCK:FB04:TR02:S2DES_STORED_RBV") {
 record(ai, "FBCK:FB04:TR02:S2DES_SNAPSHOT") {
     field(DESC, "UND Launch Setpoint S2 DES value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "mm/mr")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -3359,7 +3223,6 @@ record(ao, "FBCK:FB04:TR02:S3DES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "FBCK:FB04:TR02:S3DES_STORED_RBV") {
     field(DESC, "UND Launch Setpoint S3 DES value")    
-    field(PINI, "YES")
     field(EGU, "mm/mr")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -3372,7 +3235,6 @@ record(ai, "FBCK:FB04:TR02:S3DES_STORED_RBV") {
 record(ai, "FBCK:FB04:TR02:S3DES_SNAPSHOT") {
     field(DESC, "UND Launch Setpoint S3 DES value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "mm/mr")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -3408,7 +3270,6 @@ record(ao, "FBCK:FB04:TR02:S4DES_STORED") {
 # ex: FBCK:FB02:GN01:S1DES_STORED_RBV
 record(ai, "FBCK:FB04:TR02:S4DES_STORED_RBV") {
     field(DESC, "UND Launch Setpoint S4 DES value")    
-    field(PINI, "YES")
     field(EGU, "mm/mr")
     field(PREC, "4")
     field(DTYP, "asynFloat64")
@@ -3421,7 +3282,6 @@ record(ai, "FBCK:FB04:TR02:S4DES_STORED_RBV") {
 record(ai, "FBCK:FB04:TR02:S4DES_SNAPSHOT") {
     field(DESC, "UND Launch Setpoint S4 DES value")
     field(SCAN, "I/O Intr")
-    field(PINI, "YES")
     field(EGU, "mm/mr")
     field(PREC, "4")
     field(DTYP, "asynFloat64")

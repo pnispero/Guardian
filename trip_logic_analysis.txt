@@ -1,15 +1,18 @@
-/* Trip logic analysis */
+% Trip logic analysis */
 
-// Types of logic: 6
-// Goal: We can make these into their own functions
+% Types of logic: 5
+% Goal: We can make these into their own functions
 
-/* Part 1 - Counting types with no overlaps */
-// The count for each type is in the ().
-// note - no overlapping, a piece of logic/comparison has to be one of the types
-// or it is a special case
-// It isn't in order of type (i moved them around after counting)
+% Part 1 - Counting types with no overlaps */
+% The count for each type is in the ().
+% note - no overlapping, a piece of logic/comparison has to be one of the types
+% or it is a special case
+% It isn't in order of type (i moved them around after counting)
+% next to the type is a small description of what the code looks like its doing
+% These types occur more than once, logic that appears only once (special cases) are not listed here
 
-// Type 1 (10): Check tolerance percentage
+% Type 1 (10): Check tolerance percentage
+% Ex:
     tols = stats.BC1_Etols * 0.01;
     qq = stats.BC1_energy_state;
     QQ = stored.BC1_energy_setpt;
@@ -18,7 +21,8 @@
         out.message = 'BC1 energy feedback state outside stored range';
     end
 
-// Type 6 (2): Check tolerance percentage of absolute values
+% Type 2 (2): Check tolerance percentage of absolute values
+% Ex:
     tols = stats.L1Sphasetols * 0.01;
     qq = abs(stats.L1S_phase_setpt);
     QQ = abs(stored.L1S_phase_setpt);
@@ -28,8 +32,8 @@
         return
     end
 
-
-// Type 3 (3): Check tolerance of absolute values
+% Type 3 (3): Check tolerance of absolute values
+% Ex:
     tols = stats.BC2_verntols;
     qq = abs(stats.BC2_vernier);
     QQ = abs(stored.BC2_vernier);
@@ -39,7 +43,8 @@
         return
     end
 
-// Type 4 (2): Check tolerance of degrees
+% Type 4 (2): Check tolerance of degrees
+% Ex:
     tols = stats.LHwaveplatetols;
     qq = stats.LH1_waveplate;
     QQ = stored.LH1_waveplate;
@@ -49,14 +54,16 @@
         return
     end
 
-// Type 2 (3): check data unchanged
-    if stats.BC1_vernier ~= stored.BC1_vernier
+% Type 5 (3): check data unchanged
+% Ex:
+    if stats.LH1_delay ~= stored.LH1_delay
         trip = 1;
-        out.message = 'BC1 vernier setpoint has been changed. Not Allowed.';
+        out.message = 'Laser Heater 1 delay has been changed. Check FEL pulse energy';
         return
     end
 
-// Type 5 quad type (26):
+% Type quad type (26):
+% Ex:
     for iquad = 1:26
         qq = stats.CQMQctrl(iquad);
         QQ = stored.CQMQctrl(iquad);
@@ -69,17 +76,17 @@
         end
     end
 
-// Special cases (10):
-// Theyre all different
+% Special cases (10):
+% Theyre all different
 
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+% >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 
-/* Part 2 - counting types with overlaps */
-// The count for each type may count for a type in more than one.
-// ex: there is a special case, but that case is type 1 & 2 combined with some additional logic
-// Then that is accounted for in the count of type 1, 2, and special case
+% Part 2 - counting types with overlaps */
+% The count for each type may count for a type in more than one.
+% ex: there is a special case, but that case is type 1 & 2 combined with some additional logic
+% Then that is accounted for in the count of type 1, 2, and special case
 
-// Type 1 (14):
+% Type 1 (14):
     tols = stats.BC1_Etols * 0.01;
     qq = stats.BC1_energy_state;
     QQ = stored.BC1_energy_setpt;
@@ -88,14 +95,14 @@
         out.message = 'BC1 energy feedback state outside stored range';
     end
 
-// Type 2 (7):
+% Type 2 (7):
     if stats.BC1_vernier ~= stored.BC1_vernier
         trip = 1;
         out.message = 'BC1 vernier setpoint has been changed. Not Allowed.';
         return
     end
 
-// Type 3 (2):
+% Type 3 (2):
     tols = stats.BC2_verntols;
     qq = abs(stats.BC2_vernier);
     QQ = abs(stored.BC2_vernier);
@@ -105,7 +112,7 @@
         return
     end
 
-// Type 4 (10):
+% Type 4 (10):
     tols = stats.LHwaveplatetols;
     qq = stats.LH1_waveplate;
     QQ = stored.LH1_waveplate;
@@ -115,7 +122,7 @@
         return
     end
 
-// Type 5 quad type (26):
+% Type 5 quad type (26):
     for iquad = 1:26
         qq = stats.CQMQctrl(iquad);
         QQ = stored.CQMQctrl(iquad);
@@ -128,5 +135,5 @@
         end
     end
 
-// Special cases (10):
-// Theyre all different
+% Special cases (10):
+% Theyre all different

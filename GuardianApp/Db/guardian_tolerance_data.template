@@ -20,7 +20,6 @@ record(ao, "$(NAME)_TOL") {
 
 record(ai, "$(NAME)_TOL_RBV") {
     field(DESC, "$(DESC)")    
-    field(PINI, "YES")
     field(EGU, "$(EGU)")
     field(PREC, "$(PREC)")
     field(DTYP, "asynFloat64")

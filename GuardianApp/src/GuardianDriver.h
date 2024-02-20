@@ -14,9 +14,10 @@
 #include <asynPortDriver.h>
 #include "TripParam.h"
  
-#define FEL_PARAMS_SIZE 70 // TODO: This will be seperated by mode soon
-#define TOL_PARAMS_SIZE 16
+#define MONITOR_CYCLE_STRING "MONITOR_CYCLE_TIME"
 #define SNAPSHOT_TRIGGER_STRING "SNAPSHOT_TRG"
+#define DEVICE_PARAM_SIZE_STRING "DEVICE_PARAM_SIZE"
+#define TOLERANCE_PARAM_SIZE_STRING "TOLERANCE_PARAM_SIZE"
 #define STORED_VALUE_STRING "STORED"
 #define SNAPSHOT_VALUE_STRING "SNAPSHOT"
 #define TOLERANCE_VALUE_STRING "TOLERANCE"
@@ -46,9 +47,14 @@ class GuardianDriver : public asynPortDriver {
     TripParamMap SCTripParamMap; // Super Conducting (LCLS-II) trip logic parameters
 
   protected:
+    int MonitorCycleIndex;
     int SnapshotTriggerIndex;
+    int DeviceParamSizeIndex;
+    int ToleranceParamSizeIndex;
     int StoredValueIndex;
     int SnapshotValueIndex;
     int ToleranceValueIndex;
-
+    int DEVICE_PARAMS_SIZE; // This will be seperated by mode soon and shouldn't be hardcoded, but getNumParam() instead
+    int TOL_PARAMS_SIZE; // number tolerance 'control' pv asyn parameters
+    double MONITOR_CYCLE_TIME; // Used to control the sleep() in the FELpulseMonitor thread
 };

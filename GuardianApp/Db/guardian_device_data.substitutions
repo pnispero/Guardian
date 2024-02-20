@@ -9,7 +9,7 @@
 #==============================================================================
 # Actual device data
 #==============================================================================
-file guardian_device_data.template
+file "guardian_device_data.template"
 {
 # These PVs are device data pvs used for tolerance (i.e. exists in both 'current data' and 'snapshot data')               
 # NOTE - If adding a new data pv, PLEASE do not add it at the beginning. ADD it at the last item and

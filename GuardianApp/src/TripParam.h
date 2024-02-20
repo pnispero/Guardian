@@ -20,7 +20,6 @@ public:
              {
                 this->logic_type = logic_type;
                 this->deviceDataId = deviceDataId;
-                this->snapshotId = snapshotId;
                 this->tripMsg = tripMsg;
                 this->conditionId = conditionId;
                 this->tolId = tolId;
@@ -32,8 +31,7 @@ public:
     logicType logic_type; // should make this a string and a bit more description
     // TODO: Then also add comments to each field here if its a certain type then to have those fields.
     //      Or you can force it (like an json structure)
-    uint32_t deviceDataId; // device data pv
-    uint32_t snapshotId; // desired value snapshot pv
+    uint32_t deviceDataId; // device data pv - same id as the snapshot pv
     uint32_t tolId = 0; // Optional tolerance 'control' pv
     uint32_t conditionId = 0; // Optional (used for 'on/off' condition defined in condition pvs)
     uint32_t specialCaseId = 0; // Optional (used to specify which special case)

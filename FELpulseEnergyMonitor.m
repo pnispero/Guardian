@@ -838,7 +838,7 @@ else
 end
 %
 % Check L1S phase setpoint within (tols)% stored state
-% PATRICK COMMENT - Type 6
+% PATRICK COMMENT - Type 2
 tols = stats.L1Sphasetols * 0.01;
 qq = abs(stats.L1S_phase_setpt);
 QQ = abs(stored.L1S_phase_setpt);
@@ -863,7 +863,7 @@ end
 % check first that it hasn't changed, then check that the BC2 current feedback 
 % state is within (tols)% of stored setpoint
 %
-% PATRICK COMMENT - Special case contains type 2 with additional logic
+% PATRICK COMMENT - Special case contains type 5 with additional logic
 if stats.BC2_current_fbck_on > 0
     tols = stats.BC2tols * 0.01;
     qq = stats.BC2_current_state;
@@ -896,7 +896,7 @@ else
     out.message = 'WARNING: BC2 Bunch Current Feedback is OFF';
 end
 % Check L2 chirp setpoint within user entered % of stored state
-% PATRICK COMMENT - Type 6
+% PATRICK COMMENT - Type 2
 tols = stats.L2chirptols * 0.01;
 qq = abs(stats.L2_chirp_setpt);
 QQ = abs(stored.L2_chirp_setpt);
@@ -927,7 +927,7 @@ if abs(QQ - qq) > abs(tols*QQ)
     return
 end
 % Check Laser Heater 1 delay unchanged
-% PATRIKC COMMENT - type 2
+% PATRIKC COMMENT - type 5
 if stats.LH1_delay ~= stored.LH1_delay
     trip = 1;
     out.message = 'Laser Heater 1 delay has been changed. Check FEL pulse energy';
@@ -945,7 +945,7 @@ if abs(QQ - qq) > abs(tols*QQ)
     return
 end
 % Check Laser Heater 2 delay unchanged
-% PATRICK COMMENT - type 2
+% PATRICK COMMENT - type 5
 if stats.LH2_delay ~= stored.LH2_delay
     trip = 1;
     out.message = 'Laser Heater 2 delay has been changed. Check FEL pulse energy';
@@ -1004,7 +1004,7 @@ if abs(QQ - qq) > abs(tols*QQ)
     return
 end
 % Check Dump Bend BDES has not changed
-% PATRICK COMMENT - type 2
+% PATRICK COMMENT - type 5
 if stats.dump_bend_bdes    ~= stored.dump_bend_bdes
     trip = 1;
     out.message = 'Dump/LTU Bend BDES has been changed. Check FEL pulse energy.';
