@@ -3,13 +3,13 @@
 
 /* Type of logic used for TripParm->logic_type. Each element is a name of a function */
 enum logicType {
-    outsideTolerancePercentage = 0,
+    specialCase=0, // It is a special case if the logic only executes ONCE
+    outsideTolerancePercentage,
     outsideAbsTolerancePercentage,
     outsideAbsTolerance,
     outsideDegreeTolerance,
     outsideQuadsTolerance,
-    dataUnchanged,
-    specialCase // It is a special case if the logic only executes ONCE
+    dataUnchanged
 };
 
 class TripParam {

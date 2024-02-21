@@ -15,9 +15,11 @@ Guardian_registerRecordDeviceDriver pdbbase
 #dbLoadRecords("db/xxx.db","user=GUARDIAN")
 dbLoadRecords("db/test.db") # PATRICK TODO: Temp here for testing
 dbLoadRecords("db/guardian_controls.db", "BASE=SIOC:B34:GD_PATRICK") # PATRICK TODO: Temp add patrick so its unique
-dbLoadRecords("db/guardian_metadata.db", "BASE=SIOC:B34:GD_PATRICK") # PATRICK TODO: Temp add patrick so its unique
-dbLoadRecords("db/guardian_device_data.db", "BASE=SIOC:B34:GD_PATRICK") # PATRICK TODO: Temp add patrick so its unique
-dbLoadRecords("db/guardian_tolerance_data.db", "BASE=SIOC:B34:GD_PATRICK") # PATRICK TODO: Temp add patrick so its unique
+dbLoadRecords("db/guardian_metadata.db", "BASE=SIOC:B34:GD_PATRICK")
+dbLoadRecords("db/guardian_device_condition.db", "BASE=SIOC:B34:GD_PATRICK")
+dbLoadRecords("db/guardian_device_data.db", "BASE=SIOC:B34:GD_PATRICK")
+dbLoadRecords("db/guardian_tolerance_data.db", "BASE=SIOC:B34:GD_PATRICK") 
+dbLoadRecords("db/guardian_mps.db", "BASE=SIOC:B34:GD_PATRICK") 
 
 
 ## Configure Guardian driver

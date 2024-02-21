@@ -10,7 +10,9 @@ include $(TOP)/configure/CONFIG
 DB += guardian_controls.db
 DB += guardian_metadata.db
 DB += guardian_device_data.db
+DB += guardian_device_condition.db
 DB += guardian_tolerance_data.db
+DB += guardian_mps.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

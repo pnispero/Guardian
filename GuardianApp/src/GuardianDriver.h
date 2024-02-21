@@ -4,6 +4,9 @@
 #include <functional>
 #include <map>
 #include <utility>
+#include <chrono>
+#include <condition_variable>
+#include <tuple>
  
 #include <iocsh.h>
 #include <epicsExport.h>
@@ -17,44 +20,71 @@
 #define MONITOR_CYCLE_STRING "MONITOR_CYCLE_TIME"
 #define SNAPSHOT_TRIGGER_STRING "SNAPSHOT_TRG"
 #define DEVICE_PARAM_SIZE_STRING "DEVICE_PARAM_SIZE"
+#define CONDITION_PARAM_SIZE_STRING "CONDITION_PARAM_SIZE"
 #define TOLERANCE_PARAM_SIZE_STRING "TOLERANCE_PARAM_SIZE"
 #define STORED_VALUE_STRING "STORED"
 #define SNAPSHOT_VALUE_STRING "SNAPSHOT"
+#define CONDITION_VALUE_STRING "CONDITION"
 #define TOLERANCE_VALUE_STRING "TOLERANCE"
+#define LOGIC_TYPE_VALUE_STRING "LOGIC_TYPE"
+#define TOLERANCE_ID_STRING "TOLERANCE_ID"
+#define CONDITION_ID_STRING "CONDITION_ID"
+#define TRIP_MSG_STRING "MSG"
+#define MPS_TRIP_STRING "MPS_TRIP"
+#define MPS_PERMIT_STRING "MPS_PERMIT"
+#define HEARTBEAT_VALUE_STRING "HEARTBEAT"
+#define WATCHDOG_TIME_STRING "WD_TIME"
 
  
 class GuardianDriver : public asynPortDriver {
   public:
     GuardianDriver(const char *portName);
     void FELpulseEnergyMonitor(void);
+    void watchdog(void);
     void takeSnapshot();
     void tripLogic();
 
-    bool outsideTolerancePercentage(uint32_t tolId, uint32_t deviceDataId, uint32_t snapshotId);
+    std::tuple<bool, std::string> outsideTolerancePercentage(int paramIndex);
     bool outsideAbsTolerancePercentage(uint32_t tolId, uint32_t deviceDataId, uint32_t snapshotId);
     bool outsideAbsTolerance(uint32_t tolId, uint32_t deviceDataId, uint32_t snapshotId);
     bool outsideDegreeTolerance(uint32_t tolId, uint32_t deviceDataId, uint32_t snapshotId);
     bool outsideQuadsTolerance(uint32_t tolId, uint32_t deviceDataId, uint32_t snapshotId);
     bool dataUnchanged(uint32_t deviceDataId, uint32_t snapshotId);
+    bool tripSpecialCase(int paramIndex);
+    void initGuardian();
 
-    void initializeNCTripParamMap();
-    void initializeSCTripParamMap();
+    // void initializeNCTripParamMap();
+    // void initializeSCTripParamMap();
 
     // virtual asynStatus readInt32(asynUser *pasynUser, epicsInt32 *value);
     // virtual asynStatus writeInt32(asynUser *pasynUser, epicsInt32 value);
 
-    TripParamMap NCTripParamMap; // Normal Conducting (LCLS-I) trip logic parameters
-    TripParamMap SCTripParamMap; // Super Conducting (LCLS-II) trip logic parameters
+    // TripParamMap NCTripParamMap; // Normal Conducting (LCLS-I) trip logic parameters
+    // TripParamMap SCTripParamMap; // Super Conducting (LCLS-II) trip logic parameters
 
-  protected:
+  private:
     int MonitorCycleIndex;
     int SnapshotTriggerIndex;
     int DeviceParamSizeIndex;
+    int ConditionParamSizeIndex;
     int ToleranceParamSizeIndex;
     int StoredValueIndex;
     int SnapshotValueIndex;
+    int ConditionValueIndex;
     int ToleranceValueIndex;
-    int DEVICE_PARAMS_SIZE; // This will be seperated by mode soon and shouldn't be hardcoded, but getNumParam() instead
-    int TOL_PARAMS_SIZE; // number tolerance 'control' pv asyn parameters
+    int LogicTypeValueIndex;
+    int ToleranceIdIndex;
+    int ConditionIdIndex;
+    int TripMsgIndex;
+    int MpsTripIndex;
+    int MpsPermitIndex;
+    int HeartbeatValueIndex;
+    int WatchdogTimeIndex;
+
+    uint32_t heartbeatCnt; // Heartbeat of the guardian
+    std::condition_variable heartbeatCondVar; // Used by main thread to notify watchdog that heart beated
+    int DEVICE_PARAMS_SIZE; // number of device data pv asyn parameters - This will be seperated by mode soon
+    int TOL_PARAMS_SIZE; // number of tolerance 'control' pv asyn parameters
+    int CONDITION_PARAMS_SIZE; // number of device condition pv asyn parameters
     double MONITOR_CYCLE_TIME; // Used to control the sleep() in the FELpulseMonitor thread
 };

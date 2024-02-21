@@ -85,7 +85,7 @@ while 1 % Loop forever
     % in the following lines, and its value is set to 'stats' fields.
     % 'stats' should be renamed to 'current_device_data' for readability. and 'd' should be renamed to 'all_pv_data'
     stats.saveNewSnapshot    = d(L.saveNewSnapshot_n); % PATRICK COMMENT: not used in trip logic
-    stats.FEL_pulse_energy   = d(L.BOD_pulse_energy_n); 
+    stats.FEL_pulse_energy   = d(L.BOD_pulse_energy_n); % PATRICK COMMENT: not used in trip logic or anywhere it seems (maybe display?)
     stats.BODscan            = d(L.BOD_scan_n); % PATRICK COMMENT: not used in trip logic or anywhere it seems (maybe display?)
     stats.bunchq_setpt       = d(L.bunchq_setpt_n);
     stats.bunchq_state       = d(L.bunchq_state_n);
@@ -113,8 +113,8 @@ while 1 % Loop forever
     stats.BC2_current_fbckSXR_setpt = d(L.BC2_current_fbckSXR_setpt_n);
     stats.BC2_current_fbckSXR_on    = d(L.BC2_current_fbckSXR_on_n); % PATRICK COMMENT: Not used as tolerance, but used for if statement
     stats.L2_chirp_setpt            = d(L.L2_chirp_setpt_n);
-    stats.L3ampl_fbckSXR_setpt      = d(L.L3ampl_fbckSXR_setpt_n);
-    stats.L3ampl_fbckSXR_state      = d(L.L3ampl_fbckSXR_state_n);
+    stats.L3ampl_fbckSXR_setpt      = d(L.L3ampl_fbckSXR_setpt_n); % PATRICK COMMENT: Not used in tolerance or anywhere it seems (maybe display?)
+    stats.L3ampl_fbckSXR_state      = d(L.L3ampl_fbckSXR_state_n); % PATRICK COMMENT: Not used in tolerance or anywhere it seems (maybe display?)
     stats.L3ampl_fbckSXR_on         = d(L.L3ampl_fbckSXR_on_n); % PATRICK COMMENT: Not used in tolerance or anywhere it seems (maybe display?)
     stats.DL2_energy_fbck_on        = d(L.DL2_energy_fbck_on_n); % PATRICK COMMENT: Not used in tolerance or anywhere it seems (maybe display?)
     stats.DL2_vernier               = d(L.DL2_vernier_n);
@@ -1004,7 +1004,7 @@ if abs(QQ - qq) > abs(tols*QQ)
     return
 end
 % Check Dump Bend BDES has not changed
-% PATRICK COMMENT - type 5
+% PATRICK COMMENT - type 6
 if stats.dump_bend_bdes    ~= stored.dump_bend_bdes
     trip = 1;
     out.message = 'Dump/LTU Bend BDES has been changed. Check FEL pulse energy.';

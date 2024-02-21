@@ -1,6 +1,6 @@
 #=================================================================#
 # Template file: guardian_controls.template
-# Database for controlling main thread within sxrss for the guardian
+# Database for controlling main thread and watchdog thread within sxrss for the guardian
 # Macro description:                                                             #
 #   - BASE       : SIOC name                                                #
 #=====================================================================
@@ -49,3 +49,30 @@ record(ai, "$(BASE):MONITOR_CYCLE_TIME_RBV") {
     # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
+record(longin, "$(BASE):HEARTBEAT") {
+    field(DESC, "Guardian main thread heartbeat")
+    field(SCAN, "I/O Intr")
+    field(DTYP, "asynInt32")
+    field(INP, "@asyn(GUARDIAN, 0, 0)HEARTBEAT")
+    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
+}
+
+# TODO: Add watchdog pvs
+
+record(longout, "$(BASE):WD_TIME") {
+    field(DESC, "Watchdog timeout setting, in usec")
+    field(PINI, "YES")
+    field(VAL, "3500")
+    field(EGU,  "us")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT,  "@asyn(GUARDIAN, 0, 0)WD_TIME")
+}
+
+record(longin, "$(BASE):WD_TIME_RBV") {
+    field(DESC, "Watchdog timeout setting, in usec")
+    field(EGU,  "us")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP,  "@asyn(GUARDIAN, 0, 0)WD_TIME")
+}

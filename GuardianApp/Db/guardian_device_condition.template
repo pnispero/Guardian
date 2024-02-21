@@ -1,0 +1,34 @@
+#=================================================================#
+# Template file: guardian_device_condition.template
+# Database for device condition values within sxrss for the guardian
+# Uses guardian_device_condition.substitutions
+# Macro description:                                                   #
+#   - NAME       : Name                                                #
+#   - DESC       : Description                                         #
+#   - ID         : ASYN ID                                             #
+#=====================================================================
+
+# This records purpose is to copy data from device data pvs, and push to ASYN PV
+record(bo, "$(NAME):CONDITION") {
+    field(DESC, "$(DESC)")
+    field(DTYP, "asynUInt32Digital")
+    field(SCAN, "Passive")
+    field(VAL, "0")
+    field(PINI, "YES")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(OMSL, "closed_loop") 
+    field(DOL, "$(NAME)_TEST CPP")  # TODO: Temporarily set as test
+    field(OUT, "@asynMask(GUARDIAN, $(ID), 1, 0)CONDITION")
+}
+
+# Record for snapshot trigger readback value (OPs read this one back not the _EN)
+record(bi, "$(NAME):CONDITION_RBV") {
+    field(DESC, "Snaphot trigger")
+    field(DTYP, "asynUInt32Digital")
+    field(SCAN, "I/O Intr")
+    field(PINI, "NO")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(INP, "@asynMask(GUARDIAN, $(ID), 1, 0)CONDITION")
+}
