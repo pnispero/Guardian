@@ -33,14 +33,12 @@
 #define MPS_TRIP_STRING "MPS_TRIP"
 #define MPS_PERMIT_STRING "MPS_PERMIT"
 #define HEARTBEAT_VALUE_STRING "HEARTBEAT"
-#define WATCHDOG_TIME_STRING "WD_TIME"
 
  
 class GuardianDriver : public asynPortDriver {
   public:
     GuardianDriver(const char *portName);
     void FELpulseEnergyMonitor(void);
-    void watchdog(void);
     void takeSnapshot();
     void tripLogic();
 
@@ -79,10 +77,8 @@ class GuardianDriver : public asynPortDriver {
     int MpsTripIndex;
     int MpsPermitIndex;
     int HeartbeatValueIndex;
-    int WatchdogTimeIndex;
 
     uint32_t heartbeatCnt; // Heartbeat of the guardian
-    std::condition_variable heartbeatCondVar; // Used by main thread to notify watchdog that heart beated
     int DEVICE_PARAMS_SIZE; // number of device data pv asyn parameters - This will be seperated by mode soon
     int TOL_PARAMS_SIZE; // number of tolerance 'control' pv asyn parameters
     int CONDITION_PARAMS_SIZE; // number of device condition pv asyn parameters

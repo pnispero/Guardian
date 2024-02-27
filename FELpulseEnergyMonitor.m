@@ -725,11 +725,11 @@ n = n + 1; m = m + 1;
 L.pv{n,1} = setup_pv(pvstart2 + m  , 'Matching quad/CQ BDES tolerance', '%', 1, 'FELpulseEnergyMonitor.m');
 L.CQMQctrltols_n = n; % PATRICK COMMENT: 716
 n = n + 1;
-L.pv{n,1} = setup_pv(750 , 'Guardian Trip PV', '1=trip', 0, 'FELpulseEnergyMonitor.m');
+L.pv{n,1} = setup_pv(750 , 'Guardian Trip PV', '1=trip', 0, 'FELpulseEnergyMonitor.m'); % PATRICK COMMENT: Just for display.
 L.trip_PV_n = n;
 % this is the input to the MPS
 n = n + 1;
-L.pv{n,1} = 'MPS:UNDS:1:SXRSS_GUARDIAN_OK';
+L.pv{n,1} = 'MPS:UNDS:1:SXRSS_GUARDIAN_OK'; % PATRICK COMMENT: this is the mps input. There may be a guardian_on pv but Jeremy will look into
 L.permit_PV_n = n;
 L.error_string_pv = 'SIOC:SYS0:ML00:CA898';
 end

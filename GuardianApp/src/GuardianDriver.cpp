@@ -37,8 +37,6 @@ GuardianDriver::GuardianDriver(const char *portName) : asynPortDriver           
     createParam(MPS_TRIP_STRING, asynParamUInt32Digital, &MpsTripIndex);
     createParam(MPS_PERMIT_STRING, asynParamUInt32Digital, &MpsPermitIndex);
     createParam(HEARTBEAT_VALUE_STRING, asynParamInt32, &HeartbeatValueIndex);
-    createParam(WATCHDOG_TIME_STRING, asynParamInt32, &WatchdogTimeIndex);
-
 
     asynStatus status;
     status = (asynStatus)(epicsThreadCreate("FELpulseEnergyMonitor", epicsThreadPriorityMedium, epicsThreadGetStackSize(epicsThreadStackMedium), (EPICSTHREADFUNC)::FELpulseEnergyMonitor, this) == NULL);
@@ -48,47 +46,11 @@ GuardianDriver::GuardianDriver(const char *portName) : asynPortDriver           
         return;
     }
 
-    // TODO: Create watchdog thread along with timeout  (watch the heartbeat)
-    status = (asynStatus)(epicsThreadCreate("Watchdog", epicsThreadPriorityMedium, epicsThreadGetStackSize(epicsThreadStackMedium), (EPICSTHREADFUNC)::watchdog, this) == NULL);
-    if (status)
-    {
-        std::cout << status << "\n";
-        return;
-    }
-
-}
-
-void watchdog(void* driverPointer)
-{
-    pGDriver->watchdog();
 }
 
 void FELpulseEnergyMonitor(void* driverPointer)
 {
     pGDriver->FELpulseEnergyMonitor();
-}
-
-void GuardianDriver::watchdog() {
-    uint32_t prevHeartbeatCnt = heartbeatCnt;
-    int watchdogTime; // (us)
-    getIntegerParam(WatchdogTimeIndex, &watchdogTime);
-    std::mutex heartbeatMutex;
-    while (true) {
-        std::unique_lock<std::mutex> lock(heartbeatMutex);
-        if (heartbeatCondVar.wait_for(lock, std::chrono::microseconds(watchdogTime), )) {
-            if (heartbeatCnt <= prevHeartbeatCnt) {
-                // write to watchdog error pv
-            }
-            setIntegerParam(HeartbeatValueIndex, heartbeatCnt);
-            std::cout << "hearbeat: " << heartbeatCnt; // TEMP
-            callParamCallbacks();
-            prevHeartbeatCnt = heartbeatCnt;
-            lock.unlock();
-        }
-        else {
-            // write to timeout
-        }
-    }
 }
 
 /* Trip Logic functions */
@@ -125,7 +87,7 @@ std::tuple<bool, std::string> GuardianDriver::outsideTolerancePercentage(int par
     return std::make_tuple(false, "");
 }
 
-// Type 6
+// Type 2
 bool GuardianDriver::outsideAbsTolerancePercentage(uint32_t tolId, uint32_t deviceDataId, uint32_t snapshotId) {
     // tols = stats.L1Sphasetols * 0.01;
     // qq = abs(stats.L1S_phase_setpt);
@@ -168,6 +130,17 @@ bool GuardianDriver::outsideDegreeTolerance(uint32_t tolId, uint32_t deviceDataI
 }
 
 // Type 5
+bool GuardianDriver::dataUnchanged(uint32_t deviceDataId, uint32_t snapshotId) {
+    // if stats.BC1_vernier ~= stored.BC1_vernier
+    //     trip = 1;
+    //     out.message = 'BC1 vernier setpoint has been changed. Not Allowed.';
+    //     return
+    // end
+
+    return false;
+}
+
+// Type 6
 bool GuardianDriver::outsideQuadsTolerance(uint32_t tolId, uint32_t deviceDataId, uint32_t snapshotId) {
     // for iquad = 1:26
     //     qq = stats.CQMQctrl(iquad);
@@ -184,17 +157,6 @@ bool GuardianDriver::outsideQuadsTolerance(uint32_t tolId, uint32_t deviceDataId
     return false;
 }
 
-// Type 2
-bool GuardianDriver::dataUnchanged(uint32_t deviceDataId, uint32_t snapshotId) {
-    // if stats.BC1_vernier ~= stored.BC1_vernier
-    //     trip = 1;
-    //     out.message = 'BC1 vernier setpoint has been changed. Not Allowed.';
-    //     return
-    // end
-
-    return false;
-}
-
 bool GuardianDriver::tripSpecialCase(int paramIndex) {
 
     // Get value of condition
@@ -206,11 +168,7 @@ bool GuardianDriver::tripSpecialCase(int paramIndex) {
     getUIntDigitalParam(conditionId, ConditionValueIndex, &conditionVal, 1);
     std::cout << "Condition val; " << conditionVal << "\n"; // TEMP
 
-    // epics stringout char limit is 40. You have to somehow get the longer messages > 40 chars. Most are ~60 chars
-    // 1) Make 2 stringout pvs for each device
-    // 2) Parse the substitutions file in code
-    // 3) use waveform record
-    std::string tripMsg;
+    std::string tripMsg; // TODO: Will use waveform record for tripmsg
     getStringParam(paramIndex, TripMsgIndex, tripMsg); // TEMP, test with shorter string
     std::cout << "Trip msg; " << tripMsg << "\n"; // TEMP
 
@@ -223,7 +181,7 @@ void GuardianDriver::tripLogic() {
 
     // 1) Loop through every deviceParam
     bool tripped = false; std::string tripMsg;
-    for (int paramIndex = 0; paramIndex < 2; paramIndex++) { // TEMP set to 2
+    for (int paramIndex = 0; paramIndex < 2; paramIndex++) { // TEMP set to 2 for testing
     // for (int paramIndex = 0; paramIndex < DEVICE_PARAMS_SIZE; paramIndex++) {
     
         // get value of logic type
@@ -253,7 +211,6 @@ void GuardianDriver::tripLogic() {
             std::cout << "OFF BEAM\n"; // TEMP
 
             // // 3) write to out message pv - only on initial trip
-            // // TODO: may make some logic so that when this trips, you can pause the guardian until it is manually resumed
             // setStringParam(outMessagePv, tripMsg); // TODO: This will be a waveform instead
             std::cout << "Trip Msg: " << tripMsg << "\n"; // TEMP
             sleep(5); //TEMP
@@ -300,9 +257,6 @@ void GuardianDriver::initGuardian() {
     getIntegerParam(DeviceParamSizeIndex, &DEVICE_PARAMS_SIZE);
     getIntegerParam(ToleranceParamSizeIndex, &TOL_PARAMS_SIZE);
     getIntegerParam(ConditionParamSizeIndex, &CONDITION_PARAMS_SIZE);
-    std::cout << "Device param size: " << DEVICE_PARAMS_SIZE; // TEMP
-    std::cout << "\nTol param size: " << TOL_PARAMS_SIZE; // TEMP
-    std::cout << "\nCond param size: " << CONDITION_PARAMS_SIZE; // TEMP
 
     setUIntDigitalParam(MpsPermitIndex, 1, 1); // Initialize mps permit to 1
     
@@ -319,12 +273,10 @@ void GuardianDriver::FELpulseEnergyMonitor(void)
     uint32_t snapshotTriggerVal;
     while (true) {
         getDoubleParam(MonitorCycleIndex, &MONITOR_CYCLE_TIME);
-        sleep(MONITOR_CYCLE_TIME); // TEMP // TODO: instead of hardcode 10, make it a pv instead, so the cycle speed is adjustable
+        sleep(MONITOR_CYCLE_TIME); // TODO: convert to ms
         
         // heartbeat
-        heartbeatCnt++; // todo: move into own function
-        // heartbeatReqCnt
-        heartbeatCondVar.notify_one();
+        heartbeatCnt++;
 
         // Check snapshot_trg param, take snapshot then reset if true
         getUIntDigitalParam(SnapshotTriggerIndex, &snapshotTriggerVal, 1);
@@ -337,23 +289,10 @@ void GuardianDriver::FELpulseEnergyMonitor(void)
 
             std::cout << "Successfully triggered and resetted\n\n"; // TEMP
         }
-
-        // TODO: Create logic to only start trip logic once operators 'arm'
         // TODO: You'd pass in 'mode' here (NC vs SC)
         pGDriver->tripLogic();
     }
 }
-
-// TODO: Need this function in case ops want to access pvs directly
-// asynStatus GuardianDriver::readInt32(asynUser *pasynUser, epicsInt32 *value) {
-//     asynStatus status = asynSuccess;
-//     int addr;
-//     getAddress(pasynUser, &addr);
-
-//     if (pasynUser->reason == _)
-    
-// }
- 
 
 /* Configure the guardian driver which may include the port, filepath maybe other ports */
 int GuardianDriverConfigure(const char* portName)

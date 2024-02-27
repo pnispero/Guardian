@@ -56,23 +56,3 @@ record(longin, "$(BASE):HEARTBEAT") {
     field(INP, "@asyn(GUARDIAN, 0, 0)HEARTBEAT")
     # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
-
-# TODO: Add watchdog pvs
-
-record(longout, "$(BASE):WD_TIME") {
-    field(DESC, "Watchdog timeout setting, in usec")
-    field(PINI, "YES")
-    field(VAL, "3500")
-    field(EGU,  "us")
-    field(DTYP, "asynInt32")
-    field(SCAN, "Passive")
-    field(OUT,  "@asyn(GUARDIAN, 0, 0)WD_TIME")
-}
-
-record(longin, "$(BASE):WD_TIME_RBV") {
-    field(DESC, "Watchdog timeout setting, in usec")
-    field(EGU,  "us")
-    field(DTYP, "asynInt32")
-    field(SCAN, "I/O Intr")
-    field(INP,  "@asyn(GUARDIAN, 0, 0)WD_TIME")
-}
