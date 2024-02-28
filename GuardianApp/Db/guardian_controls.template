@@ -32,8 +32,8 @@ record(bi, "$(BASE):SNAPSHOT_TRG_RBV") {
 record(ao, "$(BASE):MONITOR_CYCLE_TIME") {
     field(DESC, "Sets the sleep of the monitor thread")
     field(PINI, "YES")
-    field(VAL, "1") # Update this field if needed
-    field(EGU, "sec")
+    field(VAL, "2700") # Update this field if needed
+    field(EGU, "us")
     field(DTYP, "asynFloat64")
     field(SCAN, "Passive")
     field(OUT, "@asyn(GUARDIAN, 0, 0)MONITOR_CYCLE_TIME")
@@ -42,7 +42,7 @@ record(ao, "$(BASE):MONITOR_CYCLE_TIME") {
 
 record(ai, "$(BASE):MONITOR_CYCLE_TIME_RBV") {
     field(DESC, "Sets the sleep of the monitor thread")
-    field(EGU, "sec")
+    field(EGU, "us")
     field(DTYP, "asynFloat64")
     field(SCAN, "I/O Intr")
     field(INP, "@asyn(GUARDIAN, 0, 0)MONITOR_CYCLE_TIME")

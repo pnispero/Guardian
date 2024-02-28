@@ -15,8 +15,8 @@
         # PREC - Precision
         # MSG - Trip message to GUI (For some special cases, some devices may have the same msg as other devices)
         # LOGIC_TYPE - logic type number (0 - special case, 1 - outsideTolerancePercentage ...)
-        # TOLERANCE_ID - [OPTIONAL, Default = -1] tolerance pv ID
-        # CONDITION_ID - [OPTIONAL, Default = -1] condition pv ID
+        # TOLERANCE_ID - [OPTIONAL, Default = 0] tolerance pv ID. where 0 means 0 tolerance
+        # CONDITION_ID - [OPTIONAL, Default = 0] condition pv ID. where 0 means no condition
         # ID - ID of device data pv (increment by 1)
 #==============================================================================
 # TODO: This file will be the complete one, its not being used yet til we figure out the waveform record for MSG

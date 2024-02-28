@@ -55,7 +55,7 @@ void FELpulseEnergyMonitor(void* driverPointer)
 
 /* Trip Logic functions */
 
-// Type 1
+// Type 1 & Type 2 (ignore absolute value for now) & Type 5 (make sure to add tol pv with val 0)
 std::tuple<bool, std::string> GuardianDriver::outsideTolerancePercentage(int paramIndex) {
     // tols = stats.BC1_Etols * 0.01;
     // qq = stats.BC1_energy_state;
@@ -64,6 +64,8 @@ std::tuple<bool, std::string> GuardianDriver::outsideTolerancePercentage(int par
     //     trip = 1;
     //     out.message = 'BC1 energy feedback state outside stored range';
     // end
+
+    // TODO: check type 2 values (if current and stored are opposite signs then this is not valid, we'd need abs())
 
     int tolId; double curTol, curDeviceVal, desiredDeviceVal;
     getIntegerParam(paramIndex, ToleranceIdIndex, &tolId); // Get tolerance 'control' pv id
@@ -87,22 +89,8 @@ std::tuple<bool, std::string> GuardianDriver::outsideTolerancePercentage(int par
     return std::make_tuple(false, "");
 }
 
-// Type 2
-bool GuardianDriver::outsideAbsTolerancePercentage(uint32_t tolId, uint32_t deviceDataId, uint32_t snapshotId) {
-    // tols = stats.L1Sphasetols * 0.01;
-    // qq = abs(stats.L1S_phase_setpt);
-    // QQ = abs(stored.L1S_phase_setpt);
-    // if qq > (tols*QQ + QQ) || qq < (QQ - tols*QQ)
-    //     trip = 1;
-    //     out.message = 'L1S phase setpoint has been changed. Check FEL pulse energy.';
-    //     return
-    // end
-
-    return false;
-}
-
 // Type 3
-bool GuardianDriver::outsideAbsTolerance(uint32_t tolId, uint32_t deviceDataId, uint32_t snapshotId) {
+std::tuple<bool, std::string> GuardianDriver::outsideAbsToleranceValue(int paramIndex) {
     // tols = stats.BC2_verntols;
     // qq = abs(stats.BC2_vernier);
     // QQ = abs(stored.BC2_vernier);
@@ -111,12 +99,30 @@ bool GuardianDriver::outsideAbsTolerance(uint32_t tolId, uint32_t deviceDataId, 
     //     out.message = 'BC2 Vernier (SXR) has been changed. Check FEL pulse energy.';
     //     return
     // end
+    int tolId; double curTolVal, curDeviceVal, desiredDeviceVal;
+    getIntegerParam(paramIndex, ToleranceIdIndex, &tolId); // Get tolerance 'control' pv id
+    getDoubleParam(tolId, ToleranceValueIndex, &curTolVal); // Tolerance 'control' pvs
+    getDoubleParam(paramIndex, StoredValueIndex, &curDeviceVal); // device pvs
+    getDoubleParam(paramIndex, SnapshotValueIndex, &desiredDeviceVal); // snapshot pvs
+    curDeviceVal = abs(curDeviceVal);
+    desiredDeviceVal = abs(desiredDeviceVal);
 
-    return false;
+    // Ensure current device value is within desired tolerance
+    if (curDeviceVal > (curTolVal + desiredDeviceVal) 
+        ||  curDeviceVal < (desiredDeviceVal - curTolVal))
+    {
+        std::string tripMsg;
+        // getStringParam() // TODO: will use waveform instead
+        tripMsg = "Tripped outsideAbsToleranceValue()"; // TEMP
+        return std::make_tuple(true, tripMsg);
+    }
+    return std::make_tuple(false, "");
+
 }
 
-// Type 4
-bool GuardianDriver::outsideDegreeTolerance(uint32_t tolId, uint32_t deviceDataId, uint32_t snapshotId) {
+// Type 4 (quad tolerance is here too, but make a quad tolerance pv)
+// TODO: Hold off on this as it seems that this is actually the same as type 1
+std::tuple<bool, std::string> GuardianDriver::outsideDegreeTolerance(int paramIndex) {
     // tols = stats.LHwaveplatetols;
     // qq = stats.LH1_waveplate;
     // QQ = stored.LH1_waveplate;
@@ -125,36 +131,7 @@ bool GuardianDriver::outsideDegreeTolerance(uint32_t tolId, uint32_t deviceDataI
     //     out.message = 'Waveplate (LH1) angle has been changed. Check FEL pulse energy';
     //     return
     // end
-
-    return false;
-}
-
-// Type 5
-bool GuardianDriver::dataUnchanged(uint32_t deviceDataId, uint32_t snapshotId) {
-    // if stats.BC1_vernier ~= stored.BC1_vernier
-    //     trip = 1;
-    //     out.message = 'BC1 vernier setpoint has been changed. Not Allowed.';
-    //     return
-    // end
-
-    return false;
-}
-
-// Type 6
-bool GuardianDriver::outsideQuadsTolerance(uint32_t tolId, uint32_t deviceDataId, uint32_t snapshotId) {
-    // for iquad = 1:26
-    //     qq = stats.CQMQctrl(iquad);
-    //     QQ = stored.CQMQctrl(iquad);
-    //     tols = 0.001;
-    //     if abs(QQ - qq) > abs(tols*QQ)
-    //         trip = 1;
-    //         out.CQMQtrip = 1;
-    //         tweakedQuad = stats.CQMQpv(iquad);
-    //         out.message = ['No tweaking the CQs or matching QUADs! I see you  ', char(tweakedQuad)];
-    //     end
-    // end
-
-    return false;
+    return std::make_tuple(false, "");
 }
 
 bool GuardianDriver::tripSpecialCase(int paramIndex) {
@@ -194,8 +171,12 @@ void GuardianDriver::tripLogic() {
         case 0: // special case
             tripped = pGDriver->tripSpecialCase(paramIndex);
             break;
-        case 1:
+        // TODO: these case numbers arent fixed, will try to get down to 3 types only
+        case 1: // type 1 & 2 merged
             std::tie(tripped, tripMsg) = pGDriver->outsideTolerancePercentage(paramIndex);
+            break;
+        case 5: 
+            // std::tie(tripped, tripMsg) = pGDriver->dataUnchanged(paramIndex);
             break;
         default:
             std::cout << "*ERROR* Invalid logic type number: " << logicType
@@ -255,8 +236,8 @@ void GuardianDriver::initGuardian() {
     std::cout << "Initializing Guardian Please Wait...\n\n";
 
     getIntegerParam(DeviceParamSizeIndex, &DEVICE_PARAMS_SIZE);
-    getIntegerParam(ToleranceParamSizeIndex, &TOL_PARAMS_SIZE);
-    getIntegerParam(ConditionParamSizeIndex, &CONDITION_PARAMS_SIZE);
+    getIntegerParam(ToleranceParamSizeIndex, &TOL_PARAMS_SIZE); // TODO: Possible we may not use this
+    getIntegerParam(ConditionParamSizeIndex, &CONDITION_PARAMS_SIZE); // TODO: Possible we may not use this
 
     setUIntDigitalParam(MpsPermitIndex, 1, 1); // Initialize mps permit to 1
     
@@ -273,7 +254,7 @@ void GuardianDriver::FELpulseEnergyMonitor(void)
     uint32_t snapshotTriggerVal;
     while (true) {
         getDoubleParam(MonitorCycleIndex, &MONITOR_CYCLE_TIME);
-        sleep(MONITOR_CYCLE_TIME); // TODO: convert to ms
+        usleep(MONITOR_CYCLE_TIME);
         
         // heartbeat
         heartbeatCnt++;

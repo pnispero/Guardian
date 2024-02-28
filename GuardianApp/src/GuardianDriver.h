@@ -43,11 +43,8 @@ class GuardianDriver : public asynPortDriver {
     void tripLogic();
 
     std::tuple<bool, std::string> outsideTolerancePercentage(int paramIndex);
-    bool outsideAbsTolerancePercentage(uint32_t tolId, uint32_t deviceDataId, uint32_t snapshotId);
-    bool outsideAbsTolerance(uint32_t tolId, uint32_t deviceDataId, uint32_t snapshotId);
-    bool outsideDegreeTolerance(uint32_t tolId, uint32_t deviceDataId, uint32_t snapshotId);
-    bool outsideQuadsTolerance(uint32_t tolId, uint32_t deviceDataId, uint32_t snapshotId);
-    bool dataUnchanged(uint32_t deviceDataId, uint32_t snapshotId);
+    std::tuple<bool, std::string> outsideAbsToleranceValue(int paramIndex);
+    std::tuple<bool, std::string> outsideDegreeTolerance(int paramIndex);
     bool tripSpecialCase(int paramIndex);
     void initGuardian();
 

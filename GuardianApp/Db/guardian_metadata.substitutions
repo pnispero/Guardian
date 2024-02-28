@@ -8,9 +8,10 @@
 
 #==============================================================================
 # Metadata
+# TODO: possible we may not use condition_param_size or tolerance_param_size and may remove it
 #==============================================================================
 file "guardian_metadata.template"
 {
 pattern {       DEVICE_PARAM_SIZE       , CONDITION_PARAM_SIZE  , TOLERANCE_PARAM_SIZE    }
-        {       70                      , 5                     , 16                      }
+        {       70                      , 6                     , 17                      }
 }
