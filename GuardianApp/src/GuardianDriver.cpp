@@ -37,6 +37,7 @@ GuardianDriver::GuardianDriver(const char *portName) : asynPortDriver           
     createParam(MPS_TRIP_STRING, asynParamUInt32Digital, &MpsTripIndex);
     createParam(MPS_PERMIT_STRING, asynParamUInt32Digital, &MpsPermitIndex);
     createParam(HEARTBEAT_VALUE_STRING, asynParamInt32, &HeartbeatValueIndex);
+    createParam(ARM_VALUE_STRING, asynParamUInt32Digital, &ArmValueIndex);
 
     asynStatus status;
     status = (asynStatus)(epicsThreadCreate("FELpulseEnergyMonitor", epicsThreadPriorityMedium, epicsThreadGetStackSize(epicsThreadStackMedium), (EPICSTHREADFUNC)::FELpulseEnergyMonitor, this) == NULL);
@@ -270,10 +271,15 @@ void GuardianDriver::initGuardian() {
 void GuardianDriver::FELpulseEnergyMonitor(void)
 {
     pGDriver->initGuardian();
-    uint32_t snapshotTriggerVal;
+    uint32_t snapshotTriggerVal, armVal;
     while (true) {
         getDoubleParam(MonitorCycleIndex, &MONITOR_CYCLE_TIME);
         sleep(MONITOR_CYCLE_TIME); // TODO: convert to ms
+
+        // Proceed only if guardian is 'armed'
+        do {
+            getUIntDigitalParam(ArmValueIndex, &armVal, 1);
+        } while (armVal == 0);
         
         // heartbeat
         heartbeatCnt++;
