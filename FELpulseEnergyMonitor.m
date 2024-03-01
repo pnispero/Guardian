@@ -742,7 +742,7 @@ trip = 0;
 out.message = ' All OK ';
 out.CQMQtrip = 0;
 % First check that the UND K values haven't changed
-% PATRICK COMMENT - type 1 (9 count)
+% PATRICK COMMENT - type 1 (9 count) - asyn done.
 for iund = 1:9
     qq = stats.undulator_K(iund);
     QQ = stored.undulator_K(iund);
@@ -754,7 +754,7 @@ for iund = 1:9
     end
 end
 %only check the active bunch charge feedback
-% PATRICK COMMENT - Special case contains type 1 & 2 with additional logic
+% PATRICK COMMENT - Special case contains type 1 with additional logic - asyn done
 if stats.bunch_chg_fbck > 0 % non matlab feedback active
     % Check bunch charge feedback setpoint unchanged
     if stats.bunchq_setpt ~= stored.bunchq_setpt
@@ -792,7 +792,7 @@ end
 %
 % Check if BC1 energy feedback is on, then check that the SXR state
 % is within (tols)% of stored setpoint
-% PATRICK COMMENT - Special case contains type 1 & 2 with additional logic
+% PATRICK COMMENT - Special case contains type 1 with additional logic - asyn done
 if stats.BC1_energy_fbck_on > 0
     tols = stats.BC1_Etols * 0.01;
     qq = stats.BC1_energy_state;
@@ -814,7 +814,7 @@ end
 % Check if BC1 current feedback is on, then check if SXR dualE is
 % on. Use the appropriate setpoint (ACT is always the SXR one) and
 % check BC1 current feedback state within (tols)% of stored setpoint
-% PATRICK COMMENT - Special case contains type 1 & 2 with additional logic
+% PATRICK COMMENT - Special case contains type 1 with additional logic - asyn done
 if stats.BC1_current_fbck_on > 0
     tols = stats.BC1tols * 0.01;
     qq = stats.BC1_current_state;
@@ -838,7 +838,7 @@ else
 end
 %
 % Check L1S phase setpoint within (tols)% stored state
-% PATRICK COMMENT - Type 2
+% PATRICK COMMENT - Type 2 - asyn done
 tols = stats.L1Sphasetols * 0.01;
 qq = abs(stats.L1S_phase_setpt);
 QQ = abs(stored.L1S_phase_setpt);
@@ -849,7 +849,7 @@ if qq > (tols*QQ + QQ) || qq < (QQ - tols*QQ)
 end
 %
 % Check BC2 Energy vernier for SXR has not changed beyond allowed range
-% PATRICK COMMENT - Type 3
+% PATRICK COMMENT - Type 3 - asyn done
 tols = stats.BC2_verntols;
 qq = abs(stats.BC2_vernier);
 QQ = abs(stored.BC2_vernier);
@@ -863,7 +863,7 @@ end
 % check first that it hasn't changed, then check that the BC2 current feedback 
 % state is within (tols)% of stored setpoint
 %
-% PATRICK COMMENT - Special case contains type 5 with additional logic
+% PATRICK COMMENT - Special case contains type 1 (prev type 5) with additional logic - asyn done
 if stats.BC2_current_fbck_on > 0
     tols = stats.BC2tols * 0.01;
     qq = stats.BC2_current_state;
@@ -896,7 +896,7 @@ else
     out.message = 'WARNING: BC2 Bunch Current Feedback is OFF';
 end
 % Check L2 chirp setpoint within user entered % of stored state
-% PATRICK COMMENT - Type 2
+% PATRICK COMMENT - Type 2 - asyn done
 tols = stats.L2chirptols * 0.01;
 qq = abs(stats.L2_chirp_setpt);
 QQ = abs(stored.L2_chirp_setpt);
@@ -906,7 +906,7 @@ if qq > (tols*QQ + QQ) || qq < (QQ - tols*QQ)
     return
 end
 % Check DL2 vernier is within allowed range (absolute +/- MeV)
-% PATRICK COMMENT - Type 3
+% PATRICK COMMENT - Type 3 - asyn done
 tols = stats.DL2_verntols;
 qq = abs(stats.DL2_vernier);
 QQ = abs(stored.DL2_vernier);
@@ -916,7 +916,7 @@ if qq > (tols + QQ) || qq < (QQ - tols)
     return
 end
 % Check Laser Heater 1 Waveplate angle unchanged
-% PATRICK COMMENT - Type 4
+% PATRICK COMMENT - Type 4 - asyn done
 tols = stats.LHwaveplatetols;
 qq = stats.LH1_waveplate;
 QQ = stored.LH1_waveplate;
@@ -927,14 +927,14 @@ if abs(QQ - qq) > abs(tols*QQ)
     return
 end
 % Check Laser Heater 1 delay unchanged
-% PATRIKC COMMENT - type 5
+% PATRICK COMMENT - type 1 (prev type 5) - asyn done
 if stats.LH1_delay ~= stored.LH1_delay
     trip = 1;
     out.message = 'Laser Heater 1 delay has been changed. Check FEL pulse energy';
     return
 end
 % Check Laser Heater 2 Waveplate angle unchanged
-% PATRICK COMMENT - type 4
+% PATRICK COMMENT - type 4 - asyn done
 tols = stats.LHwaveplatetols;
 qq = stats.LH2_waveplate;
 QQ = stored.LH2_waveplate;
@@ -945,14 +945,14 @@ if abs(QQ - qq) > abs(tols*QQ)
     return
 end
 % Check Laser Heater 2 delay unchanged
-% PATRICK COMMENT - type 5
+% PATRICK COMMENT - type 1 (prev type 5) - asyn done
 if stats.LH2_delay ~= stored.LH2_delay
     trip = 1;
     out.message = 'Laser Heater 2 delay has been changed. Check FEL pulse energy';
     return
 end
 % Check Laser heater power is within (n) 1 uJ of stored state
-% PATRICK COMMENT - Type 3
+% PATRICK COMMENT - Type 3 - asyn done
 tols = stats.LHpowertols;
 qq = abs(stats.LH_power);
 QQ = abs(stored.LH_power);
@@ -962,7 +962,7 @@ if qq > (tols + QQ) || qq < (QQ - tols)
     return
 end
 % Check BC1 colls are within 0.030 mm (or user entered delta) of stored position
-% PATRICK COMMENT - Special case
+% PATRICK COMMENT - Special case - asyn done
 qql = abs(stats.BC1coll_L_pos);
 qqr = abs(stats.BC1coll_R_pos);
 QQL = abs(stored.BC1coll_L_pos);
@@ -982,7 +982,7 @@ if (qql > (colTolL + QQL) || qql < (QQL - colTolL)) ...
     return
 end
 % Check Slotted Foil 804 position is within user entered % of stored state
-% PATRICK COMMENT - Special case type 4 & added tols
+% PATRICK COMMENT - Special case type 4 & added tols - asyn done
 tols = stats.SlottedFoiltols * 0.01;
 qq = stats.SlottedFoil804_pos;
 QQ = stored.SlottedFoil804_pos;
@@ -993,7 +993,7 @@ if abs(QQ - qq) > abs(tols*QQ)
     return
 end
 % Check Slotted Foil 807 position is within user entered % of stored state
-% PATRICK COMMENT - Special case type 4 & added tols
+% PATRICK COMMENT - Special case type 4 & added tols - asyn done
 tols = stats.SlottedFoiltols * 0.01;
 qq = stats.SlottedFoil807_pos;
 QQ = stored.SlottedFoil807_pos;
@@ -1004,14 +1004,14 @@ if abs(QQ - qq) > abs(tols*QQ)
     return
 end
 % Check Dump Bend BDES has not changed
-% PATRICK COMMENT - type 6
+% PATRICK COMMENT - type 1 (prev type 5) - asyn done
 if stats.dump_bend_bdes    ~= stored.dump_bend_bdes
     trip = 1;
     out.message = 'Dump/LTU Bend BDES has been changed. Check FEL pulse energy.';
     return
 end
 % Check Dump Bend BACT within 0.5% stored state
-% PATRICK COMMENT - Special case type 4 & added tols
+% PATRICK COMMENT - Special case type 4 & added tols - asyn done
 qq = stats.dump_bend_bact;
 QQ = stored.dump_bend_bact;
 tols = 0.005;
@@ -1022,7 +1022,7 @@ if abs(QQ - qq) > abs(tols*QQ)
 end
 % Check that no one's tweaking the matching Quads or CQs (BCTRL change
 % <0.1% )
-% PATRICK COMMENT - Special case type 4 & added tols & logic - quad type
+% PATRICK COMMENT - Special case type 4 & added tols & logic - asyn done
 for iquad = 1:26
     qq = stats.CQMQctrl(iquad);
     QQ = stored.CQMQctrl(iquad);
@@ -1037,7 +1037,7 @@ for iquad = 1:26
 end
 % Check that no one's tweaking the Undulator Launch Feedback setpoints
 % (no change allowed)
-% PATRICK COMMENT - Special case type 4 (count 4) & added tols
+% PATRICK COMMENT - Special case type 4 (count 4) & added tols - asyn done
 for iulsp = 1:4
     qq = stats.UNDlaunch_setpt(iulsp);
     QQ = stored.UNDlaunch_setpt(iulsp);

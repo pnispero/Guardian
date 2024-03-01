@@ -20,5 +20,7 @@ pattern {       NAME                   ,      DESC  ,                           
         {       "FBCK:BCI0:1:STATE", "Matlab bunch charge feedback on?",                     2    }       
         {       "FBCK:FB04:LG01:S2USED", "BC1 energy FBCK ON?",                              3    }
         {       "FBCK:FB04:LG01:S3USED", "BC1 current FBCK ON?",                             4    }
-        {       "FBCK:FB04:LG01:S5USED", "BC2 current FBCK ON?",                             5    }
+        {       "SIOC:SYS0:ML04:AO404", "BC1 SXR current FBCK diff ON?",                     5    }
+        {       "FBCK:FB04:LG01:S5USED", "BC2 current FBCK ON?",                             6    }
+        {       "SIOC:SYS0:ML04:AO402", "BC2 SXR current FBCK diff ON?",                     7    }
 }                

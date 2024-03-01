@@ -13,5 +13,5 @@
 file "guardian_metadata.template"
 {
 pattern {       DEVICE_PARAM_SIZE       , CONDITION_PARAM_SIZE  , TOLERANCE_PARAM_SIZE    }
-        {       70                      , 6                     , 17                      }
+        {       70                      , 7                     , 19                      }
 }
