@@ -56,3 +56,16 @@ record(longin, "$(BASE):HEARTBEAT") {
     field(INP, "@asyn(GUARDIAN, 0, 0)HEARTBEAT")
     # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
+
+# Record for 'arming' the guardian (i.e. guardian is actively monitoring)
+record(bo, "$(BASE):ARM") {
+    field(DESC, "Arm enable for guardian")
+    field(DTYP, "asynUInt32Digital")
+    field(SCAN, "Passive")
+    field(VAL, "0")
+    field(PINI, "YES")
+    field(ZNAM, "Not armed, not monitoring")
+    field(ONAM, "Armed, monitoring")
+    field(OUT, "@asynMask(GUARDIAN, 0, 1, 0)ARM")
+}
+
