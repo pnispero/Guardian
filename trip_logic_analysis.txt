@@ -34,16 +34,18 @@
 
 % Type 3 (3): Check tolerance of absolute values
 % Ex:
-    tols = stats.BC2_verntols;
-    qq = abs(stats.BC2_vernier);
-    QQ = abs(stored.BC2_vernier);
+    tols = stats.BC2_verntols; 
+    qq = abs(stats.BC2_vernier);  
+    QQ = abs(stored.BC2_vernier); 
     if qq > (tols + QQ) || qq < (QQ - tols)
         trip = 1;
         out.message = 'BC2 Vernier (SXR) has been changed. Check FEL pulse energy.';
         return
     end
+    % if 5 > (1 + 7) || 5 < (7 - 1)
+    % if 103 > (0.1 + 102) || 103 < (102 - 0.1) TRUE // Compare with type 4 using same values
 
-% Type 4 (2): Check tolerance of degrees
+% Type 4 (2): Check tolerance of percentage (prev degrees)
 % Ex:
     tols = stats.LHwaveplatetols;
     qq = stats.LH1_waveplate;
@@ -53,6 +55,9 @@
         out.message = 'Waveplate (LH1) angle has been changed. Check FEL pulse energy';
         return
     end
+    % actual data ex
+    % if abs(102 - 103) > abs(0.1*102) FALSE
+    % if abs(11014.4 - 11014.36) > abs(.02*11014.4)
 
 % Type 5 (3): check data unchanged
 % Ex:
@@ -62,7 +67,7 @@
         return
     end
 
-% Type quad type (26):
+% Type quad type (26) same as type 4 (except tols is hardcoded 0.1%):
 % Ex:
     for iquad = 1:26
         qq = stats.CQMQctrl(iquad);
@@ -70,7 +75,7 @@
         tols = 0.001;
         if abs(QQ - qq) > abs(tols*QQ)
             trip = 1;
-            out.CQMQtrip = 1;
+            out.CQMQtrip = 1; % this isnt used
             tweakedQuad = stats.CQMQpv(iquad);
             out.message = ['No tweaking the CQs or matching QUADs! I see you  ', char(tweakedQuad)];
         end
@@ -78,6 +83,57 @@
 
 % Special cases (10):
 % Theyre all different
+
+% PATRICK COMMENT: We can merge type 1 and 2
+Can we merge type 3 and 4? Try to get some working data to compare
+OR we can merge type 3 to 1?
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+% Proposal 1 (NO GOOD):
+You can merge type 1,2,3 in just type 3 like this
+% Ex:
+    tols = stats.BC2_verntols; .01
+    qq = stats.BC2_vernier; 5
+    QQ = stored.BC2_vernier; 6
+    if qq > (tols + QQ) || qq < (QQ - tols)
+        trip = 1;
+        out.message = 'BC2 Vernier (SXR) has been changed. Check FEL pulse energy.';
+        return
+    end
+Type 3 wont work in this merge
+
+Type 5 we can keep as is, or can put in type 1, just make
+a tolerance pv for it and make it 0
+
+Type 4 must be kept as is
+
+Quad type can be part of type 1, just make a tolerance pv for it
+
+
+% Proposal 2:
+You can merge type 1, 2, 4, 5 into type 1.
+- type 2 (absolute value) would not be the same result if the qq and QQ are opposite signs
+    - so may have to make it a seperate type (will double check with archiever?)
+- type 4 would work as is
+- type 5 needs to add a tolerance pv for it and set its val to 0
+
+Type 3 must be kept as is
+
+Total: 2 types
+
+% Proposal 3 (this is the safest way):
+
+You can merge type 1, 5 into type 1 (tolerance percentage)
+
+Type 2 must be kept as is (tolerance percentage absolute values)
+
+Type 3 must be kept as is (tolerance raw value)
+
+Type 4 must be kept as is (tolerance percentage absolute values)
+
+Total: 4 types
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 % >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 

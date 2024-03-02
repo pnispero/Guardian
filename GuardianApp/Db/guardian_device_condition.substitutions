@@ -15,9 +15,12 @@ file "guardian_device_condition.template"
 # NOTE - If adding a new data condition pv, PLEASE do not add it at the beginning. ADD it at the last item and
 # increment the ID by 1.               
 pattern {       NAME                   ,      DESC  ,                                       ID    }
-        {       "FBCK:FB02:GN01:STATE", "Non-matlab bunch charge feedback on?",              0    }
-        {       "FBCK:BCI0:1:STATE", "Matlab bunch charge feedback on?",                     1    }       
-        {       "FBCK:FB04:LG01:S2USED", "BC1 energy FBCK ON?",                              2    }
-        {       "FBCK:FB04:LG01:S3USED", "BC1 current FBCK ON?",                             3    }
-        {       "FBCK:FB04:LG01:S5USED", "BC2 current FBCK ON?",                             4    }
+        {       "SIOC:SYS0:GD01:AO600", "Default, no condition placeholder",                 0    }
+        {       "FBCK:FB02:GN01:STATE", "Non-matlab bunch charge feedback on?",              1    }
+        {       "FBCK:BCI0:1:STATE", "Matlab bunch charge feedback on?",                     2    }       
+        {       "FBCK:FB04:LG01:S2USED", "BC1 energy FBCK ON?",                              3    }
+        {       "FBCK:FB04:LG01:S3USED", "BC1 current FBCK ON?",                             4    }
+        {       "SIOC:SYS0:ML04:AO404", "BC1 SXR current FBCK diff ON?",                     5    }
+        {       "FBCK:FB04:LG01:S5USED", "BC2 current FBCK ON?",                             6    }
+        {       "SIOC:SYS0:ML04:AO402", "BC2 SXR current FBCK diff ON?",                     7    }
 }                
