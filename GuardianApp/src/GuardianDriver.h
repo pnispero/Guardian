@@ -33,6 +33,7 @@
 #define MPS_TRIP_STRING "MPS_TRIP"
 #define MPS_PERMIT_STRING "MPS_PERMIT"
 #define HEARTBEAT_VALUE_STRING "HEARTBEAT"
+#define ARM_VALUE_STRING "ARM"
 
  
 class GuardianDriver : public asynPortDriver {
@@ -77,6 +78,7 @@ class GuardianDriver : public asynPortDriver {
     int MpsTripIndex;
     int MpsPermitIndex;
     int HeartbeatValueIndex;
+    int ArmValueIndex;
 
     uint32_t heartbeatCnt; // Heartbeat of the guardian
     int DEVICE_PARAMS_SIZE; // number of device data pv asyn parameters - This will be seperated by mode soon
