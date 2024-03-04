@@ -1,0 +1,29 @@
+#=================================================================#
+# Template file: guardian_device_test_data.template
+# Database for device data values within sxrss for the guardian
+# Uses guardian_device_test_data.substitutions
+# Macro description:                                                             #
+#   - NAME       : Name                                                #
+#   - DESC       : Description                                         #
+#   - ID         : ASYN ID                                             #
+#=====================================================================
+
+# ex: FBCK:FB02:GN01:S1DES_TEST
+record(ao, "$(NAME):TEST") {
+    field(DESC, "$(DESC)")
+    field(PINI, "YES")
+    field(EGU, "$(EGU)")
+    field(PREC, "$(PREC)")
+    field(DTYP, "asynFloat64")
+    field(OUT, "@asyn(GUARDIAN_TEST, $(ID), 0)DEVICE_TEST")
+}
+
+# ex: FBCK:FB02:GN01:S1DES_TEST_RBV
+record(ai, "$(NAME):TEST_RBV") {
+    field(DESC, "$(DESC)")
+    field(EGU, "$(EGU)")
+    field(PREC, "$(PREC)")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn(GUARDIAN_TEST, $(ID), 0)DEVICE_TEST")
+}

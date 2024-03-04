@@ -1,0 +1,29 @@
+#=================================================================#
+# Template file: guardian_device_test_data.template
+# Database for device data values within sxrss for the guardian
+# Uses guardian_device_test_data.substitutions
+# Macro description:                                                             #
+#   - NAME       : Name                                                #
+#   - DESC       : Description                                         #
+#   - ID         : ASYN ID                                             #
+#=====================================================================
+
+# ex: FBCK:FB02:GN01:S1DES_TEST
+record(ao, "FBCK:FB02:GN01:S1DES:TEST") {
+    field(DESC, "bunch charge feedback setpoint")
+    field(PINI, "YES")
+    field(EGU, "nC")
+    field(PREC, "3")
+    field(DTYP, "asynFloat64")
+    field(OUT, "@asyn(GUARDIAN_TEST, 0, 0)DEVICE_TEST")
+}
+
+# ex: FBCK:FB02:GN01:S1DES_TEST_RBV
+record(ai, "FBCK:FB02:GN01:S1DES:TEST_RBV") {
+    field(DESC, "bunch charge feedback setpoint")
+    field(EGU, "nC")
+    field(PREC, "3")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn(GUARDIAN_TEST, 0, 0)DEVICE_TEST")
+}

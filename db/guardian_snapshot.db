@@ -1,0 +1,32 @@
+#=================================================================#
+# Template file: guardian_TEST.template
+# Database for TEST of device data values within sxrss for the guardian
+# Uses guardian_TEST.substitutions
+# Macro description:                                                             #
+#   - NAME       : Name                                                #
+#   - DESC       : Description                                         #
+#   - ID         : ASYN ID                                             #
+#=====================================================================
+
+# Record for triggering a TEST
+record(bo, "$(BASE):TEST_TRG_EN") {
+    field(DESC, "Test Guardian trigger")
+    field(DTYP, "asynUInt32Digital")
+    field(SCAN, "Passive")
+    field(VAL, "0")
+    field(PINI, "YES")
+    field(ZNAM, "Not Triggered")
+    field(ONAM, "Triggered")
+    field(OUT, "@asynMask(GUARDIAN_TEST, 0, 1, 0)TEST_TRG")
+}
+
+# Record for TEST trigger readback value (OPs read this one back not the _EN)
+record(bi, "$(BASE):TEST_TRG_RBV") {
+    field(DESC, "Test Guardian trigger")
+    field(DTYP, "asynUInt32Digital")
+    field(SCAN, "I/O Intr")
+    field(PINI, "NO")
+    field(ZNAM, "Not Triggered")
+    field(ONAM, "Triggered")
+    field(INP, "@asynMask(GUARDIAN_TEST, 0, 1, 0)TEST_TRG")
+}

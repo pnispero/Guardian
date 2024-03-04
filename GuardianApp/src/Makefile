@@ -43,39 +43,37 @@ USR_CXXFLAGS += -std=c++0x
 #=============================
 # Build the IOC application
 
-PROD_IOC = Guardian
-# Guardian.dbd will be created and installed
-DBD += Guardian.dbd
+PROD_IOC = GuardianTest
+# GuardianTest.dbd will be created and installed
+DBD += GuardianTest.dbd
 
-# Guardian.dbd will be made up from these files:
-Guardian_DBD += base.dbd
-Guardian_DBD += Init.dbd
+# GuardianTest.dbd will be made up from these files:
+GuardianTest_DBD += base.dbd
+GuardianTest_DBD += Init.dbd
 
 # Include dbd files from all support applications:
-Guardian_DBD += asyn.dbd
-# Guardian_DBD += yamlLoader.dbd
-# Guardian_DBD += yamlDownloader.dbd
+GuardianTest_DBD += asyn.dbd
 
 # Add all the support libraries needed by this IOC
-#Guardian_LIBS += xxx
+#GuardianTest_LIBS += xxx
 
-# Guardian_registerRecordDeviceDriver.cpp derives from Guardian.dbd
-Guardian_SRCS += Guardian_registerRecordDeviceDriver.cpp
-Guardian_SRCS += GuardianDriver.cpp 
+# GuardianTest_registerRecordDeviceDriver.cpp derives from GuardianTest.dbd
+GuardianTest_SRCS += GuardianTest_registerRecordDeviceDriver.cpp
+GuardianTest_SRCS += GuardianTestDriver.cpp 
 
 # Build the main IOC entry point on workstation OSs.
-Guardian_SRCS_DEFAULT += GuardianMain.cpp
-Guardian_SRCS_vxWorks += -nil-
+GuardianTest_SRCS_DEFAULT += GuardianTestMain.cpp
+GuardianTest_SRCS_vxWorks += -nil-
 
 # Add support from base/src/vxWorks if needed
-#Guardian_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
+#GuardianTest_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
 # Finally link to the EPICS Base libraries
-Guardian_LIBS += $(EPICS_BASE_IOC_LIBS)
-# Guardian_LIBS += cpsw 
-Guardian_LIBS += asyn
-# Guardian_LIBS += yamlLoader
-# Guardian_LIBS += yamlDownloader
+GuardianTest_LIBS += $(EPICS_BASE_IOC_LIBS)
+# GuardianTest_LIBS += cpsw 
+GuardianTest_LIBS += asyn
+# GuardianTest_LIBS += yamlLoader
+# GuardianTest_LIBS += yamlDownloader
 
 #===========================
 

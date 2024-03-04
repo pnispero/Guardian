@@ -1,0 +1,26 @@
+#==============================================================================
+#
+# Abs:  LCLS Guardian data records
+#
+# Author: 
+#
+#==============================================================================
+
+#==============================================================================
+# Actual device data
+#==============================================================================
+# Instructions are on README.md but are also here 
+
+# These PVs are device data pvs used for tolerance (i.e. exists in both 'current data' and 'stored data')               
+# NOTE - If adding a new data pv, PLEASE do not add it at the beginning. ADD it at the last item and
+# increment the ID by 1.       
+# This substitutions will look identical to actual guardian_device_data.substitutions except there is no
+# tolerance, conditional, or logic type id here. And there is an additional VAL pattern here
+file guardian_device_test_data.template
+{
+#                              
+#           
+pattern {   NAME                   ,      DESC  ,                   EGU  ,  PREC ,   VAL ,              ID   }
+        {   "FBCK:FB02:GN01:S1DES", "bunch charge feedback setpoint", "nC", 3    ,    0  ,              0    }            
+}
+
