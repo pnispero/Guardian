@@ -10,7 +10,7 @@
 
 file "guardian_device_data.template"
 {
-# These PVs are device data pvs used for tolerance (i.e. exists in both 'current data' and 'snapshot data')               
+# These PVs are device data pvs used for tolerance (i.e. exists in both 'current data' and 'stored data')               
 # NOTE - If adding a new data pv, PLEASE do not add it at the beginning. ADD it at the last item and
 # increment the ID by 1.               
 pattern {   NAME                   ,      DESC  ,                   EGU  ,  PREC ,      MSG ,                                                   LOGIC_TYPE ,   TOLERANCE_ID,   CONDITION_ID,       ID    }

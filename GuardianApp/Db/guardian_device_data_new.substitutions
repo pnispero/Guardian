@@ -26,7 +26,7 @@
 # ==========================================
 # Instructions are on README.md but are also here 
 
-# These PVs are device data pvs used for tolerance (i.e. exists in both 'current data' and 'snapshot data')               
+# These PVs are device data pvs used for tolerance (i.e. exists in both 'current data' and 'stored data')               
 # NOTE - If adding a new data pv, PLEASE do not add it at the beginning. ADD it at the last item and
 # increment the ID by 1.       
 # If want to check if a device changed, but no difference then make the tol PV 0,         

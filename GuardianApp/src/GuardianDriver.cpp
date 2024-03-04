@@ -26,8 +26,8 @@ GuardianDriver::GuardianDriver(const char *portName) : asynPortDriver           
     createParam(DEVICE_PARAM_SIZE_STRING, asynParamInt32, &DeviceParamSizeIndex);
     createParam(CONDITION_PARAM_SIZE_STRING, asynParamInt32, &ConditionParamSizeIndex);
     createParam(TOLERANCE_PARAM_SIZE_STRING, asynParamInt32, &ToleranceParamSizeIndex);
-    createParam(STORED_VALUE_STRING, asynParamFloat64, &StoredValueIndex);
-    createParam(SNAPSHOT_VALUE_STRING, asynParamFloat64, &SnapshotValueIndex);
+    createParam(CURRENT_VALUE_STRING, asynParamFloat64, &CurrentValueIndex);
+    createParam(STORED_VALUE_STRING, asynParamFloat64, &SnapshotValueIndex);
     createParam(CONDITION_VALUE_STRING, asynParamUInt32Digital, &ConditionValueIndex);
     createParam(TOLERANCE_VALUE_STRING, asynParamFloat64, &ToleranceValueIndex);
     createParam(LOGIC_TYPE_VALUE_STRING, asynParamInt32, &LogicTypeValueIndex);
@@ -70,8 +70,8 @@ bool GuardianDriver::outsidePercentageTolerance(int paramIndex) {
     int tolId; double tolVal, curDeviceVal, desiredDeviceVal;
     getIntegerParam(paramIndex, ToleranceIdIndex, &tolId); // Get tolerance 'control' pv id
     getDoubleParam(tolId, ToleranceValueIndex, &tolVal); // Tolerance 'control' pvs
-    getDoubleParam(paramIndex, StoredValueIndex, &curDeviceVal); // device pvs
-    getDoubleParam(paramIndex, SnapshotValueIndex, &desiredDeviceVal); // snapshot pvs
+    getDoubleParam(paramIndex, CurrentValueIndex, &curDeviceVal); // device pvs
+    getDoubleParam(paramIndex, SnapshotValueIndex, &desiredDeviceVal); // stored pvs
 
     double tolValPercent = tolVal * 0.01;
 
@@ -89,8 +89,8 @@ bool GuardianDriver::outsidePercentageTolerance(int curValIndex, int desiredValI
     int tolId; double tolVal, curDeviceVal, desiredDeviceVal;
     getIntegerParam(curValIndex, ToleranceIdIndex, &tolId); // Get tolerance 'control' pv id
     getDoubleParam(tolId, ToleranceValueIndex, &tolVal); // Tolerance 'control' pvs
-    getDoubleParam(curValIndex, StoredValueIndex, &curDeviceVal); // device pvs
-    getDoubleParam(desiredValIndex, SnapshotValueIndex, &desiredDeviceVal); // snapshot pvs
+    getDoubleParam(curValIndex, CurrentValueIndex, &curDeviceVal); // device pvs
+    getDoubleParam(desiredValIndex, SnapshotValueIndex, &desiredDeviceVal); // stored pvs
 
     double tolValPercent = tolVal * 0.01;
 
@@ -117,8 +117,8 @@ bool GuardianDriver::outsideAbsPercentageTolerance(int paramIndex) {
     int tolId; double tolVal, curDeviceVal, desiredDeviceVal;
     getIntegerParam(paramIndex, ToleranceIdIndex, &tolId); // Get tolerance 'control' pv id
     getDoubleParam(tolId, ToleranceValueIndex, &tolVal); // Tolerance 'control' pvs
-    getDoubleParam(paramIndex, StoredValueIndex, &curDeviceVal); // device pvs
-    getDoubleParam(paramIndex, SnapshotValueIndex, &desiredDeviceVal); // snapshot pvs
+    getDoubleParam(paramIndex, CurrentValueIndex, &curDeviceVal); // device pvs
+    getDoubleParam(paramIndex, SnapshotValueIndex, &desiredDeviceVal); // stored pvs
     curDeviceVal = abs(curDeviceVal);
     desiredDeviceVal = abs(desiredDeviceVal);
 
@@ -148,8 +148,8 @@ bool GuardianDriver::outsideAbsValueTolerance(int paramIndex) {
     int tolId; double tolVal, curDeviceVal, desiredDeviceVal;
     getIntegerParam(paramIndex, ToleranceIdIndex, &tolId); // Get tolerance 'control' pv id
     getDoubleParam(tolId, ToleranceValueIndex, &tolVal); // Tolerance 'control' pvs
-    getDoubleParam(paramIndex, StoredValueIndex, &curDeviceVal); // device pvs
-    getDoubleParam(paramIndex, SnapshotValueIndex, &desiredDeviceVal); // snapshot pvs
+    getDoubleParam(paramIndex, CurrentValueIndex, &curDeviceVal); // device pvs
+    getDoubleParam(paramIndex, SnapshotValueIndex, &desiredDeviceVal); // stored pvs
     curDeviceVal = abs(curDeviceVal);
     desiredDeviceVal = abs(desiredDeviceVal);
 
@@ -177,8 +177,8 @@ bool GuardianDriver::outsideAbsDifferenceTolerance(int paramIndex) {
     int tolId; double tolVal, curDeviceVal, desiredDeviceVal;
     getIntegerParam(paramIndex, ToleranceIdIndex, &tolId); // Get tolerance 'control' pv id
     getDoubleParam(tolId, ToleranceValueIndex, &tolVal); // Tolerance 'control' pvs
-    getDoubleParam(paramIndex, StoredValueIndex, &curDeviceVal); // device pvs
-    getDoubleParam(paramIndex, SnapshotValueIndex, &desiredDeviceVal); // snapshot pvs
+    getDoubleParam(paramIndex, CurrentValueIndex, &curDeviceVal); // device pvs
+    getDoubleParam(paramIndex, SnapshotValueIndex, &desiredDeviceVal); // stored pvs
 
     // Ensure current device value is within desired tolerance
     if (curDeviceVal > abs(tolVal + desiredDeviceVal)
@@ -195,10 +195,10 @@ bool GuardianDriver::outsideCollimatorTolerance() {
     double curLeftColVal, curRightColVal, desiredLeftColVal, desiredRightColVal;
     getIntegerParam(19, ToleranceIdIndex, &tolId); // Get tolerance 'control' pv id
     getDoubleParam(tolId, ToleranceValueIndex, &tolVal); // Tolerance 'control' pvs
-    getDoubleParam(19, StoredValueIndex, &curLeftColVal); // device pvs
-    getDoubleParam(20, StoredValueIndex, &curRightColVal); // device pvs
-    getDoubleParam(19, SnapshotValueIndex, &desiredLeftColVal); // snapshot pvs
-    getDoubleParam(20, SnapshotValueIndex, &desiredRightColVal); // snapshot pvs
+    getDoubleParam(19, CurrentValueIndex, &curLeftColVal); // device pvs
+    getDoubleParam(20, CurrentValueIndex, &curRightColVal); // device pvs
+    getDoubleParam(19, SnapshotValueIndex, &desiredLeftColVal); // stored pvs
+    getDoubleParam(20, SnapshotValueIndex, &desiredRightColVal); // stored pvs
 
     // Check BC1 colls are within 0.030 mm (or user entered delta) of stored position
     if (curLeftColVal > (tolVal + desiredLeftColVal) ||
@@ -275,7 +275,7 @@ std::tuple<bool, std::string> GuardianDriver::tripSpecialCase(int paramIndex) {
         getUIntDigitalParam(7, ConditionValueIndex, &conditionVal2, 1);
         if (conditionVal == 1) {
             double curVal;
-            getDoubleParam(14, StoredValueIndex, &curVal);
+            getDoubleParam(14, CurrentValueIndex, &curVal);
             if (curVal > 25000) { // only check if BLEN reading is OK
                 tripMsg = "WARNING: BC2 bunch current reading is Garbage!";
                 break;
@@ -341,6 +341,7 @@ void GuardianDriver::tripLogic() {
             // 0) get msg
             if (tripMsg != "") { // If special case then message already filled
                 // getStringParam(tripMsg) // TODO: will use waveform instead
+                tripMsg = "Tripped"; // TEMP
             }
             
             // 1) write to trip PV
@@ -383,10 +384,10 @@ void GuardianDriver::takeSnapshot()
     for (int paramIndex = 0; paramIndex < DEVICE_PARAMS_SIZE; paramIndex++) {
 
         // Get value from device storage PVs
-        getDoubleParam(paramIndex, StoredValueIndex, &curVal);
+        getDoubleParam(paramIndex, CurrentValueIndex, &curVal);
         std::cout << "curVal after get : " << curVal << "\n"; 
 
-        // Set device desired snapshot PVs to value
+        // Set device desired stored PVs to value
         setDoubleParam(paramIndex, SnapshotValueIndex, curVal);
     }
     callParamCallbacks();

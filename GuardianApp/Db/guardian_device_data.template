@@ -1,7 +1,7 @@
 #=================================================================#
 # Template file: guardian_device_data.template
 # Database for device data values within sxrss for the guardian
-# And for snapshot data values
+# And for stored data values
 # Uses guardian_device_data.substitutions
 # Macro description:                                                   #
 #   - NAME       : Name                                                #
@@ -10,9 +10,9 @@
 #=====================================================================
 
 
-# ex: FBCK:FB02:GN01:S1DES_STORED
+# ex: FBCK:FB02:GN01:S1DES_CURRENT
 # This records purpose is to copy data from device data pvs, and push to ASYN PV
-record(ao, "$(NAME):STORED") { 
+record(ao, "$(NAME):CURRENT") { 
     field(DESC, "$(DESC)")
     field(PINI, "YES")
     field(EGU, "$(EGU)")
@@ -20,29 +20,29 @@ record(ao, "$(NAME):STORED") {
     field(DTYP, "asynFloat64")
 	field(OMSL, "closed_loop") 
     field(DOL, "$(NAME)_TEST CPP")  # TODO: Temporarily set as test
-    field(OUT, "@asyn(GUARDIAN, $(ID), 0)STORED") 
+    field(OUT, "@asyn(GUARDIAN, $(ID), 0)CURRENT") 
     # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
-# ex: FBCK:FB02:GN01:S1DES_STORED_RBV
-record(ai, "$(NAME):STORED_RBV") {
+# ex: FBCK:FB02:GN01:S1DES_CURRENT_RBV
+record(ai, "$(NAME):CURRENT_RBV") {
     field(DESC, "$(DESC)")    
     field(EGU, "$(EGU)")
     field(PREC, "$(PREC)")
     field(DTYP, "asynFloat64")
     field(SCAN, "I/O Intr")
-    field(INP, "@asyn(GUARDIAN, $(ID), 0)STORED")
+    field(INP, "@asyn(GUARDIAN, $(ID), 0)CURRENT")
     # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
-# ex: FBCK:FB02:GN01:S1DES_SNAPSHOT
-record(ai, "$(NAME):SNAPSHOT") {
+# ex: FBCK:FB02:GN01:S1DES_STORED
+record(ai, "$(NAME):STORED") {
     field(DESC, "$(DESC)")
     field(SCAN, "I/O Intr")
     field(EGU, "$(EGU)")
     field(PREC, "$(PREC)")
     field(DTYP, "asynFloat64")
-    field(INP, "@asyn(GUARDIAN, $(ID), 0)SNAPSHOT")
+    field(INP, "@asyn(GUARDIAN, $(ID), 0)STORED")
     # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 

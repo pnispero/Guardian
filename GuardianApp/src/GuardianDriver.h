@@ -15,15 +15,14 @@
 #include <epicsTimer.h>
 #include <epicsTypes.h>
 #include <asynPortDriver.h>
-#include "TripParam.h"
  
 #define MONITOR_CYCLE_STRING "MONITOR_CYCLE_TIME"
 #define SNAPSHOT_TRIGGER_STRING "SNAPSHOT_TRG"
 #define DEVICE_PARAM_SIZE_STRING "DEVICE_PARAM_SIZE"
 #define CONDITION_PARAM_SIZE_STRING "CONDITION_PARAM_SIZE"
 #define TOLERANCE_PARAM_SIZE_STRING "TOLERANCE_PARAM_SIZE"
+#define CURRENT_VALUE_STRING "CURRENT"
 #define STORED_VALUE_STRING "STORED"
-#define SNAPSHOT_VALUE_STRING "SNAPSHOT"
 #define CONDITION_VALUE_STRING "CONDITION"
 #define TOLERANCE_VALUE_STRING "TOLERANCE"
 #define LOGIC_TYPE_VALUE_STRING "LOGIC_TYPE"
@@ -52,14 +51,8 @@ class GuardianDriver : public asynPortDriver {
     std::tuple<bool, std::string> tripSpecialCase(int paramIndex);
     void initGuardian();
 
-    // void initializeNCTripParamMap();
-    // void initializeSCTripParamMap();
-
     // virtual asynStatus readInt32(asynUser *pasynUser, epicsInt32 *value);
     // virtual asynStatus writeInt32(asynUser *pasynUser, epicsInt32 value);
-
-    // TripParamMap NCTripParamMap; // Normal Conducting (LCLS-I) trip logic parameters
-    // TripParamMap SCTripParamMap; // Super Conducting (LCLS-II) trip logic parameters
 
   private:
     int MonitorCycleIndex;
@@ -67,7 +60,7 @@ class GuardianDriver : public asynPortDriver {
     int DeviceParamSizeIndex;
     int ConditionParamSizeIndex;
     int ToleranceParamSizeIndex;
-    int StoredValueIndex;
+    int CurrentValueIndex;
     int SnapshotValueIndex;
     int ConditionValueIndex;
     int ToleranceValueIndex;

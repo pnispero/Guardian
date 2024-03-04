@@ -8,7 +8,6 @@
 #   - ID         : ASYN ID                                             #
 #=====================================================================
 
-# This records purpose is to copy data from device data pvs, and push to ASYN PV
 record(bo, "$(NAME):CONDITION") {
     field(DESC, "$(DESC)")
     field(DTYP, "asynUInt32Digital")
@@ -22,7 +21,6 @@ record(bo, "$(NAME):CONDITION") {
     field(OUT, "@asynMask(GUARDIAN, $(ID), 1, 0)CONDITION")
 }
 
-# Record for snapshot trigger readback value (OPs read this one back not the _EN)
 record(bi, "$(NAME):CONDITION_RBV") {
     field(DESC, "Snaphot trigger")
     field(DTYP, "asynUInt32Digital")
