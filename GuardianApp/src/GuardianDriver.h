@@ -42,13 +42,13 @@ class GuardianDriver : public asynPortDriver {
     void takeSnapshot();
     void tripLogic();
 
-    bool outsidePercentageTolerance(int paramIndex);
+    bool outsidePercentageTolerance(int deviceIndex);
     bool outsidePercentageTolerance(int curValIndex, int desiredValIndex);
-    bool outsideAbsPercentageTolerance(int paramIndex);
-    bool outsideAbsValueTolerance(int paramIndex);
-    bool outsideAbsDifferenceTolerance(int paramIndex);
+    bool outsideAbsPercentageTolerance(int deviceIndex);
+    bool outsideAbsValueTolerance(int deviceIndex);
+    bool outsideAbsDifferenceTolerance(int deviceIndex);
     bool outsideCollimatorTolerance();
-    std::tuple<bool, std::string> tripSpecialCase(int paramIndex);
+    std::tuple<bool, std::string> tripSpecialCase(int deviceIndex);
     void initGuardian();
 
     // virtual asynStatus readInt32(asynUser *pasynUser, epicsInt32 *value);

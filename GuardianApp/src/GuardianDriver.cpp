@@ -57,7 +57,7 @@ void FELpulseEnergyMonitor(void* driverPointer)
 /* Trip Logic functions */
 
 // Type 1
-bool GuardianDriver::outsidePercentageTolerance(int paramIndex) {
+bool GuardianDriver::outsidePercentageTolerance(int deviceIndex) {
     // Original FELpulseEnergyMonitor.m
         // tols = stats.BC1_Etols * 0.01;
         // qq = stats.BC1_energy_state;
@@ -68,10 +68,10 @@ bool GuardianDriver::outsidePercentageTolerance(int paramIndex) {
         // end
 
     int tolId; double tolVal, curDeviceVal, desiredDeviceVal;
-    getIntegerParam(paramIndex, ToleranceIdIndex, &tolId); // Get tolerance 'control' pv id
+    getIntegerParam(deviceIndex, ToleranceIdIndex, &tolId); // Get tolerance 'control' pv id
     getDoubleParam(tolId, ToleranceValueIndex, &tolVal); // Tolerance 'control' pvs
-    getDoubleParam(paramIndex, CurrentValueIndex, &curDeviceVal); // device pvs
-    getDoubleParam(paramIndex, SnapshotValueIndex, &desiredDeviceVal); // stored pvs
+    getDoubleParam(deviceIndex, CurrentValueIndex, &curDeviceVal); // device pvs
+    getDoubleParam(deviceIndex, SnapshotValueIndex, &desiredDeviceVal); // stored pvs
 
     double tolValPercent = tolVal * 0.01;
 
@@ -104,7 +104,7 @@ bool GuardianDriver::outsidePercentageTolerance(int curValIndex, int desiredValI
 }
 
 // Type 2
-bool GuardianDriver::outsideAbsPercentageTolerance(int paramIndex) {
+bool GuardianDriver::outsideAbsPercentageTolerance(int deviceIndex) {
     // Original FELpulseEnergyMonitor.m
         // tols = stats.BC1_Etols * 0.01;
         // qq = abs(stats.BC1_energy_state);
@@ -115,10 +115,10 @@ bool GuardianDriver::outsideAbsPercentageTolerance(int paramIndex) {
         // end
 
     int tolId; double tolVal, curDeviceVal, desiredDeviceVal;
-    getIntegerParam(paramIndex, ToleranceIdIndex, &tolId); // Get tolerance 'control' pv id
+    getIntegerParam(deviceIndex, ToleranceIdIndex, &tolId); // Get tolerance 'control' pv id
     getDoubleParam(tolId, ToleranceValueIndex, &tolVal); // Tolerance 'control' pvs
-    getDoubleParam(paramIndex, CurrentValueIndex, &curDeviceVal); // device pvs
-    getDoubleParam(paramIndex, SnapshotValueIndex, &desiredDeviceVal); // stored pvs
+    getDoubleParam(deviceIndex, CurrentValueIndex, &curDeviceVal); // device pvs
+    getDoubleParam(deviceIndex, SnapshotValueIndex, &desiredDeviceVal); // stored pvs
     curDeviceVal = abs(curDeviceVal);
     desiredDeviceVal = abs(desiredDeviceVal);
 
@@ -134,7 +134,7 @@ bool GuardianDriver::outsideAbsPercentageTolerance(int paramIndex) {
 }
 
 // Type 3
-bool GuardianDriver::outsideAbsValueTolerance(int paramIndex) {
+bool GuardianDriver::outsideAbsValueTolerance(int deviceIndex) {
     // Original FELpulseEnergyMonitor.m
         // tols = stats.BC2_verntols;
         // qq = abs(stats.BC2_vernier);
@@ -146,10 +146,10 @@ bool GuardianDriver::outsideAbsValueTolerance(int paramIndex) {
         // end
 
     int tolId; double tolVal, curDeviceVal, desiredDeviceVal;
-    getIntegerParam(paramIndex, ToleranceIdIndex, &tolId); // Get tolerance 'control' pv id
+    getIntegerParam(deviceIndex, ToleranceIdIndex, &tolId); // Get tolerance 'control' pv id
     getDoubleParam(tolId, ToleranceValueIndex, &tolVal); // Tolerance 'control' pvs
-    getDoubleParam(paramIndex, CurrentValueIndex, &curDeviceVal); // device pvs
-    getDoubleParam(paramIndex, SnapshotValueIndex, &desiredDeviceVal); // stored pvs
+    getDoubleParam(deviceIndex, CurrentValueIndex, &curDeviceVal); // device pvs
+    getDoubleParam(deviceIndex, SnapshotValueIndex, &desiredDeviceVal); // stored pvs
     curDeviceVal = abs(curDeviceVal);
     desiredDeviceVal = abs(desiredDeviceVal);
 
@@ -163,7 +163,7 @@ bool GuardianDriver::outsideAbsValueTolerance(int paramIndex) {
 }
 
 // Type 4
-bool GuardianDriver::outsideAbsDifferenceTolerance(int paramIndex) {
+bool GuardianDriver::outsideAbsDifferenceTolerance(int deviceIndex) {
     // Original FELpulseEnergyMonitor.m
         // tols = stats.LHwaveplatetols;
         // qq = stats.LH1_waveplate;
@@ -175,10 +175,10 @@ bool GuardianDriver::outsideAbsDifferenceTolerance(int paramIndex) {
         // end
 
     int tolId; double tolVal, curDeviceVal, desiredDeviceVal;
-    getIntegerParam(paramIndex, ToleranceIdIndex, &tolId); // Get tolerance 'control' pv id
+    getIntegerParam(deviceIndex, ToleranceIdIndex, &tolId); // Get tolerance 'control' pv id
     getDoubleParam(tolId, ToleranceValueIndex, &tolVal); // Tolerance 'control' pvs
-    getDoubleParam(paramIndex, CurrentValueIndex, &curDeviceVal); // device pvs
-    getDoubleParam(paramIndex, SnapshotValueIndex, &desiredDeviceVal); // stored pvs
+    getDoubleParam(deviceIndex, CurrentValueIndex, &curDeviceVal); // device pvs
+    getDoubleParam(deviceIndex, SnapshotValueIndex, &desiredDeviceVal); // stored pvs
 
     // Ensure current device value is within desired tolerance
     if (curDeviceVal > abs(tolVal + desiredDeviceVal)
@@ -212,14 +212,14 @@ bool GuardianDriver::outsideCollimatorTolerance() {
 }
 
 // These special cases will have hardcoded numbers here (can't generalize these unfortunately)
-std::tuple<bool, std::string> GuardianDriver::tripSpecialCase(int paramIndex) {
+std::tuple<bool, std::string> GuardianDriver::tripSpecialCase(int deviceIndex) {
 
     // Special cases have a condition
     // Get value of condition
 
     uint32_t conditionVal, conditionVal2;
     bool tripped = false; std::string tripMsg = "No Issues";
-    switch (paramIndex) 
+    switch (deviceIndex) 
     {
     case 0: // devices 1,2,3 as well
         getUIntDigitalParam(1, ConditionValueIndex, &conditionVal, 1);
@@ -307,34 +307,34 @@ void GuardianDriver::tripLogic() {
 
     // 1) Loop through every deviceParam
     bool tripped = false; std::string tripMsg = "No Issues";
-    for (int paramIndex = 0; paramIndex < 2; paramIndex++) { // TEMP set to 2 for testing
-    // for (int paramIndex = 0; paramIndex < DEVICE_PARAMS_SIZE; paramIndex++) {
+    for (int deviceIndex = 0; deviceIndex < 2; deviceIndex++) { // TEMP set to 2 for testing
+    // for (int deviceIndex = 0; deviceIndex < DEVICE_PARAMS_SIZE; deviceIndex++) {
     
         // get value of logic type
         int logicType;
-        getIntegerParam(paramIndex, LogicTypeValueIndex, &logicType);
+        getIntegerParam(deviceIndex, LogicTypeValueIndex, &logicType);
         std::cout << "Logic type; " << logicType << "\n"; // TEMP
 
         switch (logicType)
         {
         case 0: // special case
-            std::tie(tripped, tripMsg) = pGDriver->tripSpecialCase(paramIndex);
+            std::tie(tripped, tripMsg) = pGDriver->tripSpecialCase(deviceIndex);
             break;
         case 1:
-            tripped = pGDriver->outsidePercentageTolerance(paramIndex);
+            tripped = pGDriver->outsidePercentageTolerance(deviceIndex);
             break;
         case 2: 
-            tripped = pGDriver->outsideAbsPercentageTolerance(paramIndex);
+            tripped = pGDriver->outsideAbsPercentageTolerance(deviceIndex);
             break;
         case 3:
-            tripped = pGDriver->outsideAbsValueTolerance(paramIndex);
+            tripped = pGDriver->outsideAbsValueTolerance(deviceIndex);
             break;
         case 4: 
-            tripped = pGDriver->outsideAbsDifferenceTolerance(paramIndex);
+            tripped = pGDriver->outsideAbsDifferenceTolerance(deviceIndex);
             break;
         default:
             std::cout << "*ERROR* Invalid logic type number: " << logicType
-            << " for parameter: " << paramIndex << "\n";                                                                                                                                                          
+            << " for parameter: " << deviceIndex << "\n";                                                                                                                                                          
             break;
         }
         if (tripped) {
@@ -381,14 +381,14 @@ void GuardianDriver::tripLogic() {
 void GuardianDriver::takeSnapshot()
 {
     double curVal;
-    for (int paramIndex = 0; paramIndex < DEVICE_PARAMS_SIZE; paramIndex++) {
+    for (int deviceIndex = 0; deviceIndex < DEVICE_PARAMS_SIZE; deviceIndex++) {
 
         // Get value from device storage PVs
-        getDoubleParam(paramIndex, CurrentValueIndex, &curVal);
+        getDoubleParam(deviceIndex, CurrentValueIndex, &curVal);
         std::cout << "curVal after get : " << curVal << "\n"; 
 
         // Set device desired stored PVs to value
-        setDoubleParam(paramIndex, SnapshotValueIndex, curVal);
+        setDoubleParam(deviceIndex, SnapshotValueIndex, curVal);
     }
     callParamCallbacks();
 }
