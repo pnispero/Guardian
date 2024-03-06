@@ -1,0 +1,65 @@
+#==============================================================================
+#
+# Abs:  LCLS Guardian control tolerance records (These are identical to the one
+#        in the actual guardian, but this has an additional field 'VAL')
+#
+# Author: 
+#
+#==============================================================================
+
+#==============================================================================
+# Set by the operator
+#==============================================================================
+file guardian_tolerance_test_data.template
+{
+# These PVs are tolerance control pvs (their values are manually set by operator)
+# NOTE - If adding a new data pv, PLEASE do not add it at the beginning. ADD it at the last item and
+# increment the ID by 1.               
+# TODO: Not sure if the names are correct, but in original matlab script they used placeholder PVs like SIOC:SYS0:ML04:AO701 up to AO717
+pattern {       NAME                   ,      DESC  ,                   EGU  ,  PREC ,      VAL ,     ID    }
+        {    "SIOC:SYS0:GD01:AO700"    ,"Default zero tolerance", "%", 1                   , 0      , 0    }
+        {    "SIOC:SYS0:GD01:AO701"    ,"bunch charge feedback tolerance", "%", 1          , 5      , 1    }
+        {    "SIOC:SYS0:GD01:AO702"    ,"L1S phase setpoint tolerance", "%", 1             , 4      , 2    }
+        {    "SIOC:SYS0:GD01:AO703"    ,"BC1 energy feedback tolerance", "%", 1            , 5      , 3    }
+        {    "SIOC:SYS0:GD01:AO704"    ,"BC1 energy vernier tolerance, +/-", "MeV", 2      , 1      , 4    }
+        {    "SIOC:SYS0:GD01:AO705"    ,"BC1 current feedback tolerance", "%", 1           , 10      , 5    }
+        {    "SIOC:SYS0:GD01:AO706"    ,"BC2 current feedback tolerance", "%", 1           , 2      , 6    } 
+        {    "SIOC:SYS0:GD01:AO707"    ,"BC2 energy vernier tolerance, +/-", "MeV", 2      , 1      , 7    }
+        {    "SIOC:SYS0:GD01:AO708"    ,"L2 chirp tolerance", "%", 1                       , 5      , 8    }
+        {    "SIOC:SYS0:GD01:AO709"    ,"DL2 energy vernier tolerance, +/-", "MeV", 2      , 10      , 9    }
+        {    "SIOC:SYS0:GD01:AO710"    ,"L3 energy tolerance", "%", 1                      , 2      , 10   } 
+        {    "SIOC:SYS0:GD01:AO711"    ,"Laser Heater power tolerance", "uJ", 1            , 2      , 11   } 
+        {    "SIOC:SYS0:GD01:AO712"    ,"Undulator K value tolerance", "%", 3              , 0.0001      , 12   } 
+        {    "SIOC:SYS0:GD01:AO713"    ,"BC1 collimator jaws position tolerance", "mm", 3  , 1      , 13   }
+        {    "SIOC:SYS0:GD01:AO714"    ,"Slotted Foil position tolerance", "%", 1          , 0.02      , 14   } 
+        {    "SIOC:SYS0:GD01:AO715"    ,"Laser heater Waveplate angle tolerance", "deg", 1 , 0.1      , 15   }
+        {    "SIOC:SYS0:GD01:AO716"    ,"Matching quad/CQ BDES tolerance", "%", 1          , 2      , 16   }
+        {    "SIOC:SYS0:GD01:AO717"    ,"Dump Bend BACT tolerance", "%", 1                 , 0.005      , 17   }
+        {    "SIOC:SYS0:GD01:AO718"    ,"CQ or Matching Quad BDES Value tol", "%", 1       , 0.001      , 18   } 
+        {    "SIOC:SYS0:GD01:AO719"    ,"Undulator Launch Feedback setpoint tol", "%", 1   , 0.0000000001      , 19   }
+}                
+
+# Comments below
+
+# pattern {       NAME                   ,      DESC  ,                   EGU  ,  PREC ,      VAL ,     ID    }
+#         {    "SIOC:SYS0:GD01:AO700"    ,"Default zero tolerance", "%", 1                   , 0      , 0    }
+#         {    "SIOC:SYS0:GD01:AO701"    ,"bunch charge feedback tolerance", "%", 1          , 5      , 1    }
+#         {    "SIOC:SYS0:GD01:AO702"    ,"L1S phase setpoint tolerance", "%", 1             , 4      , 2    }
+#         {    "SIOC:SYS0:GD01:AO703"    ,"BC1 energy feedback tolerance", "%", 1            , 5      , 3    }
+#         {    "SIOC:SYS0:GD01:AO704"    ,"BC1 energy vernier tolerance, +/-", "MeV", 2      , 1      , 4    }
+#         {    "SIOC:SYS0:GD01:AO705"    ,"BC1 current feedback tolerance", "%", 1           , 10      , 5    }
+#         {    "SIOC:SYS0:GD01:AO706"    ,"BC2 current feedback tolerance", "%", 1           , 2      , 6    } # Unused
+#         {    "SIOC:SYS0:GD01:AO707"    ,"BC2 energy vernier tolerance, +/-", "MeV", 2      , 1      , 7    }
+#         {    "SIOC:SYS0:GD01:AO708"    ,"L2 chirp tolerance", "%", 1                       , 5      , 8    }
+#         {    "SIOC:SYS0:GD01:AO709"    ,"DL2 energy vernier tolerance, +/-", "MeV", 2      , 10      , 9    }
+#         {    "SIOC:SYS0:GD01:AO710"    ,"L3 energy tolerance", "%", 1                      , 2      , 10   } # Unused
+#         {    "SIOC:SYS0:GD01:AO711"    ,"Laser Heater power tolerance", "uJ", 1            , 2      , 11   } 
+#         {    "SIOC:SYS0:GD01:AO712"    ,"Undulator K value tolerance", "%", 3              , 0.0001      , 12   } original val=0.01
+#         {    "SIOC:SYS0:GD01:AO713"    ,"BC1 collimator jaws position tolerance", "mm", 3  , 1      , 13   }
+#         {    "SIOC:SYS0:GD01:AO714"    ,"Slotted Foil position tolerance", "%", 1          , 0.02      , 14   } original val=2
+#         {    "SIOC:SYS0:GD01:AO715"    ,"Laser heater Waveplate angle tolerance", "deg", 1 , 0.1      , 15   }
+#         {    "SIOC:SYS0:GD01:AO716"    ,"Matching quad/CQ BDES tolerance", "%", 1          , 2      , 16   }
+#         {    "SIOC:SYS0:GD01:AO717"    ,"Dump Bend BACT tolerance", "%", 1                 , 0.005      , 17   }
+#         {    "SIOC:SYS0:GD01:AO718"    ,"CQ or Matching Quad BDES Value tol", "%", 1       , 0.001      , 18   } original val=0.1
+#         {    "SIOC:SYS0:GD01:AO719"    ,"Undulator Launch Feedback setpoint tol", "%", 1   , 0.0000000001      , 19   }
+# }      

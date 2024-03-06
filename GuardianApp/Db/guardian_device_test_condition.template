@@ -1,0 +1,35 @@
+#=================================================================#
+# Template file: guardian_device_test_condition.template
+# Database for device condition values within sxrss for the guardian
+# Uses guardian_device_test_condition.substitutions
+# Macro description:                                                   #
+#   - NAME       : Name                                                #
+#   - DESC       : Description                                         #
+#   - ID         : ASYN ID                                             #
+#=====================================================================
+
+record(bo, "$(NAME):TEST:CONDITION") {
+    field(DESC, "$(DESC)")
+    field(DTYP, "asynUInt32Digital")
+    field(PINI, "YES")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(OUT, "@asynMask(GUARDIAN_TEST, $(ID), 1, 0)CONDITION_TEST")
+}
+
+record(bi, "$(NAME):TEST:CONDITION_RBV") {
+    field(DESC, "$(DESC)")
+    field(DTYP, "asynUInt32Digital")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SCAN, "Passive") 
+    field(INP, "@asynMask(GUARDIAN_TEST, $(ID), 1, 0)CONDITION_TEST")
+}
+
+record(bo, "$(NAME):TEST:CONDITION_TRG") {
+    field(ZNAM, "Done")
+    field(ONAM, "Update")
+    field(OMSL, "closed_loop") 
+    field(DOL, "$(BASE):CONDITION_TEST_UPDATE CPP") 
+    field(FLNK, "$(NAME):TEST:CONDITION_RBV")
+}

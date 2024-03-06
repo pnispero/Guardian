@@ -12,6 +12,7 @@
 record(ao, "$(NAME):TEST") {
     field(DESC, "$(DESC)")
     field(PINI, "YES")
+    field(VAL, "$(VAL)")
     field(EGU, "$(EGU)")
     field(PREC, "$(PREC)")
     field(DTYP, "asynFloat64")
@@ -24,6 +25,66 @@ record(ai, "$(NAME):TEST_RBV") {
     field(EGU, "$(EGU)")
     field(PREC, "$(PREC)")
     field(DTYP, "asynFloat64")
-    field(SCAN, "I/O Intr")
+    field(SCAN, "Passive") 
     field(INP, "@asyn(GUARDIAN_TEST, $(ID), 0)DEVICE_TEST")
+}
+
+record(bo, "$(NAME):TEST_TRG") {
+    field(ZNAM, "Done")
+    field(ONAM, "Update")
+    field(OMSL, "closed_loop") 
+    field(DOL, "$(BASE):DEVICE_TEST_UPDATE CPP") 
+    field(FLNK, "$(NAME):TEST_RBV")
+}
+
+# ex: FBCK:FB02:GN01:S1DES:TEST:STORED
+record(ao, "$(NAME):TEST:STORED") {
+    field(DESC, "$(DESC)")
+    field(EGU, "$(EGU)")
+    field(PREC, "$(PREC)")
+    field(OMSL, "closed_loop") 
+    field(DOL, "$(NAME):STORED_RBV CPP")
+    field(DTYP, "asynFloat64")
+    field(OUT, "@asyn(GUARDIAN_TEST, $(ID), 0)STORED")
+    
+}
+
+record(ai, "$(NAME):TEST:STORED_RBV") {
+    field(DESC, "$(DESC)")
+    field(EGU, "$(EGU)")
+    field(PREC, "$(PREC)")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn(GUARDIAN_TEST, $(ID), 0)STORED")
+    
+}
+
+# Trip logic type
+record(longout, "$(NAME):TEST:LOGIC_TYPE") {
+    field(DESC, "Trip tolerance logic type")
+    field(PINI, "YES")
+    field(VAL, "$(LOGIC_TYPE)")
+    field(DTYP, "asynInt32")
+    field(OUT, "@asyn(GUARDIAN_TEST, $(ID), 0)LOGIC_TYPE")
+    
+}
+
+# Tolerance control pv
+record(longout, "$(NAME):TEST:TOL_ID") {
+    field(DESC, "Optional Tolerance pv id for logic")
+    field(PINI, "YES")
+    field(VAL, "$(TOLERANCE_ID)")
+    field(DTYP, "asynInt32")
+    field(OUT, "@asyn(GUARDIAN_TEST, $(ID), 0)TOLERANCE_ID")
+    
+}
+
+# Optional Condition ID
+record(longout, "$(NAME):TEST:CONDITION_ID") {
+    field(DESC, "Optional condition id for logic")
+    field(PINI, "YES")
+    field(VAL, "$(CONDITION_ID)")
+    field(DTYP, "asynInt32")
+    field(OUT, "@asyn(GUARDIAN_TEST, $(ID), 0)CONDITION_ID")
+    
 }

@@ -1,0 +1,18 @@
+#=================================================================#
+# Template file: guardian_mps_test.template
+# Database for mps pvs within sxrss for the guardian
+# Macro description:                                                   #
+#   - BASE       : SIOC name                                           #
+#=====================================================================
+# This record just copies the guardian mps values
+
+record(bo, "$(BASE):TEST:MPS_PERMIT_OUT") { 
+    field(DESC, "Push out mps permit to actual mps pv")
+    field(OMSL, "closed_loop") 
+    field(ZNAM, "FAULT")
+    field(ONAM, "OK")
+    field(DOL, "$(BASE):MPS_PERMIT CPP")
+    field(DTYP, "asynUInt32Digital")
+    field(OUT, "@asynMask(GUARDIAN_TEST, 0, 1, 0)MPS_PERMIT")
+    
+}

@@ -30,3 +30,40 @@ record(bi, "$(BASE):TEST_TRG_RBV") {
     field(ONAM, "Triggered")
     field(INP, "@asynMask(GUARDIAN_TEST, 0, 1, 0)TEST_TRG")
 }
+
+# Record for updating device test values
+record(bi, "$(BASE):DEVICE_TEST_UPDATE") {
+    field(DTYP, "asynUInt32Digital")
+    field(ZNAM, "Done")
+    field(ONAM, "Update")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asynMask(GUARDIAN_TEST, 0, 1, 0)DEVICE_TEST_UPDATE")
+}
+
+# Record for updating condition test values
+record(bi, "$(BASE):CONDITION_TEST_UPDATE") {
+    field(DTYP, "asynUInt32Digital")
+    field(ZNAM, "Done")
+    field(ONAM, "Update")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asynMask(GUARDIAN_TEST, 0, 1, 0)CONDITION_TEST_UPDATE")
+}
+
+record(longout, "$(BASE):DEVICE_ID") {
+    field(DESC, "Test purposes only, tripped device index")
+    field(SCAN, "Passive")
+    field(DTYP, "asynInt32")
+    field(OMSL, "closed_loop") 
+    field(DOL, "$(BASE):TEST_ID CPP") 
+    field(OUT, "@asyn(GUARDIAN_TEST, 0, 0)DEVICE_ID")
+}
+
+# Record to copy the trip display message
+# record(waveform, "$(BASE):TEST_DISPLAY_MSG_RBV") {
+#     field(DESC, "Display trip msg for GUI")
+#     field(NELM, "100")
+#     field(FTVL, "CHAR")
+#     field(SIMM, "YES") 
+#     field(SIOL, "$(BASE):DISPLAY_MSG CPP")
+#     field(SCAN, "Passive")
+# }
