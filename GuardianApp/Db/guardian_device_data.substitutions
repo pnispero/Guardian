@@ -15,8 +15,8 @@ file "guardian_device_data.template"
 # increment the ID by 1.               
 pattern {   NAME                   ,      DESC  ,                   EGU  ,  PREC ,      MSG ,                                                   LOGIC_TYPE ,   TOLERANCE_ID,   CONDITION_ID,       ID    }
         {   "SIOC:SYS0:ML01:AO861", "FEL pulse energy in use by guardian", "uJ", 3      "Outside range" ,      1 ,       1 ,         0 ,              0    }            
-        {   "FBCK:FB02:GN01:S1DES", "bunch charge feedback setpoint", "nC", 3           "Outside range" ,      0 ,       0 ,         1 ,          1    }            
-        {   "FBCK:FB02:GN01:S1P1", "bunch charge feedback state", "nC", 3               "Outside range" ,      0 ,       0 ,         0 ,          2    }    
+        {   "FBCK:FB02:GN01:S1DES", "bunch charge feedback setpoint", "nC", 3           "Outside range" ,      1 ,       2 ,         1 ,          1    }            
+        {   "FBCK:FB02:GN01:S1P1", "bunch charge feedback state", "nC", 3               "Outside range" ,      2 ,       3 ,         0 ,          2    }    
         {   "FBCK:BCI0:1:CHRGSP", "bunch charge matlab fbck setpt", "nC", 3             "Outside range" ,      0 ,       0 ,         0 ,          3    }    
         {   "FBCK:BCI0:1:CHRG_S", "bunch charge matlab fbck state", "nC", 3             "Outside range" ,      0 ,       0 ,         0 ,          4    }    
         {   "FBCK:FB04:LG01:S2DES", "BC1 energy setpoint", "MeV", 1                     "Outside range" ,      0 ,       0 ,         0 ,          5    }

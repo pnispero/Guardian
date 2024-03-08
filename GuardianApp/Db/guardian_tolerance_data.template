@@ -14,6 +14,8 @@ record(ao, "$(NAME):TOL") {
     field(EGU, "$(EGU)")
     field(PREC, "$(PREC)")
     field(DTYP, "asynFloat64")
+    field(OMSL, "closed_loop") # TODO: TEMP field for testing
+    field(DOL, "$(NAME):TEST:TOL CPP") # # TODO: TEMP field for testing
     field(OUT, "@asyn(GUARDIAN, $(ID), 0)TOLERANCE") 
     # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }

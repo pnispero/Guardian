@@ -19,7 +19,7 @@ record(ao, "$(NAME):CURRENT") {
     field(PREC, "$(PREC)")
     field(DTYP, "asynFloat64")
 	field(OMSL, "closed_loop") 
-    field(DOL, "$(NAME)_TEST CPP")  # TODO: Temporarily set as test
+    field(DOL, "$(NAME):TEST_RBV CPP")  # TODO: Temporarily set as test_rbv
     field(OUT, "@asyn(GUARDIAN, $(ID), 0)CURRENT") 
     # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
@@ -36,14 +36,37 @@ record(ai, "$(NAME):CURRENT_RBV") {
 }
 
 # ex: FBCK:FB02:GN01:S1DES_STORED
-record(ai, "$(NAME):STORED") {
+record(ao, "$(NAME):STORED") {
     field(DESC, "$(DESC)")
-    field(SCAN, "I/O Intr")
+    field(PINI, "YES") # IMPORTANT
+    field(EGU, "$(EGU)")
+    field(PREC, "$(PREC)")
+    # field(OMSL, "closed_loop")  # TEMP
+    # field(DOL, "$(BASE):SS_UPDATE CP") # TEMP
+    field(DTYP, "asynFloat64")
+    field(OUT, "@asyn(GUARDIAN, $(ID), 0)STORED")
+    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
+}
+
+record(ai, "$(NAME):STORED_RBV") {
+    field(DESC, "$(DESC)")
+    field(SCAN, "Passive")
+    # field(SCAN, "1 second") # This is a temporary solution
     field(EGU, "$(EGU)")
     field(PREC, "$(PREC)")
     field(DTYP, "asynFloat64")
     field(INP, "@asyn(GUARDIAN, $(ID), 0)STORED")
     # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
+}
+
+# How about making a bo record for each device, with a DOL to the SS_UPDATE
+# and a FLNK to the device:STORED.PROC
+record(bo, "$(NAME):STORED_TRG") {
+    field(ZNAM, "Done")
+    field(ONAM, "Update")
+    field(OMSL, "closed_loop") 
+    field(DOL, "$(BASE):SS_UPDATE CPP")
+    field(FLNK, "$(NAME):STORED_RBV")
 }
 
 # Trip Message

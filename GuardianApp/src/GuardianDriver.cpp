@@ -38,6 +38,7 @@ GuardianDriver::GuardianDriver(const char *portName) : asynPortDriver           
     createParam(MPS_PERMIT_STRING, asynParamUInt32Digital, &MpsPermitIndex);
     createParam(HEARTBEAT_VALUE_STRING, asynParamInt32, &HeartbeatValueIndex);
     createParam(ARM_VALUE_STRING, asynParamUInt32Digital, &ArmValueIndex);
+    createParam(SS_STRING, asynParamUInt32Digital, &SSIndex);
 
     asynStatus status;
     status = (asynStatus)(epicsThreadCreate("FELpulseEnergyMonitor", epicsThreadPriorityMedium, epicsThreadGetStackSize(epicsThreadStackMedium), (EPICSTHREADFUNC)::FELpulseEnergyMonitor, this) == NULL);
@@ -74,6 +75,16 @@ bool GuardianDriver::outsidePercentageTolerance(int deviceIndex) {
     getDoubleParam(deviceIndex, StoredValueIndex, &desiredDeviceVal); // stored pvs
 
     double tolValPercent = tolVal * 0.01;
+
+        // TEST <<<<<<<
+    if (curDeviceVal > 10) {
+        double arg1 = (desiredDeviceVal*tolValPercent + desiredDeviceVal);
+        double arg2 = (desiredDeviceVal - desiredDeviceVal*tolValPercent);
+        std::cout << "desiredDeviceVal: " << desiredDeviceVal << ", tolValPercent: " << tolValPercent << "\n";
+        std::cout << "curDeviceVal: " << curDeviceVal << " > " << arg1
+                    << " || " << curDeviceVal << " < " << arg2 << "\n";
+    }
+    // >>>>>>>>>
 
     // Ensure current device value is within desired tolerance
     if (curDeviceVal > (desiredDeviceVal*tolValPercent + desiredDeviceVal) 
@@ -123,6 +134,16 @@ bool GuardianDriver::outsideAbsPercentageTolerance(int deviceIndex) {
     desiredDeviceVal = abs(desiredDeviceVal);
 
     double tolValPercent = tolVal * 0.01;
+
+            // TEST <<<<<<<
+    if (curDeviceVal > 5) {
+        double arg1 = (desiredDeviceVal*tolValPercent + desiredDeviceVal);
+        double arg2 = (desiredDeviceVal - desiredDeviceVal*tolValPercent);
+        std::cout << "desiredDeviceVal: " << desiredDeviceVal << ", tolValPercent: " << tolValPercent << "\n";
+        std::cout << "curDeviceVal: " << curDeviceVal << " > " << arg1
+                    << " || " << curDeviceVal << " < " << arg2 << "\n";
+    }
+    // >>>>>>>>>
 
     // Ensure current device value is within desired tolerance
     if (curDeviceVal > (desiredDeviceVal*tolValPercent + desiredDeviceVal) 
@@ -307,14 +328,13 @@ void GuardianDriver::tripLogic() {
 
     // 1) Loop through every deviceParam
     bool tripped = false; std::string tripMsg = "No Issues";
-    for (int deviceIndex = 0; deviceIndex < 2; deviceIndex++) { // TEMP set to 2 for testing
+    for (int deviceIndex = 0; deviceIndex < 3; deviceIndex++) { // TEMP set to 3 for testing
     // for (int deviceIndex = 0; deviceIndex < DEVICE_PARAMS_SIZE; deviceIndex++) {
     
         // get value of logic type
         int logicType;
         getIntegerParam(deviceIndex, LogicTypeValueIndex, &logicType);
-        std::cout << "Logic type; " << logicType << "\n"; // TEMP
-
+        // std::cout << "logicType: " << logicType << "\n"; // TEMP
         switch (logicType)
         {
         case 0: // special case
@@ -323,7 +343,7 @@ void GuardianDriver::tripLogic() {
         case 1:
             tripped = pGDriver->outsidePercentageTolerance(deviceIndex);
             break;
-        case 2: 
+        case 2:
             tripped = pGDriver->outsideAbsPercentageTolerance(deviceIndex);
             break;
         case 3:
@@ -356,7 +376,7 @@ void GuardianDriver::tripLogic() {
             std::cout << "Trip Msg: " << tripMsg << "\n"; // TEMP
 
             callParamCallbacks();
-            sleep(5); //TEMP
+            usleep(3000); // sleep 3ms to give time for epics records to be written, adjust if needed
             return;
         }
     }
@@ -366,7 +386,7 @@ void GuardianDriver::tripLogic() {
     setUIntDigitalParam(MpsTripIndex, 0, 1); // original trip PV
 
     // 2) write to MPS pv to leave as is
-    setUIntDigitalParam(MpsPermitIndex, 1, 1); // Tell MPS to turn off beam
+    setUIntDigitalParam(MpsPermitIndex, 1, 1); // Tell MPS not to worry
 
     // 3) write to out message pv - only on initial trip
     if (tripMsg != "") { // If special case then message already filled
@@ -380,22 +400,30 @@ void GuardianDriver::tripLogic() {
 
 void GuardianDriver::takeSnapshot()
 {
-    double curVal;
-    for (int deviceIndex = 0; deviceIndex < DEVICE_PARAMS_SIZE; deviceIndex++) {
+    epicsFloat64 curVal, temp;
+    for (int deviceIndex = 0; deviceIndex < 3; deviceIndex++) { // TEMP set to 3 for testing
+    // for (int deviceIndex = 0; deviceIndex < DEVICE_PARAMS_SIZE; deviceIndex++) {
 
         // Get value from device storage PVs
         getDoubleParam(deviceIndex, CurrentValueIndex, &curVal);
         std::cout << "curVal after get : " << curVal << "\n"; 
 
         // Set device desired stored PVs to value
-        setDoubleParam(deviceIndex, StoredValueIndex, curVal);
+        setDoubleParam(deviceIndex, StoredValueIndex, curVal); 
+
+        getDoubleParam(deviceIndex, StoredValueIndex, &temp); // TENP
+        std::cout << "temp after get : " << temp << "\n"; 
+
     }
+    setUIntDigitalParam(SSIndex, 1, 1); // Trigger snapshot writing to device records
+    callParamCallbacks();
+    setUIntDigitalParam(SSIndex, 0, 1); // Reset back to 0
     callParamCallbacks();
 }
 
 void GuardianDriver::initGuardian() {
     /* Initialize */
-    sleep(5); // IMPORTANT - Let epics records load then initialize
+    sleep(3); // IMPORTANT - Let epics records load then initialize
     std::cout << "Initializing Guardian Please Wait...\n\n";
 
     getIntegerParam(DeviceParamSizeIndex, &DEVICE_PARAMS_SIZE);
@@ -406,9 +434,17 @@ void GuardianDriver::initGuardian() {
     
     callParamCallbacks(); // Call this to write the values back into epics records
 
-    sleep(5); // Wait some time for every device data pv to populate with real values
+    sleep(3); // Wait some time for every device data pv to populate with real values
     std::cout << "\nFinished initialization.\n\n";
 
+    // TEMP TEST <<<<<<<<<<<<<<<<
+    std::cout << "MonitorCycleIndex: " << MonitorCycleIndex
+            << "StoredValueIndex: " << StoredValueIndex << "\n" ; // TEMP
+    int params;
+    getNumParams(StoredValueIndex, &params); // This doesnt work, meaning the dynamically created params arent properly made despite it working
+    std::cout << "StoredValue numParams (70?): " << params << "\n";
+    getNumParams(&params); 
+    std::cout << "whole numParams (17?): " << params << "\n";
 }
 
 void GuardianDriver::FELpulseEnergyMonitor(void)
@@ -422,20 +458,21 @@ void GuardianDriver::FELpulseEnergyMonitor(void)
         // Proceed only if guardian is 'armed'
         do {
             getUIntDigitalParam(ArmValueIndex, &armVal, 1);
+            // Check snapshot_trg param, take snapshot then reset if true
+            getUIntDigitalParam(SnapshotTriggerIndex, &snapshotTriggerVal, 1);
+            if (snapshotTriggerVal == 1) {
+                pGDriver->takeSnapshot();
+                setUIntDigitalParam(SnapshotTriggerIndex, 0, 1);
+                callParamCallbacks();
+                usleep(3000); // sleep 3ms to give time for epics records to be written, adjust if needed
+            }
         } while (armVal == 0);
         
         // heartbeat
         heartbeatCnt++;
 
-        // Check snapshot_trg param, take snapshot then reset if true
-        getUIntDigitalParam(SnapshotTriggerIndex, &snapshotTriggerVal, 1);
-        if (snapshotTriggerVal == 1) {
-            pGDriver->takeSnapshot();
-            setUIntDigitalParam(SnapshotTriggerIndex, 0, 1);
-            callParamCallbacks();
-        }
         // TODO: You'd pass in 'mode' here (NC vs SC)
-        pGDriver->tripLogic();
+        pGDriver->tripLogic(); 
     }
 }
 

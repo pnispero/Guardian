@@ -69,3 +69,11 @@ record(bo, "$(BASE):ARM") {
     field(OUT, "@asynMask(GUARDIAN, 0, 1, 0)ARM")
 }
 
+record(bi, "$(BASE):SS_UPDATE") {
+    field(DESC, "Trigger device stored record processing")
+    field(DTYP, "asynUInt32Digital")
+    field(ZNAM, "Done")
+    field(ONAM, "Update")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asynMask(GUARDIAN, 0, 1, 0)SS_UPDATE")
+}
