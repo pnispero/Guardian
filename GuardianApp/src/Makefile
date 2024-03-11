@@ -40,6 +40,12 @@ USR_CXXFLAGS += -std=c++0x
 # USR_LIBS_Linux += yamlReader 
 # USR_LIBS_Linux += deviceLib
 
+# ================================================================================
+# The system command will be mainly used by linux hosted IOCs
+# Very useful for changing kernel thread priorities for kernel drivers
+# ================================================================================
+Guardian_DBD += system.dbd
+
 #=============================
 # Build the IOC application
 

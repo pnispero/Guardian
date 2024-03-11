@@ -13,7 +13,7 @@ GuardianDriver::GuardianDriver(const char *portName) : asynPortDriver           
                                                       portName,
                                                       1000, // number to specify maximum parameter lists (starting from 0)
                                                       asynOctetMask | asynFloat64Mask | asynInt32Mask | asynUInt32DigitalMask | asynDrvUserMask, // interfaceMask
-                                                      asynFloat64Mask | asynInt32Mask | asynUInt32DigitalMask, // interruptMask
+                                                      asynOctetMask | asynFloat64Mask | asynInt32Mask | asynUInt32DigitalMask, // interruptMask
                                                       ASYN_MULTIDEVICE, // asynFlags
                                                       1, // autoConnect
                                                       0, // priority
@@ -247,18 +247,18 @@ std::tuple<bool, std::string> GuardianDriver::tripSpecialCase(int deviceIndex) {
         getUIntDigitalParam(2, ConditionValueIndex, &conditionVal2, 1);
         if (conditionVal == 1) {
             tripped = pGDriver->outsidePercentageTolerance(0); // Check bunch charge feedback setpoint unchanged
-            // getStringParam(0, TripMsgIndex, tripMsg) // TODO
+            getStringParam(0, TripMsgIndex, tripMsg); // TODO
             if (tripped) break;
             tripped = pGDriver->outsidePercentageTolerance(1, 0); // Check bunch charge feedback state within user entered % of stored setpt
-            // getStringParam(1, TripMsgIndex, tripMsg) // TODO
+            getStringParam(1, TripMsgIndex, tripMsg); // TODO
             break;
         }
         else if (conditionVal2 == 1) {
             tripped = pGDriver->outsidePercentageTolerance(2); // Check matlab bunch charge feedback setpoint unchanged
-            // getStringParam(2, TripMsgIndex, tripMsg) // TODO
+            getStringParam(2, TripMsgIndex, tripMsg); // TODO
             if (tripped) break;
             tripped = pGDriver->outsidePercentageTolerance(3, 2); // Check matlab bunch charge feedback state within user entered % of stored
-            // getStringParam(3, TripMsgIndex, tripMsg) // TODO
+            getStringParam(3, TripMsgIndex, tripMsg); // TODO
             break;
         }
         else { tripMsg = "WARNING: Neither bunch charge feedback active!"; }
@@ -267,10 +267,10 @@ std::tuple<bool, std::string> GuardianDriver::tripSpecialCase(int deviceIndex) {
         getUIntDigitalParam(3, ConditionValueIndex, &conditionVal, 1);
         if (conditionVal == 1) {
             tripped = pGDriver->outsidePercentageTolerance(5, 4); // Check if BC1 energy feedback is on, then check that the SXR state is within (tols)% of stored setpoint
-            // getStringParam(5, TripMsgIndex, tripMsg) // TODO
+            getStringParam(5, TripMsgIndex, tripMsg); // TODO
             if (tripped) break;
             tripped = pGDriver->outsidePercentageTolerance(6); // Check BC1 vernier setpoint unchanged 
-            // getStringParam(6, TripMsgIndex, tripMsg) // TODO
+            getStringParam(6, TripMsgIndex, tripMsg); // TODO
             break;
         }
         else { tripMsg = "WARNING: BC1 Energy Feedback is OFF"; }
@@ -284,10 +284,10 @@ std::tuple<bool, std::string> GuardianDriver::tripSpecialCase(int deviceIndex) {
             if (conditionVal2 == 1) {
                 tripped = pGDriver->outsidePercentageTolerance(8, 9); 
             }
-            // getStringParam(5, TripMsgIndex, tripMsg) // TODO
+            getStringParam(5, TripMsgIndex, tripMsg); // TODO
             if (tripped) break;
             tripped = pGDriver->outsidePercentageTolerance(7);
-            // getStringParam(5, TripMsgIndex, tripMsg) // TODO
+            getStringParam(5, TripMsgIndex, tripMsg); // TODO
             break;
         }
         else { tripMsg = "WARNING: BC1 Bunch Current Feedback is OFF"; }
@@ -359,9 +359,8 @@ void GuardianDriver::tripLogic() {
         }
         if (tripped) {
             // 0) get msg
-            if (tripMsg != "") { // If special case then message already filled
-                // getStringParam(tripMsg) // TODO: will use waveform instead
-                tripMsg = "Tripped"; // TEMP
+            if (tripMsg != "") { // If not special case, get msg
+                getStringParam(deviceIndex, TripMsgIndex, tripMsg); // TODO: will use waveform instead
             }
             
             // 1) write to trip PV
@@ -389,9 +388,6 @@ void GuardianDriver::tripLogic() {
     setUIntDigitalParam(MpsPermitIndex, 1, 1); // Tell MPS not to worry
 
     // 3) write to out message pv - only on initial trip
-    if (tripMsg != "") { // If special case then message already filled
-        // getStringParam(tripMsg) // TODO: will use waveform instead
-    }
     // setStringParam(outMessagePv, tripMsg); // TODO: This will be a waveform instead
 
     callParamCallbacks();
@@ -475,6 +471,24 @@ void GuardianDriver::FELpulseEnergyMonitor(void)
         pGDriver->tripLogic(); 
     }
 }
+
+// asynStatus GuardianDriver::writeOctet(asynUser *pasynUser, const char *value, size_t maxChars, size_t *nActual)
+// {
+//     int addr;
+//     asynStatus status = asynSuccess;
+
+//     this->getAddress(pasynUser, &addr);
+//     status = setStringParam(pasynUser->reason, (char *) value);
+//     *nActual = maxChars;
+//     callParamCallbacks(addr);
+//     std::cout << "status: " << status << "\n"; // TEMP
+
+//     std::string temp;
+//     getStringParam(pasynUser->reason, temp); // TEMP
+//     std::cout<<"temp: " << temp << "addr: " << addr << "\n";
+
+//     return status;
+// }
 
 /* Configure the guardian driver which may include the port, filepath maybe other ports */
 int GuardianDriverConfigure(const char* portName)
