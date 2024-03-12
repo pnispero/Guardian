@@ -17,7 +17,7 @@ record(bo, "$(NAME):CONDITION") {
     field(ZNAM, "OFF")
     field(ONAM, "ON")
     field(OMSL, "closed_loop") 
-    field(DOL, "$(NAME)_TEST CPP")  # TODO: Temporarily set as test
+    field(DOL, "$(NAME):TEST:CONDITION_RBV CPP")  # TODO: Temporarily set as test, For PROD its just $(NAME)
     field(OUT, "@asynMask(GUARDIAN, $(ID), 1, 0)CONDITION")
 }
 

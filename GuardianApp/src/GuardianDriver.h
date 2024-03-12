@@ -8,6 +8,7 @@
 #include <condition_variable>
 #include <tuple>
 #include <string.h>
+#include <cmath>
  
 #include <iocsh.h>
 #include <epicsExport.h>
@@ -30,11 +31,13 @@
 #define TOLERANCE_ID_STRING "TOLERANCE_ID"
 #define CONDITION_ID_STRING "CONDITION_ID"
 #define TRIP_MSG_STRING "MSG"
+#define DISPLAY_MSG_STRING "DISPLAY_MSG"
 #define MPS_TRIP_STRING "MPS_TRIP"
 #define MPS_PERMIT_STRING "MPS_PERMIT"
 #define HEARTBEAT_VALUE_STRING "HEARTBEAT"
 #define ARM_VALUE_STRING "ARM"
 #define SS_STRING "SS_UPDATE"
+#define TEST_ID_STRING "TEST_ID"
  
 class GuardianDriver : public asynPortDriver {
   public:
@@ -51,10 +54,6 @@ class GuardianDriver : public asynPortDriver {
     bool outsideCollimatorTolerance();
     std::tuple<bool, std::string> tripSpecialCase(int deviceIndex);
     void initGuardian();
-    // asynStatus writeOctet(asynUser *pasynUser, const char *value, size_t maxChars, size_t *nActual);
-
-    // virtual asynStatus readInt32(asynUser *pasynUser, epicsInt32 *value);
-    // virtual asynStatus writeInt32(asynUser *pasynUser, epicsInt32 value);
 
   private:
     int MonitorCycleIndex;
@@ -70,11 +69,13 @@ class GuardianDriver : public asynPortDriver {
     int ToleranceIdIndex;
     int ConditionIdIndex;
     int TripMsgIndex;
+    int DisplayMsgIndex;
     int MpsTripIndex;
     int MpsPermitIndex;
     int HeartbeatValueIndex;
     int ArmValueIndex;
-    int SSIndex; // TEMP
+    int SSIndex;
+    int testIdIndex;
 
     uint32_t heartbeatCnt; // Heartbeat of the guardian
     int DEVICE_PARAMS_SIZE; // number of device data pv asyn parameters - This will be seperated by mode soon

@@ -479,13 +479,13 @@ for iquad = 1:26
 end
 n = n + 1;
 L.pv{n,1} = setup_pv(pvstart + n  , 'LI24 Slotted Foil 807 position', 'mm', 1, 'FELpulseEnergyMonitor.m');
-L.SlottedFoil807_store_n = n;
+L.SlottedFoil807_store_n = n; % PATRICK COMMENT: 568
 n = n + 1;
 L.pv{n,1} = setup_pv(pvstart + n , 'FEL pulse energy (manual entry)', 'uJ', 3, 'FELpulseEnergyMonitor.m');
-L.manual_FELpulseE_n = n;
+L.manual_FELpulseE_n = n; % PATRICK COMMENT: 569
 n = n + 1;
 L.pv{n,1} = setup_pv(pvstart + n  , 'One of the quads has moved', '%', 0, 'FELpulseEnergyMonitor.m');
-L.CQMQtweak_trip_n = n;
+L.CQMQtweak_trip_n = n; % PATRICK COMMENT: 570
 for iulsp = 1:4
     n = n + 1;
     descStr = ['UND Launch Setpoint S', num2str(iulsp), 'DES value'];
@@ -763,8 +763,8 @@ if stats.bunch_chg_fbck > 0 % non matlab feedback active
         return
     end
     %Check bunch charge feedback state within user entered % of stored setpt
-    qq = stats.bunchq_state;
-    QQ = stored.bunchq_setpt;
+    qq = stats.bunchq_state;% PATRICK COMMENT - curent id=1
+    QQ = stored.bunchq_setpt;% PATRICK COMMENT - snapshot id=0
     tols = stats.bunchQtols * 0.01;
     if qq > (tols*QQ + QQ) || qq < (QQ - tols*QQ)
         trip = 1;
@@ -779,8 +779,8 @@ elseif stats.matlab_chg_fbck_on > 0 %matlab feedback active
     end
     %Check matlab bunch charge feedback state within user entered % of stored
     %setpoint
-    qq = stats.bunchq_mat_state;
-    QQ = stored.bunchq_mat_setpt;
+    qq = stats.bunchq_mat_state;% PATRICK COMMENT - current id=3
+    QQ = stored.bunchq_mat_setpt;% PATRICK COMMENT - snapshot id=2
     tols = stats.bunchQtols * 0.01;
     if qq > (tols*QQ + QQ) || qq < (QQ - tols*QQ)
         trip = 1;
@@ -795,15 +795,15 @@ end
 % PATRICK COMMENT - Special case contains type 1 with additional logic - asyn done
 if stats.BC1_energy_fbck_on > 0
     tols = stats.BC1_Etols * 0.01;
-    qq = stats.BC1_energy_state;
-    QQ = stored.BC1_energy_setpt;
+    qq = stats.BC1_energy_state;% PATRICK COMMENT - current id=5
+    QQ = stored.BC1_energy_setpt;% PATRICK COMMENT - snapshot id=4
     if qq > (tols*QQ + QQ) || qq < (QQ - tols*QQ)
         trip = 1;
         out.message = 'BC1 energy feedback state outside stored range';
     end
     % Check BC1 vernier setpoint unchanged 
     % NOTE: replace this with tolerance band in the future
-    if stats.BC1_vernier ~= stored.BC1_vernier
+    if stats.BC1_vernier ~= stored.BC1_vernier % PATRICK COMMENT - current id=6
         trip = 1;
         out.message = 'BC1 vernier setpoint has been changed. Not Allowed.';
         return
