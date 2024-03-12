@@ -70,13 +70,14 @@ record(bo, "$(NAME):STORED_TRG") {
 }
 
 # Trip Message
-# create asyn parameter for string in code (asynParamOctet?)
-record(stringout, "$(NAME):MSG") {
+# # create asyn parameter for string in code (asynParamOctet?)
+record(waveform, "$(NAME):TRIP_MSG") {
     field(DESC, "Trip message for GUI")
     field(PINI, "YES")
-    field(VAL, "$(MSG)")
+    field(NELM, "100")
+    field(FTVL, "CHAR")
     field(DTYP, "asynOctetWrite")
-    field(OUT, "@asyn(GUARDIAN, $(ID), 0)MSG")
+    field(INP, "@asyn(GUARDIAN, $(ID), 0)MSG")
     # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 

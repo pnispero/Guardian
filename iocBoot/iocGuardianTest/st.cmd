@@ -30,5 +30,8 @@ GuardianDriverConfigure("GUARDIAN")
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
+# Initialize values for trip_msg waveform records 
+system("./guardian_trip_msg.sh")
+
 ## Start any sequence programs
 #seq sncxxx,"user=GUARDIAN"

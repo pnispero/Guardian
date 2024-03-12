@@ -7,6 +7,7 @@
 #include <chrono>
 #include <condition_variable>
 #include <tuple>
+#include <string.h>
  
 #include <iocsh.h>
 #include <epicsExport.h>
@@ -50,6 +51,7 @@ class GuardianDriver : public asynPortDriver {
     bool outsideCollimatorTolerance();
     std::tuple<bool, std::string> tripSpecialCase(int deviceIndex);
     void initGuardian();
+    // asynStatus writeOctet(asynUser *pasynUser, const char *value, size_t maxChars, size_t *nActual);
 
     // virtual asynStatus readInt32(asynUser *pasynUser, epicsInt32 *value);
     // virtual asynStatus writeInt32(asynUser *pasynUser, epicsInt32 value);
