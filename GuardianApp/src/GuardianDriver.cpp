@@ -57,6 +57,15 @@ void FELpulseEnergyMonitor(void* driverPointer)
     pGDriver->FELpulseEnergyMonitor();
 }
 
+// Helper function to grab tolerance, current, and stored values of device
+void GuardianDriver::getDeviceParameterValues(int deviceIndex, double &tolVal, double &curDeviceVal, double &desiredDeviceVal) {
+    int tolId;
+    getIntegerParam(deviceIndex, ToleranceIdIndex, &tolId); // Get tolerance 'control' pv id
+    getDoubleParam(tolId, ToleranceValueIndex, &tolVal); // Tolerance 'control' pvs
+    getDoubleParam(deviceIndex, CurrentValueIndex, &curDeviceVal); // device pvs
+    getDoubleParam(deviceIndex, StoredValueIndex, &desiredDeviceVal); // stored pvs
+}
+
 /* Trip Logic functions */
 
 // Type 1
@@ -70,23 +79,10 @@ bool GuardianDriver::outsidePercentageTolerance(int deviceIndex) {
         //     out.message = 'BC1 energy feedback state outside stored range';
         // end
 
-    int tolId; double tolVal, curDeviceVal, desiredDeviceVal;
-    getIntegerParam(deviceIndex, ToleranceIdIndex, &tolId); // Get tolerance 'control' pv id
-    getDoubleParam(tolId, ToleranceValueIndex, &tolVal); // Tolerance 'control' pvs
-    getDoubleParam(deviceIndex, CurrentValueIndex, &curDeviceVal); // device pvs
-    getDoubleParam(deviceIndex, StoredValueIndex, &desiredDeviceVal); // stored pvs
+    double tolVal, curDeviceVal, desiredDeviceVal;
+    pGDriver->getDeviceParameterValues(deviceIndex, tolVal, curDeviceVal, desiredDeviceVal);
 
     double tolValPercent = tolVal * 0.01;
-
-        // TEST <<<<<<<
-    // if (curDeviceVal > 10) {
-    //     double arg1 = (desiredDeviceVal*tolValPercent + desiredDeviceVal);
-    //     double arg2 = (desiredDeviceVal - desiredDeviceVal*tolValPercent);
-    //     std::cout << "desiredDeviceVal: " << desiredDeviceVal << ", tolValPercent: " << tolValPercent << "\n";
-    //     std::cout << "curDeviceVal: " << curDeviceVal << " > " << arg1
-    //                 << " || " << curDeviceVal << " < " << arg2 << "\n";
-    // }
-    // >>>>>>>>>
 
     // Ensure current device value is within desired tolerance
     if (curDeviceVal > (desiredDeviceVal*tolValPercent + desiredDeviceVal) 
@@ -128,11 +124,9 @@ bool GuardianDriver::outsideAbsPercentageTolerance(int deviceIndex) {
         //     out.message = 'BC1 energy feedback state outside stored range';
         // end
 
-    int tolId; double tolVal, curDeviceVal, desiredDeviceVal;
-    getIntegerParam(deviceIndex, ToleranceIdIndex, &tolId); // Get tolerance 'control' pv id
-    getDoubleParam(tolId, ToleranceValueIndex, &tolVal); // Tolerance 'control' pvs
-    getDoubleParam(deviceIndex, CurrentValueIndex, &curDeviceVal); // device pvs
-    getDoubleParam(deviceIndex, StoredValueIndex, &desiredDeviceVal); // stored pvs
+    double tolVal, curDeviceVal, desiredDeviceVal;
+    pGDriver->getDeviceParameterValues(deviceIndex, tolVal, curDeviceVal, desiredDeviceVal);
+
     curDeviceVal = std::abs(curDeviceVal);
     desiredDeviceVal = std::abs(desiredDeviceVal);
 
@@ -159,11 +153,9 @@ bool GuardianDriver::outsideAbsValueTolerance(int deviceIndex) {
         //     return
         // end
 
-    int tolId; double tolVal, curDeviceVal, desiredDeviceVal;
-    getIntegerParam(deviceIndex, ToleranceIdIndex, &tolId); // Get tolerance 'control' pv id
-    getDoubleParam(tolId, ToleranceValueIndex, &tolVal); // Tolerance 'control' pvs
-    getDoubleParam(deviceIndex, CurrentValueIndex, &curDeviceVal); // device pvs
-    getDoubleParam(deviceIndex, StoredValueIndex, &desiredDeviceVal); // stored pvs
+    double tolVal, curDeviceVal, desiredDeviceVal;
+    pGDriver->getDeviceParameterValues(deviceIndex, tolVal, curDeviceVal, desiredDeviceVal);
+
     curDeviceVal = std::abs(curDeviceVal);
     desiredDeviceVal = std::abs(desiredDeviceVal);
 
@@ -177,31 +169,6 @@ bool GuardianDriver::outsideAbsValueTolerance(int deviceIndex) {
 }
 
 // Type 4
-bool GuardianDriver::outsideAbsDifferenceTolerance(int deviceIndex) {
-    // Original FELpulseEnergyMonitor.m
-        // tols = stats.LHwaveplatetols;
-        // qq = stats.LH1_waveplate;
-        // QQ = stored.LH1_waveplate;
-        // if abs(QQ - qq) > abs(tols*QQ)
-        //     trip = 1;
-        //     out.message = 'Waveplate (LH1) angle has been changed. Check FEL pulse energy';
-        //     return
-        // end
-
-    int tolId; double tolVal, curDeviceVal, desiredDeviceVal;
-    getIntegerParam(deviceIndex, ToleranceIdIndex, &tolId); // Get tolerance 'control' pv id
-    getDoubleParam(tolId, ToleranceValueIndex, &tolVal); // Tolerance 'control' pvs
-    getDoubleParam(deviceIndex, CurrentValueIndex, &curDeviceVal); // device pvs
-    getDoubleParam(deviceIndex, StoredValueIndex, &desiredDeviceVal); // stored pvs
-
-    // Ensure current device value is within desired tolerance
-    if (std::abs(curDeviceVal - desiredDeviceVal) > std::abs(tolVal*curDeviceVal)) {
-        return true;
-    }
-    return false;
-}
-
-// Type 5 - almost identical to type 4, except this takes the percentage tolerance
 bool GuardianDriver::outsideAbsDifferencePercentageTolerance(int deviceIndex) {
     // Original FELpulseEnergyMonitor.m
         // tols = stats.SlottedFoiltols * 0.01;
@@ -213,16 +180,13 @@ bool GuardianDriver::outsideAbsDifferencePercentageTolerance(int deviceIndex) {
         //     return
         // end
 
-    int tolId; double tolVal, curDeviceVal, desiredDeviceVal;
-    getIntegerParam(deviceIndex, ToleranceIdIndex, &tolId); // Get tolerance 'control' pv id
-    getDoubleParam(tolId, ToleranceValueIndex, &tolVal); // Tolerance 'control' pvs
-    getDoubleParam(deviceIndex, CurrentValueIndex, &curDeviceVal); // device pvs
-    getDoubleParam(deviceIndex, StoredValueIndex, &desiredDeviceVal); // stored pvs
+    double tolVal, curDeviceVal, desiredDeviceVal;
+    pGDriver->getDeviceParameterValues(deviceIndex, tolVal, curDeviceVal, desiredDeviceVal);
 
     double tolValPercent = tolVal * 0.01;
 
     // Ensure current device value is within desired tolerance
-    if (std::abs(curDeviceVal - desiredDeviceVal) > std::abs(tolValPercent*curDeviceVal)) {
+    if (std::abs(curDeviceVal - desiredDeviceVal) > std::abs(tolValPercent*desiredDeviceVal)) {
         return true;
     }
     return false;
@@ -396,9 +360,6 @@ void GuardianDriver::tripLogic() {
             tripped = pGDriver->outsideAbsValueTolerance(deviceIndex);
             break;
         case 4: 
-            tripped = pGDriver->outsideAbsDifferenceTolerance(deviceIndex);
-            break;
-        case 5:
             tripped = pGDriver->outsideAbsDifferencePercentageTolerance(deviceIndex);
             break;
         default:

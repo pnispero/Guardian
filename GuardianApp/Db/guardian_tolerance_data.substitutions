@@ -31,7 +31,7 @@ pattern {       NAME                   ,      DESC  ,                   EGU  ,  
         {    "SIOC:SYS0:GD01:AO712"    ,"Undulator K value tolerance", "%", 3                , 12   }
         {    "SIOC:SYS0:GD01:AO713"    ,"BC1 collimator jaws position tolerance", "mm", 3    , 13   }
         {    "SIOC:SYS0:GD01:AO714"    ,"Slotted Foil position tolerance", "%", 1            , 14   }
-        {    "SIOC:SYS0:GD01:AO715"    ,"Laser heater Waveplate angle tolerance", "deg", 1   , 15   }
+        {    "SIOC:SYS0:GD01:AO715"    ,"Laser heater Waveplate angle tolerance", "%", 1     , 15   }
         {    "SIOC:SYS0:GD01:AO716"    ,"Matching quad/CQ BDES tolerance", "%", 1            , 16   }
         {    "SIOC:SYS0:GD01:AO717"    ,"Dump Bend BACT tolerance", "%", 1                   , 17   }
         {    "SIOC:SYS0:GD01:AO718"    ,"CQ or Matching Quad BDES Value tol", "%", 1         , 18   }
