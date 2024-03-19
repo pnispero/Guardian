@@ -29,13 +29,13 @@ pattern {       NAME                   ,      DESC  ,                   EGU  ,  
         {    "SIOC:SYS0:GD01:AO709"    ,"DL2 energy vernier tolerance, +/-", "MeV", 2      , 10      , 9    }
         {    "SIOC:SYS0:GD01:AO710"    ,"L3 energy tolerance", "%", 1                      , 2      , 10   } 
         {    "SIOC:SYS0:GD01:AO711"    ,"Laser Heater power tolerance", "uJ", 1            , 2      , 11   } 
-        {    "SIOC:SYS0:GD01:AO712"    ,"Undulator K value tolerance", "%", 3              , 0.0001      , 12   } 
+        {    "SIOC:SYS0:GD01:AO712"    ,"Undulator K value tolerance", "%", 3              , 0.01      , 12   } 
         {    "SIOC:SYS0:GD01:AO713"    ,"BC1 collimator jaws position tolerance", "mm", 3  , 1      , 13   }
-        {    "SIOC:SYS0:GD01:AO714"    ,"Slotted Foil position tolerance", "%", 1          , 0.02      , 14   } 
-        {    "SIOC:SYS0:GD01:AO715"    ,"Laser heater Waveplate angle tolerance", "deg", 1 , 0.1      , 15   }
+        {    "SIOC:SYS0:GD01:AO714"    ,"Slotted Foil position tolerance", "%", 1          , 2      , 14   } 
+        {    "SIOC:SYS0:GD01:AO715"    ,"Laser heater Waveplate angle tolerance", "%", 1 , 0.1      , 15   }
         {    "SIOC:SYS0:GD01:AO716"    ,"Matching quad/CQ BDES tolerance", "%", 1          , 2      , 16   }
-        {    "SIOC:SYS0:GD01:AO717"    ,"Dump Bend BACT tolerance", "%", 1                 , 0.005      , 17   }
-        {    "SIOC:SYS0:GD01:AO718"    ,"CQ or Matching Quad BDES Value tol", "%", 1       , 0.001      , 18   } 
+        {    "SIOC:SYS0:GD01:AO717"    ,"Dump Bend BACT tolerance", "%", 1                 , 0.5      , 17   }
+        {    "SIOC:SYS0:GD01:AO718"    ,"CQ or Matching Quad BDES Value tol", "%", 1       , 0.1      , 18   } 
         {    "SIOC:SYS0:GD01:AO719"    ,"Undulator Launch Feedback setpoint tol", "%", 1   , 0.0000000001      , 19   }
 }                
 
@@ -59,7 +59,7 @@ pattern {       NAME                   ,      DESC  ,                   EGU  ,  
 #         {    "SIOC:SYS0:GD01:AO714"    ,"Slotted Foil position tolerance", "%", 1          , 0.02      , 14   } original val=2
 #         {    "SIOC:SYS0:GD01:AO715"    ,"Laser heater Waveplate angle tolerance", "deg", 1 , 0.1      , 15   }
 #         {    "SIOC:SYS0:GD01:AO716"    ,"Matching quad/CQ BDES tolerance", "%", 1          , 2      , 16   }
-#         {    "SIOC:SYS0:GD01:AO717"    ,"Dump Bend BACT tolerance", "%", 1                 , 0.005      , 17   }
+#         {    "SIOC:SYS0:GD01:AO717"    ,"Dump Bend BACT tolerance", "%", 1                 , 0.005      , 17   } original val=0.5
 #         {    "SIOC:SYS0:GD01:AO718"    ,"CQ or Matching Quad BDES Value tol", "%", 1       , 0.001      , 18   } original val=0.1
 #         {    "SIOC:SYS0:GD01:AO719"    ,"Undulator Launch Feedback setpoint tol", "%", 1   , 0.0000000001      , 19   }
 # }      

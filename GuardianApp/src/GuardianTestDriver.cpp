@@ -67,7 +67,9 @@ void GuardianTestDriver::getParameterValues(int deviceIndex, double &desiredVal,
 
 void GuardianTestDriver::setConditionValue(int deviceIndex, int value) {
     setUIntDigitalParam(deviceIndex, ConditionTestValueIndex, value, 1);
-    setUIntDigitalParam(ConditionTestUpdateIndex, value, 1); // trigger condition proccess
+    setUIntDigitalParam(ConditionTestUpdateIndex, 1, 1); // trigger condition proccess
+    callParamCallbacks(); usleep(MONITOR_CYCLE_TIME);
+    setUIntDigitalParam(ConditionTestUpdateIndex, 0, 1); // reset condition trigger
     callParamCallbacks(); usleep(MONITOR_CYCLE_TIME);
 }
 
@@ -83,10 +85,10 @@ void GuardianTestDriver::testUpperTolerance(int deviceIndex, int logicType, doub
         case outsideCollimatorTolerance:
             tripVal = desiredVal + tolVal + 1;
             break;
-        case outsideAbsDifferenceTolerance:
-            tripVal = desiredVal + (desiredVal * tolVal);
-            tripVal = tripVal + (tolVal * tripVal) + 1;
-
+        case outsideAbsDifferencePercentageTolerance:
+            tolVal = tolVal * 0.01;
+            tripVal = desiredVal + (desiredVal * tolVal) + 1;
+            break;
     }
     
     setDoubleParam(deviceIndex, DeviceTestValueIndex, tripVal); // write the trip value to the device
@@ -98,16 +100,15 @@ void GuardianTestDriver::testUpperTolerance(int deviceIndex, int logicType, doub
     getUIntDigitalParam(MpsPermitIndex, &mpsPermitVal, 1);
     getIntegerParam(DeviceIdIndex, &trippedDeviceId);
     std::ostringstream oss;
-    oss << "testUpperTolerance() for device " << deviceIndex << 
-                    ", tripVal = " << tripVal << ",\n" << "\t TrippedDeviceId: " << trippedDeviceId <<
-                 ", logicType: " << logicType << ", desiredVal: " << desiredVal << ", tolVal: " << tolVal << "\n";
+    oss << "testUpperTolerance() for device " << deviceIndex << ", tripVal = " << tripVal << ", mpsVal: " 
+                << mpsPermitVal << ",\n" << "\t TrippedDeviceId: " << trippedDeviceId << ", logicType: " << logicType <<
+                  ", desiredVal: " << desiredVal << ", tolVal: " << tolVal << "\n";
     std::string caseMessage = oss.str();
     // Trip is suppposed to trigger (mpsPermit = 0), if it didnt then it failed
     // And the device that tripped must match the Guardian device
     // Special cases use multiple deviceIndexes but refers to one case
-    std::cout << "mpsPermitVal: " << mpsPermitVal << "\n"; // TEMP
     if (mpsPermitVal == 0 && (trippedDeviceId == deviceIndex || trippedDeviceId == specialIndex)) {
-        std::cout << "++ PASS ++ " << " for device " << deviceIndex << "\n"; // << caseMessage;
+        std::cout << "++ PASS ++ " << " testUpperTolerance() for device " << deviceIndex << "\n"; // << caseMessage;
     }
     else {
         std::cout << "--- FAIL --- " << caseMessage;
@@ -127,15 +128,15 @@ void GuardianTestDriver::testLowerTolerance(int deviceIndex, int logicType, doub
         case outsidePercentageTolerance: case outsideAbsPercentageTolerance: 
             tripVal = desiredVal - (desiredVal * tolVal) - 1;
             break;
-        case outsideAbsValueTolerance:
+        case outsideAbsValueTolerance: 
             tripVal = desiredVal - tolVal - tolVal;
             break;
         case outsideCollimatorTolerance:
             tripVal = desiredVal - tolVal - 1;
             break;
-        case outsideAbsDifferenceTolerance:
-            tripVal = desiredVal - (desiredVal * tolVal);
-            tripVal = tripVal - (tripVal * tolVal) - 1;
+        case outsideAbsDifferencePercentageTolerance:
+            tolVal = tolVal * 0.01;
+            tripVal = desiredVal - (desiredVal * tolVal) - 1;
             break;
     }
     
@@ -148,16 +149,15 @@ void GuardianTestDriver::testLowerTolerance(int deviceIndex, int logicType, doub
     getUIntDigitalParam(MpsPermitIndex, &mpsPermitVal, 1);
     getIntegerParam(DeviceIdIndex, &trippedDeviceId);
     std::ostringstream oss;
-    oss << "testLowerTolerance() for device " << deviceIndex << 
-                    ", tripVal = " << tripVal << ",\n" << "\t TrippedDeviceId: " << trippedDeviceId <<
-                 ", logicType: " << logicType << ", desiredVal: " << desiredVal << ", tolVal: " << tolVal << "\n";
+    oss << "testLowerTolerance() for device " << deviceIndex << ", tripVal = " << tripVal << ", mpsVal: " 
+                << mpsPermitVal << ",\n" << "\t TrippedDeviceId: " << trippedDeviceId << ", logicType: " << logicType <<
+                  ", desiredVal: " << desiredVal << ", tolVal: " << tolVal << "\n";
     std::string caseMessage = oss.str();
     // Trip is suppposed to trigger (mpsPermit = 0), if it didnt then it failed
     // And the device that tripped must match the Guardian device
     // Special cases use multiple deviceIndexes but refers to one case
-    std::cout << "mpsPermitVal: " << mpsPermitVal << "\n"; // TEMP
     if (mpsPermitVal == 0 && (trippedDeviceId == deviceIndex || trippedDeviceId == specialIndex)) {
-        std::cout << "++ PASS ++ " << " for device " << deviceIndex << "\n"; // << caseMessage;
+        std::cout << "++ PASS ++ " << " testLowerTolerance() for device " << deviceIndex << "\n"; // << caseMessage;
     }
     else {
         std::cout << "--- FAIL --- " << caseMessage;
@@ -257,50 +257,43 @@ void GuardianTestDriver::testSpecialCase(int deviceIndex, double desiredVal, dou
 
         std::cout << "<<< Finished special case 7 (also 8, 9) >>>\n";
         break;
-    case 12: // devices 13,14 as well
-        std::cout << "<<< Start special case 12 (also 13, 14) >>>\n";
+    case 10: // devices 11,12 as well
+        std::cout << "<<< Start special case 10 (also 11, 12) >>>\n";
         /* if conditionVal == 1 */
-        // setConditionValue(7, 1); // TEMP
         setConditionValue(6, 1);
 
-        // Skip testing the device 14 > 25000 since its just a simple comparison
+        // Skip testing the device 12 > 25000 since its just a simple comparison
 
-        // compare current val/tol of device 12 to desired value of device 12
-        getParameterValues(12, desiredVal, tolVal);
-        testTolerances(12, outsidePercentageTolerance, desiredVal, tolVal, 12);
+        // compare current val/tol of device 10 to desired value of device 10
+        getParameterValues(10, desiredVal, tolVal);
+        testTolerances(10, outsidePercentageTolerance, desiredVal, tolVal, 10);
 
         /* if conditionVal2 == 1 */
         setConditionValue(7, 1);
 
-        // compare current val/tol of device 13 to desired value of device 13
-        std::cout << "May manually test 13 for now.\n";
-        getParameterValues(13, desiredVal, tolVal);
-        testTolerances(13, outsidePercentageTolerance, desiredVal, tolVal, 12);
-
-    // PATRICK - TODO: problem it seems that the condition values aren't writing until the second time you trigger the test
-    // 1) Tried making an extra pv to see if it was a last item bug, didnt work
-    // 2) Tried setting (7,0) after and (7,1), didn't work either
-    // 3) Tried setting (7,1) before the (6,1) to test, it just writes the (6,1) first and turns it off on its own before (7,1)
+        // compare current val/tol of device 11 to desired value of device 11
+        getParameterValues(11, desiredVal, tolVal);
+        testTolerances(11, outsidePercentageTolerance, desiredVal, tolVal, 10);
 
         // reset back to default of 0
         setConditionValue(6, 0);
         setConditionValue(7, 0);
 
-        std::cout << "<<< Finished special case 12 (also 13, 14) >>>\n";
+        std::cout << "<<< Finished special case 10 (also 11, 12) >>>\n";
         break;
-    case 19: // device 20 as well
-        // compare current val/tol of device 19 to desired value of device 19
-        getParameterValues(19, desiredVal, tolVal);
-        testTolerances(19, outsidePercentageTolerance, desiredVal, tolVal, 19);
-        // compare current val/tol of device 20 to desired value of device 20
-        getParameterValues(20, desiredVal, tolVal);
-        testTolerances(20, outsidePercentageTolerance, desiredVal, tolVal, 19);
+    case 13: // device 14 as well
+        // compare current val/tol of device 13 to desired value of device 13
+        getParameterValues(13, desiredVal, tolVal);
+        testTolerances(13, outsidePercentageTolerance, desiredVal, tolVal, 13);
+        // compare current val/tol of device 14 to desired value of device 14
+        getParameterValues(14, desiredVal, tolVal);
+        testTolerances(14, outsidePercentageTolerance, desiredVal, tolVal, 13);
     }
 }
 
 void GuardianTestDriver::runTestCases()
 {
-    std::cout << "\n\t= Testing =\n";
+    std::cout << "\n\t=== TESTING ===\n\n";
     int logicType; double desiredVal, tolVal;
     for (int deviceIndex = 0; deviceIndex < DEVICE_PARAMS_SIZE; deviceIndex++) {
         getParameterValues(deviceIndex, logicType, desiredVal, tolVal);

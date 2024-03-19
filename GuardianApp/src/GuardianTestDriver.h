@@ -69,6 +69,6 @@ enum logicType {
     outsidePercentageTolerance = 1,
     outsideAbsPercentageTolerance,
     outsideAbsValueTolerance,
-    outsideAbsDifferenceTolerance,
+    outsideAbsDifferencePercentageTolerance,
     outsideCollimatorTolerance
 };
