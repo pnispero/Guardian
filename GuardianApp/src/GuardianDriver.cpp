@@ -117,7 +117,7 @@ bool GuardianDriver::outsidePercentageTolerance(int curValIndex, int desiredValI
     return false;
 }
 
-// Type 2
+// Type 2 - almost identical to type 1 except this takes the absolute value of the current/stored
 bool GuardianDriver::outsideAbsPercentageTolerance(int deviceIndex) {
     // Original FELpulseEnergyMonitor.m
         // tols = stats.BC1_Etols * 0.01;
@@ -194,18 +194,35 @@ bool GuardianDriver::outsideAbsDifferenceTolerance(int deviceIndex) {
     getDoubleParam(deviceIndex, CurrentValueIndex, &curDeviceVal); // device pvs
     getDoubleParam(deviceIndex, StoredValueIndex, &desiredDeviceVal); // stored pvs
 
-    // TEST <<<<<<<<
-    if ((curDeviceVal < -1 && deviceIndex == 64) || (curDeviceVal > 0.8 && deviceIndex == 65)) {
-        std::cout << "id: " << deviceIndex << ", curDeviceVal: " << curDeviceVal <<
-        ", desiredDeviceVal: " << desiredDeviceVal << ", tolVal: " << tolVal << "\n";
-        std::cout << "abs(curDeviceVal - desiredDeviceVal) = " << std::abs(curDeviceVal - desiredDeviceVal) 
-        << ", abs(tolVal*curDeviceVal) = " << std::abs(tolVal*curDeviceVal) << "\n";
-    }
-
-    // >>>>>>>>>>>>>
-
     // Ensure current device value is within desired tolerance
     if (std::abs(curDeviceVal - desiredDeviceVal) > std::abs(tolVal*curDeviceVal)) {
+        return true;
+    }
+    return false;
+}
+
+// Type 5 - almost identical to type 4, except this takes the percentage tolerance
+bool GuardianDriver::outsideAbsDifferencePercentageTolerance(int deviceIndex) {
+    // Original FELpulseEnergyMonitor.m
+        // tols = stats.SlottedFoiltols * 0.01;
+        // qq = stats.SlottedFoil804_pos;
+        // QQ = stored.SlottedFoil804_pos;
+        // if abs(QQ - qq) > abs(tols*QQ)
+        //     trip = 1;
+        //     out.message = 'Slotted Foil 804 has moved. Check FEL pulse energy.';
+        //     return
+        // end
+
+    int tolId; double tolVal, curDeviceVal, desiredDeviceVal;
+    getIntegerParam(deviceIndex, ToleranceIdIndex, &tolId); // Get tolerance 'control' pv id
+    getDoubleParam(tolId, ToleranceValueIndex, &tolVal); // Tolerance 'control' pvs
+    getDoubleParam(deviceIndex, CurrentValueIndex, &curDeviceVal); // device pvs
+    getDoubleParam(deviceIndex, StoredValueIndex, &desiredDeviceVal); // stored pvs
+
+    double tolValPercent = tolVal * 0.01;
+
+    // Ensure current device value is within desired tolerance
+    if (std::abs(curDeviceVal - desiredDeviceVal) > std::abs(tolValPercent*curDeviceVal)) {
         return true;
     }
     return false;
@@ -215,12 +232,12 @@ bool GuardianDriver::outsideAbsDifferenceTolerance(int deviceIndex) {
 bool GuardianDriver::outsideCollimatorTolerance() {
     int tolId; double tolVal;
     double curLeftColVal, curRightColVal, desiredLeftColVal, desiredRightColVal;
-    getIntegerParam(19, ToleranceIdIndex, &tolId); // Get tolerance 'control' pv id
+    getIntegerParam(13, ToleranceIdIndex, &tolId); // Get tolerance 'control' pv id
     getDoubleParam(tolId, ToleranceValueIndex, &tolVal); // Tolerance 'control' pvs
-    getDoubleParam(19, CurrentValueIndex, &curLeftColVal); // device pvs
-    getDoubleParam(20, CurrentValueIndex, &curRightColVal); // device pvs
-    getDoubleParam(19, StoredValueIndex, &desiredLeftColVal); // stored pvs
-    getDoubleParam(20, StoredValueIndex, &desiredRightColVal); // stored pvs
+    getDoubleParam(13, CurrentValueIndex, &curLeftColVal); // device pvs
+    getDoubleParam(14, CurrentValueIndex, &curRightColVal); // device pvs
+    getDoubleParam(13, StoredValueIndex, &desiredLeftColVal); // stored pvs
+    getDoubleParam(14, StoredValueIndex, &desiredRightColVal); // stored pvs
 
     // Check BC1 colls are within 0.030 mm (or user entered delta) of stored position
     if (curLeftColVal > (tolVal + desiredLeftColVal) ||
@@ -310,12 +327,12 @@ std::tuple<bool, std::string> GuardianDriver::tripSpecialCase(int deviceIndex) {
         }
         else { tripMsg = "WARNING: BC1 Bunch Current Feedback is OFF"; }
         break;
-    case 12: // devices 13,14 as well
+    case 10: // devices 11,12 as well
         getUIntDigitalParam(6, ConditionValueIndex, &conditionVal, 1);
         getUIntDigitalParam(7, ConditionValueIndex, &conditionVal2, 1);
         if (conditionVal == 1) {
             double curVal;
-            getDoubleParam(14, CurrentValueIndex, &curVal);
+            getDoubleParam(12, CurrentValueIndex, &curVal);
             if (curVal > 25000) { // only check if BLEN reading is OK
                 tripMsg = "WARNING: BC2 bunch current reading is Garbage!";
                 break;
@@ -324,16 +341,16 @@ std::tuple<bool, std::string> GuardianDriver::tripSpecialCase(int deviceIndex) {
             // check first that it hasn't changed, then check that the BC2 current feedback 
             // state is within (tols)% of stored setpoint
             if (conditionVal2 == 1) {
-                tripped = pGDriver->outsidePercentageTolerance(13);
+                tripped = pGDriver->outsidePercentageTolerance(11);
                 if (tripped) {
-                    getStringParam(13, TripMsgIndex, tripMsg);
+                    getStringParam(11, TripMsgIndex, tripMsg);
                     break;
                 }
             }
             else {
-                tripped = pGDriver->outsidePercentageTolerance(12);
+                tripped = pGDriver->outsidePercentageTolerance(10);
                 if (tripped) {
-                    getStringParam(12, TripMsgIndex, tripMsg);
+                    getStringParam(10, TripMsgIndex, tripMsg);
                     break;
                 }
                 break;
@@ -341,10 +358,10 @@ std::tuple<bool, std::string> GuardianDriver::tripSpecialCase(int deviceIndex) {
         }
         else { tripMsg = "WARNING: BC2 Bunch Current Feedback is OFF"; }
         break;
-    case 19: // devices 20 as well
+    case 13: // devices 14 as well
         tripped = pGDriver->outsideCollimatorTolerance();
         if (tripped) {
-            getStringParam(19, TripMsgIndex, tripMsg);
+            getStringParam(13, TripMsgIndex, tripMsg);
         }
         break;
     default:
@@ -380,6 +397,9 @@ void GuardianDriver::tripLogic() {
             break;
         case 4: 
             tripped = pGDriver->outsideAbsDifferenceTolerance(deviceIndex);
+            break;
+        case 5:
+            tripped = pGDriver->outsideAbsDifferencePercentageTolerance(deviceIndex);
             break;
         default:
             std::cout << "*ERROR* Invalid logic type number: " << logicType
@@ -439,24 +459,24 @@ void GuardianDriver::tripLogic() {
 
 void GuardianDriver::takeSnapshot()
 {
-    epicsFloat64 curVal, temp;
+    epicsFloat64 curVal, storedVal;
     for (int deviceIndex = 0; deviceIndex < DEVICE_PARAMS_SIZE; deviceIndex++) {
 
         // Get value from device storage PVs
         getDoubleParam(deviceIndex, CurrentValueIndex, &curVal);
-        std::cout << "curVal after get : " << curVal << "\n"; 
 
         // Set device desired stored PVs to value
         setDoubleParam(deviceIndex, StoredValueIndex, curVal); 
 
-        getDoubleParam(deviceIndex, StoredValueIndex, &temp); // TENP
-        
-        if (curVal != temp) {
-            std::cout << "Val not set properly: " << temp << "\n"; 
+        getDoubleParam(deviceIndex, StoredValueIndex, &storedVal);
+        if (curVal != storedVal) {
+            std::cout << "** Device: " << deviceIndex << ", stored val not set properly. Current: "
+                     << curVal << ", Stored: " << storedVal << " **\n"; 
         }
 
     }
     setUIntDigitalParam(SSIndex, 1, 1); // Trigger snapshot writing to device records
+    callParamCallbacks();
     setUIntDigitalParam(SSIndex, 0, 1); // Reset back to 0
     callParamCallbacks();
 }
@@ -475,7 +495,6 @@ void GuardianDriver::initGuardian() {
     callParamCallbacks(); // Call this to write the values back into epics records
 
     sleep(3); // Wait some time for every device data pv to populate with real values
-    std::cout << "\nFinished initialization.\n\n";
     #ifdef TEST
         std::cout << "\n\n** TESTING **\n\n";
     #endif

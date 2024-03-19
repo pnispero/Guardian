@@ -8,17 +8,17 @@ FBCK:FB04:LG01:BC1VERNIER_SXR,BC1 vernier setpoint has been changed. Not Allowed
 FBCK:FB04:LG01:S3DES,BC1 current setpoint has been changed. Check FEL pulse energy
 BLEN:LI21:265:AIMAXCUS1H,BC1 current feedback state outside stored range
 SIOC:SYS0:ML04:AO403,BC1 current feedback state outside stored range
-ACCL:LI21:1:L1S_PDES:SETDATA_1,L1S phase setpoint has been changed. Check FEL pulse energy.
-FBCK:FB04:LG01:BC2VERNIER_SXR,BC2 Vernier (SXR) has been changed. Check FEL pulse energy.
 FBCK:FB04:LG01:S5DES,BC2 current setpoint has been changed. Check FEL pulse energy
 SIOC:SYS0:ML04:AO401,BC2 current setpoint has been changed. Check FEL pulse energy
 BLEN:LI24:886:BIMAXCUS1H,WARNING: BC2 bunch current reading is Garbage!
+COLL:LI21:236:LVPOS,BC1 collimator has changed.  Check FEL pulse energy.
+COLL:LI21:235:LVPOS,BC1 collimator has changed.  Check FEL pulse energy.
+ACCL:LI21:1:L1S_PDES:SETDATA_1,L1S phase setpoint has been changed. Check FEL pulse energy.
+FBCK:FB04:LG01:BC2VERNIER_SXR,BC2 Vernier (SXR) has been changed. Check FEL pulse energy.
 FBCK:FB04:LG01:CHIRPDES,L2 chirp setpoint has been changed. Check FEL pulse energy.
 FBCK:FB04:LG01:DL2VERNIER_SXR,DL2 vernier beyond allowed range. Check FEL pulse energy.
 BEND:DMPS:400:BDES,Dump/LTU Bend BDES has been changed. Check FEL pulse energy.
 BEND:DMPS:400:BACT,Dump/LTU bend BACT >0.5% outside stored range
-COLL:LI21:236:LVPOS,BC1 collimator has changed.  Check FEL pulse energy.
-COLL:LI21:235:LVPOS,BC1 collimator has changed.  Check FEL pulse energy.
 FOIL:LI24:804:MOTR,Slotted Foil 804 has moved. Check FEL pulse energy.
 FOIL:LI24:807:MOTR,Slotted Foil 807 has moved. Check FEL pulse energy.
 WPLT:LR20:220:LHWP_ANGLE,Waveplate (LH1) angle has been changed. Check FEL pulse energy
@@ -61,7 +61,7 @@ QUAD:LTUS:820:BDES,No tweaking the CQs or matching QUADs! I see you Quad 23
 QUAD:LTUS:840:BDES,No tweaking the CQs or matching QUADs! I see you Quad 24
 QUAD:LTUS:860:BDES,No tweaking the CQs or matching QUADs! I see you Quad 25
 QUAD:LTUS:880:BDES,No tweaking the CQs or matching QUADs! I see you Quad 26
-FBCK:FB04:TR02:S1DES,No tweaking UND launch setpoints!
-FBCK:FB04:TR02:S2DES,No tweaking UND launch setpoints!
-FBCK:FB04:TR02:S3DES,No tweaking UND launch setpoints!
-FBCK:FB04:TR02:S4DES,No tweaking UND launch setpoints!
+FBCK:FB04:TR02:S1DES,No tweaking UND launch setpoints! S1
+FBCK:FB04:TR02:S2DES,No tweaking UND launch setpoints! S2
+FBCK:FB04:TR02:S3DES,No tweaking UND launch setpoints! S3
+FBCK:FB04:TR02:S4DES,No tweaking UND launch setpoints! S4
