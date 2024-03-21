@@ -88,9 +88,9 @@ record(waveform, "$(BASE):DISPLAY_MSG") {
 }
 
 # Only used for testing
-record(longin, "$(BASE):TEST_ID") {
+record(longin, "$(BASE):TRIP_ID") {
     field(DESC, "Test purposes only, tripped device index")
     field(SCAN, "I/O Intr")
     field(DTYP, "asynInt32")
-    field(INP, "@asyn(GUARDIAN, 0, 0)TEST_ID")
+    field(INP, "@asyn(GUARDIAN, 0, 0)TRIP_ID")
 }

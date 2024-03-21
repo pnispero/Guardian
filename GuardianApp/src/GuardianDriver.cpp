@@ -40,7 +40,7 @@ GuardianDriver::GuardianDriver(const char *portName) : asynPortDriver           
     createParam(HEARTBEAT_VALUE_STRING, asynParamInt32, &HeartbeatValueIndex);
     createParam(ARM_VALUE_STRING, asynParamUInt32Digital, &ArmValueIndex);
     createParam(SS_STRING, asynParamUInt32Digital, &SSIndex);
-    createParam(TEST_ID_STRING, asynParamInt32, &testIdIndex);
+    createParam(TRIP_ID_STRING, asynParamInt32, &tripIdIndex);
 
     asynStatus status;
     status = (asynStatus)(epicsThreadCreate("FELpulseEnergyMonitor", epicsThreadPriorityMedium, epicsThreadGetStackSize(epicsThreadStackMedium), (EPICSTHREADFUNC)::FELpulseEnergyMonitor, this) == NULL);
@@ -386,7 +386,7 @@ void GuardianDriver::tripLogic() {
             #ifdef TEST
                 std::cout << "OFF BEAM\n"; // TEMP
                 std::cout << "Trip Msg: " << tripMsg << "\n"; // TEMP
-                setIntegerParam(testIdIndex, deviceIndex);
+                setIntegerParam(tripIdIndex, deviceIndex);
             #endif
 
             callParamCallbacks();
@@ -411,7 +411,7 @@ void GuardianDriver::tripLogic() {
     setStringParam(DisplayMsgIndex, tripMsg);
 
     #ifdef TEST
-        setIntegerParam(testIdIndex, -1);
+        setIntegerParam(tripIdIndex, -1);
     #endif
 
     callParamCallbacks();

@@ -37,7 +37,7 @@
 #define HEARTBEAT_VALUE_STRING "HEARTBEAT"
 #define ARM_VALUE_STRING "ARM"
 #define SS_STRING "SS_UPDATE"
-#define TEST_ID_STRING "TEST_ID"
+#define TRIP_ID_STRING "TRIP_ID"
  
 class GuardianDriver : public asynPortDriver {
   public:
@@ -76,7 +76,7 @@ class GuardianDriver : public asynPortDriver {
     int HeartbeatValueIndex;
     int ArmValueIndex;
     int SSIndex;
-    int testIdIndex;
+    int tripIdIndex;
 
     uint32_t heartbeatCnt; // Heartbeat of the guardian
     int DEVICE_PARAMS_SIZE; // number of device data pv asyn parameters - This will be seperated by mode soon
