@@ -54,7 +54,7 @@ record(longout, "$(BASE):DEVICE_ID") {
     field(SCAN, "Passive")
     field(DTYP, "asynInt32")
     field(OMSL, "closed_loop") 
-    field(DOL, "$(BASE):TEST_ID CPP") 
+    field(DOL, "$(BASE):TRIP_ID CPP") 
     field(OUT, "@asyn(GUARDIAN_TEST, 0, 0)DEVICE_ID")
 }
 

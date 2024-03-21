@@ -10,10 +10,10 @@ This is a test IOC, not the actual Guardian. NOT MEANT TO BE MERGED WITH MAIN
 2. cd Guardian/
 3. git checkout guardian_test
 3. make
-4. In real guardian add fields to guardian_tolerance_data.template
+4. In real guardian add fields to guardian_tolerance_data.template, record(ao, "$(NAME):TOL")
     1. field(OMSL, "closed_loop") # TODO: TEMP field for testing
     2. field(DOL, "$(BASE):MPS_PERMIT CPP") # TODO: TEMP field for testing
-5. And add field to guardian_device_condition.template
+5. And add field to guardian_device_condition.template, record(bo, "$(NAME):CONDITION")
     1. field(DOL, "$(NAME):TEST:CONDITION_RBV CPP")  # TODO: Temporarily set as test, For PROD its just $(NAME)
 
 6. Ensure the guardian_device_test_data.substitutions matches the guardian_device_data.substitutions.
@@ -37,5 +37,8 @@ Done. Then you should see if it passes the test cases for each device on the tes
 6. Optional - You can also skip 3-5 and run the guardian_test.sh script.
 
 ## Resources
+More Details:
+https://confluence.slac.stanford.edu/display/~pnispero/Guardian+Test+Cases+Information
+
 Original SXRSS Guardian: $MAT/toolbox/FELpulseEnergyMonitor.m
 Confluence: https://confluence.slac.stanford.edu/display/~pnispero/SXRSS+Guardian
