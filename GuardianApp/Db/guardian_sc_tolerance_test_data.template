@@ -1,0 +1,20 @@
+#=================================================================#
+# Template file: guardian_sc_tolerance_test_data.template
+# Database for control tolerance PVs within sxrss for the guardian
+# Uses guardian_tolerance_test_data.substitutions
+# Macro description:                                                   #
+#   - NAME       : Name                                                #
+#   - DESC       : Description                                         #
+#   - ID         : ASYN ID                                             #
+#=====================================================================
+
+record(ao, "$(NAME):TEST:TOL") { 
+    field(DESC, "$(DESC)")
+    field(PINI, "YES")
+    field(VAL, "$(VAL)")
+    field(EGU, "$(EGU)")
+    field(PREC, "$(PREC)")
+    field(DTYP, "asynFloat64")
+    field(OUT, "@asyn(GUARDIAN_TEST, $(ID), 0)TOLERANCE_SC") 
+    
+}

@@ -58,6 +58,19 @@ record(longout, "$(BASE):DEVICE_ID") {
     field(OUT, "@asyn(GUARDIAN_TEST, 0, 0)DEVICE_ID")
 }
 
+record(bo, "$(BASE):GUARDIAN_MODE_TEST") {
+    field(DESC, "Determines what devices to monitor")
+    field(SCAN, "Passive")
+    field(DTYP, "asynUInt32Digital")
+    field(VAL, "0")
+    field(PINI, "YES")
+    field(ZNAM, "Normal Conducting")
+    field(ONAM, "Super Conducting")
+    field(OMSL, "closed_loop") 
+    field(DOL, "$(BASE):GUARDIAN_MODE CPP") 
+    field(OUT, "@asynMask(GUARDIAN_TEST, 0, 1, 0)GUARDIAN_MODE")
+}
+
 # Record to copy the trip display message
 # record(waveform, "$(BASE):TEST_DISPLAY_MSG_RBV") {
 #     field(DESC, "Display trip msg for GUI")

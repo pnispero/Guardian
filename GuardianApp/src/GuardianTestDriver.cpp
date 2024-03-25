@@ -19,20 +19,32 @@ GuardianTestDriver::GuardianTestDriver(const char *portName) : asynPortDriver   
                                                       0 // stackSize
                                                      )
 {
+    // Normal Conducting
+    createParam(DEVICE_VALUE_NC_STRING, asynParamFloat64, &DeviceTestValueNCIndex);
+    createParam(LOGIC_TYPE_VALUE_NC_STRING, asynParamInt32, &LogicTypeValueNCIndex);
+    createParam(STORED_VALUE_NC_STRING, asynParamFloat64, &StoredValueNCIndex);
+    createParam(TOLERANCE_VALUE_NC_STRING, asynParamFloat64, &ToleranceValueNCIndex);
+    createParam(TOLERANCE_ID_NC_STRING, asynParamInt32, &ToleranceIdNCIndex);
+    createParam(CONDITION_ID_NC_STRING, asynParamInt32, &ConditionTestIdNCIndex);
+    createParam(CONDITION_VALUE_NC_STRING, asynParamUInt32Digital, &ConditionTestValueNCIndex);
+
+    // Super Conducting
+    createParam(DEVICE_VALUE_SC_STRING, asynParamFloat64, &DeviceTestValueSCIndex);
+    createParam(LOGIC_TYPE_VALUE_SC_STRING, asynParamInt32, &LogicTypeValueSCIndex);
+    createParam(STORED_VALUE_SC_STRING, asynParamFloat64, &StoredValueSCIndex);
+    createParam(TOLERANCE_VALUE_SC_STRING, asynParamFloat64, &ToleranceValueSCIndex);
+    createParam(TOLERANCE_ID_SC_STRING, asynParamInt32, &ToleranceIdSCIndex);
+    createParam(CONDITION_ID_SC_STRING, asynParamInt32, &ConditionTestIdSCIndex);
+    createParam(CONDITION_VALUE_SC_STRING, asynParamUInt32Digital, &ConditionTestValueSCIndex);
+
+    // Universal
     createParam(TEST_TRIGGER_STRING, asynParamUInt32Digital, &TestTriggerIndex);
-    createParam(DEVICE_VALUE_STRING, asynParamFloat64, &DeviceTestValueIndex);
-    createParam(LOGIC_TYPE_VALUE_STRING, asynParamInt32, &LogicTypeValueIndex);
-    createParam(STORED_VALUE_STRING, asynParamFloat64, &StoredValueIndex);
-    createParam(TOLERANCE_VALUE_STRING, asynParamFloat64, &ToleranceValueIndex);
-    createParam(TOLERANCE_ID_STRING, asynParamInt32, &ToleranceIdIndex);
     createParam(MPS_PERMIT_STRING, asynParamUInt32Digital, &MpsPermitIndex);
     createParam(DEVICE_UPDATE_STRING, asynParamUInt32Digital, &DeviceTestUpdateIndex);
     createParam(DISPLAY_MSG_STRING, asynParamOctet, &DisplayMsgIndex);
     createParam(DEVICE_ID_STRING, asynParamInt32, &DeviceIdIndex);
-
-    createParam(CONDITION_ID_STRING, asynParamInt32, &ConditionTestIdIndex);
-    createParam(CONDITION_VALUE_STRING, asynParamUInt32Digital, &ConditionTestValueIndex);
     createParam(CONDITION_UPDATE_STRING, asynParamUInt32Digital, &ConditionTestUpdateIndex);
+    createParam(GUARDIAN_MODE_STRING, asynParamUInt32Digital, &GuardianModeIndex);
     
     asynStatus status;
     status = (asynStatus)(epicsThreadCreate("GuardianTestThread", epicsThreadPriorityMedium, epicsThreadGetStackSize(epicsThreadStackMedium), (EPICSTHREADFUNC)::GuardianTestThread, this) == NULL);
@@ -65,6 +77,30 @@ void GuardianTestDriver::getParameterValues(int deviceIndex, double &desiredVal,
     getDoubleParam(tolId, ToleranceValueIndex, &tolVal); 
 }
 
+// Helper function to set which asyn parameters to use based off the mode
+void GuardianTestDriver::setDeviceIndexesBasedOffMode() {
+    if (guardianMode == NC) {
+        DeviceTestValueIndex = DeviceTestValueNCIndex;
+        StoredValueIndex = StoredValueNCIndex;
+        ConditionTestValueIndex = ConditionTestValueNCIndex;
+        ToleranceValueIndex = ToleranceValueNCIndex;
+        LogicTypeValueIndex = LogicTypeValueNCIndex;
+        ToleranceIdIndex = ToleranceIdNCIndex;
+        ConditionTestIdIndex = ConditionTestIdNCIndex;
+        DEVICE_PARAMS_SIZE = DEVICE_PARAMS_NC_SIZE;
+    }
+    else { 
+        DeviceTestValueIndex = DeviceTestValueSCIndex;
+        StoredValueIndex = StoredValueSCIndex;
+        ConditionTestValueIndex = ConditionTestValueSCIndex;
+        ToleranceValueIndex = ToleranceValueSCIndex;
+        LogicTypeValueIndex = LogicTypeValueSCIndex;
+        ToleranceIdIndex = ToleranceIdSCIndex;
+        ConditionTestIdIndex = ConditionTestIdSCIndex;
+        DEVICE_PARAMS_SIZE = DEVICE_PARAMS_SC_SIZE;
+    }
+}
+
 void GuardianTestDriver::setConditionValue(int deviceIndex, int value) {
     setUIntDigitalParam(deviceIndex, ConditionTestValueIndex, value, 1);
     setUIntDigitalParam(ConditionTestUpdateIndex, 1, 1); // trigger condition proccess
@@ -74,9 +110,12 @@ void GuardianTestDriver::setConditionValue(int deviceIndex, int value) {
 }
 
 void GuardianTestDriver::testUpperTolerance(int deviceIndex, int logicType, double desiredVal, double tolVal, int specialIndex) {
-    double tripVal = 0;
+    double tripVal = 0, originalDesiredVal=desiredVal; // needed for printout
     switch (logicType) { // Trigger trip by going slightly over tolerance (+ 1)
-        case outsidePercentageTolerance: case outsideAbsPercentageTolerance: 
+        case outsideAbsPercentageTolerance: 
+            desiredVal = std::abs(desiredVal); // Falls through to next case
+        case outsidePercentageTolerance: 
+            tolVal = tolVal * 0.01;
             tripVal = desiredVal + (desiredVal * tolVal) + 1;
             break;
         case outsideAbsValueTolerance:
@@ -89,6 +128,10 @@ void GuardianTestDriver::testUpperTolerance(int deviceIndex, int logicType, doub
             tolVal = tolVal * 0.01;
             tripVal = desiredVal + (desiredVal * tolVal) + 1;
             break;
+        default:
+            std::cout << "*ERROR* Invalid logic type number: " << logicType
+            << " for parameter: " << deviceIndex << "\n";                                                                                                                                                          
+            break; 
     }
     
     setDoubleParam(deviceIndex, DeviceTestValueIndex, tripVal); // write the trip value to the device
@@ -102,7 +145,7 @@ void GuardianTestDriver::testUpperTolerance(int deviceIndex, int logicType, doub
     std::ostringstream oss;
     oss << "testUpperTolerance() for device " << deviceIndex << ", tripVal = " << tripVal << ", mpsVal: " 
                 << mpsPermitVal << ",\n" << "\t TrippedDeviceId: " << trippedDeviceId << ", logicType: " << logicType <<
-                  ", desiredVal: " << desiredVal << ", tolVal: " << tolVal << "\n";
+                  ", desiredVal: " << originalDesiredVal << ", tolVal: " << tolVal << "\n";
     std::string caseMessage = oss.str();
     // Trip is suppposed to trigger (mpsPermit = 0), if it didnt then it failed
     // And the device that tripped must match the Guardian device
@@ -115,7 +158,7 @@ void GuardianTestDriver::testUpperTolerance(int deviceIndex, int logicType, doub
     }
 
     // reset back to normal value
-    setDoubleParam(deviceIndex, DeviceTestValueIndex, desiredVal);
+    setDoubleParam(deviceIndex, DeviceTestValueIndex, originalDesiredVal);
     setUIntDigitalParam(DeviceTestUpdateIndex, 0, 1);
     callParamCallbacks();
     usleep(MONITOR_CYCLE_TIME);
@@ -123,9 +166,12 @@ void GuardianTestDriver::testUpperTolerance(int deviceIndex, int logicType, doub
 
 // Almost identical to testUpperTolerance()
 void GuardianTestDriver::testLowerTolerance(int deviceIndex, int logicType, double desiredVal, double tolVal, int specialIndex) {
-    double tripVal = 0;
+    double tripVal = 0, originalDesiredVal=desiredVal; // needed for printout;
     switch (logicType) { // Trigger trip by going slightly under tolerance (- 1)
-        case outsidePercentageTolerance: case outsideAbsPercentageTolerance: 
+        case outsideAbsPercentageTolerance: 
+            desiredVal = std::abs(desiredVal); // Falls through to next case
+        case outsidePercentageTolerance:
+            tolVal = tolVal * 0.01;
             tripVal = desiredVal - (desiredVal * tolVal) - 1;
             break;
         case outsideAbsValueTolerance: 
@@ -138,6 +184,10 @@ void GuardianTestDriver::testLowerTolerance(int deviceIndex, int logicType, doub
             tolVal = tolVal * 0.01;
             tripVal = desiredVal - (desiredVal * tolVal) - 1;
             break;
+        default:
+            std::cout << "*ERROR* Invalid logic type number: " << logicType
+            << " for parameter: " << deviceIndex << "\n";                                                                                                                                                          
+            break; 
     }
     
     setDoubleParam(deviceIndex, DeviceTestValueIndex, tripVal); // write the trip value to the device
@@ -151,7 +201,7 @@ void GuardianTestDriver::testLowerTolerance(int deviceIndex, int logicType, doub
     std::ostringstream oss;
     oss << "testLowerTolerance() for device " << deviceIndex << ", tripVal = " << tripVal << ", mpsVal: " 
                 << mpsPermitVal << ",\n" << "\t TrippedDeviceId: " << trippedDeviceId << ", logicType: " << logicType <<
-                  ", desiredVal: " << desiredVal << ", tolVal: " << tolVal << "\n";
+                  ", desiredVal: " << originalDesiredVal << ", tolVal: " << tolVal << "\n";
     std::string caseMessage = oss.str();
     // Trip is suppposed to trigger (mpsPermit = 0), if it didnt then it failed
     // And the device that tripped must match the Guardian device
@@ -164,7 +214,7 @@ void GuardianTestDriver::testLowerTolerance(int deviceIndex, int logicType, doub
     }
 
     // reset back to normal value
-    setDoubleParam(deviceIndex, DeviceTestValueIndex, desiredVal);
+    setDoubleParam(deviceIndex, DeviceTestValueIndex, originalDesiredVal);
     setUIntDigitalParam(DeviceTestUpdateIndex, 0, 1);
     callParamCallbacks();
     usleep(MONITOR_CYCLE_TIME);
@@ -177,117 +227,124 @@ void GuardianTestDriver::testTolerances(int deviceIndex, int logicType, double d
 
 void GuardianTestDriver::testSpecialCase(int deviceIndex, double desiredVal, double tolVal) {
 
-    switch (deviceIndex) 
-    {
-    case 0: // devices 1,2,3 as well
-        std::cout << "<<< Start special case 0 (also 1, 2, 3) >>>\n";
-        /* if conditionVal == 1 */
-        setConditionValue(1, 1);
+    if (guardianMode == NC) {
+        switch (deviceIndex) 
+        {
+        case 0: // devices 1,2,3 as well
+            std::cout << "<<< Start special case 0 (also 1, 2, 3) >>>\n";
+            /* if conditionVal == 1 */
+            setConditionValue(1, 1);
 
-        // compare current val/tol of device 0 to desired value of device 0
-        getParameterValues(0, desiredVal, tolVal);
-        testTolerances(0, outsidePercentageTolerance, desiredVal, tolVal, 0); 
+            // compare current val/tol of device 0 to desired value of device 0
+            getParameterValues(0, desiredVal, tolVal);
+            testTolerances(0, outsidePercentageTolerance, desiredVal, tolVal, 0); 
 
-        // compare current val/tol of device 1 to desired value of device 0
-        getParameterValues(1, desiredVal, tolVal);
-        getDoubleParam(0, StoredValueIndex, &desiredVal); 
-        testTolerances(1, outsidePercentageTolerance, desiredVal, tolVal, 0);
+            // compare current val/tol of device 1 to desired value of device 0
+            getParameterValues(1, desiredVal, tolVal);
+            getDoubleParam(0, StoredValueIndex, &desiredVal); 
+            testTolerances(1, outsidePercentageTolerance, desiredVal, tolVal, 0);
 
-        // reset back to default of 0
-        setConditionValue(1, 0);
+            // reset back to default of 0
+            setConditionValue(1, 0);
 
-        /* if conditionVal2 == 1 */
-        setConditionValue(2, 1);
+            /* if conditionVal2 == 1 */
+            setConditionValue(2, 1);
 
-        // compare current val/tol of device 2 to desired value of device 2
-        getParameterValues(2, desiredVal, tolVal);
-        testTolerances(2, outsidePercentageTolerance, desiredVal, tolVal, 0);
-        
-        // compare current val/tol of device 3 to desired value of device 2
-        getParameterValues(3, desiredVal, tolVal);
-        getDoubleParam(2, StoredValueIndex, &desiredVal); 
-        testTolerances(3, outsidePercentageTolerance, desiredVal, tolVal, 0);
+            // compare current val/tol of device 2 to desired value of device 2
+            getParameterValues(2, desiredVal, tolVal);
+            testTolerances(2, outsidePercentageTolerance, desiredVal, tolVal, 0);
+            
+            // compare current val/tol of device 3 to desired value of device 2
+            getParameterValues(3, desiredVal, tolVal);
+            getDoubleParam(2, StoredValueIndex, &desiredVal); 
+            testTolerances(3, outsidePercentageTolerance, desiredVal, tolVal, 0);
 
-        // reset back to default of 0
-        setConditionValue(2, 0);
-        std::cout << "<<< Finished special case 0 (also 1, 2, 3) >>>\n";
-        break;
-    case 4: // devices 5,6 as well
-        std::cout << "<<< Start special case 4 (also 5, 6) >>>\n";
-        /* if conditionVal == 1 */
-        setConditionValue(3, 1);
+            // reset back to default of 0
+            setConditionValue(2, 0);
+            std::cout << "<<< Finished special case 0 (also 1, 2, 3) >>>\n";
+            break;
+        case 4: // devices 5,6 as well
+            std::cout << "<<< Start special case 4 (also 5, 6) >>>\n";
+            /* if conditionVal == 1 */
+            setConditionValue(3, 1);
 
-        // compare current val/tol of device 5 to desired value of device 4
-        getParameterValues(5, desiredVal, tolVal);
-        getDoubleParam(4, StoredValueIndex, &desiredVal); 
-        testTolerances(5, outsidePercentageTolerance, desiredVal, tolVal, 4);
+            // compare current val/tol of device 5 to desired value of device 4
+            getParameterValues(5, desiredVal, tolVal);
+            getDoubleParam(4, StoredValueIndex, &desiredVal); 
+            testTolerances(5, outsidePercentageTolerance, desiredVal, tolVal, 4);
 
-        // compare current val/tol of device 6 to desired value of device 6
-        getParameterValues(6, desiredVal, tolVal);
-        testTolerances(6, outsidePercentageTolerance, desiredVal, tolVal, 4);
+            // compare current val/tol of device 6 to desired value of device 6
+            getParameterValues(6, desiredVal, tolVal);
+            testTolerances(6, outsidePercentageTolerance, desiredVal, tolVal, 4);
 
-        // reset back to default of 0
-        setConditionValue(3, 0);
-        std::cout << "<<< Finished special case 4 (also 5, 6) >>>\n";
-        break;  
-    case 7: // devices 8,9 as well
-        std::cout << "<<< Start special case 7 (also 8, 9) >>>\n";
-        /* if conditionVal == 1 */
-        setConditionValue(4, 1);
+            // reset back to default of 0
+            setConditionValue(3, 0);
+            std::cout << "<<< Finished special case 4 (also 5, 6) >>>\n";
+            break;  
+        case 7: // devices 8,9 as well
+            std::cout << "<<< Start special case 7 (also 8, 9) >>>\n";
+            /* if conditionVal == 1 */
+            setConditionValue(4, 1);
 
-        // compare current val/tol of device 8 to desired value of device 7
-        getParameterValues(8, desiredVal, tolVal);
-        getDoubleParam(7, StoredValueIndex, &desiredVal); 
-        testTolerances(8, outsidePercentageTolerance, desiredVal, tolVal, 7);
+            // compare current val/tol of device 8 to desired value of device 7
+            getParameterValues(8, desiredVal, tolVal);
+            getDoubleParam(7, StoredValueIndex, &desiredVal); 
+            testTolerances(8, outsidePercentageTolerance, desiredVal, tolVal, 7);
 
-        /* if conditionVal2 == 1 */
-        setConditionValue(5, 1);
+            /* if conditionVal2 == 1 */
+            setConditionValue(5, 1);
 
-        // compare current val/tol of device 8 to desired value of device 9
-        getDoubleParam(9, StoredValueIndex, &desiredVal); 
-        testTolerances(8, outsidePercentageTolerance, desiredVal, tolVal, 7);
+            // compare current val/tol of device 8 to desired value of device 9
+            getDoubleParam(9, StoredValueIndex, &desiredVal); 
+            testTolerances(8, outsidePercentageTolerance, desiredVal, tolVal, 7);
 
-        // compare current val/tol of device 7 to desired value of device 7
-        getParameterValues(7, desiredVal, tolVal);
-        testTolerances(7, outsidePercentageTolerance, desiredVal, tolVal, 7);
+            // compare current val/tol of device 7 to desired value of device 7
+            getParameterValues(7, desiredVal, tolVal);
+            testTolerances(7, outsidePercentageTolerance, desiredVal, tolVal, 7);
 
-        // reset back to default of 0
-        setConditionValue(4, 0);
-        setConditionValue(5, 0);
+            // reset back to default of 0
+            setConditionValue(4, 0);
+            setConditionValue(5, 0);
 
-        std::cout << "<<< Finished special case 7 (also 8, 9) >>>\n";
-        break;
-    case 10: // devices 11,12 as well
-        std::cout << "<<< Start special case 10 (also 11, 12) >>>\n";
-        /* if conditionVal == 1 */
-        setConditionValue(6, 1);
+            std::cout << "<<< Finished special case 7 (also 8, 9) >>>\n";
+            break;
+        case 10: // devices 11,12 as well
+            std::cout << "<<< Start special case 10 (also 11, 12) >>>\n";
+            /* if conditionVal == 1 */
+            setConditionValue(6, 1);
 
-        // Skip testing the device 12 > 25000 since its just a simple comparison
+            // Skip testing the device 12 > 25000 since its just a simple comparison
 
-        // compare current val/tol of device 10 to desired value of device 10
-        getParameterValues(10, desiredVal, tolVal);
-        testTolerances(10, outsidePercentageTolerance, desiredVal, tolVal, 10);
+            // compare current val/tol of device 10 to desired value of device 10
+            getParameterValues(10, desiredVal, tolVal);
+            testTolerances(10, outsidePercentageTolerance, desiredVal, tolVal, 10);
 
-        /* if conditionVal2 == 1 */
-        setConditionValue(7, 1);
+            /* if conditionVal2 == 1 */
+            setConditionValue(7, 1);
 
-        // compare current val/tol of device 11 to desired value of device 11
-        getParameterValues(11, desiredVal, tolVal);
-        testTolerances(11, outsidePercentageTolerance, desiredVal, tolVal, 10);
+            // compare current val/tol of device 11 to desired value of device 11
+            getParameterValues(11, desiredVal, tolVal);
+            testTolerances(11, outsidePercentageTolerance, desiredVal, tolVal, 10);
 
-        // reset back to default of 0
-        setConditionValue(6, 0);
-        setConditionValue(7, 0);
+            // reset back to default of 0
+            setConditionValue(6, 0);
+            setConditionValue(7, 0);
 
-        std::cout << "<<< Finished special case 10 (also 11, 12) >>>\n";
-        break;
-    case 13: // device 14 as well
-        // compare current val/tol of device 13 to desired value of device 13
-        getParameterValues(13, desiredVal, tolVal);
-        testTolerances(13, outsidePercentageTolerance, desiredVal, tolVal, 13);
-        // compare current val/tol of device 14 to desired value of device 14
-        getParameterValues(14, desiredVal, tolVal);
-        testTolerances(14, outsidePercentageTolerance, desiredVal, tolVal, 13);
+            std::cout << "<<< Finished special case 10 (also 11, 12) >>>\n";
+            break;
+        case 13: // device 14 as well
+            std::cout << "<<< Start special case 13 (also 14) >>>\n";
+            // compare current val/tol of device 13 to desired value of device 13
+            getParameterValues(13, desiredVal, tolVal);
+            testTolerances(13, outsideCollimatorTolerance, desiredVal, tolVal, 13);
+            // compare current val/tol of device 14 to desired value of device 14
+            getParameterValues(14, desiredVal, tolVal);
+            testTolerances(14, outsideCollimatorTolerance, desiredVal, tolVal, 13);
+            std::cout << "<<< Finished special case 13 (also 14) >>>\n";
+        }
+    }
+    else { // SC
+
     }
 }
 
@@ -309,18 +366,22 @@ void GuardianTestDriver::runTestCases()
 void GuardianTestDriver::GuardianTestThread(void)
 {
     sleep(3); // Important - Let epics records load first then initialize. C++ thread runs faster than epics can initalize itself
-
-    callParamCallbacks(); // Call this to write the values back into epics records
-    // getIntegerParam(DeviceParamSizeIndex, &DEVICE_PARAMS_SIZE);
+    
     std::cout << "Initializing test\n\n";
-    for (int conditionIndex=1; conditionIndex < CONDITION_PARAMS_SIZE; conditionIndex++) {
-        setConditionValue(conditionIndex,1);
-        setConditionValue(conditionIndex,0);
-    }
+    callParamCallbacks(); // Call this to write the values back into epics records
     std::cout << "Finished initializing test\n";
 
+    uint32_t prevGuardianMode=2;
     while (true) {
         sleep(1); 
+
+        // change mode if needed
+        getUIntDigitalParam(GuardianModeIndex, &guardianMode, 1);
+        if (prevGuardianMode != guardianMode) {
+            pGDriver->setDeviceIndexesBasedOffMode(); // Indexes must be set before any writing occurs
+            std::cout << "Set Mode: " << guardianMode << "\n"; 
+        }
+        prevGuardianMode = guardianMode;
 
         // Check test_trg param, take test then reset if true
         uint32_t testTriggerVal;
@@ -332,6 +393,7 @@ void GuardianTestDriver::GuardianTestThread(void)
 
             getUIntDigitalParam(TestTriggerIndex, &testTriggerVal, 1); 
         }
+
     }
 }
 

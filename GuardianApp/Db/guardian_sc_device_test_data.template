@@ -1,5 +1,5 @@
 #=================================================================#
-# Template file: guardian_device_test_data.template
+# Template file: guardian_sc_device_test_data.template
 # Database for device data values within sxrss for the guardian
 # Uses guardian_device_test_data.substitutions
 # Macro description:                                                             #
@@ -16,7 +16,7 @@ record(ao, "$(NAME):TEST") {
     field(EGU, "$(EGU)")
     field(PREC, "$(PREC)")
     field(DTYP, "asynFloat64")
-    field(OUT, "@asyn(GUARDIAN_TEST, $(ID), 0)DEVICE_TEST")
+    field(OUT, "@asyn(GUARDIAN_TEST, $(ID), 0)DEVICE_TEST_SC")
 }
 
 # ex: FBCK:FB02:GN01:S1DES_TEST_RBV
@@ -26,7 +26,7 @@ record(ai, "$(NAME):TEST_RBV") {
     field(PREC, "$(PREC)")
     field(DTYP, "asynFloat64")
     field(SCAN, "Passive") 
-    field(INP, "@asyn(GUARDIAN_TEST, $(ID), 0)DEVICE_TEST")
+    field(INP, "@asyn(GUARDIAN_TEST, $(ID), 0)DEVICE_TEST_SC")
 }
 
 record(bo, "$(NAME):TEST_TRG") {
@@ -45,7 +45,7 @@ record(ao, "$(NAME):TEST:STORED") {
     field(OMSL, "closed_loop") 
     field(DOL, "$(NAME):STORED_RBV CPP")
     field(DTYP, "asynFloat64")
-    field(OUT, "@asyn(GUARDIAN_TEST, $(ID), 0)STORED")
+    field(OUT, "@asyn(GUARDIAN_TEST, $(ID), 0)STORED_SC")
     
 }
 
@@ -55,7 +55,7 @@ record(ai, "$(NAME):TEST:STORED_RBV") {
     field(PREC, "$(PREC)")
     field(DTYP, "asynFloat64")
     field(SCAN, "I/O Intr")
-    field(INP, "@asyn(GUARDIAN_TEST, $(ID), 0)STORED")
+    field(INP, "@asyn(GUARDIAN_TEST, $(ID), 0)STORED_SC")
     
 }
 
@@ -65,7 +65,7 @@ record(longout, "$(NAME):TEST:LOGIC_TYPE") {
     field(PINI, "YES")
     field(VAL, "$(LOGIC_TYPE)")
     field(DTYP, "asynInt32")
-    field(OUT, "@asyn(GUARDIAN_TEST, $(ID), 0)LOGIC_TYPE")
+    field(OUT, "@asyn(GUARDIAN_TEST, $(ID), 0)LOGIC_TYPE_SC")
     
 }
 
@@ -75,7 +75,7 @@ record(longout, "$(NAME):TEST:TOL_ID") {
     field(PINI, "YES")
     field(VAL, "$(TOLERANCE_ID)")
     field(DTYP, "asynInt32")
-    field(OUT, "@asyn(GUARDIAN_TEST, $(ID), 0)TOLERANCE_ID")
+    field(OUT, "@asyn(GUARDIAN_TEST, $(ID), 0)TOLERANCE_ID_SC")
     
 }
 
@@ -85,6 +85,6 @@ record(longout, "$(NAME):TEST:CONDITION_ID") {
     field(PINI, "YES")
     field(VAL, "$(CONDITION_ID)")
     field(DTYP, "asynInt32")
-    field(OUT, "@asyn(GUARDIAN_TEST, $(ID), 0)CONDITION_ID")
+    field(OUT, "@asyn(GUARDIAN_TEST, $(ID), 0)CONDITION_ID_SC")
     
 }

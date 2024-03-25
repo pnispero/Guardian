@@ -17,10 +17,15 @@
 # This substitutions will look identical to actual guardian_device_data.substitutions except 
 # there is an additional VAL pattern here
 # I took the vals from the archiver date 02/08/2024
-file guardian_device_test_data.template
+
+file "guardian_sc_device_test_data.template"
 {
-#                              
-#           
+pattern {   NAME                   ,      DESC  ,                   EGU  ,  PREC ,      MSG ,                                                                       LOGIC_TYPE ,  TOLERANCE_ID,    CONDITION_ID,   VAL,         ID     }
+        {   "TEST:TEST:TESTING", "bunch charge feedback setpoint", "nC", 3           , "test - Bunch charge setpoint changed since last FEL check" ,                          1 ,            1 ,              0 ,       0.25 ,        0    }            
+}
+
+file "guardian_nc_device_test_data.template"
+{
 pattern {   NAME                   ,      DESC  ,                   EGU  ,  PREC ,      MSG ,                                                                       LOGIC_TYPE ,  TOLERANCE_ID,    CONDITION_ID,   VAL,         ID     }
         {   "FBCK:FB02:GN01:S1DES", "bunch charge feedback setpoint", "nC", 3           , "Bunch charge setpoint changed since last FEL check" ,                          0 ,            0 ,              1 ,       0.25 ,        0    }            
         {   "FBCK:FB02:GN01:S1P1", "bunch charge feedback state", "nC", 3               , "Bunch charge feedback state outside stored range" ,                            0 ,            1 ,              1 ,       0 ,           1    }    

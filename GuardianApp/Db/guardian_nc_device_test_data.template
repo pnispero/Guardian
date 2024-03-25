@@ -1,0 +1,90 @@
+#=================================================================#
+# Template file: guardian_nc_device_test_data.template
+# Database for device data values within sxrss for the guardian
+# Uses guardian_device_test_data.substitutions
+# Macro description:                                                             #
+#   - NAME       : Name                                                #
+#   - DESC       : Description                                         #
+#   - ID         : ASYN ID                                             #
+#=====================================================================
+
+# ex: FBCK:FB02:GN01:S1DES_TEST
+record(ao, "$(NAME):TEST") {
+    field(DESC, "$(DESC)")
+    field(PINI, "YES")
+    field(VAL, "$(VAL)")
+    field(EGU, "$(EGU)")
+    field(PREC, "$(PREC)")
+    field(DTYP, "asynFloat64")
+    field(OUT, "@asyn(GUARDIAN_TEST, $(ID), 0)DEVICE_TEST_NC")
+}
+
+# ex: FBCK:FB02:GN01:S1DES_TEST_RBV
+record(ai, "$(NAME):TEST_RBV") {
+    field(DESC, "$(DESC)")
+    field(EGU, "$(EGU)")
+    field(PREC, "$(PREC)")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive") 
+    field(INP, "@asyn(GUARDIAN_TEST, $(ID), 0)DEVICE_TEST_NC")
+}
+
+record(bo, "$(NAME):TEST_TRG") {
+    field(ZNAM, "Done")
+    field(ONAM, "Update")
+    field(OMSL, "closed_loop") 
+    field(DOL, "$(BASE):DEVICE_TEST_UPDATE CPP") 
+    field(FLNK, "$(NAME):TEST_RBV")
+}
+
+# ex: FBCK:FB02:GN01:S1DES:TEST:STORED
+record(ao, "$(NAME):TEST:STORED") {
+    field(DESC, "$(DESC)")
+    field(EGU, "$(EGU)")
+    field(PREC, "$(PREC)")
+    field(OMSL, "closed_loop") 
+    field(DOL, "$(NAME):STORED_RBV CPP")
+    field(DTYP, "asynFloat64")
+    field(OUT, "@asyn(GUARDIAN_TEST, $(ID), 0)STORED_NC")
+    
+}
+
+record(ai, "$(NAME):TEST:STORED_RBV") {
+    field(DESC, "$(DESC)")
+    field(EGU, "$(EGU)")
+    field(PREC, "$(PREC)")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn(GUARDIAN_TEST, $(ID), 0)STORED_NC")
+    
+}
+
+# Trip logic type
+record(longout, "$(NAME):TEST:LOGIC_TYPE") {
+    field(DESC, "Trip tolerance logic type")
+    field(PINI, "YES")
+    field(VAL, "$(LOGIC_TYPE)")
+    field(DTYP, "asynInt32")
+    field(OUT, "@asyn(GUARDIAN_TEST, $(ID), 0)LOGIC_TYPE_NC")
+    
+}
+
+# Tolerance control pv
+record(longout, "$(NAME):TEST:TOL_ID") {
+    field(DESC, "Optional Tolerance pv id for logic")
+    field(PINI, "YES")
+    field(VAL, "$(TOLERANCE_ID)")
+    field(DTYP, "asynInt32")
+    field(OUT, "@asyn(GUARDIAN_TEST, $(ID), 0)TOLERANCE_ID_NC")
+    
+}
+
+# Optional Condition ID
+record(longout, "$(NAME):TEST:CONDITION_ID") {
+    field(DESC, "Optional condition id for logic")
+    field(PINI, "YES")
+    field(VAL, "$(CONDITION_ID)")
+    field(DTYP, "asynInt32")
+    field(OUT, "@asyn(GUARDIAN_TEST, $(ID), 0)CONDITION_ID_NC")
+    
+}
