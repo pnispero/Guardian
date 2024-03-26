@@ -9,12 +9,18 @@
 #==============================================================================
 # Set by the operator
 #==============================================================================
-file guardian_tolerance_data.template
-{
 # These PVs are tolerance control pvs (their values are manually set by operator)
 # NOTE - If adding a new data pv, PLEASE do not add it at the beginning. ADD it at the last item and
 # increment the ID by 1.               
 # TODO: Not sure if the names are correct, but in original matlab script they used placeholder PVs like SIOC:SYS0:ML04:AO701 up to AO717
+file "guardian_sc_tolerance_data.template"
+{
+pattern {       NAME                   ,      DESC  ,                   EGU  ,  PREC ,        ID    }
+        {    "TEST:TEST:TESTING"    ,"Default zero tolerance", "%", 1                     , 0    }
+}
+
+file "guardian_nc_tolerance_data.template"
+{
 pattern {       NAME                   ,      DESC  ,                   EGU  ,  PREC ,        ID    }
         {    "SIOC:SYS0:GD01:AO700"    ,"Default zero tolerance", "%", 1                     , 0    }
         {    "SIOC:SYS0:GD01:AO701"    ,"bunch charge feedback tolerance", "%", 1            , 1    }

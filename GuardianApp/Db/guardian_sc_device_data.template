@@ -1,5 +1,5 @@
 #=================================================================#
-# Template file: guardian_device_data.template
+# Template file: guardian_sc_device_data.template
 # Database for device data values within sxrss for the guardian
 # And for stored data values
 # Uses guardian_device_data.substitutions
@@ -20,7 +20,7 @@ record(ao, "$(NAME):CURRENT") {
     field(DTYP, "asynFloat64")
 	field(OMSL, "closed_loop") 
     field(DOL, "$(NAME):TEST_RBV CPP")  # TODO: Temporarily set as test_rbv
-    field(OUT, "@asyn(GUARDIAN, $(ID), 0)CURRENT") 
+    field(OUT, "@asyn(GUARDIAN, $(ID), 0)CURRENT_SC") 
     # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
@@ -31,7 +31,7 @@ record(ai, "$(NAME):CURRENT_RBV") {
     field(PREC, "$(PREC)")
     field(DTYP, "asynFloat64")
     field(SCAN, "I/O Intr")
-    field(INP, "@asyn(GUARDIAN, $(ID), 0)CURRENT")
+    field(INP, "@asyn(GUARDIAN, $(ID), 0)CURRENT_SC")
     # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
@@ -44,7 +44,7 @@ record(ao, "$(NAME):STORED") {
     # field(OMSL, "closed_loop")  # TEMP
     # field(DOL, "$(BASE):SS_UPDATE CP") # TEMP
     field(DTYP, "asynFloat64")
-    field(OUT, "@asyn(GUARDIAN, $(ID), 0)STORED")
+    field(OUT, "@asyn(GUARDIAN, $(ID), 0)STORED_SC")
     # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
@@ -55,7 +55,7 @@ record(ai, "$(NAME):STORED_RBV") {
     field(EGU, "$(EGU)")
     field(PREC, "$(PREC)")
     field(DTYP, "asynFloat64")
-    field(INP, "@asyn(GUARDIAN, $(ID), 0)STORED")
+    field(INP, "@asyn(GUARDIAN, $(ID), 0)STORED_SC")
     # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
@@ -77,7 +77,7 @@ record(waveform, "$(NAME):TRIP_MSG") {
     field(NELM, "100")
     field(FTVL, "CHAR")
     field(DTYP, "asynOctetWrite")
-    field(INP, "@asyn(GUARDIAN, $(ID), 0)MSG")
+    field(INP, "@asyn(GUARDIAN, $(ID), 0)MSG_SC")
     # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
@@ -87,7 +87,7 @@ record(longout, "$(NAME):LOGIC_TYPE") {
     field(PINI, "YES")
     field(VAL, "$(LOGIC_TYPE)")
     field(DTYP, "asynInt32")
-    field(OUT, "@asyn(GUARDIAN, $(ID), 0)LOGIC_TYPE")
+    field(OUT, "@asyn(GUARDIAN, $(ID), 0)LOGIC_TYPE_SC")
     # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
@@ -97,7 +97,7 @@ record(longout, "$(NAME):TOL_ID") {
     field(PINI, "YES")
     field(VAL, "$(TOLERANCE_ID)")
     field(DTYP, "asynInt32")
-    field(OUT, "@asyn(GUARDIAN, $(ID), 0)TOLERANCE_ID")
+    field(OUT, "@asyn(GUARDIAN, $(ID), 0)TOLERANCE_ID_SC")
     # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
@@ -107,6 +107,6 @@ record(longout, "$(NAME):CONDITION_ID") {
     field(PINI, "YES")
     field(VAL, "$(CONDITION_ID)")
     field(DTYP, "asynInt32")
-    field(OUT, "@asyn(GUARDIAN, $(ID), 0)CONDITION_ID")
+    field(OUT, "@asyn(GUARDIAN, $(ID), 0)CONDITION_ID_SC")
     # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }

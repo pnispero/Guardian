@@ -1,9 +1,20 @@
 #=================================================================#
 # Template file: guardian_controls.template
-# Database for controlling main thread and watchdog thread within sxrss for the guardian
+# Database for controlling main thread within sxrss for the guardian
 # Macro description:                                                             #
 #   - BASE       : SIOC name                                                #
 #=====================================================================
+
+record(bo, "$(BASE):GUARDIAN_MODE") {
+    field(DESC, "Determines what devices to monitor")
+    field(SCAN, "Passive")
+    field(DTYP, "asynUInt32Digital")
+    field(VAL, "0")
+    field(PINI, "YES")
+    field(ZNAM, "Normal Conducting")
+    field(ONAM, "Super Conducting")
+    field(OUT, "@asynMask(GUARDIAN, 0, 1, 0)GUARDIAN_MODE")
+}
 
 # Record for triggering a snapshot
 record(bo, "$(BASE):SNAPSHOT_TRG_EN") {

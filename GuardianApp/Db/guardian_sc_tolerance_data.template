@@ -1,5 +1,5 @@
 #=================================================================#
-# Template file: guardian_tolerance_data.template
+# Template file: guardian_sc_tolerance_data.template
 # Database for control tolerance PVs within sxrss for the guardian
 # Uses guardian_tolerance_data.substitutions
 # Macro description:                                                   #
@@ -16,7 +16,7 @@ record(ao, "$(NAME):TOL") {
     field(DTYP, "asynFloat64")
     field(OMSL, "closed_loop") # TODO: TEMP field for testing
     field(DOL, "$(NAME):TEST:TOL CPP") # # TODO: TEMP field for testing
-    field(OUT, "@asyn(GUARDIAN, $(ID), 0)TOLERANCE") 
+    field(OUT, "@asyn(GUARDIAN, $(ID), 0)TOLERANCE_SC") 
     # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
@@ -26,6 +26,6 @@ record(ai, "$(NAME):TOL_RBV") {
     field(PREC, "$(PREC)")
     field(DTYP, "asynFloat64")
     field(SCAN, "I/O Intr")
-    field(INP, "@asyn(GUARDIAN, $(ID), 0)TOLERANCE")
+    field(INP, "@asyn(GUARDIAN, $(ID), 0)TOLERANCE_SC")
     # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }

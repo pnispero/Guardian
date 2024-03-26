@@ -1,5 +1,5 @@
 #=================================================================#
-# Template file: guardian_device_condition.template
+# Template file: guardian_sc_device_condition.template
 # Database for device condition values within sxrss for the guardian
 # Uses guardian_device_condition.substitutions
 # Macro description:                                                   #
@@ -18,7 +18,7 @@ record(bo, "$(NAME):CONDITION") {
     field(ONAM, "ON")
     field(OMSL, "closed_loop") 
     field(DOL, "$(NAME):TEST:CONDITION_RBV CPP")  # TODO: Temporarily set as test, For PROD its just $(NAME)
-    field(OUT, "@asynMask(GUARDIAN, $(ID), 1, 0)CONDITION")
+    field(OUT, "@asynMask(GUARDIAN, $(ID), 1, 0)CONDITION_SC")
 }
 
 record(bi, "$(NAME):CONDITION_RBV") {
@@ -28,5 +28,5 @@ record(bi, "$(NAME):CONDITION_RBV") {
     field(PINI, "NO")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
-    field(INP, "@asynMask(GUARDIAN, $(ID), 1, 0)CONDITION")
+    field(INP, "@asynMask(GUARDIAN, $(ID), 1, 0)CONDITION_SC")
 }

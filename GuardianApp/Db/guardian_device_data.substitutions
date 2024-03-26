@@ -23,7 +23,14 @@
 # NOTE - If adding a new data pv, PLEASE do not add it at the beginning. ADD it at the last item and
 # increment the ID by 1.       
 # If want to check if a device changed, but no difference then make the tol PV 0,     
-file "guardian_device_data.template"
+
+file "guardian_sc_device_data.template"
+{   
+pattern {   NAME                   ,      DESC  ,                   EGU  ,  PREC ,      MSG ,                                                                       LOGIC_TYPE ,  TOLERANCE_ID,    CONDITION_ID,    ID     }
+        {   "TEST:TEST:TESTING",   "bunch charge feedback setpoint", "nC", 3           , "test - Bunch charge setpoint changed since last FEL check" ,                          1 ,            1 ,              0 ,          0    }            
+}
+
+file "guardian_nc_device_data.template"
 {    
 pattern {   NAME                   ,      DESC  ,                   EGU  ,  PREC ,      MSG ,                                                                       LOGIC_TYPE ,  TOLERANCE_ID,    CONDITION_ID,    ID     }
         {   "FBCK:FB02:GN01:S1DES", "bunch charge feedback setpoint", "nC", 3           , "Bunch charge setpoint changed since last FEL check" ,                          0 ,            0 ,              1 ,          0    }            
