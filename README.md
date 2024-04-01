@@ -33,7 +33,8 @@ Depending on the comparison needed, adding/deleting a device can be as simple as
 5. Ensure the ID is incremented by 1 from the previous ID.
 6. Open [GuardianApp/Db/guardian_metadata.substitutions](GuardianApp/Db/guardian_metadata.substitutions)
 7. Increment the DEVICE_PARAM_SIZE by 1
-8. Optional - If want to test (you should), then add/modify the same lines to the [guardian_test branch](https://github.com/pnispero/Guardian/tree/guardian_test). And add a simulation val for both device and tolerance.
+8. Optional - If you want the device on the pydm display, add it to [FELmonitor_parameters.json]() TODO: add path
+9. Optional - If want to test (you should), then add/modify the same lines to the [guardian_test branch](https://github.com/pnispero/Guardian/tree/guardian_test). And add a simulation val for both device and tolerance.
 
 ### II. Delete device using any of the 4 predefined logical comparisons
 1. Open [GuardianApp/Db/guardian_device_data.substitutions](GuardianApp/Db/guardian_device_data.substitutions)
@@ -42,6 +43,7 @@ Depending on the comparison needed, adding/deleting a device can be as simple as
 4. Open [GuardianApp/Db/guardian_metadata.substitutions](GuardianApp/Db/guardian_metadata.substitutions), decrement the DEVICE_PARAM_SIZE by 1
 5. Optional - If want to test (you should), then delete the same lines to the [guardian_test branch](https://github.com/pnispero/Guardian/tree/guardian_test).
 6. If on step 2 you found tol/condition ids not being used, then follow this step. Devices rely on correct tolerance ID and condition ID, deleting them from their substitutions files may take some work. When you delete one, and decrement those below it by 1. Ensure the tolerance/condition IDs in the  device_data.substitutions also get updated. Specifically the ones that you decremented ID by 1. 
+7. Delete the device on the pydm display[FELmonitor_parameters.json](), if it exists
 
 ### III. Add device with a unique logical comparison (Special case)
 This can be more work, as special cases are hardcoded

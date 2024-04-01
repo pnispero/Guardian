@@ -9,11 +9,18 @@
 #==============================================================================
 # Actual device condition data
 #==============================================================================
-file "guardian_device_condition.template"
-{
 # These PVs are device data condition pvs 
 # NOTE - If adding a new data condition pv, PLEASE do not add it at the beginning. ADD it at the last item and
-# increment the ID by 1.               
+# increment the ID by 1.             
+
+file "guardian_sc_device_condition.template"
+{   
+pattern {       NAME                   ,      DESC  ,                                       ID    }
+        {       "TEST:TEST:TESTING", "Default, no condition placeholder",                 0    }
+}
+
+file "guardian_nc_device_condition.template"
+{  
 pattern {       NAME                   ,      DESC  ,                                       ID    }
         {       "SIOC:SYS0:GD01:AO600", "Default, no condition placeholder",                 0    }
         {       "FBCK:FB02:GN01:STATE", "Non-matlab bunch charge feedback on?",              1    }

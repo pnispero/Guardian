@@ -1,0 +1,32 @@
+#=================================================================#
+# Template file: guardian_nc_device_condition.template
+# Database for device condition values within sxrss for the guardian
+# Uses guardian_device_condition.substitutions
+# Macro description:                                                   #
+#   - NAME       : Name                                                #
+#   - DESC       : Description                                         #
+#   - ID         : ASYN ID                                             #
+#=====================================================================
+
+record(bo, "$(NAME):CONDITION") {
+    field(DESC, "$(DESC)")
+    field(DTYP, "asynUInt32Digital")
+    field(SCAN, "Passive")
+    field(VAL, "0")
+    field(PINI, "YES")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(OMSL, "closed_loop") 
+    field(DOL, "$(NAME):TEST:CONDITION_RBV CPP")  # TODO: Temporarily set as test, For PROD its just $(NAME)
+    field(OUT, "@asynMask(GUARDIAN, $(ID), 1, 0)CONDITION_NC")
+}
+
+record(bi, "$(NAME):CONDITION_RBV") {
+    field(DESC, "Snaphot trigger")
+    field(DTYP, "asynUInt32Digital")
+    field(SCAN, "I/O Intr")
+    field(PINI, "NO")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(INP, "@asynMask(GUARDIAN, $(ID), 1, 0)CONDITION_NC")
+}

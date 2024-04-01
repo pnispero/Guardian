@@ -21,26 +21,40 @@ GuardianDriver::GuardianDriver(const char *portName) : asynPortDriver           
                                                      ),
                                                      heartbeatCnt(0)
 {
+
+    // Normal Conducting
+    createParam(CURRENT_VALUE_NC_STRING, asynParamFloat64, &CurrentValueNCIndex);
+    createParam(STORED_VALUE_NC_STRING, asynParamFloat64, &StoredValueNCIndex);
+    createParam(CONDITION_VALUE_NC_STRING, asynParamUInt32Digital, &ConditionValueNCIndex);
+    createParam(TOLERANCE_VALUE_NC_STRING, asynParamFloat64, &ToleranceValueNCIndex);
+    createParam(LOGIC_TYPE_VALUE_NC_STRING, asynParamInt32, &LogicTypeValueNCIndex);
+    createParam(TOLERANCE_ID_NC_STRING, asynParamInt32, &ToleranceIdNCIndex);
+    createParam(CONDITION_ID_NC_STRING, asynParamInt32, &ConditionIdNCIndex);
+    createParam(TRIP_MSG_NC_STRING, asynParamOctet, &TripMsgNCIndex);
+    createParam(DEVICE_PARAM_SIZE_NC_STRING, asynParamInt32, &DeviceParamSizeNCIndex);
+
+    // Super Conducting
+    createParam(CURRENT_VALUE_SC_STRING, asynParamFloat64, &CurrentValueSCIndex);
+    createParam(STORED_VALUE_SC_STRING, asynParamFloat64, &StoredValueSCIndex);
+    createParam(CONDITION_VALUE_SC_STRING, asynParamUInt32Digital, &ConditionValueSCIndex);
+    createParam(TOLERANCE_VALUE_SC_STRING, asynParamFloat64, &ToleranceValueSCIndex);
+    createParam(LOGIC_TYPE_VALUE_SC_STRING, asynParamInt32, &LogicTypeValueSCIndex);
+    createParam(TOLERANCE_ID_SC_STRING, asynParamInt32, &ToleranceIdSCIndex);
+    createParam(CONDITION_ID_SC_STRING, asynParamInt32, &ConditionIdSCIndex);
+    createParam(TRIP_MSG_SC_STRING, asynParamOctet, &TripMsgSCIndex);
+    createParam(DEVICE_PARAM_SIZE_SC_STRING, asynParamInt32, &DeviceParamSizeSCIndex);
+
+    // Universal
     createParam(MONITOR_CYCLE_STRING, asynParamFloat64, &MonitorCycleIndex);
     createParam(SNAPSHOT_TRIGGER_STRING, asynParamUInt32Digital, &SnapshotTriggerIndex);
-    createParam(DEVICE_PARAM_SIZE_STRING, asynParamInt32, &DeviceParamSizeIndex);
-    createParam(CONDITION_PARAM_SIZE_STRING, asynParamInt32, &ConditionParamSizeIndex);
-    createParam(TOLERANCE_PARAM_SIZE_STRING, asynParamInt32, &ToleranceParamSizeIndex);
-    createParam(CURRENT_VALUE_STRING, asynParamFloat64, &CurrentValueIndex);
-    createParam(STORED_VALUE_STRING, asynParamFloat64, &StoredValueIndex);
-    createParam(CONDITION_VALUE_STRING, asynParamUInt32Digital, &ConditionValueIndex);
-    createParam(TOLERANCE_VALUE_STRING, asynParamFloat64, &ToleranceValueIndex);
-    createParam(LOGIC_TYPE_VALUE_STRING, asynParamInt32, &LogicTypeValueIndex);
-    createParam(TOLERANCE_ID_STRING, asynParamInt32, &ToleranceIdIndex);
-    createParam(CONDITION_ID_STRING, asynParamInt32, &ConditionIdIndex);
-    createParam(TRIP_MSG_STRING, asynParamOctet, &TripMsgIndex);
     createParam(DISPLAY_MSG_STRING, asynParamOctet, &DisplayMsgIndex);
-    createParam(MPS_TRIP_STRING, asynParamUInt32Digital, &MpsTripIndex);
+    createParam(GUARDIAN_TRIP_STRING, asynParamUInt32Digital, &TrippedIndex);
     createParam(MPS_PERMIT_STRING, asynParamUInt32Digital, &MpsPermitIndex);
     createParam(HEARTBEAT_VALUE_STRING, asynParamInt32, &HeartbeatValueIndex);
     createParam(ARM_VALUE_STRING, asynParamUInt32Digital, &ArmValueIndex);
     createParam(SS_STRING, asynParamUInt32Digital, &SSIndex);
     createParam(TRIP_ID_STRING, asynParamInt32, &tripIdIndex);
+    createParam(GUARDIAN_MODE_STRING, asynParamUInt32Digital, &GuardianModeIndex);
 
     asynStatus status;
     status = (asynStatus)(epicsThreadCreate("FELpulseEnergyMonitor", epicsThreadPriorityMedium, epicsThreadGetStackSize(epicsThreadStackMedium), (EPICSTHREADFUNC)::FELpulseEnergyMonitor, this) == NULL);
@@ -49,12 +63,38 @@ GuardianDriver::GuardianDriver(const char *portName) : asynPortDriver           
         std::cout << status << "\n";
         return;
     }
-
 }
 
 void FELpulseEnergyMonitor(void* driverPointer)
 {
     pGDriver->FELpulseEnergyMonitor();
+}
+
+// Helper function to set which asyn parameters to use based off the mode
+void GuardianDriver::setDeviceIndexesBasedOffMode() {
+    if (guardianMode == NC) {
+        CurrentValueIndex = CurrentValueNCIndex;
+        StoredValueIndex = StoredValueNCIndex;
+        ConditionValueIndex = ConditionValueNCIndex;
+        ToleranceValueIndex = ToleranceValueNCIndex;
+        LogicTypeValueIndex = LogicTypeValueNCIndex;
+        ToleranceIdIndex = ToleranceIdNCIndex;
+        ConditionIdIndex = ConditionIdNCIndex;
+        TripMsgIndex = TripMsgNCIndex;
+        DeviceParamSizeIndex = DeviceParamSizeNCIndex;
+    }
+    else { 
+        CurrentValueIndex = CurrentValueSCIndex;
+        StoredValueIndex = StoredValueSCIndex;
+        ConditionValueIndex = ConditionValueSCIndex;
+        ToleranceValueIndex = ToleranceValueSCIndex;
+        LogicTypeValueIndex = LogicTypeValueSCIndex;
+        ToleranceIdIndex = ToleranceIdSCIndex;
+        ConditionIdIndex = ConditionIdSCIndex;
+        TripMsgIndex = TripMsgSCIndex;
+        DeviceParamSizeIndex = DeviceParamSizeSCIndex;
+    }
+    getIntegerParam(DeviceParamSizeIndex, &DEVICE_PARAMS_SIZE); // Set amouunt of devices to monitor
 }
 
 // Helper function to grab tolerance, current, and stored values of device
@@ -64,7 +104,7 @@ void GuardianDriver::getDeviceParameterValues(int deviceIndex, double &tolVal, d
     getDoubleParam(tolId, ToleranceValueIndex, &tolVal); // Tolerance 'control' pvs
     getDoubleParam(deviceIndex, CurrentValueIndex, &curDeviceVal); // device pvs
     getDoubleParam(deviceIndex, StoredValueIndex, &desiredDeviceVal); // stored pvs
-}
+} 
 
 /* Trip Logic functions */
 
@@ -222,115 +262,120 @@ std::tuple<bool, std::string> GuardianDriver::tripSpecialCase(int deviceIndex) {
 
     uint32_t conditionVal, conditionVal2;
     bool tripped = false; std::string tripMsg;
-    switch (deviceIndex) 
-    {
-    case 0: // devices 1,2,3 as well
-        getUIntDigitalParam(1, ConditionValueIndex, &conditionVal, 1);
-        getUIntDigitalParam(2, ConditionValueIndex, &conditionVal2, 1);
-        if (conditionVal == 1) {
-            tripped = pGDriver->outsidePercentageTolerance(0); // Check bunch charge feedback setpoint unchanged
-            if (tripped) {
-                getStringParam(0, TripMsgIndex, tripMsg);
-                break;
+    if (guardianMode == NC) { // Normal conducting special cases
+        switch (deviceIndex) 
+        {
+        case 0: // devices 1,2,3 as well
+            getUIntDigitalParam(1, ConditionValueIndex, &conditionVal, 1);
+            getUIntDigitalParam(2, ConditionValueIndex, &conditionVal2, 1);
+            if (conditionVal == 1) {
+                tripped = pGDriver->outsidePercentageTolerance(0); // Check bunch charge feedback setpoint unchanged
+                if (tripped) {
+                    getStringParam(0, TripMsgIndex, tripMsg);
+                    break;
+                }
+                tripped = pGDriver->outsidePercentageTolerance(1, 0); // Check bunch charge feedback state within user entered % of stored setpt
+                if (tripped) {
+                    getStringParam(1, TripMsgIndex, tripMsg);
+                    break;
+                }
+            } 
+            else if (conditionVal2 == 1) {
+                tripped = pGDriver->outsidePercentageTolerance(2); // Check matlab bunch charge feedback setpoint unchanged
+                if (tripped) {
+                    getStringParam(2, TripMsgIndex, tripMsg);
+                    break;
+                }
+                tripped = pGDriver->outsidePercentageTolerance(3, 2); // Check matlab bunch charge feedback state within user entered % of stored
+                if (tripped) {
+                    getStringParam(3, TripMsgIndex, tripMsg);
+                    break;
+                }
             }
-            tripped = pGDriver->outsidePercentageTolerance(1, 0); // Check bunch charge feedback state within user entered % of stored setpt
-            if (tripped) {
-                getStringParam(1, TripMsgIndex, tripMsg);
-                break;
+            else { tripMsg = "WARNING: Neither bunch charge feedback active!"; }
+            break;
+        case 4: // devices 5,6 as well
+            getUIntDigitalParam(3, ConditionValueIndex, &conditionVal, 1);
+            if (conditionVal == 1) {
+                tripped = pGDriver->outsidePercentageTolerance(5, 4); // Check if BC1 energy feedback is on, then check that the SXR state is within (tols)% of stored setpoint
+                if (tripped) {
+                    getStringParam(5, TripMsgIndex, tripMsg);
+                    break;
+                }
+                tripped = pGDriver->outsidePercentageTolerance(6); // Check BC1 vernier setpoint unchanged 
+                if (tripped) {
+                    getStringParam(6, TripMsgIndex, tripMsg);
+                    break;
+                }
             }
+            else { tripMsg = "WARNING: BC1 Energy Feedback is OFF"; }
+            break;
+        case 7: // devices 8,9 as well
+            getUIntDigitalParam(4, ConditionValueIndex, &conditionVal, 1);
+            getUIntDigitalParam(5, ConditionValueIndex, &conditionVal2, 1);
+            if (conditionVal == 1) {
+                // Use the appropriate setpoint (ACT is always the SXR one) and
+                // check BC1 current feedback state within (tols)% of stored setpoint
+                tripped = pGDriver->outsidePercentageTolerance(8, 7); 
+                if (conditionVal2 == 1) {
+                    tripped = pGDriver->outsidePercentageTolerance(8, 9); 
+                }
+                if (tripped) {
+                    getStringParam(8, TripMsgIndex, tripMsg);
+                    break;
+                }
+                tripped = pGDriver->outsidePercentageTolerance(7);
+                if (tripped) {
+                    getStringParam(7, TripMsgIndex, tripMsg);
+                    break;
+                }
+            }
+            else { tripMsg = "WARNING: BC1 Bunch Current Feedback is OFF"; }
+            break;
+        case 10: // devices 11,12 as well
+            getUIntDigitalParam(6, ConditionValueIndex, &conditionVal, 1);
+            getUIntDigitalParam(7, ConditionValueIndex, &conditionVal2, 1);
+            if (conditionVal == 1) {
+                double curVal;
+                getDoubleParam(12, CurrentValueIndex, &curVal);
+                if (curVal > 25000) { // only check if BLEN reading is OK
+                    tripMsg = "WARNING: BC2 bunch current reading is Garbage!";
+                    break;
+                }
+                // Using the appropriate setpoint,
+                // check first that it hasn't changed, then check that the BC2 current feedback 
+                // state is within (tols)% of stored setpoint
+                if (conditionVal2 == 1) {
+                    tripped = pGDriver->outsidePercentageTolerance(11);
+                    if (tripped) {
+                        getStringParam(11, TripMsgIndex, tripMsg);
+                        break;
+                    }
+                }
+                else {
+                    tripped = pGDriver->outsidePercentageTolerance(10);
+                    if (tripped) {
+                        getStringParam(10, TripMsgIndex, tripMsg);
+                        break;
+                    }
+                    break;
+                }
+            }
+            else { tripMsg = "WARNING: BC2 Bunch Current Feedback is OFF"; }
+            break;
+        case 13: // devices 14 as well
+            tripped = pGDriver->outsideCollimatorTolerance();
+            if (tripped) {
+                getStringParam(13, TripMsgIndex, tripMsg);
+            }
+            break;
+        default:
+            break;
         } 
-        else if (conditionVal2 == 1) {
-            tripped = pGDriver->outsidePercentageTolerance(2); // Check matlab bunch charge feedback setpoint unchanged
-            if (tripped) {
-                getStringParam(2, TripMsgIndex, tripMsg);
-                break;
-            }
-            tripped = pGDriver->outsidePercentageTolerance(3, 2); // Check matlab bunch charge feedback state within user entered % of stored
-            if (tripped) {
-                getStringParam(3, TripMsgIndex, tripMsg);
-                break;
-            }
-        }
-        else { tripMsg = "WARNING: Neither bunch charge feedback active!"; }
-        break;
-    case 4: // devices 5,6 as well
-        getUIntDigitalParam(3, ConditionValueIndex, &conditionVal, 1);
-        if (conditionVal == 1) {
-            tripped = pGDriver->outsidePercentageTolerance(5, 4); // Check if BC1 energy feedback is on, then check that the SXR state is within (tols)% of stored setpoint
-            if (tripped) {
-                getStringParam(5, TripMsgIndex, tripMsg);
-                break;
-            }
-            tripped = pGDriver->outsidePercentageTolerance(6); // Check BC1 vernier setpoint unchanged 
-            if (tripped) {
-                getStringParam(6, TripMsgIndex, tripMsg);
-                break;
-            }
-        }
-        else { tripMsg = "WARNING: BC1 Energy Feedback is OFF"; }
-        break;
-    case 7: // devices 8,9 as well
-        getUIntDigitalParam(4, ConditionValueIndex, &conditionVal, 1);
-        getUIntDigitalParam(5, ConditionValueIndex, &conditionVal2, 1);
-        if (conditionVal == 1) {
-            // Use the appropriate setpoint (ACT is always the SXR one) and
-            // check BC1 current feedback state within (tols)% of stored setpoint
-            tripped = pGDriver->outsidePercentageTolerance(8, 7); 
-            if (conditionVal2 == 1) {
-                tripped = pGDriver->outsidePercentageTolerance(8, 9); 
-            }
-            if (tripped) {
-                getStringParam(8, TripMsgIndex, tripMsg);
-                break;
-            }
-            tripped = pGDriver->outsidePercentageTolerance(7);
-            if (tripped) {
-                getStringParam(7, TripMsgIndex, tripMsg);
-                break;
-            }
-        }
-        else { tripMsg = "WARNING: BC1 Bunch Current Feedback is OFF"; }
-        break;
-    case 10: // devices 11,12 as well
-        getUIntDigitalParam(6, ConditionValueIndex, &conditionVal, 1);
-        getUIntDigitalParam(7, ConditionValueIndex, &conditionVal2, 1);
-        if (conditionVal == 1) {
-            double curVal;
-            getDoubleParam(12, CurrentValueIndex, &curVal);
-            if (curVal > 25000) { // only check if BLEN reading is OK
-                tripMsg = "WARNING: BC2 bunch current reading is Garbage!";
-                break;
-            }
-            // Using the appropriate setpoint,
-            // check first that it hasn't changed, then check that the BC2 current feedback 
-            // state is within (tols)% of stored setpoint
-            if (conditionVal2 == 1) {
-                tripped = pGDriver->outsidePercentageTolerance(11);
-                if (tripped) {
-                    getStringParam(11, TripMsgIndex, tripMsg);
-                    break;
-                }
-            }
-            else {
-                tripped = pGDriver->outsidePercentageTolerance(10);
-                if (tripped) {
-                    getStringParam(10, TripMsgIndex, tripMsg);
-                    break;
-                }
-                break;
-            }
-        }
-        else { tripMsg = "WARNING: BC2 Bunch Current Feedback is OFF"; }
-        break;
-    case 13: // devices 14 as well
-        tripped = pGDriver->outsideCollimatorTolerance();
-        if (tripped) {
-            getStringParam(13, TripMsgIndex, tripMsg);
-        }
-        break;
-    default:
-        break;
-    } 
+    }
+    else { // Super conducting special cases
+
+    }
 
     return std::make_tuple(tripped, tripMsg);
 }
@@ -344,22 +389,21 @@ void GuardianDriver::tripLogic() {
         // get value of logic type
         int logicType;
         getIntegerParam(deviceIndex, LogicTypeValueIndex, &logicType);
-        // std::cout << "logicType: " << logicType << "\n"; // TEMP
         switch (logicType)
         {
         case 0: // special case
             std::tie(tripped, tripMsg) = pGDriver->tripSpecialCase(deviceIndex);
             break;
-        case 1:
+        case outsidePercentageToleranceEnum:
             tripped = pGDriver->outsidePercentageTolerance(deviceIndex);
             break;
-        case 2:
+        case outsideAbsPercentageToleranceEnum:
             tripped = pGDriver->outsideAbsPercentageTolerance(deviceIndex);
             break;
-        case 3:
+        case outsideAbsValueToleranceEnum:
             tripped = pGDriver->outsideAbsValueTolerance(deviceIndex);
             break;
-        case 4: 
+        case outsideAbsDifferencePercentageToleranceEnum: 
             tripped = pGDriver->outsideAbsDifferencePercentageTolerance(deviceIndex);
             break;
         default:
@@ -371,21 +415,19 @@ void GuardianDriver::tripLogic() {
             // 0) get msg
             if (tripMsg == "") { // If not special case (no tripMsg returned), get msg
                 getStringParam(deviceIndex, TripMsgIndex, tripMsg);
-                // std::cout << "DeviceIndex: " << deviceIndex << " | trip msg: " << tripMsg << "\n"; // TEMP
             }
             
             // 1) write to trip PV
-            setUIntDigitalParam(MpsTripIndex, 1, 1); // original trip PV
+            setUIntDigitalParam(TrippedIndex, 1, 1); // original trip PV
 
             // 2) write to MPS pv to turn off beam
             setUIntDigitalParam(MpsPermitIndex, 0, 1); // Tell MPS to turn off beam
             
-
             // // 3) write to out message pv - only on initial trip
             setStringParam(DisplayMsgIndex, tripMsg);
             #ifdef TEST
-                std::cout << "OFF BEAM\n"; // TEMP
-                std::cout << "Trip Msg: " << tripMsg << "\n"; // TEMP
+                std::cout << "OFF BEAM\n";
+                std::cout << "Trip Msg: " << tripMsg << "\n";
                 setIntegerParam(tripIdIndex, deviceIndex);
             #endif
 
@@ -402,7 +444,7 @@ void GuardianDriver::tripLogic() {
     }
 
     // 1) write to trip PV
-    setUIntDigitalParam(MpsTripIndex, 0, 1); // original trip PV
+    setUIntDigitalParam(TrippedIndex, 0, 1); // original trip PV
 
     // 2) write to MPS pv to leave as is
     setUIntDigitalParam(MpsPermitIndex, 1, 1); // Tell MPS not to worry
@@ -419,7 +461,7 @@ void GuardianDriver::tripLogic() {
 
 
 void GuardianDriver::takeSnapshot()
-{
+{   
     epicsFloat64 curVal, storedVal;
     for (int deviceIndex = 0; deviceIndex < DEVICE_PARAMS_SIZE; deviceIndex++) {
 
@@ -447,10 +489,6 @@ void GuardianDriver::initGuardian() {
     sleep(3); // IMPORTANT - Let epics records load then initialize
     std::cout << "Initializing Guardian Please Wait...\n\n";
 
-    getIntegerParam(DeviceParamSizeIndex, &DEVICE_PARAMS_SIZE);
-    getIntegerParam(ToleranceParamSizeIndex, &TOL_PARAMS_SIZE); // TODO: Possible we may not use this
-    getIntegerParam(ConditionParamSizeIndex, &CONDITION_PARAMS_SIZE); // TODO: Possible we may not use this
-
     setUIntDigitalParam(MpsPermitIndex, 1, 1); // Initialize mps permit to 1
     
     callParamCallbacks(); // Call this to write the values back into epics records
@@ -464,13 +502,13 @@ void GuardianDriver::initGuardian() {
 void GuardianDriver::FELpulseEnergyMonitor(void)
 {
     pGDriver->initGuardian();
-    uint32_t snapshotTriggerVal, armVal;
+    uint32_t snapshotTriggerVal, armVal=0, prevGuardianMode=2;
     while (true) {
-        getDoubleParam(MonitorCycleIndex, &MONITOR_CYCLE_TIME);
-        usleep(MONITOR_CYCLE_TIME);
-      
-        // Proceed only if guardian is 'armed'
-        do {
+        // Cycle time, snapshots, and mode switching can only occur when guardian is 'unarmed'
+        // once 'armed' then tripLogic applies every cycle
+        while (armVal == 0) {
+            getDoubleParam(MonitorCycleIndex, &MONITOR_CYCLE_TIME);
+            usleep(MONITOR_CYCLE_TIME);
             getUIntDigitalParam(ArmValueIndex, &armVal, 1);
             // Check snapshot_trg param, take snapshot then reset if true
             getUIntDigitalParam(SnapshotTriggerIndex, &snapshotTriggerVal, 1);
@@ -480,13 +518,21 @@ void GuardianDriver::FELpulseEnergyMonitor(void)
                 callParamCallbacks();
                 usleep(3000); // sleep 3ms to give time for epics records to be written, adjust if needed
             }
-        } while (armVal == 0);
-        
+            // Mode can only be changed while 'unarmed'
+            getUIntDigitalParam(GuardianModeIndex, &guardianMode, 1);
+            if (prevGuardianMode != guardianMode) {
+                pGDriver->setDeviceIndexesBasedOffMode();
+            }
+            prevGuardianMode = guardianMode;
+
+        }
+        getUIntDigitalParam(ArmValueIndex, &armVal, 1);
+        usleep(MONITOR_CYCLE_TIME);
+
         // heartbeat
         heartbeatCnt++;
 
-        // TODO: You'd pass in 'mode' here (NC vs SC)
-        pGDriver->tripLogic(); 
+        pGDriver->tripLogic();
     }
 }
 

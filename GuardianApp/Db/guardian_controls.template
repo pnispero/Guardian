@@ -1,9 +1,20 @@
 #=================================================================#
 # Template file: guardian_controls.template
-# Database for controlling main thread and watchdog thread within sxrss for the guardian
+# Database for controlling main thread within sxrss for the guardian
 # Macro description:                                                             #
 #   - BASE       : SIOC name                                                #
 #=====================================================================
+
+record(bo, "$(BASE):GUARDIAN_MODE") {
+    field(DESC, "Determines what devices to monitor")
+    field(SCAN, "Passive")
+    field(DTYP, "asynUInt32Digital")
+    field(VAL, "0")
+    field(PINI, "YES")
+    field(ZNAM, "Normal Conducting")
+    field(ONAM, "Super Conducting")
+    field(OUT, "@asynMask(GUARDIAN, 0, 1, 0)GUARDIAN_MODE")
+}
 
 # Record for triggering a snapshot
 record(bo, "$(BASE):SNAPSHOT_TRG_EN") {
@@ -15,6 +26,7 @@ record(bo, "$(BASE):SNAPSHOT_TRG_EN") {
     field(ZNAM, "Not Triggered")
     field(ONAM, "Triggered")
     field(OUT, "@asynMask(GUARDIAN, 0, 1, 0)SNAPSHOT_TRG")
+    field(FLNK, "$(BASE):SNAPSHOT_TS")
 }
 
 # Record for snapshot trigger readback value (OPs read this one back not the _EN)
@@ -26,6 +38,14 @@ record(bi, "$(BASE):SNAPSHOT_TRG_RBV") {
     field(ZNAM, "Not Triggered")
     field(ONAM, "Triggered")
     field(INP, "@asynMask(GUARDIAN, 0, 1, 0)SNAPSHOT_TRG")
+}
+
+record(stringin, "$(BASE):SNAPSHOT_TS") {
+  field(DESC, "time stamp")
+  field(PINI, "YES")
+  field(DTYP, "Soft Timestamp")
+  field(INP, "@%m/%d/%Y %H:%M:%S")
+  info(autosaveFields, "VAL")
 }
 
 # Record for controlling the 'sleep' of the FELpulseMonitor thread
