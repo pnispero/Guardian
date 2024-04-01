@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>596</width>
+    <height>19</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background:transparent</string>
+  </property>
+  <widget class="PyDMLabel" name="PyDMLabel_2">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>281</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <kerning>true</kerning>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:transparent</string>
+   </property>
+   <property name="text">
+    <string>${DESCRIPTION}</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+   <property name="alarmSensitiveContent" stdset="0">
+    <bool>false</bool>
+   </property>
+   <property name="alarmSensitiveBorder" stdset="0">
+    <bool>false</bool>
+   </property>
+   <property name="channel" stdset="0">
+    <string>${DEVICE}:CURRENT.DESC</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="horizontalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>0</y>
+     <width>251</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="spacing">
+     <number>25</number>
+    </property>
+    <property name="rightMargin">
+     <number>20</number>
+    </property>
+    <item>
+     <widget class="PyDMLabel" name="PyDMLabel_3">
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background:transparent</string>
+      </property>
+      <property name="text">
+       <string>${STORED}</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="alarmSensitiveContent" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="alarmSensitiveBorder" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="channel" stdset="0">
+       <string>${DEVICE}:STORED_RBV</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="PyDMLabel" name="PyDMLabel_4">
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background:transparent</string>
+      </property>
+      <property name="text">
+       <string>${CURRENT}</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="indent">
+       <number>3</number>
+      </property>
+      <property name="alarmSensitiveContent" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="alarmSensitiveBorder" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="channel" stdset="0">
+       <string>${DEVICE}:CURRENT_RBV</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="PyDMLabel" name="PyDMLabel_5">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>0</y>
+     <width>71</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <kerning>true</kerning>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:transparent</string>
+   </property>
+   <property name="text">
+    <string>${EGU}</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+   <property name="alarmSensitiveContent" stdset="0">
+    <bool>false</bool>
+   </property>
+   <property name="alarmSensitiveBorder" stdset="0">
+    <bool>false</bool>
+   </property>
+   <property name="channel" stdset="0">
+    <string>${DEVICE}:STORED.EGU</string>
+   </property>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PyDMLabel</class>
+   <extends>QLabel</extends>
+   <header>pydm.widgets.label</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

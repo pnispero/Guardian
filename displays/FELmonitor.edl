@@ -1,0 +1,4694 @@
+4 0 1
+beginScreenProperties
+major 4
+minor 0
+release 1
+x 164
+y 53
+w 974
+h 945
+font "helvetica-medium-r-12.0"
+ctlFont "helvetica-medium-r-12.0"
+btnFont "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 4
+textColor index 14
+ctlFgColor1 index 25
+ctlFgColor2 index 18
+ctlBgColor1 index 4
+ctlBgColor2 index 4
+topShadowColor index 1
+botShadowColor index 11
+title "SXRSS Guardian Overview"
+showGrid
+gridSize 4
+endScreenProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 3
+y 150
+w 797
+h 590
+lineColor index 11
+fill
+fillColor index 55
+lineWidth 2
+endObjectProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 13
+y 270
+w 186
+h 147
+lineColor index 14
+fillColor index 4
+endObjectProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 5
+y 748
+w 797
+h 190
+lineColor index 11
+fill
+fillColor index 63
+lineWidth 2
+endObjectProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 49
+y 365
+w 109
+h 40
+lineColor index 55
+fill
+fillColor index 21
+fillAlarm
+visPv "SIOC:SYS0:ML01:AO945"
+visMin "0.2"
+visMax "361"
+endObjectProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 0
+y 0
+w 1008
+h 40
+lineColor index 14
+fill
+fillColor index 20
+lineWidth 0
+visPv "SIOC:SYS0:ML00:AO466"
+visMin "1"
+visMax "100"
+endObjectProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 0
+y 0
+w 1004
+h 48
+lineColor index 14
+fill
+fillColor index 63
+lineWidth 0
+visPv "SIOC:SYS0:ML00:AO466"
+visMin "0"
+visMax "1"
+endObjectProperties
+
+# (Exit Button)
+object activeExitButtonClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 896
+y 9
+w 40
+h 24
+fgColor index 14
+bgColor index 3
+topShadowColor index 1
+botShadowColor index 11
+label "Exit"
+font "helvetica-medium-r-12.0"
+3d
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 16
+y 4
+w 450
+h 40
+font "helvetica-medium-r-18.0"
+fgColor index 14
+bgColor index 7
+useDisplayBg
+value {
+  "SXRSS Guardian Protection: "
+  "FEL monitor"
+}
+endObjectProperties
+
+# (Shell Command)
+object shellCmdClass
+beginObjectProperties
+major 4
+minor 3
+release 0
+x 780
+y 9
+w 96
+h 24
+fgColor index 14
+bgColor index 3
+topShadowColor index 1
+botShadowColor index 11
+font "helvetica-medium-r-12.0"
+buttonLabel "Home Screen..."
+numCmds 1
+command {
+  0 "pydm_lclshome &"
+}
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 816
+y 108
+w 146
+h 32
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+value {
+  "If broken, call Tonee at"
+  "415 823 5138"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 602
+y 1047
+w 158
+h 21
+font "helvetica-medium-r-18.0"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+value {
+  "Watchdog Counter"
+}
+autoSize
+endObjectProperties
+
+# (Circle)
+object activeCircleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 4
+y 52
+w 28
+h 28
+lineColor index 20
+lineAlarm
+fill
+fillColor index 20
+visPv "SIOC:SYS0:ML00:AO466"
+visMin "1"
+visMax "100"
+endObjectProperties
+
+# (Circle)
+object activeCircleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 4
+y 52
+w 28
+h 28
+lineColor index 15
+lineAlarm
+fill
+fillColor index 15
+fillAlarm
+alarmPv "ALRM:SYS0:FEL_PLS_EM:ALHBERR"
+visMin "-100"
+visMax "1"
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 526
+y 122
+w 84
+h 16
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+value {
+  "Stored Value"
+}
+autoSize
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 14
+y 1075
+w 896
+h 16
+controlPv "SIOC:SYS0:ML00:CA898"
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+date
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 6
+y 1048
+w 100
+h 21
+font "helvetica-medium-r-18.0"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+value {
+  "Error String:"
+}
+autoSize
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 766
+y 1047
+w 144
+h 16
+controlPv "SIOC:SYS0:ML00:AO000"
+font "helvetica-medium-r-14.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 1
+autoHeight
+limitsFromDb
+nullColor index 18
+colorPv "ALRM:SYS0:FEL_PLS_EM:ALHBERR"
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 625
+y 122
+w 92
+h 16
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+value {
+  "Present Value"
+}
+autoSize
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 942
+y 51
+w 28
+h 16
+controlPv "SIOC:SYS0:ML04:AO503.EGU"
+font "helvetica-medium-r-14.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 890
+y 52
+w 55
+h 16
+controlPv "SIOC:SYS0:ML04:AO503"
+font "helvetica-medium-r-14.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 3
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 771
+y 52
+w 113
+h 14
+controlPv "SIOC:SYS0:ML04:AO503.DESC"
+font "helvetica-medium-r-12.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 14
+y 155
+w 157
+h 54
+font "helvetica-medium-r-24.0"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+value {
+  "Electron beam"
+  "parameters"
+}
+autoSize
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 241
+y 157
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO506.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 531
+y 157
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO506"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 613
+y 157
+w 75
+h 21
+controlPv "FBCK:BCI0:1:CHRGSP"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 3
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 682
+y 157
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO506.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 36
+y 92
+w 91
+h 16
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+value {
+  "Guardian trip?"
+}
+autoSize
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 136
+y 91
+w 24
+h 16
+controlPv "SIOC:SYS0:ML04:AO750"
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 2
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+endObjectProperties
+
+# (Shell Command)
+object shellCmdClass
+beginObjectProperties
+major 4
+minor 3
+release 0
+x 364
+y 28
+w 225
+h 40
+fgColor index 14
+bgColor index 53
+topShadowColor index 1
+botShadowColor index 11
+font "helvetica-bold-r-14.0"
+buttonLabel "Save new FEL parameters"
+numCmds 1
+command {
+  0 "caput SIOC:SYS0:ML04:AO501 1"
+}
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 682
+y 197
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO508.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 682
+y 178
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO507.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 613
+y 197
+w 75
+h 21
+controlPv "FBCK:FB04:LG01:S2DES"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 1
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 613
+y 178
+w 75
+h 21
+controlPv "FBCK:BCI0:1:CHRG_S"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 3
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 531
+y 197
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO508"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 531
+y 178
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO507"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 241
+y 178
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO507.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 241
+y 197
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO508.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 241
+y 217
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO509.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 531
+y 217
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO509"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 613
+y 217
+w 75
+h 21
+controlPv "FBCK:FB04:LG01:S2P2_S"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 1
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 681
+y 217
+w 76
+h 21
+controlPv "SIOC:SYS0:ML04:AO509.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 242
+y 236
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO510.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 242
+y 257
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO511.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 532
+y 236
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO510"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 532
+y 257
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO511"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 1
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 614
+y 236
+w 75
+h 21
+controlPv "FBCK:FB04:LG01:BC1VERNIER_SXR"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 1
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 614
+y 256
+w 75
+h 21
+controlPv "FBCK:FB04:LG01:S3DES"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 1
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 682
+y 235
+w 76
+h 21
+controlPv "SIOC:SYS0:ML04:AO510.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 682
+y 256
+w 76
+h 21
+controlPv "SIOC:SYS0:ML04:AO511.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Circle)
+object activeCircleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 1176
+y 732
+w 16
+h 15
+lineColor index 14
+fill
+fillColor index 20
+visPv "SIOC:SYS0:ML01:AO196"
+visMin "1"
+visMax "2"
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 242
+y 277
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO512.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 242
+y 298
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO513.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 242
+y 319
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO514.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 242
+y 340
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO515.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 532
+y 278
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO512"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 1
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 532
+y 298
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO513"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 1
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 532
+y 340
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO515"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 1
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 532
+y 361
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO516"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 1
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+id "1"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 614
+y 297
+w 75
+h 21
+controlPv "BLEN:LI21:265:AIMAXCUS1H"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 1
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 614
+y 318
+w 75
+h 21
+controlPv "FBCK:FB04:LG01:BC2VERNIER_SXR"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 1
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 614
+y 338
+w 75
+h 21
+controlPv "ACCL:LI21:1:L1S_PDES"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 3
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 614
+y 379
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO401"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 1
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 682
+y 276
+w 76
+h 21
+controlPv "SIOC:SYS0:ML04:AO512.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 682
+y 297
+w 76
+h 21
+controlPv "SIOC:SYS0:ML04:AO513.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 682
+y 318
+w 76
+h 21
+controlPv "SIOC:SYS0:ML04:AO514.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 682
+y 339
+w 76
+h 21
+controlPv "SIOC:SYS0:ML04:AO515.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 40
+y 60
+w 114
+h 16
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+value {
+  "Process running?"
+}
+autoSize
+endObjectProperties
+
+# (Circle)
+object activeCircleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 4
+y 84
+w 28
+h 28
+lineColor index 15
+lineAlarm
+fill
+fillColor index 15
+fillAlarm
+alarmPv "SIOC:SYS0:ML04:AO750"
+visMin "-100"
+visMax "1"
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 807
+y 147
+w 144
+h 308
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 2
+value {
+  "    "
+  " This process attempts to "
+  " limit the FEL pulse"
+  " energy on the grating"
+  " to < 10 uJ."
+  ""
+  " Once you've tuned the"
+  " pre-chicane SASE"
+  " to a safe desired "
+  " power, hit the Save new "
+  " FEL parameters button "
+  " to store a snapshot of "
+  " machine parameters (the"
+  " seeding GUI now does "
+  " this for you).  The "
+  " loop will then compare "
+  " the live machine values "
+  " to the stored, and tell "
+  " the guardian to trip if "
+  " it detects a change that"
+  " might increase the FEL."
+  " "
+}
+autoSize
+border
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 379
+y 69
+w 382
+h 16
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+value {
+  "Do not save unless you know the FEL power on the grating!"
+}
+autoSize
+endObjectProperties
+
+# (Shell Command)
+object shellCmdClass
+beginObjectProperties
+major 4
+minor 3
+release 0
+x 172
+y 54
+w 40
+h 24
+fgColor index 14
+bgColor index 4
+topShadowColor index 1
+botShadowColor index 11
+font "helvetica-medium-r-12.0"
+buttonLabel "Start"
+numCmds 1
+command {
+  0 "ssh physics@lcls-srv03 Matlab_startup FELpulseEnergyMonitor & "
+}
+endObjectProperties
+
+# (Shell Command)
+object shellCmdClass
+beginObjectProperties
+major 4
+minor 3
+release 0
+x 236
+y 54
+w 40
+h 24
+fgColor index 14
+bgColor index 4
+topShadowColor index 1
+botShadowColor index 11
+font "helvetica-medium-r-12.0"
+buttonLabel "Stop"
+multipleInstances
+numCmds 1
+command {
+  0 "ssh physics@lcls-srv03 Matlab_stop FELpulseEnergyMonitor & "
+}
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 719
+y 784
+w 76
+h 21
+controlPv "SIOC:SYS0:ML04:AO533.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 682
+y 443
+w 76
+h 21
+controlPv "SIOC:SYS0:ML04:AO520.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 682
+y 380
+w 76
+h 21
+controlPv "SIOC:SYS0:ML04:AO517.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 682
+y 359
+w 76
+h 21
+controlPv "SIOC:SYS0:ML04:AO516.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 614
+y 402
+w 75
+h 21
+controlPv "BLEN:LI24:886:BIMAXCUS1H"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 1
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 614
+y 423
+w 75
+h 21
+controlPv "FBCK:FB04:LG01:CHIRPDES"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 1
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 614
+y 544
+w 75
+h 21
+controlPv "WPLT:LR20:230:LHWP_ANGLE"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 2
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 532
+y 464
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO521"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+precision 3
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 532
+y 402
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO518"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+precision 3
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 532
+y 382
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO517"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 1
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 242
+y 360
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO516.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 242
+y 381
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO517.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 242
+y 443
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO520.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 241
+y 607
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO528.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 241
+y 627
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO529.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 241
+y 647
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO530.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 241
+y 667
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO531.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 240
+y 687
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO532.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 231
+y 755
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO533.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 231
+y 775
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO534.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 222
+y 1007
+w 250
+h 21
+controlPv "SIOC:SYS0:ML01:AO988.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 532
+y 606
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO528"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 532
+y 626
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO529"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+precision 0
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 532
+y 646
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO530"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 532
+y 666
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO531"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 532
+y 686
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO532"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 549
+y 754
+w 53
+h 21
+controlPv "SIOC:SYS0:ML04:AO533"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 549
+y 774
+w 53
+h 21
+controlPv "SIOC:SYS0:ML04:AO534"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 540
+y 1006
+w 53
+h 21
+controlPv "SIOC:SYS0:ML01:AO988"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+precision 0
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+id "3"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 638
+y 855
+w 75
+h 21
+controlPv "USEG:UNDS:3150:KAct"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 5
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 628
+y 1006
+w 75
+h 21
+controlPv "USEG:UND1:850:KACT"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 5
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 638
+y 875
+w 75
+h 21
+controlPv "USEG:UNDS:3250:KAct"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 5
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 638
+y 835
+w 75
+h 21
+controlPv "USEG:UNDS:3050:KAct"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 5
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 638
+y 815
+w 75
+h 21
+controlPv "USEG:UNDS:2950:KAct"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 5
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 639
+y 795
+w 75
+h 21
+controlPv "USEG:UNDS:2850:KAct"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 5
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 638
+y 775
+w 75
+h 21
+controlPv "USEG:UNDS:2750:KAct"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 5
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 638
+y 755
+w 75
+h 21
+controlPv "USEG:UNDS:2650:KAct"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 5
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 12
+y 757
+w 115
+h 54
+font "helvetica-medium-r-24.0"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+value {
+  "Undulator "
+  "K values"
+}
+autoSize
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 492
+y 92
+w 113
+h 16
+controlPv "SIOC:SYS0:ML04:AO559TS"
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 376
+y 92
+w 108
+h 16
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+value {
+  "Snapshot saved:"
+}
+autoSize
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 242
+y 464
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO521.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 242
+y 485
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO522.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 242
+y 505
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO523.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 682
+y 505
+w 76
+h 21
+controlPv "SIOC:SYS0:ML04:AO523.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 682
+y 485
+w 76
+h 21
+controlPv "SIOC:SYS0:ML04:AO522.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 682
+y 464
+w 76
+h 21
+controlPv "SIOC:SYS0:ML04:AO521.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 614
+y 605
+w 75
+h 21
+controlPv "LHDL:LR20:260:TACT"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 2
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 614
+y 585
+w 75
+h 21
+controlPv "WPLT:LR20:220:LHWP_ANGLE"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 2
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 614
+y 564
+w 75
+h 21
+controlPv "LHDL:LR20:270:TACT"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 2
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 532
+y 319
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO514"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+precision 3
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 532
+y 505
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO523"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+precision 2
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 532
+y 485
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO522"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+precision 2
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Shell Command)
+object shellCmdClass
+beginObjectProperties
+major 4
+minor 3
+release 0
+x 16
+y 488
+w 180
+h 24
+fgColor index 14
+bgColor index 70
+topShadowColor index 1
+botShadowColor index 11
+font "helvetica-medium-r-12.0"
+buttonLabel "SXRSS Guardian StripTools"
+multipleInstances
+numCmds 4
+commandLabel {
+  0 "e- beam parameters StripTool"
+  1 "UND K values StripTool"
+  2 "CQ/match quads StripTool 1"
+  3 "CQ/match quads StripTool 2"
+}
+command {
+  0 "bash $EDM/misc/SXRSSstp.bash"
+  1 "bash $EDM/misc/sxrssUNDstp.bash"
+  2 "bash $EDM/misc/sxrssCQ1stp.bash"
+  3 "bash $EDM/misc/sxrssCQ2stp.bash"
+}
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 67
+y 373
+w 74
+h 16
+controlPv "SIOC:SYS0:ML04:AO715"
+font "helvetica-medium-r-14.0"
+fontAlign "center"
+fgColor index 14
+bgColor index 2
+editable
+autoHeight
+precision 1
+nullColor index 18
+smartRefresh
+useHexPrefix
+useAlarmBorder
+newPos
+objType "controls"
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 23
+y 272
+w 171
+h 98
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 1
+useDisplayBg
+value {
+  " Laser Heater Waveplate"
+  " Angle tolerance window:"
+  " widen ONLY while scanning"
+  " over a range that has been"
+  " demonstrated to be safe."
+  " Restore to 0.1 deg when done."
+}
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 682
+y 423
+w 76
+h 21
+controlPv "SIOC:SYS0:ML04:AO519.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 682
+y 402
+w 76
+h 21
+controlPv "SIOC:SYS0:ML04:AO518.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 614
+y 525
+w 75
+h 21
+controlPv "BEND:DMPS:400:BACT"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 3
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 614
+y 505
+w 75
+h 21
+controlPv "BEND:DMPS:400:BDES"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 3
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 532
+y 443
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO520"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+precision 3
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 532
+y 423
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO519"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+precision 3
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 242
+y 423
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO519.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 242
+y 402
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO518.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Shell Command)
+object shellCmdClass
+beginObjectProperties
+major 4
+minor 3
+release 0
+x 680
+y 9
+w 80
+h 24
+fgColor index 14
+bgColor index 3
+topShadowColor index 1
+botShadowColor index 11
+font "helvetica-medium-r-12.0"
+buttonLabel "Help (wiki)"
+numCmds 1
+command {
+  0 "firefox http://ad-ops.slac.stanford.edu/wiki/index.php/SXRSS_Guardian"
+}
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 170
+y 92
+w 83
+h 16
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+value {
+  "MPS Permit?"
+}
+autoSize
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 261
+y 91
+w 46
+h 14
+controlPv "MPS:UNDS:1:SXRSS_GUARDIAN_OK"
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 2
+autoHeight
+limitsFromDb
+precision 1
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 682
+y 525
+w 76
+h 21
+controlPv "SIOC:SYS0:ML04:AO524.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 614
+y 626
+w 75
+h 21
+controlPv "LASR:IN20:475:PWR"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+precision 3
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 532
+y 546
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO525"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+precision 2
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 242
+y 525
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO524.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 242
+y 545
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO525.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 242
+y 566
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO526.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 242
+y 586
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO527.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 682
+y 585
+w 76
+h 21
+controlPv "SIOC:SYS0:ML04:AO527.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 682
+y 565
+w 76
+h 21
+controlPv "SIOC:SYS0:ML04:AO526.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 682
+y 544
+w 76
+h 21
+controlPv "SIOC:SYS0:ML04:AO525.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 614
+y 687
+w 75
+h 21
+controlPv "FOIL:LI24:804:MOTR.RBV"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 2
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 614
+y 667
+w 75
+h 21
+controlPv "COLL:LI21:235:LVPOS"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 2
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 614
+y 646
+w 75
+h 21
+controlPv "COLL:LI21:236:LVPOS"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 2
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 532
+y 586
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO527"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+precision 2
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 532
+y 566
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO526"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+precision 2
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 532
+y 525
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO524"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+precision 3
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 231
+y 795
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO535.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 231
+y 815
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO536.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 549
+y 794
+w 53
+h 21
+controlPv "SIOC:SYS0:ML04:AO535"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 549
+y 814
+w 53
+h 21
+controlPv "SIOC:SYS0:ML04:AO536"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 637
+y 894
+w 75
+h 21
+controlPv "USEG:UNDS:3350:KAct"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 5
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 637
+y 914
+w 75
+h 21
+controlPv "USEG:UNDS:3450:KAct"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 5
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 66
+y 119
+w 440
+h 14
+controlPv "SIOC:SYS0:ML00:CA898"
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 3
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 8
+y 118
+w 54
+h 16
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+value {
+  "Trip info:"
+}
+autoSize
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 231
+y 835
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO537.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 231
+y 855
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO538.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 549
+y 834
+w 53
+h 21
+controlPv "SIOC:SYS0:ML04:AO537"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 549
+y 854
+w 53
+h 21
+controlPv "SIOC:SYS0:ML04:AO538"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 231
+y 875
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO539.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 231
+y 895
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO540.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 549
+y 874
+w 53
+h 21
+controlPv "SIOC:SYS0:ML04:AO539"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 549
+y 894
+w 53
+h 21
+controlPv "SIOC:SYS0:ML04:AO540"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 231
+y 915
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO541.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 549
+y 914
+w 53
+h 21
+controlPv "SIOC:SYS0:ML04:AO541"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 681
+y 604
+w 76
+h 21
+controlPv "SIOC:SYS0:ML04:AO528.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 681
+y 623
+w 76
+h 21
+controlPv "SIOC:SYS0:ML04:AO529.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 681
+y 685
+w 76
+h 21
+controlPv "SIOC:SYS0:ML04:AO532.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 681
+y 665
+w 76
+h 21
+controlPv "SIOC:SYS0:ML04:AO531.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 681
+y 644
+w 76
+h 21
+controlPv "SIOC:SYS0:ML04:AO530.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 614
+y 277
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO403"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 1
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 614
+y 359
+w 75
+h 21
+controlPv "FBCK:FB04:LG01:S5DES"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 1
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 614
+y 485
+w 75
+h 21
+controlPv "FBCK:FB04:LG01:DL2VERNIER_SXR"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 1
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 614
+y 443
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:CALC405"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 1
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 614
+y 464
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO406"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 1
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 681
+y 705
+w 76
+h 21
+controlPv "SIOC:SYS0:ML04:AO568.EGU"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+editable
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 614
+y 707
+w 75
+h 21
+controlPv "FOIL:LI24:807:MOTR.RBV"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+precision 2
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 532
+y 706
+w 75
+h 21
+controlPv "SIOC:SYS0:ML04:AO568"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 240
+y 707
+w 250
+h 21
+controlPv "SIOC:SYS0:ML04:AO568.DESC"
+font "helvetica-medium-r-18.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+autoHeight
+limitsFromDb
+nullColor index 18
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Byte)
+object ByteClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 900
+y 921
+w 63
+h 12
+controlPv "SIOC:SYS0:ML00:AO000"
+lineColor index 14
+onColor index 30
+offColor index 44
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 901
+y 907
+w 62
+h 12
+font "helvetica-medium-r-10.0"
+fgColor index 14
+bgColor index 4
+useDisplayBg
+value {
+  "watchdog ctr"
+}
+autoSize
+endObjectProperties
+
