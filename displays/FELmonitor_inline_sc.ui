@@ -94,6 +94,38 @@ bold</string>
      <string>Undulator K Values</string>
     </property>
    </widget>
+   <widget class="PyDMTemplateRepeater" name="PyDMTemplateRepeater">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>821</width>
+      <height>611</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string/>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:transparent
+</string>
+    </property>
+    <property name="layoutType" stdset="0">
+     <enum>PyDMTemplateRepeater::Vertical</enum>
+    </property>
+    <property name="layoutSpacing" stdset="0">
+     <number>0</number>
+    </property>
+    <property name="countShownInDesigner" stdset="0">
+     <number>35</number>
+    </property>
+    <property name="templateFilename" stdset="0">
+     <string>/u/cd/pnispero/guardian/guardian/displays/FELmonitor_template.py</string>
+    </property>
+    <property name="dataSource" stdset="0">
+     <string>/u/cd/pnispero/guardian/guardian/displays/FELmonitor_sc_parameters.json</string>
+    </property>
+   </widget>
    <widget class="PyDMDrawingRectangle" name="PyDMDrawingRectangle_2">
     <property name="geometry">
      <rect>
@@ -161,95 +193,41 @@ bold</string>
      <string>/u/cd/pnispero/guardian/guardian/displays/FELmonitor_template.py</string>
     </property>
     <property name="dataSource" stdset="0">
-     <string>/u/cd/pnispero/guardian/guardian/displays/FELmonitor_nc_und_parameters.json</string>
+     <string>/u/cd/pnispero/guardian/guardian/displays/FELmonitor_sc_und_parameters.json</string>
     </property>
    </widget>
-   <widget class="QScrollArea" name="scrollArea">
+   <widget class="QLabel" name="label_12">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>831</width>
-      <height>611</height>
+      <x>150</x>
+      <y>100</y>
+      <width>461</width>
+      <height>371</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="styleSheet">
-     <string notr="true">background-color:transparent;</string>
+     <string notr="true">background-color: transparent;</string>
     </property>
-    <property name="horizontalScrollBarPolicy">
-     <enum>Qt::ScrollBarAlwaysOff</enum>
+    <property name="text">
+     <string>* SC Under Construction * </string>
     </property>
-    <property name="sizeAdjustPolicy">
-     <enum>QAbstractScrollArea::AdjustToContents</enum>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
-    <property name="widgetResizable">
-     <bool>true</bool>
-    </property>
-    <widget class="QWidget" name="scrollAreaWidgetContents">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>829</width>
-       <height>609</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <property name="leftMargin">
-       <number>3</number>
-      </property>
-      <property name="topMargin">
-       <number>3</number>
-      </property>
-      <property name="rightMargin">
-       <number>3</number>
-      </property>
-      <property name="bottomMargin">
-       <number>3</number>
-      </property>
-      <item>
-       <widget class="PyDMTemplateRepeater" name="PyDMTemplateRepeater_3">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background:transparent
-</string>
-        </property>
-        <property name="layoutType" stdset="0">
-         <enum>PyDMTemplateRepeater::Vertical</enum>
-        </property>
-        <property name="layoutSpacing" stdset="0">
-         <number>0</number>
-        </property>
-        <property name="countShownInDesigner" stdset="0">
-         <number>30</number>
-        </property>
-        <property name="templateFilename" stdset="0">
-         <string>/u/cd/pnispero/guardian/guardian/displays/FELmonitor_template.py</string>
-        </property>
-        <property name="dataSource" stdset="0">
-         <string>/u/cd/pnispero/guardian/guardian/displays/FELmonitor_nc_parameters_full.json</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
    </widget>
    <zorder>PyDMDrawingRectangle_1</zorder>
+   <zorder>PyDMTemplateRepeater</zorder>
    <zorder>PyDMDrawingRectangle_2</zorder>
    <zorder>label_9</zorder>
    <zorder>PyDMTemplateRepeater_2</zorder>
-   <zorder>scrollArea</zorder>
+   <zorder>label_12</zorder>
   </widget>
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">

@@ -1,5 +1,0 @@
-Widget Type,PV,x,y,File,Macros
-Widget Type,PV,x,y,File,Macros
-Exit Button,,89,,,
-buttonLabel "Home Screen...":  Contains a command to launch a pydm screen, advised to change this to a PyDMRelatedDisplayButton
-Byte,SIOC:SYS0:ML00:AO00,90,92,,

@@ -1,4 +1,4 @@
-TEST:TEST:TESTING,test - Bunch charge setpoint changed since last FEL check
+TEST:TEST:TESTING,test sc
 FBCK:FB02:GN01:S1DES,Bunch charge setpoint changed since last FEL check
 FBCK:FB02:GN01:S1P1,Bunch charge feedback state outside stored range
 FBCK:BCI0:1:CHRGSP,MATLAB Bunch charge setpoint has been changed. Check FEL pulse energy

@@ -21,8 +21,8 @@ record(bo, "$(BASE):SNAPSHOT_TRG_EN") {
     field(DESC, "Snaphot trigger")
     field(DTYP, "asynUInt32Digital")
     field(SCAN, "Passive")
-    field(VAL, "0")
-    field(PINI, "YES")
+    # field(VAL, "0")
+    # field(PINI, "YES")
     field(ZNAM, "Not Triggered")
     field(ONAM, "Triggered")
     field(OUT, "@asynMask(GUARDIAN, 0, 1, 0)SNAPSHOT_TRG")
@@ -42,7 +42,6 @@ record(bi, "$(BASE):SNAPSHOT_TRG_RBV") {
 
 record(stringin, "$(BASE):SNAPSHOT_TS") {
   field(DESC, "time stamp")
-  field(PINI, "YES")
   field(DTYP, "Soft Timestamp")
   field(INP, "@%m/%d/%Y %H:%M:%S")
   info(autosaveFields, "VAL")

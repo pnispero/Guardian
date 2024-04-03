@@ -6,23 +6,198 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>596</width>
-    <height>19</height>
+    <width>825</width>
+    <height>23</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>825</width>
+    <height>23</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>826</width>
+    <height>24</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">background:transparent</string>
-  </property>
-  <widget class="PyDMLabel" name="PyDMLabel_2">
+  <widget class="QWidget" name="horizontalLayoutWidget_3">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>281</width>
+     <x>531</x>
+     <y>1</y>
+     <width>221</width>
      <height>21</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <property name="spacing">
+     <number>15</number>
+    </property>
+    <property name="rightMargin">
+     <number>20</number>
+    </property>
+    <item>
+     <widget class="PyDMLabel" name="lower_tol">
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="toolTip">
+       <string>${TOLERANCE}:TOL_RBV</string>
+      </property>
+      <property name="toolTipDuration">
+       <number>1</number>
+      </property>
+      <property name="whatsThis">
+       <string/>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background:transparent</string>
+      </property>
+      <property name="text">
+       <string>Lower Tol</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="precisionFromPV" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="alarmSensitiveContent" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="alarmSensitiveBorder" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="PyDMToolTip" stdset="0">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="PyDMLabel" name="upper_tol">
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="toolTip">
+       <string>${TOLERANCE}:TOL_RBV</string>
+      </property>
+      <property name="toolTipDuration">
+       <number>1</number>
+      </property>
+      <property name="whatsThis">
+       <string/>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background:transparent</string>
+      </property>
+      <property name="text">
+       <string>Upper Tol</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="precisionFromPV" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="alarmSensitiveContent" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="alarmSensitiveBorder" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="PyDMToolTip" stdset="0">
+       <string>${TOLERANCE}:TOL_RBV</string>
+      </property>
+      <property name="channel" stdset="0">
+       <string/>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="PyDMLabel" name="tolerance_pv_transparent">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>531</x>
+     <y>1</y>
+     <width>231</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <kerning>true</kerning>
+    </font>
+   </property>
+   <property name="toolTip">
+    <string>${TOLERANCE}:TOL_RBV</string>
+   </property>
+   <property name="toolTipDuration">
+    <number>1</number>
+   </property>
+   <property name="whatsThis">
+    <string/>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:transparent;
+color:transparent;</string>
+   </property>
+   <property name="text">
+    <string>123456789</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="precisionFromPV" stdset="0">
+    <bool>false</bool>
+   </property>
+   <property name="alarmSensitiveContent" stdset="0">
+    <bool>false</bool>
+   </property>
+   <property name="alarmSensitiveBorder" stdset="0">
+    <bool>false</bool>
+   </property>
+   <property name="PyDMToolTip" stdset="0">
+    <string/>
+   </property>
+   <property name="channel" stdset="0">
+    <string>${TOLERANCE}:TOL_RBV</string>
+   </property>
+  </widget>
+  <widget class="PyDMLabel" name="egu">
+   <property name="geometry">
+    <rect>
+     <x>751</x>
+     <y>1</y>
+     <width>71</width>
+     <height>20</height>
     </rect>
    </property>
    <property name="font">
@@ -33,6 +208,49 @@
    </property>
    <property name="styleSheet">
     <string notr="true">background:transparent</string>
+   </property>
+   <property name="text">
+    <string>${EGU}</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+   <property name="alarmSensitiveContent" stdset="0">
+    <bool>false</bool>
+   </property>
+   <property name="alarmSensitiveBorder" stdset="0">
+    <bool>false</bool>
+   </property>
+   <property name="channel" stdset="0">
+    <string>${DEVICE}:STORED.EGU</string>
+   </property>
+  </widget>
+  <widget class="PyDMLabel" name="description">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>11</x>
+     <y>1</y>
+     <width>281</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <kerning>true</kerning>
+    </font>
+   </property>
+   <property name="whatsThis">
+    <string/>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:transparent;</string>
    </property>
    <property name="text">
     <string>${DESCRIPTION}</string>
@@ -53,21 +271,21 @@
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>0</y>
-     <width>251</width>
+     <x>291</x>
+     <y>1</y>
+     <width>231</width>
      <height>21</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <property name="spacing">
-     <number>25</number>
+     <number>15</number>
     </property>
     <property name="rightMargin">
      <number>20</number>
     </property>
     <item>
-     <widget class="PyDMLabel" name="PyDMLabel_3">
+     <widget class="PyDMLabel" name="stored">
       <property name="font">
        <font>
         <pointsize>11</pointsize>
@@ -95,7 +313,7 @@
      </widget>
     </item>
     <item>
-     <widget class="PyDMLabel" name="PyDMLabel_4">
+     <widget class="PyDMLabel" name="current">
       <property name="font">
        <font>
         <pointsize>11</pointsize>
@@ -127,46 +345,91 @@
     </item>
    </layout>
   </widget>
-  <widget class="PyDMLabel" name="PyDMLabel_5">
+  <widget class="PyDMDrawingRectangle" name="border">
    <property name="geometry">
     <rect>
-     <x>510</x>
+     <x>0</x>
      <y>0</y>
-     <width>71</width>
-     <height>20</height>
+     <width>751</width>
+     <height>21</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <pointsize>11</pointsize>
-     <kerning>true</kerning>
-    </font>
+   <property name="toolTip">
+    <string/>
    </property>
    <property name="styleSheet">
-    <string notr="true">background:transparent</string>
+    <string notr="true">background:transparent;</string>
    </property>
-   <property name="text">
-    <string>${EGU}</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-   </property>
-   <property name="alarmSensitiveContent" stdset="0">
-    <bool>false</bool>
-   </property>
-   <property name="alarmSensitiveBorder" stdset="0">
-    <bool>false</bool>
-   </property>
-   <property name="channel" stdset="0">
-    <string>${DEVICE}:STORED.EGU</string>
+   <property name="brush" stdset="0">
+    <brush brushstyle="SolidPattern">
+     <color alpha="0">
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </brush>
    </property>
   </widget>
+  <widget class="PyDMRelatedDisplayButton" name="help_button_overlay">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>3</y>
+     <width>291</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string/>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>16</width>
+     <height>16</height>
+    </size>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="PyDMIconColor" stdset="0">
+    <color alpha="0">
+     <red>0</red>
+     <green>0</green>
+     <blue>0</blue>
+    </color>
+   </property>
+   <property name="filenames" stdset="0">
+    <stringlist>
+     <string>FELmonitor_help.py</string>
+    </stringlist>
+   </property>
+   <property name="openInNewWindow" stdset="0">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <zorder>border</zorder>
+  <zorder>horizontalLayoutWidget_3</zorder>
+  <zorder>tolerance_pv_transparent</zorder>
+  <zorder>egu</zorder>
+  <zorder>description</zorder>
+  <zorder>horizontalLayoutWidget</zorder>
+  <zorder>help_button_overlay</zorder>
  </widget>
  <customwidgets>
   <customwidget>
    <class>PyDMLabel</class>
    <extends>QLabel</extends>
    <header>pydm.widgets.label</header>
+  </customwidget>
+  <customwidget>
+   <class>PyDMDrawingRectangle</class>
+   <extends>QWidget</extends>
+   <header>pydm.widgets.drawing</header>
+  </customwidget>
+  <customwidget>
+   <class>PyDMRelatedDisplayButton</class>
+   <extends>QPushButton</extends>
+   <header>pydm.widgets.related_display_button</header>
   </customwidget>
  </customwidgets>
  <resources/>

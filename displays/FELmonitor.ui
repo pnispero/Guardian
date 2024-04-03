@@ -1,2031 +1,985 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
-<class>Form</class>
-<widget class="QWidget" name="Form">
-<property name="geometry">
-<rect>
-<x>0</x>
-<y>0</y>
-<width>974</width>
-<height>945</height>
-</rect>
-</property>
-<property name="minimumSize">
-<size>
-<width>974</width>
-<height>1010</height>
-</size>
-</property>
-<property name="windowTitle">
-<string>SXRSS Guardian Overview</string>
-</property>
-<layout class="QVBoxLayout" name="verticalLayout_3">
-<property name="spacing">
-<number>0</number>
-</property>
-<property name="leftMargin">
-<number>0</number>
-</property>
-<property name="topMargin">
-<number>0</number>
-</property>
-<property name="rightMargin">
-<number>0</number>
-</property>
-<property name="bottomMargin">
-<number>9</number>
-</property>
-<item>
-<widget class="QFrame" name="TitleBox">
-<property name="sizePolicy">
-<sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-<horstretch>0</horstretch>
-<verstretch>0</verstretch>
-</sizepolicy>
-</property>
-<property name="styleSheet">
-<string notr="true">background-color: rgb(230, 230, 230);</string>
-</property>
-<property name="frameShape">
-<enum>QFrame::NoFrame</enum>
-</property>
-<property name="frameShadow">
-<enum>QFrame::Raised</enum>
-</property>
-<layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,0,0,0,0">
-<item>
-<widget class="QLabel" name="LCLS">
-<property name="sizePolicy">
-<sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-<horstretch>0</horstretch>
-<verstretch>0</verstretch>
-</sizepolicy>
-</property>
-<property name="font">
-<font>
-<pointsize>22</pointsize>
-<weight>75</weight>
-<bold>true</bold>
-</font>
-</property>
-<property name="styleSheet">
-<string notr="true">color: rgb(140, 21, 21);
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1011</width>
+    <height>1137</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QFrame" name="ControlsFrame">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>60</y>
+     <width>1011</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QWidget" name="verticalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>10</y>
+      <width>193</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="PyDMPushButton" name="snapshot_button">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="toolTip">
+        <string/>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string>Save new FEL parameters</string>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>16</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="channel" stdset="0">
+        <string>${BASE}:SNAPSHOT_TRG_EN</string>
+       </property>
+       <property name="showConfirmDialog" stdset="0">
+        <bool>true</bool>
+       </property>
+       <property name="pressValue" stdset="0">
+        <string>1</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_11">
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Do not save unless you know the FEL power on the grating!</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <property name="indent">
+        <number>5</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>80</y>
+      <width>211</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <property name="leftMargin">
+      <number>5</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="label_13">
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Snapshot saved:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="PyDMLabel" name="PyDMLabel_66">
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>######</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+       <property name="precision" stdset="0">
+        <number>0</number>
+       </property>
+       <property name="showUnits" stdset="0">
+        <bool>false</bool>
+       </property>
+       <property name="precisionFromPV" stdset="0">
+        <bool>true</bool>
+       </property>
+       <property name="alarmSensitiveContent" stdset="0">
+        <bool>false</bool>
+       </property>
+       <property name="alarmSensitiveBorder" stdset="0">
+        <bool>false</bool>
+       </property>
+       <property name="PyDMToolTip" stdset="0">
+        <string/>
+       </property>
+       <property name="channel" stdset="0">
+        <string>${BASE}:SNAPSHOT_TS</string>
+       </property>
+       <property name="enableRichText" stdset="0">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>840</x>
+      <y>10</y>
+      <width>161</width>
+      <height>72</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_7">
+         <property name="spacing">
+          <number>20</number>
+         </property>
+         <item>
+          <widget class="PyDMPushButton" name="nc_mode_button">
+           <property name="toolTip">
+            <string/>
+           </property>
+           <property name="text">
+            <string>NC</string>
+           </property>
+           <property name="channel" stdset="0">
+            <string>${BASE}:GUARDIAN_MODE</string>
+           </property>
+           <property name="showConfirmDialog" stdset="0">
+            <bool>true</bool>
+           </property>
+           <property name="pressValue" stdset="0">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="PyDMPushButton" name="sc_mode_button">
+           <property name="toolTip">
+            <string/>
+           </property>
+           <property name="text">
+            <string>SC</string>
+           </property>
+           <property name="channel" stdset="0">
+            <string>${BASE}:GUARDIAN_MODE</string>
+           </property>
+           <property name="showConfirmDialog" stdset="0">
+            <bool>true</bool>
+           </property>
+           <property name="pressValue" stdset="0">
+            <string>1</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_10">
+         <property name="spacing">
+          <number>5</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_17">
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Mode:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="PyDMLabel" name="PyDMLabel_84">
+           <property name="font">
+            <font>
+             <pointsize>7</pointsize>
+            </font>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+           <property name="alarmSensitiveContent" stdset="0">
+            <bool>false</bool>
+           </property>
+           <property name="alarmSensitiveBorder" stdset="0">
+            <bool>false</bool>
+           </property>
+           <property name="channel" stdset="0">
+            <string>${BASE}:GUARDIAN_MODE</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="label_16">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>90</y>
+      <width>71</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Trip info:</string>
+    </property>
+   </widget>
+   <widget class="PyDMLabel" name="PyDMLabel_101">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>85</y>
+      <width>301</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgb(226, 226, 226);
+color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+    <property name="indent">
+     <number>2</number>
+    </property>
+    <property name="alarmSensitiveContent" stdset="0">
+     <bool>false</bool>
+    </property>
+    <property name="alarmSensitiveBorder" stdset="0">
+     <bool>false</bool>
+    </property>
+    <property name="channel" stdset="0">
+     <string>${BASE}:DISPLAY_MSG</string>
+    </property>
+    <property name="displayFormat" stdset="0">
+     <enum>PyDMLabel::String</enum>
+    </property>
+   </widget>
+   <widget class="QFrame" name="arm_frame">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>141</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QWidget" name="verticalLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>10</y>
+       <width>91</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Running?</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <property name="spacing">
+         <number>12</number>
+        </property>
+        <item>
+         <widget class="PyDMPushButton" name="PyDMPushButton_2">
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="text">
+           <string>Start</string>
+          </property>
+          <property name="channel" stdset="0">
+           <string>${BASE}:ARM</string>
+          </property>
+          <property name="showConfirmDialog" stdset="0">
+           <bool>true</bool>
+          </property>
+          <property name="pressValue" stdset="0">
+           <string>1</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="PyDMPushButton" name="PyDMPushButton">
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="text">
+           <string>Stop</string>
+          </property>
+          <property name="channel" stdset="0">
+           <string>${BASE}:ARM</string>
+          </property>
+          <property name="showConfirmDialog" stdset="0">
+           <bool>true</bool>
+          </property>
+          <property name="pressValue" stdset="0">
+           <string>0</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+    <widget class="PyDMByteIndicator" name="PyDMByteIndicator">
+     <property name="geometry">
+      <rect>
+       <x>5</x>
+       <y>10</y>
+       <width>25</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string/>
+     </property>
+     <property name="channel" stdset="0">
+      <string>${BASE}:ARM</string>
+     </property>
+     <property name="showLabels" stdset="0">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame_2">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>10</y>
+      <width>235</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="PyDMByteIndicator" name="PyDMByteIndicator_2">
+     <property name="geometry">
+      <rect>
+       <x>5</x>
+       <y>10</y>
+       <width>25</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string/>
+     </property>
+     <property name="channel" stdset="0">
+      <string>${BASE}:TRIPPED_RBV</string>
+     </property>
+     <property name="onColor" stdset="0">
+      <color>
+       <red>255</red>
+       <green>0</green>
+       <blue>0</blue>
+      </color>
+     </property>
+     <property name="offColor" stdset="0">
+      <color>
+       <red>0</red>
+       <green>255</green>
+       <blue>0</blue>
+      </color>
+     </property>
+     <property name="showLabels" stdset="0">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_5">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>10</y>
+       <width>191</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_6">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_8">
+        <property name="spacing">
+         <number>5</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="font">
+           <font>
+            <pointsize>9</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Guardian Trip?</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="PyDMLabel" name="PyDMLabel_89">
+          <property name="font">
+           <font>
+            <pointsize>7</pointsize>
+           </font>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="indent">
+           <number>5</number>
+          </property>
+          <property name="alarmSensitiveContent" stdset="0">
+           <bool>false</bool>
+          </property>
+          <property name="alarmSensitiveBorder" stdset="0">
+           <bool>false</bool>
+          </property>
+          <property name="channel" stdset="0">
+           <string>${BASE}:TRIPPED_RBV</string>
+          </property>
+          <property name="displayFormat" stdset="0">
+           <enum>PyDMLabel::String</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <property name="spacing">
+         <number>5</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="label_18">
+          <property name="font">
+           <font>
+            <pointsize>9</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>MPS Permit?</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="PyDMLabel" name="PyDMLabel_88">
+          <property name="font">
+           <font>
+            <pointsize>7</pointsize>
+           </font>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="indent">
+           <number>5</number>
+          </property>
+          <property name="alarmSensitiveContent" stdset="0">
+           <bool>false</bool>
+          </property>
+          <property name="alarmSensitiveBorder" stdset="0">
+           <bool>false</bool>
+          </property>
+          <property name="channel" stdset="0">
+           <string>${BASE}:MPS_PERMIT</string>
+          </property>
+          <property name="displayFormat" stdset="0">
+           <enum>PyDMLabel::String</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="arm_frame_2">
+    <property name="geometry">
+     <rect>
+      <x>615</x>
+      <y>10</y>
+      <width>215</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="PyDMLabel" name="PyDMLabel_85">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>91</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+     <property name="alarmSensitiveContent" stdset="0">
+      <bool>false</bool>
+     </property>
+     <property name="alarmSensitiveBorder" stdset="0">
+      <bool>false</bool>
+     </property>
+     <property name="channel" stdset="0">
+      <string>SIOC:SYS0:ML01:AO861.DESC</string>
+     </property>
+    </widget>
+    <widget class="PyDMLabel" name="PyDMLabel_86">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>20</y>
+       <width>51</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>####</string>
+     </property>
+     <property name="wordWrap">
+      <bool>false</bool>
+     </property>
+     <property name="alarmSensitiveContent" stdset="0">
+      <bool>false</bool>
+     </property>
+     <property name="alarmSensitiveBorder" stdset="0">
+      <bool>false</bool>
+     </property>
+     <property name="channel" stdset="0">
+      <string>SIOC:SYS0:ML01:AO861</string>
+     </property>
+    </widget>
+    <widget class="PyDMLabel" name="PyDMLabel_87">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>20</y>
+       <width>31</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>##</string>
+     </property>
+     <property name="wordWrap">
+      <bool>false</bool>
+     </property>
+     <property name="alarmSensitiveContent" stdset="0">
+      <bool>false</bool>
+     </property>
+     <property name="alarmSensitiveBorder" stdset="0">
+      <bool>false</bool>
+     </property>
+     <property name="channel" stdset="0">
+      <string>SIOC:SYS0:ML01:AO861.EGU</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="TitleBox">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1016</width>
+     <height>54</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(230, 230, 230);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::NoFrame</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,0,0,0,0">
+    <property name="leftMargin">
+     <number>9</number>
+    </property>
+    <item>
+     <widget class="QLabel" name="LCLS">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>22</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(140, 21, 21);
 background-color: rgba(255, 255, 255, 0);</string>
-</property>
-<property name="text">
-<string>LCLS</string>
-</property>
-</widget>
-</item>
-<item>
-<widget class="QLabel" name="System">
-<property name="sizePolicy">
-<sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-<horstretch>0</horstretch>
-<verstretch>0</verstretch>
-</sizepolicy>
-</property>
-<property name="minimumSize">
-<size>
-<width>85</width>
-<height>0</height>
-</size>
-</property>
-<property name="font">
-<font>
-<pointsize>8</pointsize>
-<weight>50</weight>
-<bold>false</bold>
-</font>
-</property>
-<property name="styleSheet">
-<string notr="true">color: rgb(79, 79, 79);
+      </property>
+      <property name="text">
+       <string>LCLS</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="System">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>85</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(79, 79, 79);
 background-color: rgba(255, 255, 255, 0);</string>
-</property>
-<property name="text">
-<string>GLOBAL
-&lt;SUBSYSTEM&gt;</string>
-</property>
-</widget>
-</item>
-<item>
-<widget class="QLabel" name="Title">
-<property name="sizePolicy">
-<sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-<horstretch>0</horstretch>
-<verstretch>0</verstretch>
-</sizepolicy>
-</property>
-<property name="font">
-<font>
-<pointsize>18</pointsize>
-<weight>75</weight>
-<bold>true</bold>
-</font>
-</property>
-<property name="styleSheet">
-<string notr="true">background-color: rgba(120, 120, 120, 0);
+      </property>
+      <property name="text">
+       <string>GLOBAL
+MPS</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="Title">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(120, 120, 120, 0);
 color: rgb(55, 55, 55);</string>
-</property>
-<property name="text">
-<string>&lt;GLOBAL PAGE TITLE&gt;</string>
-</property>
-<property name="alignment">
-<set>Qt::AlignCenter</set>
-</property>
-</widget>
-</item>
-<item>
-<spacer name="horizontalSpacer_3">
-<property name="orientation">
-<enum>Qt::Horizontal</enum>
-</property>
-<property name="sizeType">
-<enum>QSizePolicy::Fixed</enum>
-</property>
-<property name="sizeHint" stdset="0">
-<size>
-<width>85</width>
-<height>20</height>
-</size>
-</property>
-</spacer>
-</item>
-<item>
-<layout class="QVBoxLayout" name="verticalLayout_7">
-<item>
-<widget class="PyDMLabel" name="Clock">
-<property name="sizePolicy">
-<sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-<horstretch>0</horstretch>
-<verstretch>0</verstretch>
-</sizepolicy>
-</property>
-<property name="minimumSize">
-<size>
-<width>80</width>
-<height>0</height>
-</size>
-</property>
-<property name="font">
-<font>
-<pointsize>8</pointsize>
-<italic>true</italic>
-</font>
-</property>
-<property name="toolTip">
-<string/>
-</property>
-<property name="whatsThis">
-<string/>
-</property>
-<property name="styleSheet">
-<string notr="true">color: rgb(79, 79, 79);
+      </property>
+      <property name="text">
+       <string>SXRSS Guardian</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <spacer name="horizontalSpacer_3">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Fixed</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>85</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_7">
+      <item>
+       <widget class="PyDMLabel" name="Clock">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>80</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>8</pointsize>
+          <italic>true</italic>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="whatsThis">
+         <string/>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(79, 79, 79);
 background-color: rgba(255, 255, 255, 0);</string>
-</property>
-<property name="text">
-<string>Clock</string>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-</property>
-<property name="precision" stdset="0">
-<number>0</number>
-</property>
-<property name="showUnits" stdset="0">
-<bool>false</bool>
-</property>
-<property name="precisionFromPV" stdset="0">
-<bool>true</bool>
-</property>
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>true</bool>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:AL00:TOD</string>
-</property>
-</widget>
-</item>
-<item>
-<widget class="PyDMLabel" name="Location">
-<property name="sizePolicy">
-<sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-<horstretch>0</horstretch>
-<verstretch>0</verstretch>
-</sizepolicy>
-</property>
-<property name="minimumSize">
-<size>
-<width>80</width>
-<height>0</height>
-</size>
-</property>
-<property name="font">
-<font>
-<pointsize>8</pointsize>
-<italic>true</italic>
-</font>
-</property>
-<property name="toolTip">
-<string/>
-</property>
-<property name="styleSheet">
-<string notr="true">color: rgb(79, 79, 79);
+        </property>
+        <property name="text">
+         <string>Clock</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+        <property name="precision" stdset="0">
+         <number>0</number>
+        </property>
+        <property name="showUnits" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="precisionFromPV" stdset="0">
+         <bool>true</bool>
+        </property>
+        <property name="alarmSensitiveContent" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="alarmSensitiveBorder" stdset="0">
+         <bool>true</bool>
+        </property>
+        <property name="channel" stdset="0">
+         <string>SIOC:SYS0:AL00:TOD</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="PyDMLabel" name="Location">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>80</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>8</pointsize>
+          <italic>true</italic>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(79, 79, 79);
 background-color: rgba(255, 255, 255, 0);</string>
-</property>
-<property name="text">
-<string>PROD/DEV</string>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-</property>
-<property name="precision" stdset="0">
-<number>0</number>
-</property>
-<property name="showUnits" stdset="0">
-<bool>false</bool>
-</property>
-<property name="precisionFromPV" stdset="0">
-<bool>true</bool>
-</property>
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>true</bool>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:AL00:MODE</string>
-</property>
-</widget>
-</item>
-</layout>
-</item>
-</layout>
-</widget>
-</item>
-<item>
-<widget class="QFrame" name="background">
-<property name="toolTip">
-<string/>
-</property>
-<property name="styleSheet">
-<string notr="true">QWidget #background {
-background-color: rgb(193, 193, 193);
-border-radius: 0px;
-}</string>
-</property>
-<widget class="PyDMDrawingRectangle" name="PyDMDrawingRectangle_1">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>3</x>
-<y>150</y>
-<width>797</width>
-<height>590</height>
-</rect>
-</property>
-<property name="penStyle" stdset="0">
-<enum>Qt::SolidLine</enum>
-</property>
-<property name="penColor" stdset="0"><color>
-<red>90</red>
-<green>90</green>
-<blue>90</blue>
-</color>
-</property>
-<property name="brush" stdset="0">
-<brush brushstyle="SolidPattern">
-<color alpha="255">
-<red>244</red>
-<green>218</green>
-<blue>168</blue>
-</color>
-</brush>
-</property>
-<property name="penWidth" stdset="0">
-<double>2</double>
-</property>
-</widget>
-<widget class="PyDMDrawingRectangle" name="PyDMDrawingRectangle_2">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>13</x>
-<y>270</y>
-<width>186</width>
-<height>147</height>
-</rect>
-</property>
-<property name="penStyle" stdset="0">
-<enum>Qt::SolidLine</enum>
-</property>
-<property name="penColor" stdset="0"><color>
-<red>0</red>
-<green>0</green>
-<blue>0</blue>
-</color>
-</property>
-<property name="brush" stdset="0">
-<brush brushstyle="NoBrush">
-<color alpha="255">
-<red>187</red>
-<green>187</green>
-<blue>187</blue>
-</color>
-</brush>
-</property>
-</widget>
-<widget class="PyDMDrawingRectangle" name="PyDMDrawingRectangle_3">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>5</x>
-<y>748</y>
-<width>797</width>
-<height>190</height>
-</rect>
-</property>
-<property name="penStyle" stdset="0">
-<enum>Qt::SolidLine</enum>
-</property>
-<property name="penColor" stdset="0"><color>
-<red>90</red>
-<green>90</green>
-<blue>90</blue>
-</color>
-</property>
-<property name="brush" stdset="0">
-<brush brushstyle="SolidPattern">
-<color alpha="255">
-<red>175</red>
-<green>217</green>
-<blue>248</blue>
-</color>
-</brush>
-</property>
-<property name="penWidth" stdset="0">
-<double>2</double>
-</property>
-</widget>
-<widget class="PyDMDrawingRectangle" name="PyDMDrawingRectangle_4">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>true</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>49</x>
-<y>365</y>
-<width>109</width>
-<height>40</height>
-</rect>
-</property>
-<property name="penStyle" stdset="0">
-<enum>Qt::SolidLine</enum>
-</property>
-<property name="penColor" stdset="0"><color>
-<red>244</red>
-<green>218</green>
-<blue>168</blue>
-</color>
-</property>
-<property name="brush" stdset="0">
-<brush brushstyle="SolidPattern">
-<color alpha="255">
-<red>224</red>
-<green>0</green>
-<blue>0</blue>
-</color>
-</brush>
-</property>
-<property name="rules" stdset="0">
-<string>[{&quot;name&quot;: &quot;visibility_from_edm&quot;, &quot;property&quot;: &quot;Visible&quot;, &quot;initial_value&quot;: &quot;True&quot;, &quot;expression&quot;: &quot;ch[0] &gt;=0.2 and ch[0] &lt; 361&quot;, &quot;channels&quot;: [{&quot;channel&quot;: &quot;SIOC:SYS0:ML01:AO945&quot;, &quot;trigger&quot;: true, &quot;use_enum&quot;: false}]}]</string>
-</property>
-</widget>
-<widget class="PyDMDrawingRectangle" name="PyDMDrawingRectangle_5">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>0</x>
-<y>0</y>
-<width>1008</width>
-<height>40</height>
-</rect>
-</property>
-<property name="penStyle" stdset="0">
-<enum>Qt::SolidLine</enum>
-</property>
-<property name="penColor" stdset="0"><color>
-<red>0</red>
-<green>0</green>
-<blue>0</blue>
-</color>
-</property>
-<property name="brush" stdset="0">
-<brush brushstyle="SolidPattern">
-<color alpha="255">
-<red>255</red>
-<green>0</green>
-<blue>0</blue>
-</color>
-</brush>
-</property>
-<property name="penWidth" stdset="0">
-<double>0</double>
-</property>
-<property name="rules" stdset="0">
-<string>[{&quot;name&quot;: &quot;visibility_from_edm&quot;, &quot;property&quot;: &quot;Visible&quot;, &quot;initial_value&quot;: &quot;True&quot;, &quot;expression&quot;: &quot;ch[0] &gt;=1 and ch[0] &lt; 100&quot;, &quot;channels&quot;: [{&quot;channel&quot;: &quot;SIOC:SYS0:ML00:AO466&quot;, &quot;trigger&quot;: true, &quot;use_enum&quot;: false}]}]</string>
-</property>
-</widget>
-<widget class="PyDMDrawingRectangle" name="PyDMDrawingRectangle_6">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>0</x>
-<y>0</y>
-<width>1004</width>
-<height>48</height>
-</rect>
-</property>
-<property name="penStyle" stdset="0">
-<enum>Qt::SolidLine</enum>
-</property>
-<property name="penColor" stdset="0"><color>
-<red>0</red>
-<green>0</green>
-<blue>0</blue>
-</color>
-</property>
-<property name="brush" stdset="0">
-<brush brushstyle="SolidPattern">
-<color alpha="255">
-<red>175</red>
-<green>217</green>
-<blue>248</blue>
-</color>
-</brush>
-</property>
-<property name="penWidth" stdset="0">
-<double>0</double>
-</property>
-<property name="rules" stdset="0">
-<string>[{&quot;name&quot;: &quot;visibility_from_edm&quot;, &quot;property&quot;: &quot;Visible&quot;, &quot;initial_value&quot;: &quot;True&quot;, &quot;expression&quot;: &quot;ch[0] &gt;=0 and ch[0] &lt; 1&quot;, &quot;channels&quot;: [{&quot;channel&quot;: &quot;SIOC:SYS0:ML00:AO466&quot;, &quot;trigger&quot;: true, &quot;use_enum&quot;: false}]}]</string>
-</property>
-</widget>
-<widget class="QLabel" name="label_1">
-<property name="geometry">
-<rect>
-<x>16</x>
-<y>4</y>
-<width>450</width>
-<height>40</height>
-</rect>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="text">
-<string>SXRSS Guardian Protection: 
-FEL monitor</string>
-</property>
-</widget>
-<widget class="PyDMShellCommand" name="PyDMShellCommand_1">
-<property name="geometry">
-<rect>
-<x>780</x>
-<y>9</y>
-<width>96</width>
-<height>24</height>
-</rect>
-</property>
-<property name="text">
-<string>Home Screen</string>
-</property>
-<property name="commands" stdset="0">
-<stringlist>
-<string>pydm_lclshome &amp;</string>
-</stringlist>
-</property>
-</widget>
-<widget class="QLabel" name="label_2">
-<property name="geometry">
-<rect>
-<x>816</x>
-<y>108</y>
-<width>146</width>
-<height>32</height>
-</rect>
-</property>
-<property name="font">
-<font>
-<pointsize>9</pointsize>
-</font>
-</property>
-<property name="text">
-<string>If broken, call Tonee at
-415 823 5138</string>
-</property>
-</widget>
-<widget class="QLabel" name="label_3">
-<property name="geometry">
-<rect>
-<x>602</x>
-<y>1047</y>
-<width>158</width>
-<height>21</height>
-</rect>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="text">
-<string>Watchdog Counter</string>
-</property>
-</widget>
-<widget class="PyDMDrawingEllipse" name="PyDMDrawingEllipse_1">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>true</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>4</x>
-<y>52</y>
-<width>28</width>
-<height>28</height>
-</rect>
-</property>
-<property name="penStyle" stdset="0">
-<enum>Qt::SolidLine</enum>
-</property>
-<property name="penColor" stdset="0"><color>
-<red>255</red>
-<green>0</green>
-<blue>0</blue>
-</color>
-</property>
-<property name="brush" stdset="0">
-<brush brushstyle="SolidPattern">
-<color alpha="255">
-<red>255</red>
-<green>0</green>
-<blue>0</blue>
-</color>
-</brush>
-</property>
-<property name="rules" stdset="0">
-<string>[{&quot;name&quot;: &quot;visibility_from_edm&quot;, &quot;property&quot;: &quot;Visible&quot;, &quot;initial_value&quot;: &quot;True&quot;, &quot;expression&quot;: &quot;ch[0] &gt;=1 and ch[0] &lt; 100&quot;, &quot;channels&quot;: [{&quot;channel&quot;: &quot;SIOC:SYS0:ML00:AO466&quot;, &quot;trigger&quot;: true, &quot;use_enum&quot;: false}]}]</string>
-</property>
-</widget>
-<widget class="PyDMDrawingEllipse" name="PyDMDrawingEllipse_2">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>true</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>true</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>4</x>
-<y>52</y>
-<width>28</width>
-<height>28</height>
-</rect>
-</property>
-<property name="penStyle" stdset="0">
-<enum>Qt::SolidLine</enum>
-</property>
-<property name="penColor" stdset="0"><color>
-<red>0</red>
-<green>255</green>
-<blue>0</blue>
-</color>
-</property>
-<property name="brush" stdset="0">
-<brush brushstyle="SolidPattern">
-<color alpha="255">
-<red>0</red>
-<green>255</green>
-<blue>0</blue>
-</color>
-</brush>
-</property>
-<property name="channel" stdset="0">
-<string>ALRM:SYS0:FEL_PLS_EM:ALHBERR</string>
-</property>
-</widget>
-<widget class="QLabel" name="label_4">
-<property name="geometry">
-<rect>
-<x>526</x>
-<y>122</y>
-<width>84</width>
-<height>16</height>
-</rect>
-</property>
-<property name="font">
-<font>
-<pointsize>9</pointsize>
-</font>
-</property>
-<property name="text">
-<string>Stored Value</string>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_1">
-<property name="geometry">
-<rect>
-<x>14</x>
-<y>1075</y>
-<width>896</width>
-<height>16</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML00:CA898</string>
-</property>
-<property name="font">
-<font>
-<pointsize>9</pointsize>
-</font>
-</property>
-</widget>
-<widget class="QLabel" name="label_5">
-<property name="geometry">
-<rect>
-<x>6</x>
-<y>1048</y>
-<width>100</width>
-<height>21</height>
-</rect>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="text">
-<string>Error String:</string>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_1">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>766</x>
-<y>1047</y>
-<width>144</width>
-<height>16</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML00:AO000</string>
-</property>
-<property name="font">
-<font>
-<pointsize>9</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="QLabel" name="label_6">
-<property name="geometry">
-<rect>
-<x>625</x>
-<y>122</y>
-<width>92</width>
-<height>16</height>
-</rect>
-</property>
-<property name="font">
-<font>
-<pointsize>9</pointsize>
-</font>
-</property>
-<property name="text">
-<string>Present Value</string>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_2">
-<property name="geometry">
-<rect>
-<x>942</x>
-<y>51</y>
-<width>28</width>
-<height>16</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO503.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>9</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_3">
-<property name="geometry">
-<rect>
-<x>890</x>
-<y>52</y>
-<width>55</width>
-<height>16</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO503</string>
-</property>
-<property name="font">
-<font>
-<pointsize>9</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_4">
-<property name="geometry">
-<rect>
-<x>771</x>
-<y>52</y>
-<width>113</width>
-<height>14</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO503.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>7</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="QLabel" name="label_7">
-<property name="geometry">
-<rect>
-<x>14</x>
-<y>155</y>
-<width>157</width>
-<height>54</height>
-</rect>
-</property>
-<property name="font">
-<font>
-<pointsize>19</pointsize>
-</font>
-</property>
-<property name="text">
-<string>Electron beam
-parameters</string>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_2">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>241</x>
-<y>157</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO506.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_3">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>531</x>
-<y>157</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO506</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_4">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>613</x>
-<y>157</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>FBCK:BCI0:1:CHRGSP</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_5">
-<property name="geometry">
-<rect>
-<x>682</x>
-<y>157</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO506.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="QLabel" name="label_8">
-<property name="geometry">
-<rect>
-<x>36</x>
-<y>92</y>
-<width>91</width>
-<height>16</height>
-</rect>
-</property>
-<property name="font">
-<font>
-<pointsize>9</pointsize>
-</font>
-</property>
-<property name="text">
-<string>Guardian trip?</string>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_5">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>136</x>
-<y>91</y>
-<width>24</width>
-<height>16</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO750</string>
-</property>
-<property name="font">
-<font>
-<pointsize>9</pointsize>
-</font>
-</property>
-</widget>
-<widget class="PyDMShellCommand" name="PyDMShellCommand_2">
-<property name="geometry">
-<rect>
-<x>364</x>
-<y>28</y>
-<width>225</width>
-<height>40</height>
-</rect>
-</property>
-<property name="text">
-<string>Save new FEL parameters</string>
-</property>
-<property name="commands" stdset="0">
-<stringlist>
-<string>caput SIOC:SYS0:ML04:AO501 1</string>
-</stringlist>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_6">
-<property name="geometry">
-<rect>
-<x>682</x>
-<y>197</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO508.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_7">
-<property name="geometry">
-<rect>
-<x>682</x>
-<y>178</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO507.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_6">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>613</x>
-<y>197</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>FBCK:FB04:LG01:S2DES</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_7">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>613</x>
-<y>178</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>FBCK:BCI0:1:CHRG_S</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_8">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>531</x>
-<y>197</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO508</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_9">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>531</x>
-<y>178</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO507</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_10">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>241</x>
-<y>178</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO507.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_11">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>241</x>
-<y>197</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO508.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_12">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>241</x>
-<y>217</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO509.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_13">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>531</x>
-<y>217</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO509</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_14">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>613</x>
-<y>217</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>FBCK:FB04:LG01:S2P2_S</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_8">
-<property name="geometry">
-<rect>
-<x>681</x>
-<y>217</y>
-<width>76</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO509.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_15">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>242</x>
-<y>236</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO510.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_16">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>242</x>
-<y>257</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO511.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_17">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>532</x>
-<y>236</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO510</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_18">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>532</x>
-<y>257</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO511</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_19">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>614</x>
-<y>236</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>FBCK:FB04:LG01:BC1VERNIER_SXR</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_20">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>614</x>
-<y>256</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>FBCK:FB04:LG01:S3DES</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_9">
-<property name="geometry">
-<rect>
-<x>682</x>
-<y>235</y>
-<width>76</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO510.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_10">
-<property name="geometry">
-<rect>
-<x>682</x>
-<y>256</y>
-<width>76</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO511.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMDrawingEllipse" name="PyDMDrawingEllipse_3">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>1176</x>
-<y>732</y>
-<width>16</width>
-<height>15</height>
-</rect>
-</property>
-<property name="penStyle" stdset="0">
-<enum>Qt::SolidLine</enum>
-</property>
-<property name="penColor" stdset="0"><color>
-<red>0</red>
-<green>0</green>
-<blue>0</blue>
-</color>
-</property>
-<property name="brush" stdset="0">
-<brush brushstyle="SolidPattern">
-<color alpha="255">
-<red>255</red>
-<green>0</green>
-<blue>0</blue>
-</color>
-</brush>
-</property>
-<property name="rules" stdset="0">
-<string>[{&quot;name&quot;: &quot;visibility_from_edm&quot;, &quot;property&quot;: &quot;Visible&quot;, &quot;initial_value&quot;: &quot;True&quot;, &quot;expression&quot;: &quot;ch[0] &gt;=1 and ch[0] &lt; 2&quot;, &quot;channels&quot;: [{&quot;channel&quot;: &quot;SIOC:SYS0:ML01:AO196&quot;, &quot;trigger&quot;: true, &quot;use_enum&quot;: false}]}]</string>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_21">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>242</x>
-<y>277</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO512.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_22">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>242</x>
-<y>298</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO513.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_23">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>242</x>
-<y>319</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO514.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_24">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>242</x>
-<y>340</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO515.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_25">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>532</x>
-<y>278</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO512</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_26">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>532</x>
-<y>298</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO513</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_27">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>532</x>
-<y>340</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO515</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_28">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>532</x>
-<y>361</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO516</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_29">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>614</x>
-<y>297</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>BLEN:LI21:265:AIMAXCUS1H</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_30">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>614</x>
-<y>318</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>FBCK:FB04:LG01:BC2VERNIER_SXR</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_31">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>614</x>
-<y>338</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>ACCL:LI21:1:L1S_PDES</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_32">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>614</x>
-<y>379</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO401</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_11">
-<property name="geometry">
-<rect>
-<x>682</x>
-<y>276</y>
-<width>76</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO512.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_12">
-<property name="geometry">
-<rect>
-<x>682</x>
-<y>297</y>
-<width>76</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO513.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_13">
-<property name="geometry">
-<rect>
-<x>682</x>
-<y>318</y>
-<width>76</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO514.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_14">
-<property name="geometry">
-<rect>
-<x>682</x>
-<y>339</y>
-<width>76</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO515.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="QLabel" name="label_9">
-<property name="geometry">
-<rect>
-<x>40</x>
-<y>60</y>
-<width>114</width>
-<height>16</height>
-</rect>
-</property>
-<property name="font">
-<font>
-<pointsize>9</pointsize>
-</font>
-</property>
-<property name="text">
-<string>Process running?</string>
-</property>
-</widget>
-<widget class="PyDMDrawingEllipse" name="PyDMDrawingEllipse_4">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>true</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>true</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>4</x>
-<y>84</y>
-<width>28</width>
-<height>28</height>
-</rect>
-</property>
-<property name="penStyle" stdset="0">
-<enum>Qt::SolidLine</enum>
-</property>
-<property name="penColor" stdset="0"><color>
-<red>0</red>
-<green>255</green>
-<blue>0</blue>
-</color>
-</property>
-<property name="brush" stdset="0">
-<brush brushstyle="SolidPattern">
-<color alpha="255">
-<red>0</red>
-<green>255</green>
-<blue>0</blue>
-</color>
-</brush>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO750</string>
-</property>
-</widget>
-<widget class="QLabel" name="label_10">
-<property name="geometry">
-<rect>
-<x>807</x>
-<y>147</y>
-<width>144</width>
-<height>308</height>
-</rect>
-</property>
-<property name="font">
-<font>
-<pointsize>7</pointsize>
-</font>
-</property>
-<property name="text">
-<string>    
+        </property>
+        <property name="text">
+         <string>PROD/DEV</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+        <property name="precision" stdset="0">
+         <number>0</number>
+        </property>
+        <property name="showUnits" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="precisionFromPV" stdset="0">
+         <bool>true</bool>
+        </property>
+        <property name="alarmSensitiveContent" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="alarmSensitiveBorder" stdset="0">
+         <bool>true</bool>
+        </property>
+        <property name="channel" stdset="0">
+         <string>SIOC:SYS0:AL00:MODE</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QFrame" name="other_information">
+   <property name="geometry">
+    <rect>
+     <x>849</x>
+     <y>190</y>
+     <width>161</width>
+     <height>671</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>144</width>
+      <height>308</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>7</pointsize>
+     </font>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="text">
+     <string>    
  This process attempts to 
  limit the FEL pulse
  energy on the grating
  to &lt; 10 uJ.
 
- Once you&apos;ve tuned the
+ Once you've tuned the
  pre-chicane SASE
  to a safe desired 
  power, hit the Save new 
@@ -2041,3069 +995,260 @@ parameters</string>
  it detects a change that
  might increase the FEL.
  </string>
-</property>
-<property name="frameShape">
-<enum>QFrame::Box</enum>
-</property>
-</widget>
-<widget class="QLabel" name="label_11">
-<property name="geometry">
-<rect>
-<x>379</x>
-<y>69</y>
-<width>382</width>
-<height>16</height>
-</rect>
-</property>
-<property name="font">
-<font>
-<pointsize>9</pointsize>
-</font>
-</property>
-<property name="text">
-<string>Do not save unless you know the FEL power on the grating!</string>
-</property>
-</widget>
-<widget class="PyDMShellCommand" name="PyDMShellCommand_3">
-<property name="geometry">
-<rect>
-<x>172</x>
-<y>54</y>
-<width>40</width>
-<height>24</height>
-</rect>
-</property>
-<property name="text">
-<string>Start</string>
-</property>
-<property name="commands" stdset="0">
-<stringlist>
-<string>ssh physics@lcls-srv03 Matlab_startup FELpulseEnergyMonitor &amp; </string>
-</stringlist>
-</property>
-</widget>
-<widget class="PyDMShellCommand" name="PyDMShellCommand_4">
-<property name="geometry">
-<rect>
-<x>236</x>
-<y>54</y>
-<width>40</width>
-<height>24</height>
-</rect>
-</property>
-<property name="text">
-<string>Stop</string>
-</property>
-<property name="commands" stdset="0">
-<stringlist>
-<string>ssh physics@lcls-srv03 Matlab_stop FELpulseEnergyMonitor &amp; </string>
-</stringlist>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_15">
-<property name="geometry">
-<rect>
-<x>719</x>
-<y>784</y>
-<width>76</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO533.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_16">
-<property name="geometry">
-<rect>
-<x>682</x>
-<y>443</y>
-<width>76</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO520.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_17">
-<property name="geometry">
-<rect>
-<x>682</x>
-<y>380</y>
-<width>76</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO517.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_18">
-<property name="geometry">
-<rect>
-<x>682</x>
-<y>359</y>
-<width>76</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO516.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_33">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>614</x>
-<y>402</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>BLEN:LI24:886:BIMAXCUS1H</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_34">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>614</x>
-<y>423</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>FBCK:FB04:LG01:CHIRPDES</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_35">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>614</x>
-<y>544</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>WPLT:LR20:230:LHWP_ANGLE</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_36">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>532</x>
-<y>464</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO521</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_37">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>532</x>
-<y>402</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO518</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_38">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>532</x>
-<y>382</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO517</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_39">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>242</x>
-<y>360</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO516.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_40">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>242</x>
-<y>381</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO517.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_41">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>242</x>
-<y>443</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO520.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_42">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>241</x>
-<y>607</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO528.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_43">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>241</x>
-<y>627</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO529.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_44">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>241</x>
-<y>647</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO530.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_45">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>241</x>
-<y>667</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO531.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_46">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>240</x>
-<y>687</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO532.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_47">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>231</x>
-<y>755</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO533.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_48">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>231</x>
-<y>775</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO534.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_49">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>222</x>
-<y>1007</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML01:AO988.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_50">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>532</x>
-<y>606</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO528</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_51">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>532</x>
-<y>626</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO529</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_52">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>532</x>
-<y>646</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO530</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_53">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>532</x>
-<y>666</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO531</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_54">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>532</x>
-<y>686</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO532</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_55">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>549</x>
-<y>754</y>
-<width>53</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO533</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_56">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>549</x>
-<y>774</y>
-<width>53</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO534</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_57">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>540</x>
-<y>1006</y>
-<width>53</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML01:AO988</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_58">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>638</x>
-<y>855</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>USEG:UNDS:3150:KAct</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_59">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>628</x>
-<y>1006</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>USEG:UND1:850:KACT</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_60">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>638</x>
-<y>875</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>USEG:UNDS:3250:KAct</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_61">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>638</x>
-<y>835</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>USEG:UNDS:3050:KAct</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_62">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>638</x>
-<y>815</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>USEG:UNDS:2950:KAct</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_63">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>639</x>
-<y>795</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>USEG:UNDS:2850:KAct</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_64">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>638</x>
-<y>775</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>USEG:UNDS:2750:KAct</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_65">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>638</x>
-<y>755</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>USEG:UNDS:2650:KAct</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="QLabel" name="label_12">
-<property name="geometry">
-<rect>
-<x>12</x>
-<y>757</y>
-<width>115</width>
-<height>54</height>
-</rect>
-</property>
-<property name="font">
-<font>
-<pointsize>19</pointsize>
-</font>
-</property>
-<property name="text">
-<string>Undulator 
-K values</string>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_66">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>492</x>
-<y>92</y>
-<width>113</width>
-<height>16</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO559TS</string>
-</property>
-<property name="font">
-<font>
-<pointsize>9</pointsize>
-</font>
-</property>
-</widget>
-<widget class="QLabel" name="label_13">
-<property name="geometry">
-<rect>
-<x>376</x>
-<y>92</y>
-<width>108</width>
-<height>16</height>
-</rect>
-</property>
-<property name="font">
-<font>
-<pointsize>9</pointsize>
-</font>
-</property>
-<property name="text">
-<string>Snapshot saved:</string>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_67">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>242</x>
-<y>464</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO521.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_68">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>242</x>
-<y>485</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO522.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_69">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>242</x>
-<y>505</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO523.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_19">
-<property name="geometry">
-<rect>
-<x>682</x>
-<y>505</y>
-<width>76</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO523.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_20">
-<property name="geometry">
-<rect>
-<x>682</x>
-<y>485</y>
-<width>76</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO522.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_21">
-<property name="geometry">
-<rect>
-<x>682</x>
-<y>464</y>
-<width>76</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO521.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_70">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>614</x>
-<y>605</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>LHDL:LR20:260:TACT</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_71">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>614</x>
-<y>585</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>WPLT:LR20:220:LHWP_ANGLE</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_72">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>614</x>
-<y>564</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>LHDL:LR20:270:TACT</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_73">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>532</x>
-<y>319</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO514</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_74">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>532</x>
-<y>505</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO523</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_75">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>532</x>
-<y>485</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO522</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMShellCommand" name="PyDMShellCommand_5">
-<property name="geometry">
-<rect>
-<x>16</x>
-<y>488</y>
-<width>180</width>
-<height>24</height>
-</rect>
-</property>
-<property name="text">
-<string>SXRSS Guardian StripTools</string>
-</property>
-<property name="titles" stdset="0">
-<stringlist>
-<string>e- beam parameters StripTool</string>
-<string>UND K values StripTool</string>
-<string>CQ/match quads StripTool 1</string>
-<string>CQ/match quads StripTool 2</string>
-</stringlist>
-</property>
-<property name="commands" stdset="0">
-<stringlist>
-<string>bash $EDM/misc/SXRSSstp.bash</string>
-<string>bash $EDM/misc/sxrssUNDstp.bash</string>
-<string>bash $EDM/misc/sxrssCQ1stp.bash</string>
-<string>bash $EDM/misc/sxrssCQ2stp.bash</string>
-</stringlist>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_22">
-<property name="geometry">
-<rect>
-<x>67</x>
-<y>373</y>
-<width>74</width>
-<height>16</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO715</string>
-</property>
-<property name="font">
-<font>
-<pointsize>9</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignCenter|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="QLabel" name="label_14">
-<property name="geometry">
-<rect>
-<x>23</x>
-<y>272</y>
-<width>171</width>
-<height>98</height>
-</rect>
-</property>
-<property name="font">
-<font>
-<pointsize>7</pointsize>
-</font>
-</property>
-<property name="text">
-<string> Laser Heater Waveplate
- Angle tolerance window:
- widen ONLY while scanning
- over a range that has been
- demonstrated to be safe.
- Restore to 0.1 deg when done.</string>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_23">
-<property name="geometry">
-<rect>
-<x>682</x>
-<y>423</y>
-<width>76</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO519.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_24">
-<property name="geometry">
-<rect>
-<x>682</x>
-<y>402</y>
-<width>76</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO518.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_76">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>614</x>
-<y>525</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>BEND:DMPS:400:BACT</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_77">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>614</x>
-<y>505</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>BEND:DMPS:400:BDES</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_78">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>532</x>
-<y>443</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO520</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_79">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>532</x>
-<y>423</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO519</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_80">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>242</x>
-<y>423</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO519.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_81">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>242</x>
-<y>402</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO518.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMShellCommand" name="PyDMShellCommand_6">
-<property name="geometry">
-<rect>
-<x>680</x>
-<y>9</y>
-<width>80</width>
-<height>24</height>
-</rect>
-</property>
-<property name="text">
-<string>Help (wiki)</string>
-</property>
-<property name="commands" stdset="0">
-<stringlist>
-<string>firefox http://ad-ops.slac.stanford.edu/wiki/index.php/SXRSS_Guardian</string>
-</stringlist>
-</property>
-</widget>
-<widget class="QLabel" name="label_15">
-<property name="geometry">
-<rect>
-<x>170</x>
-<y>92</y>
-<width>83</width>
-<height>16</height>
-</rect>
-</property>
-<property name="font">
-<font>
-<pointsize>9</pointsize>
-</font>
-</property>
-<property name="text">
-<string>MPS Permit?</string>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_82">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>261</x>
-<y>91</y>
-<width>46</width>
-<height>14</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>MPS:UNDS:1:SXRSS_GUARDIAN_OK</string>
-</property>
-<property name="font">
-<font>
-<pointsize>7</pointsize>
-</font>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_25">
-<property name="geometry">
-<rect>
-<x>682</x>
-<y>525</y>
-<width>76</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO524.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_83">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>614</x>
-<y>626</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>LASR:IN20:475:PWR</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_84">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>532</x>
-<y>546</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO525</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_85">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>242</x>
-<y>525</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO524.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_86">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>242</x>
-<y>545</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO525.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_87">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>242</x>
-<y>566</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO526.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_88">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>242</x>
-<y>586</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO527.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_26">
-<property name="geometry">
-<rect>
-<x>682</x>
-<y>585</y>
-<width>76</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO527.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_27">
-<property name="geometry">
-<rect>
-<x>682</x>
-<y>565</y>
-<width>76</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO526.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_28">
-<property name="geometry">
-<rect>
-<x>682</x>
-<y>544</y>
-<width>76</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO525.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_89">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>614</x>
-<y>687</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>FOIL:LI24:804:MOTR.RBV</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_90">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>614</x>
-<y>667</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>COLL:LI21:235:LVPOS</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_91">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>614</x>
-<y>646</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>COLL:LI21:236:LVPOS</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_92">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>532</x>
-<y>586</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO527</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_93">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>532</x>
-<y>566</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO526</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_94">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>532</x>
-<y>525</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO524</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_95">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>231</x>
-<y>795</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO535.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_96">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>231</x>
-<y>815</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO536.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_97">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>549</x>
-<y>794</y>
-<width>53</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO535</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_98">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>549</x>
-<y>814</y>
-<width>53</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO536</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_99">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>637</x>
-<y>894</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>USEG:UNDS:3350:KAct</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_100">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>637</x>
-<y>914</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>USEG:UNDS:3450:KAct</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_101">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>66</x>
-<y>119</y>
-<width>440</width>
-<height>14</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML00:CA898</string>
-</property>
-<property name="font">
-<font>
-<pointsize>7</pointsize>
-</font>
-</property>
-</widget>
-<widget class="QLabel" name="label_16">
-<property name="geometry">
-<rect>
-<x>8</x>
-<y>118</y>
-<width>54</width>
-<height>16</height>
-</rect>
-</property>
-<property name="font">
-<font>
-<pointsize>9</pointsize>
-</font>
-</property>
-<property name="text">
-<string>Trip info:</string>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_102">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>231</x>
-<y>835</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO537.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_103">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>231</x>
-<y>855</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO538.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_104">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>549</x>
-<y>834</y>
-<width>53</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO537</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_105">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>549</x>
-<y>854</y>
-<width>53</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO538</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_106">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>231</x>
-<y>875</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO539.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_107">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>231</x>
-<y>895</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO540.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_108">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>549</x>
-<y>874</y>
-<width>53</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO539</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_109">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>549</x>
-<y>894</y>
-<width>53</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO540</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_110">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>231</x>
-<y>915</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO541.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_111">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>549</x>
-<y>914</y>
-<width>53</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO541</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_29">
-<property name="geometry">
-<rect>
-<x>681</x>
-<y>604</y>
-<width>76</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO528.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_30">
-<property name="geometry">
-<rect>
-<x>681</x>
-<y>623</y>
-<width>76</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO529.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_31">
-<property name="geometry">
-<rect>
-<x>681</x>
-<y>685</y>
-<width>76</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO532.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_32">
-<property name="geometry">
-<rect>
-<x>681</x>
-<y>665</y>
-<width>76</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO531.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_33">
-<property name="geometry">
-<rect>
-<x>681</x>
-<y>644</y>
-<width>76</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO530.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_112">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>614</x>
-<y>277</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO403</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_113">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>614</x>
-<y>359</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>FBCK:FB04:LG01:S5DES</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_114">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>614</x>
-<y>485</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>FBCK:FB04:LG01:DL2VERNIER_SXR</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_115">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>614</x>
-<y>443</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:CALC405</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_116">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>614</x>
-<y>464</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO406</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLineEdit" name="PyDMLineEdit_34">
-<property name="geometry">
-<rect>
-<x>681</x>
-<y>705</y>
-<width>76</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO568.EGU</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_117">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>614</x>
-<y>707</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>FOIL:LI24:807:MOTR.RBV</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_118">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>532</x>
-<y>706</y>
-<width>75</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO568</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="PyDMLabel" name="PyDMLabel_119">
-<property name="alarmSensitiveContent" stdset="0">
-<bool>false</bool>
-</property>
-<property name="alarmSensitiveBorder" stdset="0">
-<bool>false</bool>
-</property>
-<property name="geometry">
-<rect>
-<x>240</x>
-<y>707</y>
-<width>250</width>
-<height>21</height>
-</rect>
-</property>
-<property name="channel" stdset="0">
-<string>SIOC:SYS0:ML04:AO568.DESC</string>
-</property>
-<property name="font">
-<font>
-<pointsize>13</pointsize>
-</font>
-</property>
-<property name="alignment">
-<set>Qt::AlignRight|Qt::AlignVCenter</set>
-</property>
-</widget>
-<widget class="QLabel" name="label_17">
-<property name="geometry">
-<rect>
-<x>901</x>
-<y>907</y>
-<width>62</width>
-<height>12</height>
-</rect>
-</property>
-<property name="font">
-<font>
-<pointsize>5</pointsize>
-</font>
-</property>
-<property name="text">
-<string>watchdog ctr</string>
-</property>
-</widget>
-</widget>
-</item>
-</layout>
-</widget>
-<customwidgets>
-<customwidget>
-<class>PyDMLabel</class>
-<extends>QLabel</extends>
-<header>pydm.widgets.label</header>
-</customwidget>
-<customwidget>
-<class>PyDMLineEdit</class>
-<extends>QLineEdit</extends>
-<header>pydm.widgets.line_edit</header>
-</customwidget>
-<customwidget>
-<class>PyDMFrame</class>
-<extends>QFrame</extends>
-<header>pydm.widgets.frame</header>
-<container>1</container>
-</customwidget>
-<customwidget>
-<class>PyDMDrawingRectangle</class>
-<extends>QWidget</extends>
-<header>pydm.widgets.drawing</header>
-</customwidget>
-<customwidget>
-<class>PyDMDrawingEllipse</class>
-<extends>QWidget</extends>
-<header>pydm.widgets.drawing</header>
-</customwidget>
-<customwidget>
-<class>PyDMShellCommand</class>
-<extends>QPushButton</extends>
-<header>pydm.widgets.shell_command</header>
-</customwidget>
-<customwidget>
-<class>PyDMPushButton</class>
-<extends>QPushButton</extends>
-<header>pydm.widgets.pushbutton</header>
-</customwidget>
-<customwidget>
-<class>PyDMEnumComboBox</class>
-<extends>QComboBox</extends>
-<header>pydm.widgets.enum_combo_box</header>
-</customwidget>
-<customwidget>
-<class>PyDMRelatedDisplayButton</class>
-<extends>QPushButton</extends>
-<header>pydm.widgets.related_display_button</header>
-</customwidget>
-<customwidget>
-<class>PyDMEDMDisplayButton</class>
-<extends>PyDMRelatedDisplayButton</extends>
-<header>edmbutton.edm_button</header>
-<container>1</container>
-</customwidget>
-<customwidget>
-<class>PyDMDrawingLine</class>
-<extends>QWidget</extends>
-<header>pydm.widgets.drawing</header>
-</customwidget>
-<customwidget>
-<class>PyDMDrawingPolyline</class>
-<extends>QWidget</extends>
-<header>pydm.widgets.drawing</header>
-</customwidget>
-<customwidget>
-<class>PyDMEnumButton</class>
-<extends>QWidget</extends>
-<header>pydm.widgets.enum_button</header>
-</customwidget>
-<customwidget>
-<class>PyDMSlider</class>
-<extends>QFrame</extends>
-<header>pydm.widgets.slider</header>
-</customwidget>
-<customwidget>
-<class>PyDMEmbeddedDisplay</class>
-<extends>QFrame</extends>
-<header>pydm.widgets.embedded_display</header>
-</customwidget>
-</customwidgets>
-<resources/>
-<connections/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="PyDMShellCommand" name="PyDMShellCommand_6">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>590</y>
+      <width>101</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Help (wiki)</string>
+    </property>
+    <property name="commands" stdset="0">
+     <stringlist>
+      <string>firefox http://ad-ops.slac.stanford.edu/wiki/index.php/SXRSS_Guardian</string>
+     </stringlist>
+    </property>
+   </widget>
+   <widget class="PyDMShellCommand" name="PyDMShellCommand_5">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>630</y>
+      <width>141</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Guardian StripTools</string>
+    </property>
+    <property name="titles" stdset="0">
+     <stringlist>
+      <string>e- beam parameters StripTool</string>
+      <string>UND K values StripTool</string>
+      <string>CQ/match quads StripTool 1</string>
+      <string>CQ/match quads StripTool 2</string>
+     </stringlist>
+    </property>
+    <property name="commands" stdset="0">
+     <stringlist>
+      <string>bash $EDM/misc/SXRSSstp.bash</string>
+      <string>bash $EDM/misc/sxrssUNDstp.bash</string>
+      <string>bash $EDM/misc/sxrssCQ1stp.bash</string>
+      <string>bash $EDM/misc/sxrssCQ2stp.bash</string>
+     </stringlist>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>350</y>
+      <width>144</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(244, 218, 168)</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="PyDMLineEdit" name="PyDMLineEdit_22">
+     <property name="geometry">
+      <rect>
+       <x>43</x>
+       <y>160</y>
+       <width>61</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:rgb(203, 203, 203)</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="channel" stdset="0">
+      <string>SIOC:SYS0:GD01:AO715:TOL</string>
+     </property>
+     <property name="displayFormat" stdset="0">
+      <enum>PyDMLineEdit::Default</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_14">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>131</width>
+       <height>131</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:transparent</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt; Laser Heater Waveplate Angle tolerance window: widen ONLY while scanning over a range that has been demonstrated to be safe. Restore to 0.1 deg when done.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QScrollArea" name="scrollArea">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>190</y>
+     <width>841</width>
+     <height>931</height>
+    </rect>
+   </property>
+   <property name="widgetResizable">
+    <bool>true</bool>
+   </property>
+   <widget class="QWidget" name="scrollAreaWidgetContents_2">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>839</width>
+      <height>929</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>841</width>
+       <height>931</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="NC">
+      <attribute name="title">
+       <string>NC</string>
+      </attribute>
+      <widget class="PyDMEmbeddedDisplay" name="PyDMEmbeddedDisplay">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>831</width>
+         <height>891</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string/>
+       </property>
+       <property name="filename" stdset="0">
+        <string>FELmonitor_inline_nc.ui</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="SC">
+      <attribute name="title">
+       <string>SC</string>
+      </attribute>
+      <widget class="PyDMEmbeddedDisplay" name="PyDMEmbeddedDisplay_2">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>831</width>
+         <height>891</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string/>
+       </property>
+       <property name="filename" stdset="0">
+        <string>FELmonitor_inline_sc.ui</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <zorder>TitleBox</zorder>
+  <zorder>other_information</zorder>
+  <zorder>scrollArea</zorder>
+  <zorder>ControlsFrame</zorder>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PyDMLabel</class>
+   <extends>QLabel</extends>
+   <header>pydm.widgets.label</header>
+  </customwidget>
+  <customwidget>
+   <class>PyDMByteIndicator</class>
+   <extends>QWidget</extends>
+   <header>pydm.widgets.byte</header>
+  </customwidget>
+  <customwidget>
+   <class>PyDMEmbeddedDisplay</class>
+   <extends>QFrame</extends>
+   <header>pydm.widgets.embedded_display</header>
+  </customwidget>
+  <customwidget>
+   <class>PyDMLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>pydm.widgets.line_edit</header>
+  </customwidget>
+  <customwidget>
+   <class>PyDMPushButton</class>
+   <extends>QPushButton</extends>
+   <header>pydm.widgets.pushbutton</header>
+  </customwidget>
+  <customwidget>
+   <class>PyDMShellCommand</class>
+   <extends>QPushButton</extends>
+   <header>pydm.widgets.shell_command</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
 </ui>

@@ -418,17 +418,17 @@ void GuardianDriver::tripLogic() {
             }
             
             // 1) write to trip PV
-            setUIntDigitalParam(TrippedIndex, 1, 1); // original trip PV
+            setUIntDigitalParam(TrippedIndex, 1, 1); // guardian trip indicator
 
             // 2) write to MPS pv to turn off beam
             setUIntDigitalParam(MpsPermitIndex, 0, 1); // Tell MPS to turn off beam
             
-            // // 3) write to out message pv - only on initial trip
+            // 3) write to out message pv - only on initial trip
             setStringParam(DisplayMsgIndex, tripMsg);
+            setIntegerParam(tripIdIndex, deviceIndex); // Used for display
             #ifdef TEST
                 std::cout << "OFF BEAM\n";
                 std::cout << "Trip Msg: " << tripMsg << "\n";
-                setIntegerParam(tripIdIndex, deviceIndex);
             #endif
 
             callParamCallbacks();
@@ -444,17 +444,14 @@ void GuardianDriver::tripLogic() {
     }
 
     // 1) write to trip PV
-    setUIntDigitalParam(TrippedIndex, 0, 1); // original trip PV
+    setUIntDigitalParam(TrippedIndex, 0, 1); // guardian trip indicator
 
     // 2) write to MPS pv to leave as is
     setUIntDigitalParam(MpsPermitIndex, 1, 1); // Tell MPS not to worry
 
     // 3) write to out message pv - only on initial trip
     setStringParam(DisplayMsgIndex, tripMsg);
-
-    #ifdef TEST
-        setIntegerParam(tripIdIndex, -1);
-    #endif
+    setIntegerParam(tripIdIndex, -1); // Used for display
 
     callParamCallbacks();
 }
@@ -490,6 +487,12 @@ void GuardianDriver::initGuardian() {
     std::cout << "Initializing Guardian Please Wait...\n\n";
 
     setUIntDigitalParam(MpsPermitIndex, 1, 1); // Initialize mps permit to 1
+    // Set guardian trip to 1 then 0 (set to 1 first to trigger processing since default is 0)
+    // And writing to 0 when its already 0, won't process the record.
+    setUIntDigitalParam(TrippedIndex, 1, 1);
+    setUIntDigitalParam(TrippedIndex, 0, 1);
+    // Initialize trip id to -1
+    setIntegerParam(tripIdIndex, -1); // Used for display
     
     callParamCallbacks(); // Call this to write the values back into epics records
 

@@ -14,7 +14,6 @@ record(bi, "$(BASE):MPS_PERMIT") {
     field(SCAN, "I/O Intr")
     field(DTYP, "asynUInt32Digital")
     field(INP, "@asynMask(GUARDIAN, 0, 1, 0)MPS_PERMIT") 
-    # field(FLNK, ) since  may be unecessary considering cpp of the out record DOL
     # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
@@ -42,7 +41,7 @@ record(bo, "$(BASE):TRIPPED_EN") {
     field(SCAN, "Passive")
     field(VAL, "0")
     field(PINI, "YES")
-    field(ZNAM, "TRIP")
-    field(ONAM, "OK")
+    field(ZNAM, "OK")
+    field(ONAM, "TRIP")
     field(OUT, "@asynMask(GUARDIAN, 0, 1, 0)TRIPPED")
 }
