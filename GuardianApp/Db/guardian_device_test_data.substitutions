@@ -21,7 +21,7 @@
 file "guardian_sc_device_test_data.template"
 {
 pattern {   NAME                   ,      DESC  ,                   EGU  ,  PREC ,      MSG ,                                                                       LOGIC_TYPE ,  TOLERANCE_ID,    CONDITION_ID,   VAL,         ID     }
-        {   "TEST:TEST:TESTING", "bunch charge feedback setpoint", "nC", 3           , "test - Bunch charge setpoint changed since last FEL check" ,                          1 ,            1 ,              0 ,       0.25 ,        0    }            
+        {   "TEST:TEST:TESTING", "bunch charge feedback setpoint", "nC", 3           , "test - Bunch charge setpoint changed since last FEL check" ,                          1 ,            0 ,              0 ,       0 ,        0    }            
 }
 
 file "guardian_nc_device_test_data.template"
