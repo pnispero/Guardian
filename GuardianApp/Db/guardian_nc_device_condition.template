@@ -9,6 +9,7 @@
 #=====================================================================
 
 record(bo, "$(NAME):CONDITION") {
+    # _GUARD_CONDITION
     field(DESC, "$(DESC)")
     field(DTYP, "asynUInt32Digital")
     field(SCAN, "Passive")

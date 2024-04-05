@@ -6,6 +6,8 @@
 #=====================================================================
 
 record(bo, "$(BASE):GUARDIAN_MODE") {
+    # END PV Name: SIOC:MCC0:MP00:GUARD_MODE
+    # can do base with appended GUARD or not
     field(DESC, "Determines what devices to monitor")
     field(SCAN, "Passive")
     field(DTYP, "asynUInt32Digital")

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>836</width>
-    <height>892</height>
+    <height>872</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <x>0</x>
      <y>35</y>
      <width>831</width>
-     <height>855</height>
+     <height>831</height>
     </rect>
    </property>
    <property name="frameShape">
@@ -34,7 +34,7 @@
       <x>0</x>
       <y>-1</y>
       <width>831</width>
-      <height>611</height>
+      <height>590</height>
      </rect>
     </property>
     <property name="alarmSensitiveContent" stdset="0">
@@ -70,7 +70,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>610</y>
+      <y>590</y>
       <width>391</width>
       <height>31</height>
      </rect>
@@ -98,7 +98,7 @@ bold</string>
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>640</y>
+      <y>620</y>
       <width>831</width>
       <height>211</height>
      </rect>
@@ -136,7 +136,7 @@ bold</string>
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>640</y>
+      <y>620</y>
       <width>821</width>
       <height>211</height>
      </rect>
@@ -170,7 +170,7 @@ bold</string>
       <x>0</x>
       <y>0</y>
       <width>831</width>
-      <height>611</height>
+      <height>581</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -191,7 +191,7 @@ bold</string>
        <x>0</x>
        <y>0</y>
        <width>829</width>
-       <height>609</height>
+       <height>579</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">

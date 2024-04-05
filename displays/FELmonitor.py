@@ -16,8 +16,6 @@ class FELMonitorMain(Display):
         self.guardian_arm_pv = PyDMChannel(address=guardian_arm_name, value_slot=self.guardian_arm_val_change) 
         self.guardian_arm_pv.connect()
 
-        # self.ui.whats_this_mode_button.clicked.connect(self.button_state)
-
 
     def guardian_arm_val_change(self, new_val):
         self.guardian_arm_val = new_val
@@ -37,10 +35,6 @@ class FELMonitorMain(Display):
             self.ui.sc_mode_button.setEnabled(True)
             self.ui.sc_mode_button.setStyleSheet('''''')
 
-    # def button_state(self):
-    #     if self.whats_this_mode_button.isChecked():
-    #         print("button pressed")
-    #         self.enterWhatsThisMode()
 
     @staticmethod
     def ui_filename():

@@ -13,6 +13,7 @@
 # ex: FBCK:FB02:GN01:S1DES_CURRENT
 # This records purpose is to copy data from device data pvs, and push to ASYN PV
 record(ao, "$(NAME):CURRENT") { 
+    # _GUARD_ACT (actual)
     field(DESC, "$(DESC)")
     field(PINI, "YES")
     field(EGU, "$(EGU)")
@@ -21,22 +22,22 @@ record(ao, "$(NAME):CURRENT") {
 	field(OMSL, "closed_loop") 
     field(DOL, "$(NAME):TEST_RBV CPP")  # TODO: Temporarily set as test_rbv
     field(OUT, "@asyn(GUARDIAN, $(ID), 0)CURRENT_NC") 
-    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
 # ex: FBCK:FB02:GN01:S1DES_CURRENT_RBV
 record(ai, "$(NAME):CURRENT_RBV") {
+    # _GUARD_ACT_RBV
     field(DESC, "$(DESC)")    
     field(EGU, "$(EGU)")
     field(PREC, "$(PREC)")
     field(DTYP, "asynFloat64")
     field(SCAN, "I/O Intr")
     field(INP, "@asyn(GUARDIAN, $(ID), 0)CURRENT_NC")
-    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
 # ex: FBCK:FB02:GN01:S1DES_STORED
 record(ao, "$(NAME):STORED") {
+    # _GUARD_LATCHED
     field(DESC, "$(DESC)")
     field(PINI, "YES") # IMPORTANT
     field(EGU, "$(EGU)")
@@ -45,7 +46,6 @@ record(ao, "$(NAME):STORED") {
     # field(DOL, "$(BASE):SS_UPDATE CP") # TEMP
     field(DTYP, "asynFloat64")
     field(OUT, "@asyn(GUARDIAN, $(ID), 0)STORED_NC")
-    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
 record(ai, "$(NAME):STORED_RBV") {
@@ -56,12 +56,12 @@ record(ai, "$(NAME):STORED_RBV") {
     field(PREC, "$(PREC)")
     field(DTYP, "asynFloat64")
     field(INP, "@asyn(GUARDIAN, $(ID), 0)STORED_NC")
-    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
 # How about making a bo record for each device, with a DOL to the SS_UPDATE
 # and a FLNK to the device:STORED.PROC
 record(bo, "$(NAME):STORED_TRG") {
+    # _GUARD_TRG
     field(ZNAM, "Done")
     field(ONAM, "Update")
     field(OMSL, "closed_loop") 
@@ -72,41 +72,41 @@ record(bo, "$(NAME):STORED_TRG") {
 # Trip Message
 # # create asyn parameter for string in code (asynParamOctet?)
 record(waveform, "$(NAME):TRIP_MSG") {
+    # _GUARD_TRIP_MSG
     field(DESC, "Trip message for GUI")
     field(PINI, "YES")
     field(NELM, "100")
     field(FTVL, "CHAR")
     field(DTYP, "asynOctetWrite")
     field(INP, "@asyn(GUARDIAN, $(ID), 0)MSG_NC")
-    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
 # Trip logic type
 record(longout, "$(NAME):LOGIC_TYPE") {
+    # _GUARD_LOGIC_TYPE
     field(DESC, "Trip tolerance logic type")
     field(PINI, "YES")
     field(VAL, "$(LOGIC_TYPE)")
     field(DTYP, "asynInt32")
     field(OUT, "@asyn(GUARDIAN, $(ID), 0)LOGIC_TYPE_NC")
-    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
 # Tolerance control pv
 record(longout, "$(NAME):TOL_ID") {
+    # _GUARD_TOL_ID
     field(DESC, "Optional Tolerance pv id for logic")
     field(PINI, "YES")
     field(VAL, "$(TOLERANCE_ID)")
     field(DTYP, "asynInt32")
     field(OUT, "@asyn(GUARDIAN, $(ID), 0)TOLERANCE_ID_NC")
-    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
 # Optional Condition ID
 record(longout, "$(NAME):CONDITION_ID") {
+    # _GUARD_CONDITON_ID
     field(DESC, "Optional condition id for logic")
     field(PINI, "YES")
     field(VAL, "$(CONDITION_ID)")
     field(DTYP, "asynInt32")
     field(OUT, "@asyn(GUARDIAN, $(ID), 0)CONDITION_ID_NC")
-    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }

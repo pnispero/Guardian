@@ -44,7 +44,6 @@
 #define MONITOR_CYCLE_STRING "MONITOR_CYCLE_TIME"
 #define SNAPSHOT_TRIGGER_STRING "SNAPSHOT_TRG"
 #define DISPLAY_MSG_STRING "DISPLAY_MSG"
-#define GUARDIAN_TRIP_STRING "TRIPPED"
 #define MPS_PERMIT_STRING "MPS_PERMIT"
 #define HEARTBEAT_VALUE_STRING "HEARTBEAT"
 #define ARM_VALUE_STRING "ARM"
@@ -108,7 +107,6 @@ class GuardianDriver : public asynPortDriver {
     int MonitorCycleIndex;
     int SnapshotTriggerIndex;
     int DisplayMsgIndex;
-    int TrippedIndex;
     int MpsPermitIndex;
     int HeartbeatValueIndex;
     int ArmValueIndex;

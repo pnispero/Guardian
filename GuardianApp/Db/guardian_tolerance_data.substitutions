@@ -18,10 +18,12 @@ file "guardian_sc_tolerance_data.template"
 pattern {       NAME                   ,      DESC  ,                   EGU  ,  PREC ,        ID    }
         {    "TEST:TEST:TESTING"    ,"Default zero tolerance", "%", 1                     , 0    }
 }
-
+# TODO: PREFIX: SIOC:MCC0:MP00
+# EX: SIOC:MCC0:MP00:GUARD_TOL0
 file "guardian_nc_tolerance_data.template"
 {
 pattern {       NAME                   ,      DESC  ,                   EGU  ,  PREC ,        ID    }
+        
         {    "SIOC:SYS0:GD01:AO700"    ,"Default zero tolerance", "%", 1                     , 0    }
         {    "SIOC:SYS0:GD01:AO701"    ,"bunch charge feedback tolerance", "%", 1            , 1    }
         {    "SIOC:SYS0:GD01:AO702"    ,"L1S phase setpoint tolerance", "%", 1               , 2    }

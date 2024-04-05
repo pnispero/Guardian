@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1011</width>
-    <height>1137</height>
+    <width>1010</width>
+    <height>1093</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -470,19 +470,19 @@ color: rgb(0, 0, 0);</string>
       <string/>
      </property>
      <property name="channel" stdset="0">
-      <string>${BASE}:TRIPPED_RBV</string>
+      <string>${BASE}:MPS_PERMIT</string>
      </property>
      <property name="onColor" stdset="0">
       <color>
-       <red>255</red>
-       <green>0</green>
+       <red>0</red>
+       <green>255</green>
        <blue>0</blue>
       </color>
      </property>
      <property name="offColor" stdset="0">
       <color>
-       <red>0</red>
-       <green>255</green>
+       <red>255</red>
+       <green>0</green>
        <blue>0</blue>
       </color>
      </property>
@@ -537,7 +537,7 @@ color: rgb(0, 0, 0);</string>
            <bool>false</bool>
           </property>
           <property name="channel" stdset="0">
-           <string>${BASE}:TRIPPED_RBV</string>
+           <string>${BASE}:MPS_PERMIT</string>
           </property>
           <property name="displayFormat" stdset="0">
            <enum>PyDMLabel::String</enum>
@@ -583,7 +583,7 @@ color: rgb(0, 0, 0);</string>
            <bool>false</bool>
           </property>
           <property name="channel" stdset="0">
-           <string>${BASE}:MPS_PERMIT</string>
+           <string>MPS:UNDS:1:SXRSS_GUARDIAN_OK</string>
           </property>
           <property name="displayFormat" stdset="0">
            <enum>PyDMLabel::String</enum>
@@ -1124,7 +1124,7 @@ background-color: rgba(255, 255, 255, 0);</string>
      <x>0</x>
      <y>190</y>
      <width>841</width>
-     <height>931</height>
+     <height>901</height>
     </rect>
    </property>
    <property name="widgetResizable">
@@ -1139,7 +1139,7 @@ background-color: rgba(255, 255, 255, 0);</string>
       <x>0</x>
       <y>0</y>
       <width>839</width>
-      <height>929</height>
+      <height>899</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -1154,7 +1154,7 @@ background-color: rgba(255, 255, 255, 0);</string>
        <x>0</x>
        <y>0</y>
        <width>841</width>
-       <height>931</height>
+       <height>901</height>
       </rect>
      </property>
      <property name="font">
@@ -1177,7 +1177,7 @@ background-color: rgba(255, 255, 255, 0);</string>
          <x>0</x>
          <y>0</y>
          <width>831</width>
-         <height>891</height>
+         <height>872</height>
         </rect>
        </property>
        <property name="toolTip">

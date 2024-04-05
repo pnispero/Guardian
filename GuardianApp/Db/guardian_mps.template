@@ -8,13 +8,13 @@
 
 # trip pv input to mps
 record(bi, "$(BASE):MPS_PERMIT") { 
+    # 
     field(DESC, "SXRSS Guardian OK")
     field(ZNAM, "FAULT")
     field(ONAM, "OK")
     field(SCAN, "I/O Intr")
     field(DTYP, "asynUInt32Digital")
     field(INP, "@asynMask(GUARDIAN, 0, 1, 0)MPS_PERMIT") 
-    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
 record(bo, "$(BASE):MPS_PERMIT_OUT") { 
@@ -22,26 +22,4 @@ record(bo, "$(BASE):MPS_PERMIT_OUT") {
     field(OMSL, "closed_loop") 
     field(DOL, "$(BASE):MPS_PERMIT CPP")
     field(OUT, "MPS:UNDS:1:SXRSS_GUARDIAN_OK:TEST") # TODO: Temporarily set as test
-    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
-}
-
-record(bi, "$(BASE):TRIPPED_RBV") { 
-    field(DESC, "Guardian trip indicator")
-    field(ZNAM, "OK")
-    field(ONAM, "TRIP")
-    field(SCAN, "I/O Intr")
-    field(DTYP, "asynUInt32Digital")
-    field(INP, "@asynMask(GUARDIAN, 0, 1, 0)TRIPPED") 
-    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
-}
-
-record(bo, "$(BASE):TRIPPED_EN") {
-    field(DESC, "Guardian trip indicator")
-    field(DTYP, "asynUInt32Digital")
-    field(SCAN, "Passive")
-    field(VAL, "0")
-    field(PINI, "YES")
-    field(ZNAM, "OK")
-    field(ONAM, "TRIP")
-    field(OUT, "@asynMask(GUARDIAN, 0, 1, 0)TRIPPED")
 }

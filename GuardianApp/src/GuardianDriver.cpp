@@ -48,7 +48,6 @@ GuardianDriver::GuardianDriver(const char *portName) : asynPortDriver           
     createParam(MONITOR_CYCLE_STRING, asynParamFloat64, &MonitorCycleIndex);
     createParam(SNAPSHOT_TRIGGER_STRING, asynParamUInt32Digital, &SnapshotTriggerIndex);
     createParam(DISPLAY_MSG_STRING, asynParamOctet, &DisplayMsgIndex);
-    createParam(GUARDIAN_TRIP_STRING, asynParamUInt32Digital, &TrippedIndex);
     createParam(MPS_PERMIT_STRING, asynParamUInt32Digital, &MpsPermitIndex);
     createParam(HEARTBEAT_VALUE_STRING, asynParamInt32, &HeartbeatValueIndex);
     createParam(ARM_VALUE_STRING, asynParamUInt32Digital, &ArmValueIndex);
@@ -412,13 +411,10 @@ void GuardianDriver::tripLogic() {
             break; 
         }
         if (tripped) {
-            // 0) get msg
+            // 1) get msg
             if (tripMsg == "") { // If not special case (no tripMsg returned), get msg
                 getStringParam(deviceIndex, TripMsgIndex, tripMsg);
             }
-            
-            // 1) write to trip PV
-            setUIntDigitalParam(TrippedIndex, 1, 1); // guardian trip indicator
 
             // 2) write to MPS pv to turn off beam
             setUIntDigitalParam(MpsPermitIndex, 0, 1); // Tell MPS to turn off beam
@@ -438,13 +434,10 @@ void GuardianDriver::tripLogic() {
     }
 
     /* Not Tripped */ 
-    // 0) get msg
+    // 1) get msg
     if (tripMsg == "") { // If not special case (no tripMsg returned), set to no issues
         tripMsg = "No Issues";
     }
-
-    // 1) write to trip PV
-    setUIntDigitalParam(TrippedIndex, 0, 1); // guardian trip indicator
 
     // 2) write to MPS pv to leave as is
     setUIntDigitalParam(MpsPermitIndex, 1, 1); // Tell MPS not to worry
@@ -487,10 +480,6 @@ void GuardianDriver::initGuardian() {
     std::cout << "Initializing Guardian Please Wait...\n\n";
 
     setUIntDigitalParam(MpsPermitIndex, 1, 1); // Initialize mps permit to 1
-    // Set guardian trip to 1 then 0 (set to 1 first to trigger processing since default is 0)
-    // And writing to 0 when its already 0, won't process the record.
-    setUIntDigitalParam(TrippedIndex, 1, 1);
-    setUIntDigitalParam(TrippedIndex, 0, 1);
     // Initialize trip id to -1
     setIntegerParam(tripIdIndex, -1); // Used for display
     
@@ -505,7 +494,7 @@ void GuardianDriver::initGuardian() {
 void GuardianDriver::FELpulseEnergyMonitor(void)
 {
     pGDriver->initGuardian();
-    uint32_t snapshotTriggerVal, armVal=0, prevGuardianMode=2;
+    uint32_t snapshotTriggerVal, mpsPermitVal, armVal=0, prevGuardianMode=2;
     while (true) {
         // Cycle time, snapshots, and mode switching can only occur when guardian is 'unarmed'
         // once 'armed' then tripLogic applies every cycle
@@ -527,6 +516,16 @@ void GuardianDriver::FELpulseEnergyMonitor(void)
                 pGDriver->setDeviceIndexesBasedOffMode();
             }
             prevGuardianMode = guardianMode;
+            // TOOD:
+            // 1) Omit the guardian trip since we have the mps permit already
+            // 2) add in guardian doesnt trip the mps if its not running (and set the trippedID to -1)
+            getUIntDigitalParam(MpsPermitIndex, &mpsPermitVal, 1);
+            if (mpsPermitVal == 0) {
+                setUIntDigitalParam(MpsPermitIndex, 1, 1);
+                setIntegerParam(tripIdIndex, -1); // Used for display
+                callParamCallbacks();
+                usleep(3000); // sleep 3ms to give time for epics records to be written, adjust if needed
+            }
 
         }
         getUIntDigitalParam(ArmValueIndex, &armVal, 1);

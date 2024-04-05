@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>836</width>
-    <height>892</height>
+    <height>872</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <x>0</x>
      <y>35</y>
      <width>831</width>
-     <height>855</height>
+     <height>831</height>
     </rect>
    </property>
    <property name="frameShape">
@@ -34,7 +34,7 @@
       <x>0</x>
       <y>-1</y>
       <width>831</width>
-      <height>611</height>
+      <height>590</height>
      </rect>
     </property>
     <property name="alarmSensitiveContent" stdset="0">
@@ -70,7 +70,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>610</y>
+      <y>590</y>
       <width>391</width>
       <height>31</height>
      </rect>
@@ -94,43 +94,11 @@ bold</string>
      <string>Undulator K Values</string>
     </property>
    </widget>
-   <widget class="PyDMTemplateRepeater" name="PyDMTemplateRepeater">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>821</width>
-      <height>611</height>
-     </rect>
-    </property>
-    <property name="toolTip">
-     <string/>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background:transparent
-</string>
-    </property>
-    <property name="layoutType" stdset="0">
-     <enum>PyDMTemplateRepeater::Vertical</enum>
-    </property>
-    <property name="layoutSpacing" stdset="0">
-     <number>0</number>
-    </property>
-    <property name="countShownInDesigner" stdset="0">
-     <number>35</number>
-    </property>
-    <property name="templateFilename" stdset="0">
-     <string>/u/cd/pnispero/guardian/guardian/displays/FELmonitor_template.py</string>
-    </property>
-    <property name="dataSource" stdset="0">
-     <string>/u/cd/pnispero/guardian/guardian/displays/FELmonitor_sc_parameters.json</string>
-    </property>
-   </widget>
    <widget class="PyDMDrawingRectangle" name="PyDMDrawingRectangle_2">
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>640</y>
+      <y>620</y>
       <width>831</width>
       <height>211</height>
      </rect>
@@ -168,7 +136,7 @@ bold</string>
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>640</y>
+      <y>620</y>
       <width>821</width>
       <height>211</height>
      </rect>
@@ -190,44 +158,118 @@ bold</string>
      <number>9</number>
     </property>
     <property name="templateFilename" stdset="0">
-     <string>/u/cd/pnispero/guardian/guardian/displays/FELmonitor_template.py</string>
+     <string/>
     </property>
     <property name="dataSource" stdset="0">
-     <string>/u/cd/pnispero/guardian/guardian/displays/FELmonitor_sc_und_parameters.json</string>
+     <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label_12">
+   <widget class="QScrollArea" name="scrollArea">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>100</y>
-      <width>461</width>
-      <height>371</height>
+      <x>0</x>
+      <y>0</y>
+      <width>831</width>
+      <height>581</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <pointsize>20</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
     <property name="styleSheet">
-     <string notr="true">background-color: transparent;</string>
+     <string notr="true">background-color:transparent;</string>
     </property>
-    <property name="text">
-     <string>* SC Under Construction * </string>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
     </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
+    <property name="sizeAdjustPolicy">
+     <enum>QAbstractScrollArea::AdjustToContents</enum>
     </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>829</width>
+       <height>579</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="leftMargin">
+       <number>3</number>
+      </property>
+      <property name="topMargin">
+       <number>3</number>
+      </property>
+      <property name="rightMargin">
+       <number>3</number>
+      </property>
+      <property name="bottomMargin">
+       <number>3</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="label_12">
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: transparent;</string>
+        </property>
+        <property name="text">
+         <string>* SC Under Construction * </string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="PyDMTemplateRepeater" name="PyDMTemplateRepeater_3">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background:transparent
+</string>
+        </property>
+        <property name="layoutType" stdset="0">
+         <enum>PyDMTemplateRepeater::Vertical</enum>
+        </property>
+        <property name="layoutSpacing" stdset="0">
+         <number>0</number>
+        </property>
+        <property name="countShownInDesigner" stdset="0">
+         <number>30</number>
+        </property>
+        <property name="templateFilename" stdset="0">
+         <string/>
+        </property>
+        <property name="dataSource" stdset="0">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </widget>
    <zorder>PyDMDrawingRectangle_1</zorder>
-   <zorder>PyDMTemplateRepeater</zorder>
    <zorder>PyDMDrawingRectangle_2</zorder>
    <zorder>label_9</zorder>
    <zorder>PyDMTemplateRepeater_2</zorder>
-   <zorder>label_12</zorder>
+   <zorder>scrollArea</zorder>
   </widget>
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
