@@ -9,24 +9,21 @@
 #   - ID         : ASYN ID                                             #
 #=====================================================================
 
-
-# ex: FBCK:FB02:GN01:S1DES_CURRENT
+# ex: FBCK:FB02:GN01:S1DES_GUARD_ACT
 # This records purpose is to copy data from device data pvs, and push to ASYN PV
-record(ao, "$(NAME):CURRENT") { 
-    # _GUARD_ACT (actual)
+record(ao, "$(NAME)_GUARD_ACT") { # actual
     field(DESC, "$(DESC)")
     field(PINI, "YES")
     field(EGU, "$(EGU)")
     field(PREC, "$(PREC)")
     field(DTYP, "asynFloat64")
 	field(OMSL, "closed_loop") 
-    field(DOL, "$(NAME):TEST_RBV CPP")  # TODO: Temporarily set as test_rbv
+    field(DOL, "$(NAME)_TEST_GUARD_ACT_RBV CPP")  # TODO: Temporarily set as test_rbv, For PROD its just $(NAME)
     field(OUT, "@asyn(GUARDIAN, $(ID), 0)CURRENT_NC") 
 }
 
-# ex: FBCK:FB02:GN01:S1DES_CURRENT_RBV
-record(ai, "$(NAME):CURRENT_RBV") {
-    # _GUARD_ACT_RBV
+# ex: FBCK:FB02:GN01:S1DES_GUARD_ACT_RBV
+record(ai, "$(NAME)_GUARD_ACT_RBV") {
     field(DESC, "$(DESC)")    
     field(EGU, "$(EGU)")
     field(PREC, "$(PREC)")
@@ -36,22 +33,18 @@ record(ai, "$(NAME):CURRENT_RBV") {
 }
 
 # ex: FBCK:FB02:GN01:S1DES_STORED
-record(ao, "$(NAME):STORED") {
-    # _GUARD_LATCHED
+record(ao, "$(NAME)_GUARD_LATCHED") {
     field(DESC, "$(DESC)")
-    field(PINI, "YES") # IMPORTANT
+    field(PINI, "YES")
     field(EGU, "$(EGU)")
     field(PREC, "$(PREC)")
-    # field(OMSL, "closed_loop")  # TEMP
-    # field(DOL, "$(BASE):SS_UPDATE CP") # TEMP
     field(DTYP, "asynFloat64")
     field(OUT, "@asyn(GUARDIAN, $(ID), 0)STORED_NC")
 }
 
-record(ai, "$(NAME):STORED_RBV") {
+record(ai, "$(NAME)_GUARD_LATCHED_RBV") {
     field(DESC, "$(DESC)")
     field(SCAN, "Passive")
-    # field(SCAN, "1 second") # This is a temporary solution
     field(EGU, "$(EGU)")
     field(PREC, "$(PREC)")
     field(DTYP, "asynFloat64")
@@ -59,20 +52,17 @@ record(ai, "$(NAME):STORED_RBV") {
 }
 
 # How about making a bo record for each device, with a DOL to the SS_UPDATE
-# and a FLNK to the device:STORED.PROC
-record(bo, "$(NAME):STORED_TRG") {
-    # _GUARD_TRG
+# and a FLNK to the device_GUARD_LATCH
+record(bo, "$(NAME)_GUARD_LATCHED_TRG") {
     field(ZNAM, "Done")
     field(ONAM, "Update")
     field(OMSL, "closed_loop") 
-    field(DOL, "$(BASE):SS_UPDATE CPP")
-    field(FLNK, "$(NAME):STORED_RBV")
+    field(DOL, "$(BASE):GUARD_SS_UPDATE CPP")
+    field(FLNK, "$(NAME)_GUARD_LATCHED_RBV")
 }
 
 # Trip Message
-# # create asyn parameter for string in code (asynParamOctet?)
-record(waveform, "$(NAME):TRIP_MSG") {
-    # _GUARD_TRIP_MSG
+record(waveform, "$(NAME)_GUARD_TRIP_MSG") {
     field(DESC, "Trip message for GUI")
     field(PINI, "YES")
     field(NELM, "100")
@@ -82,8 +72,7 @@ record(waveform, "$(NAME):TRIP_MSG") {
 }
 
 # Trip logic type
-record(longout, "$(NAME):LOGIC_TYPE") {
-    # _GUARD_LOGIC_TYPE
+record(longout, "$(NAME)_GUARD_LOGIC_TYPE") {
     field(DESC, "Trip tolerance logic type")
     field(PINI, "YES")
     field(VAL, "$(LOGIC_TYPE)")
@@ -92,8 +81,7 @@ record(longout, "$(NAME):LOGIC_TYPE") {
 }
 
 # Tolerance control pv
-record(longout, "$(NAME):TOL_ID") {
-    # _GUARD_TOL_ID
+record(longout, "$(NAME)_GUARD_TOL_ID") {
     field(DESC, "Optional Tolerance pv id for logic")
     field(PINI, "YES")
     field(VAL, "$(TOLERANCE_ID)")
@@ -102,8 +90,7 @@ record(longout, "$(NAME):TOL_ID") {
 }
 
 # Optional Condition ID
-record(longout, "$(NAME):CONDITION_ID") {
-    # _GUARD_CONDITON_ID
+record(longout, "$(NAME)_GUARD_CONDITION_ID") {
     field(DESC, "Optional condition id for logic")
     field(PINI, "YES")
     field(VAL, "$(CONDITION_ID)")

@@ -5,7 +5,7 @@
 #   - BASE       : SIOC name                                                #
 #=====================================================================
 
-record(bo, "$(BASE):GUARDIAN_MODE") {
+record(bo, "$(BASE):GUARD_MODE") {
     # END PV Name: SIOC:MCC0:MP00:GUARD_MODE
     # can do base with appended GUARD or not
     field(DESC, "Determines what devices to monitor")
@@ -19,7 +19,7 @@ record(bo, "$(BASE):GUARDIAN_MODE") {
 }
 
 # Record for triggering a snapshot
-record(bo, "$(BASE):SNAPSHOT_TRG_EN") {
+record(bo, "$(BASE):GUARD_SNAPSHOT_TRG_EN") {
     field(DESC, "Snaphot trigger")
     field(DTYP, "asynUInt32Digital")
     field(SCAN, "Passive")
@@ -28,11 +28,10 @@ record(bo, "$(BASE):SNAPSHOT_TRG_EN") {
     field(ZNAM, "Not Triggered")
     field(ONAM, "Triggered")
     field(OUT, "@asynMask(GUARDIAN, 0, 1, 0)SNAPSHOT_TRG")
-    field(FLNK, "$(BASE):SNAPSHOT_TS")
+    field(FLNK, "$(BASE):GUARD_SNAPSHOT_TS")
 }
 
-# Record for snapshot trigger readback value (OPs read this one back not the _EN)
-record(bi, "$(BASE):SNAPSHOT_TRG_RBV") {
+record(bi, "$(BASE):GUARD_SNAPSHOT_TRG_RBV") {
     field(DESC, "Snaphot trigger")
     field(DTYP, "asynUInt32Digital")
     field(SCAN, "I/O Intr")
@@ -42,15 +41,36 @@ record(bi, "$(BASE):SNAPSHOT_TRG_RBV") {
     field(INP, "@asynMask(GUARDIAN, 0, 1, 0)SNAPSHOT_TRG")
 }
 
-record(stringin, "$(BASE):SNAPSHOT_TS") {
-  field(DESC, "time stamp")
-  field(DTYP, "Soft Timestamp")
-  field(INP, "@%m/%d/%Y %H:%M:%S")
-  info(autosaveFields, "VAL")
+record(stringin, "$(BASE):GUARD_SNAPSHOT_TS") {
+    field(DESC, "time stamp")
+    field(DTYP, "Soft Timestamp")
+    field(INP, "@%m/%d/%Y %H:%M:%S")
+    info(autosaveFields, "VAL")
+}
+
+# Record for resetting a snapshot
+record(bo, "$(BASE):GUARD_SNAPSHOT_RESET_EN") {
+    field(DESC, "Snaphot Reset")
+    field(DTYP, "asynUInt32Digital")
+    field(SCAN, "Passive")
+    field(ZNAM, "Not Triggered")
+    field(ONAM, "Triggered")
+    field(OUT, "@asynMask(GUARDIAN, 0, 1, 0)SNAPSHOT_RESET")
+    field(FLNK, "$(BASE):GUARD_SNAPSHOT_TS")
+}
+
+record(bi, "$(BASE):GUARD_SNAPSHOT_RESET_RBV") {
+    field(DESC, "Snaphot Reset")
+    field(DTYP, "asynUInt32Digital")
+    field(SCAN, "I/O Intr")
+    field(PINI, "NO")
+    field(ZNAM, "Not Triggered")
+    field(ONAM, "Triggered")
+    field(INP, "@asynMask(GUARDIAN, 0, 1, 0)SNAPSHOT_RESET")
 }
 
 # Record for controlling the 'sleep' of the FELpulseMonitor thread
-record(ao, "$(BASE):MONITOR_CYCLE_TIME") {
+record(ao, "$(BASE):GUARD_MONITOR_CYCLE_TIME") {
     field(DESC, "Sets the sleep of the monitor thread")
     field(PINI, "YES")
     field(VAL, "2700") # Update this field if needed
@@ -58,28 +78,18 @@ record(ao, "$(BASE):MONITOR_CYCLE_TIME") {
     field(DTYP, "asynFloat64")
     field(SCAN, "Passive")
     field(OUT, "@asyn(GUARDIAN, 0, 0)MONITOR_CYCLE_TIME")
-    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
-record(ai, "$(BASE):MONITOR_CYCLE_TIME_RBV") {
+record(ai, "$(BASE):GUARD_MONITOR_CYCLE_TIME_RBV") {
     field(DESC, "Sets the sleep of the monitor thread")
     field(EGU, "us")
     field(DTYP, "asynFloat64")
     field(SCAN, "I/O Intr")
     field(INP, "@asyn(GUARDIAN, 0, 0)MONITOR_CYCLE_TIME")
-    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
-}
-
-record(longin, "$(BASE):HEARTBEAT") {
-    field(DESC, "Guardian main thread heartbeat")
-    field(SCAN, "I/O Intr")
-    field(DTYP, "asynInt32")
-    field(INP, "@asyn(GUARDIAN, 0, 0)HEARTBEAT")
-    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
 # Record for 'arming' the guardian (i.e. guardian is actively monitoring)
-record(bo, "$(BASE):ARM") {
+record(bo, "$(BASE):GUARD_ARM") {
     field(DESC, "Arm enable for guardian")
     field(DTYP, "asynUInt32Digital")
     field(SCAN, "Passive")
@@ -90,7 +100,7 @@ record(bo, "$(BASE):ARM") {
     field(OUT, "@asynMask(GUARDIAN, 0, 1, 0)ARM")
 }
 
-record(bi, "$(BASE):SS_UPDATE") {
+record(bi, "$(BASE):GUARD_SS_UPDATE") {
     field(DESC, "Trigger device stored record processing")
     field(DTYP, "asynUInt32Digital")
     field(ZNAM, "Done")
@@ -99,7 +109,7 @@ record(bi, "$(BASE):SS_UPDATE") {
     field(INP, "@asynMask(GUARDIAN, 0, 1, 0)SS_UPDATE")
 }
 
-record(waveform, "$(BASE):DISPLAY_MSG") {
+record(waveform, "$(BASE):GUARD_DISPLAY_MSG") {
     field(DESC, "Display trip msg for GUI")
     field(NELM, "100")
     field(FTVL, "CHAR")
@@ -108,9 +118,8 @@ record(waveform, "$(BASE):DISPLAY_MSG") {
     field(INP, "@asyn(GUARDIAN, 0, 0)DISPLAY_MSG")
 }
 
-# Only used for testing
-record(longin, "$(BASE):TRIP_ID") {
-    field(DESC, "Test purposes only, tripped device index")
+record(longin, "$(BASE):GUARD_TRIP_ID") {
+    field(DESC, "Tripped device index")
     field(SCAN, "I/O Intr")
     field(DTYP, "asynInt32")
     field(INP, "@asyn(GUARDIAN, 0, 0)TRIP_ID")

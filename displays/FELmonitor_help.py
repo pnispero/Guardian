@@ -1,25 +1,32 @@
 from os import path
 from pydm import Display
 from epics import caget
-import time
+import time, re
 from pydm.widgets.slider import PyDMSlider
 from pydm.widgets.label import PyDMLabel
 from pyqtgraph import InfiniteLine
 from pydm.widgets.channel import PyDMChannel
 import numpy as np
+from PyQt5.QtWidgets import QListWidgetItem
 
 class FELMonitorHelp(Display):
     def __init__(self, parent=None, args=[], macros=None):
         super(FELMonitorHelp, self).__init__(parent=parent, args=args, macros=macros)
 
-        logic_type_name = "ca://{DEVICE}:LOGIC_TYPE".format(**macros)
+        logic_type_name = "ca://{DEVICE}_GUARD_LOGIC_TYPE".format(**macros)
         self.logic_type_pv = PyDMChannel(address=logic_type_name, value_slot=self.logic_type_val_change) 
         self.logic_type_pv.connect()
 
-        # TODO: fill in formula type, and actual formula
-        
-
         # TODO: fill in special case conditions
+
+        # Fill in other devices affected by tolerance
+        devices_string = "{TOLERANCE_AFFECTED_DEVICES}".format(**macros)
+        devices_string_split = devices_string.split()
+        for device in devices_string_split:
+            device_string_clean = re.sub("\'|,|\[|\]", "", device)
+            listItem = QListWidgetItem(device_string_clean)
+            self.ui.device_listwidget.addItem(listItem)
+
 
     def logic_type_val_change(self, new_val):
         self.logic_type_val = new_val

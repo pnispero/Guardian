@@ -47,9 +47,10 @@ GuardianDriver::GuardianDriver(const char *portName) : asynPortDriver           
     // Universal
     createParam(MONITOR_CYCLE_STRING, asynParamFloat64, &MonitorCycleIndex);
     createParam(SNAPSHOT_TRIGGER_STRING, asynParamUInt32Digital, &SnapshotTriggerIndex);
+    createParam(SNAPSHOT_RESET_TRIGGER_STRING, asynParamUInt32Digital, &SnapshotResetTriggerIndex);
     createParam(DISPLAY_MSG_STRING, asynParamOctet, &DisplayMsgIndex);
     createParam(MPS_PERMIT_STRING, asynParamUInt32Digital, &MpsPermitIndex);
-    createParam(HEARTBEAT_VALUE_STRING, asynParamInt32, &HeartbeatValueIndex);
+    createParam(GUARDIAN_ON_STRING, asynParamUInt32Digital, &GuardianOnIndex);
     createParam(ARM_VALUE_STRING, asynParamUInt32Digital, &ArmValueIndex);
     createParam(SS_STRING, asynParamUInt32Digital, &SSIndex);
     createParam(TRIP_ID_STRING, asynParamInt32, &tripIdIndex);
@@ -449,7 +450,22 @@ void GuardianDriver::tripLogic() {
     callParamCallbacks();
 }
 
+// Function that resets the stored values
+void GuardianDriver::resetSnapshot()
+{   
+    for (int deviceIndex = 0; deviceIndex < DEVICE_PARAMS_SIZE; deviceIndex++) {
 
+        // Set device desired stored PVs to value
+        setDoubleParam(deviceIndex, StoredValueIndex, 0); 
+
+    }
+    setUIntDigitalParam(SSIndex, 1, 1); // Trigger snapshot writing to device records
+    callParamCallbacks();
+    setUIntDigitalParam(SSIndex, 0, 1); // Reset back to 0
+    callParamCallbacks();
+}
+
+// Function that stores the current values
 void GuardianDriver::takeSnapshot()
 {   
     epicsFloat64 curVal, storedVal;
@@ -494,7 +510,7 @@ void GuardianDriver::initGuardian() {
 void GuardianDriver::FELpulseEnergyMonitor(void)
 {
     pGDriver->initGuardian();
-    uint32_t snapshotTriggerVal, mpsPermitVal, armVal=0, prevGuardianMode=2;
+    uint32_t snapshotTriggerVal, snapshotResetVal, mpsPermitVal, guardianOnVal, armVal=0, prevGuardianMode=2;
     while (true) {
         // Cycle time, snapshots, and mode switching can only occur when guardian is 'unarmed'
         // once 'armed' then tripLogic applies every cycle
@@ -502,23 +518,31 @@ void GuardianDriver::FELpulseEnergyMonitor(void)
             getDoubleParam(MonitorCycleIndex, &MONITOR_CYCLE_TIME);
             usleep(MONITOR_CYCLE_TIME);
             getUIntDigitalParam(ArmValueIndex, &armVal, 1);
-            // Check snapshot_trg param, take snapshot then reset if true
+            // Check snapshot_trg param, take snapshot if true
             getUIntDigitalParam(SnapshotTriggerIndex, &snapshotTriggerVal, 1);
             if (snapshotTriggerVal == 1) {
                 pGDriver->takeSnapshot();
-                setUIntDigitalParam(SnapshotTriggerIndex, 0, 1);
+                setUIntDigitalParam(SnapshotTriggerIndex, 0, 1); // Reset back to 0
                 callParamCallbacks();
                 usleep(3000); // sleep 3ms to give time for epics records to be written, adjust if needed
             }
+
+            // Check snapshot_reset param, reset snapshot if true
+            getUIntDigitalParam(SnapshotResetTriggerIndex, &snapshotResetVal, 1);
+            if (snapshotResetVal == 1) {
+                pGDriver->resetSnapshot();
+                setUIntDigitalParam(SnapshotResetTriggerIndex, 0, 1); // Reset back to 0
+                callParamCallbacks();
+                usleep(3000); // sleep 3ms to give time for epics records to be written, adjust if needed
+            }
+
             // Mode can only be changed while 'unarmed'
             getUIntDigitalParam(GuardianModeIndex, &guardianMode, 1);
             if (prevGuardianMode != guardianMode) {
                 pGDriver->setDeviceIndexesBasedOffMode();
             }
-            prevGuardianMode = guardianMode;
-            // TOOD:
-            // 1) Omit the guardian trip since we have the mps permit already
-            // 2) add in guardian doesnt trip the mps if its not running (and set the trippedID to -1)
+
+            // guardian doesnt trip the mps if its not running 
             getUIntDigitalParam(MpsPermitIndex, &mpsPermitVal, 1);
             if (mpsPermitVal == 0) {
                 setUIntDigitalParam(MpsPermitIndex, 1, 1);
@@ -527,9 +551,25 @@ void GuardianDriver::FELpulseEnergyMonitor(void)
                 usleep(3000); // sleep 3ms to give time for epics records to be written, adjust if needed
             }
 
+            // tell mps guardian is not running (unarmed) if current status is running
+            getUIntDigitalParam(GuardianOnIndex, &guardianOnVal, 1);
+            if (guardianOnVal == 1) {
+                setUIntDigitalParam(GuardianOnIndex, 0, 1);
+                callParamCallbacks();
+                usleep(3000); // sleep 3ms to give time for epics records to be written, adjust if needed
+            }
+
         }
         getUIntDigitalParam(ArmValueIndex, &armVal, 1);
         usleep(MONITOR_CYCLE_TIME);
+
+        // Tell mps guardian is running if current status is not running
+        getUIntDigitalParam(GuardianOnIndex, &guardianOnVal, 1);
+        if (guardianOnVal == 0) {
+            setUIntDigitalParam(GuardianOnIndex, 1, 1);
+            callParamCallbacks();
+            usleep(3000); // sleep 3ms to give time for epics records to be written, adjust if needed
+        }
 
         // heartbeat
         heartbeatCnt++;

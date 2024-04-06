@@ -4,11 +4,9 @@
 # Macro description:                                                   #
 #   - BASE       : SIOC name                                           #
 #=====================================================================
-# TODO: May just merge this with guardian_controls.template
 
 # trip pv input to mps
-record(bi, "$(BASE):MPS_PERMIT") { 
-    # 
+record(bi, "$(BASE):GUARD_MPS_PERMIT") { 
     field(DESC, "SXRSS Guardian OK")
     field(ZNAM, "FAULT")
     field(ONAM, "OK")
@@ -17,9 +15,25 @@ record(bi, "$(BASE):MPS_PERMIT") {
     field(INP, "@asynMask(GUARDIAN, 0, 1, 0)MPS_PERMIT") 
 }
 
-record(bo, "$(BASE):MPS_PERMIT_OUT") { 
+record(bo, "$(BASE):GUARD_MPS_PERMIT_OUT") { 
     field(DESC, "Push out mps permit to actual mps pv")
     field(OMSL, "closed_loop") 
     field(DOL, "$(BASE):MPS_PERMIT CPP")
-    field(OUT, "MPS:UNDS:1:SXRSS_GUARDIAN_OK:TEST") # TODO: Temporarily set as test
+    field(OUT, "MPS:UNDS:1:SXRSS_GUARDIAN_OK:TEST") # TODO: Temporarily set as test, For PROD remove ":TEST"
+}
+
+record(bi, "$(BASE):GUARD_ON") { 
+    field(DESC, "SXRSS Guardian ON")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SCAN, "I/O Intr")
+    field(DTYP, "asynUInt32Digital")
+    field(INP, "@asynMask(GUARDIAN, 0, 1, 0)GUARD_ON") 
+}
+
+record(bo, "$(BASE):GUARD_ON_OUT") { 
+    field(DESC, "Push out guardian on to mps")
+    field(OMSL, "closed_loop") 
+    field(DOL, "$(BASE):GUARD_ON CPP")
+    field(OUT, "MPS:UNDS:1:SXRSS_GUARDIAN_ON:TEST") # TODO: Temporarily set as test, For PROD remove ":TEST"
 }

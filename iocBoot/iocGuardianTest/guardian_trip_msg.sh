@@ -11,7 +11,7 @@ template=${TOP}/GuardianApp/Db/guardian_trip_msg.template
 msi -V -o bash_trip_msg.txt -S $subs $template
 sleep 8 # Wait for IOC to initialize
 while IFS=, read -r PV_NAME TRIP_MSG; do
-    caput -S $PV_NAME:TRIP_MSG "$TRIP_MSG" # -S is string
+    caput -S ${PV_NAME}_GUARD_TRIP_MSG "$TRIP_MSG" # -S is string
     # echo $PV_NAME:TRIP_MSG "$TRIP_MSG"
 done < bash_trip_msg.txt
 echo "Finished initialization"

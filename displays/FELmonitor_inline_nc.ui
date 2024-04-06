@@ -238,7 +238,7 @@ bold</string>
          <string>/u/cd/pnispero/guardian/guardian/displays/FELmonitor_template.py</string>
         </property>
         <property name="dataSource" stdset="0">
-         <string>/u/cd/pnispero/guardian/guardian/displays/FELmonitor_nc_parameters_full.json</string>
+         <string>/u/cd/pnispero/guardian/guardian/displays/FELmonitor_nc_parameters.json</string>
         </property>
        </widget>
       </item>
@@ -256,7 +256,7 @@ bold</string>
     <rect>
      <x>320</x>
      <y>10</y>
-     <width>451</width>
+     <width>463</width>
      <height>21</height>
     </rect>
    </property>

@@ -6,37 +6,33 @@
 #=====================================================================
 
 # Record for number of device data pvs NC
-record(longout, "$(BASE):NC_DEVICE_PARAM_SIZE") {
+record(longout, "$(BASE):GUARD_NC_DEVICE_PARAM_SIZE") {
     field(DESC, "number of device data pvs")
     field(PINI, "YES")
     field(VAL, "$(DEVICE_PARAM_SIZE_NC)")
     field(DTYP, "asynInt32")
     field(OUT, "@asyn(GUARDIAN, 0, 0)DEVICE_PARAM_SIZE_NC")
-    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
-record(longin, "$(BASE):NC_DEVICE_PARAM_SIZE_RBV") {
+record(longin, "$(BASE):GUARD_NC_DEVICE_PARAM_SIZE_RBV") {
     field(DESC, "number of device data pvs")
     field(DTYP, "asynInt32")
     field(SCAN, "I/O Intr")
     field(INP, "@asyn(GUARDIAN, 0, 0)DEVICE_PARAM_SIZE_NC")
-    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
 # Record for number of device data pvs SC
-record(longout, "$(BASE):SC_DEVICE_PARAM_SIZE") {
+record(longout, "$(BASE):GUARD_SC_DEVICE_PARAM_SIZE") {
     field(DESC, "number of device data pvs")
     field(PINI, "YES")
     field(VAL, "$(DEVICE_PARAM_SIZE_SC)")
     field(DTYP, "asynInt32")
     field(OUT, "@asyn(GUARDIAN, 0, 0)DEVICE_PARAM_SIZE_SC")
-    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
-record(longin, "$(BASE):SC_DEVICE_PARAM_SIZE_RBV") {
+record(longin, "$(BASE):GUARD_SC_DEVICE_PARAM_SIZE_RBV") {
     field(DESC, "number of device data pvs")
     field(DTYP, "asynInt32")
     field(SCAN, "I/O Intr")
     field(INP, "@asyn(GUARDIAN, 0, 0)DEVICE_PARAM_SIZE_SC")
-    # info(autosaveFields, "VAL PREC DESC EGU HOPR LOPR SEVR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }

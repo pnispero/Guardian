@@ -8,7 +8,7 @@
 #   - ID         : ASYN ID                                             #
 #=====================================================================
 
-record(bo, "$(NAME):CONDITION") {
+record(bo, "$(NAME)_GUARD_CONDITION") {
     # _GUARD_CONDITION
     field(DESC, "$(DESC)")
     field(DTYP, "asynUInt32Digital")
@@ -18,11 +18,11 @@ record(bo, "$(NAME):CONDITION") {
     field(ZNAM, "OFF")
     field(ONAM, "ON")
     field(OMSL, "closed_loop") 
-    field(DOL, "$(NAME):TEST:CONDITION_RBV CPP")  # TODO: Temporarily set as test, For PROD its just $(NAME)
+    field(DOL, "$(NAME)_TEST_GUARD_CONDITION_RBV CPP")  # TODO: Temporarily set as test, For PROD its just $(NAME)
     field(OUT, "@asynMask(GUARDIAN, $(ID), 1, 0)CONDITION_NC")
 }
 
-record(bi, "$(NAME):CONDITION_RBV") {
+record(bi, "$(NAME)_GUARD_CONDITION_RBV") {
     field(DESC, "Snaphot trigger")
     field(DTYP, "asynUInt32Digital")
     field(SCAN, "I/O Intr")

@@ -1,0 +1,6 @@
+[
+{"ID": 0, "DEVICE": "TEST:TEST:TESTING", "TOLERANCE": "TEST:TEST:TESTING", "TOLERANCE_AFFECTED_DEVICES": []}
+]
+**ATTENTION** Please add special devices (15,16) manually to generated_FELmonitor_nc_parameters.json since they are not in the guardian_device_data.substitutions
+                        You can grab it from the existing FELmonitor_nc_parameters.json                        **ATTENTION** Please manually move undulator pvs to FELmonitor_nc_und_parameters.json
+                        **ATTENTION** Please replace every "''" with a quotation mark instead "

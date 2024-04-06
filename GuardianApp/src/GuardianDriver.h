@@ -43,9 +43,10 @@
 // Universal
 #define MONITOR_CYCLE_STRING "MONITOR_CYCLE_TIME"
 #define SNAPSHOT_TRIGGER_STRING "SNAPSHOT_TRG"
+#define SNAPSHOT_RESET_TRIGGER_STRING "SNAPSHOT_RESET"
 #define DISPLAY_MSG_STRING "DISPLAY_MSG"
 #define MPS_PERMIT_STRING "MPS_PERMIT"
-#define HEARTBEAT_VALUE_STRING "HEARTBEAT"
+#define GUARDIAN_ON_STRING "GUARD_ON"
 #define ARM_VALUE_STRING "ARM"
 #define SS_STRING "SS_UPDATE"
 #define TRIP_ID_STRING "TRIP_ID"
@@ -56,6 +57,7 @@ class GuardianDriver : public asynPortDriver {
     GuardianDriver(const char *portName);
     void FELpulseEnergyMonitor(void);
     void takeSnapshot();
+    void resetSnapshot();
     void tripLogic();
 
     void getDeviceParameterValues(int deviceIndex, double &tolVal, double &curDeviceVal, double &desiredDeviceVal);
@@ -106,9 +108,10 @@ class GuardianDriver : public asynPortDriver {
     // Universal
     int MonitorCycleIndex;
     int SnapshotTriggerIndex;
+    int SnapshotResetTriggerIndex;
     int DisplayMsgIndex;
     int MpsPermitIndex;
-    int HeartbeatValueIndex;
+    int GuardianOnIndex;
     int ArmValueIndex;
     int SSIndex;
     int tripIdIndex;

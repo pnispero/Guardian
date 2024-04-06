@@ -8,7 +8,6 @@
 
 #==============================================================================
 # Metadata
-# TODO: possible we may not use condition_param_size or tolerance_param_size and may remove it
 #==============================================================================
 file "guardian_metadata.template"
 {

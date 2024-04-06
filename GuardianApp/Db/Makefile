@@ -10,6 +10,7 @@ include $(TOP)/configure/CONFIG
 DB += guardian_controls.db
 DB += guardian_metadata.db
 DB += guardian_device_data.db
+DB += guardian_special_device.db
 DB += guardian_device_condition.db
 DB += guardian_tolerance_data.db
 DB += guardian_mps.db

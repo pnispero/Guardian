@@ -188,7 +188,7 @@ color:transparent;</string>
     <string/>
    </property>
    <property name="channel" stdset="0">
-    <string>${TOLERANCE}:TOL_RBV</string>
+    <string>${TOLERANCE}_RBV</string>
    </property>
   </widget>
   <widget class="PyDMLabel" name="egu">
@@ -222,7 +222,7 @@ color:transparent;</string>
     <bool>false</bool>
    </property>
    <property name="channel" stdset="0">
-    <string>${DEVICE}:STORED.EGU</string>
+    <string>${DEVICE}_GUARD_ACT.EGU</string>
    </property>
   </widget>
   <widget class="PyDMLabel" name="description">
@@ -265,7 +265,7 @@ color:transparent;</string>
     <bool>false</bool>
    </property>
    <property name="channel" stdset="0">
-    <string>${DEVICE}:CURRENT.DESC</string>
+    <string>${DEVICE}_GUARD_ACT.DESC</string>
    </property>
   </widget>
   <widget class="QWidget" name="horizontalLayoutWidget">
@@ -308,7 +308,7 @@ color:transparent;</string>
        <bool>false</bool>
       </property>
       <property name="channel" stdset="0">
-       <string>${DEVICE}:STORED_RBV</string>
+       <string>${DEVICE}_GUARD_LATCHED_RBV</string>
       </property>
      </widget>
     </item>
@@ -339,7 +339,7 @@ color:transparent;</string>
        <bool>false</bool>
       </property>
       <property name="channel" stdset="0">
-       <string>${DEVICE}:CURRENT_RBV</string>
+       <string>${DEVICE}_GUARD_ACT_RBV</string>
       </property>
      </widget>
     </item>

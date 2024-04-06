@@ -1,0 +1,197 @@
+
+#=================================================================#
+# Template file: guardian_special_device.template
+# Database for special devices that cannot be used in guardian_device_data.substitutions
+#=====================================================================
+
+#### The following records are 2 devices that are special and cannot be used in the 
+# guardian_device_data.substitutions. Special because we need to read from .RBV
+# MOTR itself gives you MOTR.VAL field which is the requested position 
+# and the MOTR.RBV is the read back value of where the motor is. 
+# It could be that a new position was requested but motor never moved. 
+# It could be that motor was stopped in the middle of a move. 
+
+# This records purpose is to copy data from device data pvs, and push to ASYN PV
+record(ao, "FOIL:LI24:804:MOTR_GUARD_ACT") { 
+    # _GUARD_ACT (actual)
+    field(DESC, "LI24 Slotted Foil 804 position")
+    field(PINI, "YES")
+    field(EGU, "mm")
+    field(PREC, "1")
+    field(DTYP, "asynFloat64")
+	field(OMSL, "closed_loop")
+    field(DOL, "FOIL:LI24:804:MOTR_TEST_GUARD_ACT_RBV CPP")  # TODO: Temporarily set as test_rbv, for PROD its "FOIL:LI24:804:MOTR.RBV"
+    field(OUT, "@asyn(GUARDIAN, 15, 0)CURRENT_NC") 
+}
+
+record(ai, "FOIL:LI24:804:MOTR_GUARD_ACT_RBV") {
+    # _GUARD_ACT_RBV
+    field(DESC, "LI24 Slotted Foil 804 position")    
+    field(EGU, "mm")
+    field(PREC, "1")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn(GUARDIAN, 15, 0)CURRENT_NC")
+}
+
+record(ao, "FOIL:LI24:804:MOTR_GUARD_LATCHED") {
+    # _GUARD_LATCHED
+    field(DESC, "LI24 Slotted Foil 804 position")
+    field(PINI, "YES")
+    field(EGU, "mm")
+    field(PREC, "1")
+    field(DTYP, "asynFloat64")
+    field(OUT, "@asyn(GUARDIAN, 15, 0)STORED_NC")
+}
+
+record(ai, "FOIL:LI24:804:MOTR_GUARD_LATCHED_RBV") {
+    field(DESC, "LI24 Slotted Foil 804 position")
+    field(SCAN, "Passive")
+    field(EGU, "mm")
+    field(PREC, "1")
+    field(DTYP, "asynFloat64")
+    field(INP, "@asyn(GUARDIAN, 15, 0)STORED_NC")
+}
+
+record(bo, "FOIL:LI24:804:MOTR_GUARD_LATCHED_TRG") {
+    # _GUARD_LATCHED_TRG
+    field(ZNAM, "Done")
+    field(ONAM, "Update")
+    field(OMSL, "closed_loop") 
+    field(DOL, "$(BASE):GUARD_SS_UPDATE CPP")
+    field(FLNK, "FOIL:LI24:804:MOTR_GUARD_LATCHED_RBV")
+}
+
+# Trip Message
+record(waveform, "FOIL:LI24:804:MOTR_GUARD_TRIP_MSG") {
+    # _GUARD_TRIP_MSG
+    field(DESC, "Trip message for GUI")
+    field(PINI, "YES")
+    field(NELM, "100")
+    field(FTVL, "CHAR")
+    field(DTYP, "asynOctetWrite")
+    field(INP, "@asyn(GUARDIAN, 15, 0)MSG_NC")
+}
+
+# Trip logic type
+record(longout, "FOIL:LI24:804:MOTR_GUARD_LOGIC_TYPE") {
+    # _GUARD_LOGIC_TYPE
+    field(DESC, "Trip tolerance logic type")
+    field(PINI, "YES")
+    field(VAL, "4")
+    field(DTYP, "asynInt32")
+    field(OUT, "@asyn(GUARDIAN, 15, 0)LOGIC_TYPE_NC")
+}
+
+# Tolerance control pv
+record(longout, "FOIL:LI24:804:MOTR_GUARD_TOL_ID") {
+    # _GUARD_TOL_ID
+    field(DESC, "Optional Tolerance pv id for logic")
+    field(PINI, "YES")
+    field(VAL, "14")
+    field(DTYP, "asynInt32")
+    field(OUT, "@asyn(GUARDIAN, 15, 0)TOLERANCE_ID_NC")
+}
+
+# Optional Condition ID
+record(longout, "FOIL:LI24:804:MOTR_GUARD_CONDITION_ID") {
+    # _GUARD_CONDITON_ID
+    field(DESC, "Optional condition id for logic")
+    field(PINI, "YES")
+    field(VAL, "0")
+    field(DTYP, "asynInt32")
+    field(OUT, "@asyn(GUARDIAN, 15, 0)CONDITION_ID_NC")
+}
+
+# This records purpose is to copy data from device data pvs, and push to ASYN PV
+record(ao, "FOIL:LI24:807:MOTR_GUARD_ACT") { 
+    # _GUARD_ACT (actual)
+    field(DESC, "LI24 Slotted Foil 804 position")
+    field(PINI, "YES")
+    field(EGU, "mm")
+    field(PREC, "1")
+    field(DTYP, "asynFloat64")
+	field(OMSL, "closed_loop")
+    # TODO: Make this FOIL:LI24:807:MOTR.RBV
+    field(DOL, "FOIL:LI24:807:MOTR_TEST_GUARD_ACT_RBV CPP")  # TODO: Temporarily set as test_rbv, for PROD its "FOIL:LI24:807:MOTR.RBV"
+    field(OUT, "@asyn(GUARDIAN, 16, 0)CURRENT_NC") 
+}
+
+record(ai, "FOIL:LI24:807:MOTR_GUARD_ACT_RBV") {
+    # _GUARD_ACT_RBV
+    field(DESC, "LI24 Slotted Foil 804 position")    
+    field(EGU, "mm")
+    field(PREC, "1")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn(GUARDIAN, 16, 0)CURRENT_NC")
+}
+
+record(ao, "FOIL:LI24:807:MOTR_GUARD_LATCHED") {
+    # _GUARD_LATCHED
+    field(DESC, "LI24 Slotted Foil 804 position")
+    field(PINI, "YES")
+    field(EGU, "mm")
+    field(PREC, "1")
+    field(DTYP, "asynFloat64")
+    field(OUT, "@asyn(GUARDIAN, 16, 0)STORED_NC")
+}
+
+record(ai, "FOIL:LI24:807:MOTR_GUARD_LATCHED_RBV") {
+    field(DESC, "LI24 Slotted Foil 804 position")
+    field(SCAN, "Passive")
+    field(EGU, "mm")
+    field(PREC, "1")
+    field(DTYP, "asynFloat64")
+    field(INP, "@asyn(GUARDIAN, 16, 0)STORED_NC")
+}
+
+record(bo, "FOIL:LI24:807:MOTR_GUARD_LATCHED_TRG") {
+    # _GUARD_LATCHED_TRG
+    field(ZNAM, "Done")
+    field(ONAM, "Update")
+    field(OMSL, "closed_loop") 
+    field(DOL, "$(BASE):GUARD_SS_UPDATE CPP")
+    field(FLNK, "FOIL:LI24:807:MOTR_GUARD_LATCHED_RBV")
+}
+
+# Trip Message
+record(waveform, "FOIL:LI24:807:MOTR_GUARD_TRIP_MSG") {
+    # _GUARD_TRIP_MSG
+    field(DESC, "Trip message for GUI")
+    field(PINI, "YES")
+    field(NELM, "100")
+    field(FTVL, "CHAR")
+    field(DTYP, "asynOctetWrite")
+    field(INP, "@asyn(GUARDIAN, 16, 0)MSG_NC")
+}
+
+# Trip logic type
+record(longout, "FOIL:LI24:807:MOTR_GUARD_LOGIC_TYPE") {
+    # _GUARD_LOGIC_TYPE
+    field(DESC, "Trip tolerance logic type")
+    field(PINI, "YES")
+    field(VAL, "4")
+    field(DTYP, "asynInt32")
+    field(OUT, "@asyn(GUARDIAN, 16, 0)LOGIC_TYPE_NC")
+}
+
+# Tolerance control pv
+record(longout, "FOIL:LI24:807:MOTR_GUARD_TOL_ID") {
+    # _GUARD_TOL_ID
+    field(DESC, "Optional Tolerance pv id for logic")
+    field(PINI, "YES")
+    field(VAL, "14")
+    field(DTYP, "asynInt32")
+    field(OUT, "@asyn(GUARDIAN, 16, 0)TOLERANCE_ID_NC")
+}
+
+# Optional Condition ID
+record(longout, "FOIL:LI24:807:MOTR_GUARD_CONDITION_ID") {
+    # _GUARD_CONDITON_ID
+    field(DESC, "Optional condition id for logic")
+    field(PINI, "YES")
+    field(VAL, "0")
+    field(DTYP, "asynInt32")
+    field(OUT, "@asyn(GUARDIAN, 16, 0)CONDITION_ID_NC")
+}

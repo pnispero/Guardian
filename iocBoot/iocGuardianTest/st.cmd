@@ -13,12 +13,13 @@ Guardian_registerRecordDeviceDriver pdbbase
 
 ## Load record instances
 #dbLoadRecords("db/xxx.db","user=GUARDIAN")
-dbLoadRecords("db/guardian_controls.db", "BASE=SIOC:B34:GD_PATRICK") # PATRICK TODO: Temp add patrick so its unique
-dbLoadRecords("db/guardian_metadata.db", "BASE=SIOC:B34:GD_PATRICK")
-dbLoadRecords("db/guardian_device_condition.db", "BASE=SIOC:B34:GD_PATRICK")
-dbLoadRecords("db/guardian_device_data.db", "BASE=SIOC:B34:GD_PATRICK")
-dbLoadRecords("db/guardian_tolerance_data.db", "BASE=SIOC:B34:GD_PATRICK") 
-dbLoadRecords("db/guardian_mps.db", "BASE=SIOC:B34:GD_PATRICK") 
+dbLoadRecords("db/guardian_controls.db", "BASE=SIOC:MCC0:MP00")
+dbLoadRecords("db/guardian_metadata.db", "BASE=SIOC:MCC0:MP00")
+dbLoadRecords("db/guardian_device_condition.db", "BASE=SIOC:MCC0:MP00")
+dbLoadRecords("db/guardian_device_data.db", "BASE=SIOC:MCC0:MP00")
+dbLoadRecords("db/guardian_special_device.db", "BASE=SIOC:MCC0:MP00") 
+dbLoadRecords("db/guardian_tolerance_data.db", "BASE=SIOC:MCC0:MP00") 
+dbLoadRecords("db/guardian_mps.db", "BASE=SIOC:MCC0:MP00") 
 
 
 ## Configure Guardian driver

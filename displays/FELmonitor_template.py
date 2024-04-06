@@ -29,22 +29,22 @@ class FELMonitorTemplate(Display):
         
         # macros are grabbed from FELmonitor_nc_parameters.json
         # Adding a value_slot field creates a thread that points to a function, and calls it anytime this channel changes value
-        stored_pv_name = "ca://{DEVICE}:STORED_RBV".format(**macros)
+        stored_pv_name = "ca://{DEVICE}_GUARD_LATCHED_RBV".format(**macros)
         self.stored_val_pv = PyDMChannel(address=stored_pv_name, value_slot=self.stored_val_change) 
         self.stored_val_pv.connect()
         
         # add tolerance pv 
-        tolerance_pv_name = "ca://{TOLERANCE}:TOL_RBV".format(**macros)
+        tolerance_pv_name = "ca://{TOLERANCE}".format(**macros)
         self.tolerance_val_pv = PyDMChannel(address=tolerance_pv_name, value_slot=self.tolerance_val_change) 
         self.tolerance_val_pv.connect()
 
         # add tolerance pv for EGU
-        tolerance_egu_name = "ca://{TOLERANCE}:TOL_RBV.EGU".format(**macros)
+        tolerance_egu_name = "ca://{TOLERANCE}.EGU".format(**macros)
         self.tolerance_val_pv = PyDMChannel(address=tolerance_egu_name, value_slot=self.tolerance_egu_change) 
         self.tolerance_val_pv.connect()
 
         # Grab the precision from the stored pv
-        stored_prec_name = "ca://{DEVICE}:STORED_RBV.PREC".format(**macros)
+        stored_prec_name = "ca://{DEVICE}_GUARD_LATCHED_RBV.PREC".format(**macros)
         self.tolerance_val_pv = PyDMChannel(address=stored_prec_name, value_slot=self.stored_prec_change) 
         self.tolerance_val_pv.connect()
 
@@ -52,18 +52,18 @@ class FELMonitorTemplate(Display):
         # If logic type 3 then set the lower tolerance to 0 if its calculated to
         # to be below 0 (since those can't be under 0 it won't be evaluated since its
         # the comparison takes the absolute value of the current)
-        logic_type_name = "ca://{DEVICE}:LOGIC_TYPE".format(**macros)
+        logic_type_name = "ca://{DEVICE}_GUARD_LOGIC_TYPE".format(**macros)
         self.logic_type_pv = PyDMChannel(address=logic_type_name, value_slot=self.logic_type_change) 
         self.logic_type_pv.connect()
 
         # add automatic boxing of the tripped device
-        tripped_pv_name = "ca://{BASE}:TRIP_ID".format(**macros)
+        tripped_pv_name = "ca://{BASE}:GUARD_TRIP_ID".format(**macros)
         self.device_id =  "{ID}".format(**macros)
         self.tripped_id_pv = PyDMChannel(address=tripped_pv_name, value_slot=self.tripped_val_change) 
         self.tripped_id_pv.connect()
 
         # Add logic for when the snapshot is triggered, then trigger the tolerance_val_change
-        snapshot_pv_name = "ca://{BASE}:SNAPSHOT_TRG_RBV".format(**macros)
+        snapshot_pv_name = "ca://{BASE}:GUARD_SNAPSHOT_TRG_RBV".format(**macros)
         self.snapshot_pv = PyDMChannel(address=snapshot_pv_name, value_slot=self.snapshot_val_change) 
         self.snapshot_pv.connect()
 
@@ -110,7 +110,6 @@ class FELMonitorTemplate(Display):
         self.set_tolerance_label()
 
     def set_tolerance_label(self):
-        # TODO: may have to change slightly for absolute values
         try:
             if (self.tol_val == 0):
                 upper_tol = self.stored_val

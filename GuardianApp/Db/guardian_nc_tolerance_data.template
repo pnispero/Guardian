@@ -8,21 +8,20 @@
 #   - ID         : ASYN ID                                             #
 #=====================================================================
 
-record(ao, "$(NAME):TOL") { 
-    # Removed _TOL, will be replaced in the substgitutions file itself
+record(ao, "$(NAME)") { 
     field(DESC, "$(DESC)")
     field(PINI, "YES")
     field(EGU, "$(EGU)")
     field(PREC, "$(PREC)")
     field(DTYP, "asynFloat64")
-    field(OMSL, "closed_loop") # TODO: TEMP field for testing
-    field(DOL, "$(NAME):TEST:TOL CPP") # # TODO: TEMP field for testing
+    field(OMSL, "closed_loop") # TODO: TEMP field for testing, For PROD delete this field
+    field(DOL, "$(NAME)_TEST CPP") # # TODO: TEMP field for testing, For PROD delete this field
     field(ASG, "MCC")
     field(OUT, "@asyn(GUARDIAN, $(ID), 0)TOLERANCE_NC") 
     info(autosaveFields, "VAL")
 }
 
-record(ai, "$(NAME):TOL_RBV") {
+record(ai, "$(NAME)_RBV") {
     field(DESC, "$(DESC)")    
     field(EGU, "$(EGU)")
     field(PREC, "$(PREC)")
