@@ -18,7 +18,7 @@ record(ao, "$(NAME)_GUARD_ACT") { # actual
     field(PREC, "$(PREC)")
     field(DTYP, "asynFloat64")
 	field(OMSL, "closed_loop") 
-    field(DOL, "$(NAME)_TEST_GUARD_ACT_RBV CPP")  # TODO: Temporarily set as test_rbv, For PROD its just $(NAME)
+    field(DOL, "$(NAME) CPP") 
     field(OUT, "@asyn(GUARDIAN, $(ID), 0)CURRENT_NC") 
 }
 

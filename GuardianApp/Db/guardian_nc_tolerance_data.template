@@ -14,8 +14,6 @@ record(ao, "$(NAME)") {
     field(EGU, "$(EGU)")
     field(PREC, "$(PREC)")
     field(DTYP, "asynFloat64")
-    field(OMSL, "closed_loop") # TODO: TEMP field for testing, For PROD delete this field
-    field(DOL, "$(NAME)_TEST CPP") # # TODO: TEMP field for testing, For PROD delete this field
     field(ASG, "MCC")
     field(OUT, "@asyn(GUARDIAN, $(ID), 0)TOLERANCE_NC") 
     info(autosaveFields, "VAL")

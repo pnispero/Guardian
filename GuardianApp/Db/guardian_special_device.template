@@ -20,7 +20,7 @@ record(ao, "FOIL:LI24:804:MOTR_GUARD_ACT") {
     field(PREC, "1")
     field(DTYP, "asynFloat64")
 	field(OMSL, "closed_loop")
-    field(DOL, "FOIL:LI24:804:MOTR_TEST_GUARD_ACT_RBV CPP")  # TODO: Temporarily set as test_rbv, for PROD its "FOIL:LI24:804:MOTR.RBV"
+    field(DOL, "FOIL:LI24:804:MOTR.RBV CPP")
     field(OUT, "@asyn(GUARDIAN, 15, 0)CURRENT_NC") 
 }
 
@@ -112,8 +112,7 @@ record(ao, "FOIL:LI24:807:MOTR_GUARD_ACT") {
     field(PREC, "1")
     field(DTYP, "asynFloat64")
 	field(OMSL, "closed_loop")
-    # TODO: Make this FOIL:LI24:807:MOTR.RBV
-    field(DOL, "FOIL:LI24:807:MOTR_TEST_GUARD_ACT_RBV CPP")  # TODO: Temporarily set as test_rbv, for PROD its "FOIL:LI24:807:MOTR.RBV"
+    field(DOL, "FOIL:LI24:807:MOTR.RBV CPP")
     field(OUT, "@asyn(GUARDIAN, 16, 0)CURRENT_NC") 
 }
 

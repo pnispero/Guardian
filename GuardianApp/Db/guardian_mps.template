@@ -19,7 +19,7 @@ record(bo, "$(BASE):GUARD_MPS_PERMIT_OUT") {
     field(DESC, "Push out mps permit to actual mps pv")
     field(OMSL, "closed_loop") 
     field(DOL, "$(BASE):MPS_PERMIT CPP")
-    field(OUT, "MPS:UNDS:1:SXRSS_GUARDIAN_OK:TEST") # TODO: Temporarily set as test, For PROD remove ":TEST"
+    field(OUT, "MPS:UNDS:1:SXRSS_GUARDIAN_OK")
 }
 
 record(bi, "$(BASE):GUARD_ON") { 
@@ -35,5 +35,5 @@ record(bo, "$(BASE):GUARD_ON_OUT") {
     field(DESC, "Push out guardian on to mps")
     field(OMSL, "closed_loop") 
     field(DOL, "$(BASE):GUARD_ON CPP")
-    field(OUT, "MPS:UNDS:1:SXRSS_GUARDIAN_ON:TEST") # TODO: Temporarily set as test, For PROD remove ":TEST"
+    field(OUT, "MPS:UNDS:1:SXRSS_GUARDIAN_ON")
 }
