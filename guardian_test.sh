@@ -1,8 +1,8 @@
 #!/bin/bash
 # Used to automate for guardian testing.
-declare -a arr=("SIOC:B34:GD_PATRICK:SNAPSHOT_TRG_EN"
-               "SIOC:B34:GD_PATRICK:ARM"
-               "SIOC:B34:GD_PATRICK:TEST_TRG_EN" )
+declare -a arr=("SIOC:MCC0:MP00:SNAPSHOT_TRG_EN"
+               "SIOC:MCC0:MP00:ARM"
+               "SIOC:MCC0:MP00:TEST_TRG_EN" )
 for i in "${arr[@]}"
 do
    sleep 1

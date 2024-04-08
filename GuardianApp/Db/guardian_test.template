@@ -9,7 +9,7 @@
 #=====================================================================
 
 # Record for triggering a TEST
-record(bo, "$(BASE):TEST_TRG_EN") {
+record(bo, "$(BASE):GUARD_TEST_TRG_EN") {
     field(DESC, "Test Guardian trigger")
     field(DTYP, "asynUInt32Digital")
     field(SCAN, "Passive")
@@ -21,7 +21,7 @@ record(bo, "$(BASE):TEST_TRG_EN") {
 }
 
 # Record for TEST trigger readback value (OPs read this one back not the _EN)
-record(bi, "$(BASE):TEST_TRG_RBV") {
+record(bi, "$(BASE):GUARD_TEST_TRG_RBV") {
     field(DESC, "Test Guardian trigger")
     field(DTYP, "asynUInt32Digital")
     field(SCAN, "I/O Intr")
@@ -32,7 +32,7 @@ record(bi, "$(BASE):TEST_TRG_RBV") {
 }
 
 # Record for updating device test values
-record(bi, "$(BASE):DEVICE_TEST_UPDATE") {
+record(bi, "$(BASE):GUARD_DEVICE_TEST_UPDATE") {
     field(DTYP, "asynUInt32Digital")
     field(ZNAM, "Done")
     field(ONAM, "Update")
@@ -41,7 +41,7 @@ record(bi, "$(BASE):DEVICE_TEST_UPDATE") {
 }
 
 # Record for updating condition test values
-record(bi, "$(BASE):CONDITION_TEST_UPDATE") {
+record(bi, "$(BASE):GUARD_CONDITION_TEST_UPDATE") {
     field(DTYP, "asynUInt32Digital")
     field(ZNAM, "Done")
     field(ONAM, "Update")
@@ -49,16 +49,16 @@ record(bi, "$(BASE):CONDITION_TEST_UPDATE") {
     field(INP, "@asynMask(GUARDIAN_TEST, 0, 1, 0)CONDITION_TEST_UPDATE")
 }
 
-record(longout, "$(BASE):DEVICE_ID") {
+record(longout, "$(BASE):GUARD_DEVICE_ID") {
     field(DESC, "Test purposes only, tripped device index")
     field(SCAN, "Passive")
     field(DTYP, "asynInt32")
     field(OMSL, "closed_loop") 
-    field(DOL, "$(BASE):TRIP_ID CPP") 
+    field(DOL, "$(BASE):GUARD_TRIP_ID CPP") 
     field(OUT, "@asyn(GUARDIAN_TEST, 0, 0)DEVICE_ID")
 }
 
-record(bo, "$(BASE):GUARDIAN_MODE_TEST") {
+record(bo, "$(BASE):GUARD_MODE_TEST") {
     field(DESC, "Determines what devices to monitor")
     field(SCAN, "Passive")
     field(DTYP, "asynUInt32Digital")
@@ -67,7 +67,7 @@ record(bo, "$(BASE):GUARDIAN_MODE_TEST") {
     field(ZNAM, "Normal Conducting")
     field(ONAM, "Super Conducting")
     field(OMSL, "closed_loop") 
-    field(DOL, "$(BASE):GUARDIAN_MODE CPP") 
+    field(DOL, "$(BASE):GUARD_MODE CPP") 
     field(OUT, "@asynMask(GUARDIAN_TEST, 0, 1, 0)GUARDIAN_MODE")
 }
 

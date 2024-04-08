@@ -1,5 +1,5 @@
 #=================================================================#
-# Template file: guardian_sc_tolerance_test_data.template
+# Template file: guardian_nc_tolerance_test_data.template
 # Database for control tolerance PVs within sxrss for the guardian
 # Uses guardian_tolerance_test_data.substitutions
 # Macro description:                                                   #
@@ -8,7 +8,7 @@
 #   - ID         : ASYN ID                                             #
 #=====================================================================
 
-record(ao, "$(NAME):TEST:TOL") { 
+record(ao, "$(NAME)_TEST") { 
     field(DESC, "$(DESC)")
     field(PINI, "YES")
     field(VAL, "$(VAL)")

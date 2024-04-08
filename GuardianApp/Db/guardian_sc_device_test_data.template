@@ -1,6 +1,7 @@
 #=================================================================#
-# Template file: guardian_sc_device_test_data.template
+# Template file: guardian_nc_device_test_data.template
 # Database for device data values within sxrss for the guardian
+# Exactly the same as sc except the asyn parameter has "_SC" instead of "_NC"
 # Uses guardian_device_test_data.substitutions
 # Macro description:                                                             #
 #   - NAME       : Name                                                #
@@ -8,8 +9,8 @@
 #   - ID         : ASYN ID                                             #
 #=====================================================================
 
-# ex: FBCK:FB02:GN01:S1DES_TEST
-record(ao, "$(NAME):TEST") {
+# ex: FBCK:FB02:GN01:S1DES_TEST_GUARD_ACT
+record(ao, "$(NAME)_TEST_GUARD_ACT") {
     field(DESC, "$(DESC)")
     field(PINI, "YES")
     field(VAL, "$(VAL)")
@@ -19,8 +20,8 @@ record(ao, "$(NAME):TEST") {
     field(OUT, "@asyn(GUARDIAN_TEST, $(ID), 0)DEVICE_TEST_SC")
 }
 
-# ex: FBCK:FB02:GN01:S1DES_TEST_RBV
-record(ai, "$(NAME):TEST_RBV") {
+# ex: FBCK:FB02:GN01:S1DES_TEST_GUARD_ACT_RBV
+record(ai, "$(NAME)_TEST_GUARD_ACT_RBV") {
     field(DESC, "$(DESC)")
     field(EGU, "$(EGU)")
     field(PREC, "$(PREC)")
@@ -34,22 +35,21 @@ record(bo, "$(NAME):TEST_TRG") {
     field(ONAM, "Update")
     field(OMSL, "closed_loop") 
     field(DOL, "$(BASE):DEVICE_TEST_UPDATE CPP") 
-    field(FLNK, "$(NAME):TEST_RBV")
+    field(FLNK, "$(NAME)_TEST_GUARD_ACT_RBV")
 }
 
-# ex: FBCK:FB02:GN01:S1DES:TEST:STORED
-record(ao, "$(NAME):TEST:STORED") {
+record(ao, "$(NAME)_TEST_GUARD_LATCHED") {
     field(DESC, "$(DESC)")
     field(EGU, "$(EGU)")
     field(PREC, "$(PREC)")
     field(OMSL, "closed_loop") 
-    field(DOL, "$(NAME):STORED_RBV CPP")
+    field(DOL, "$(NAME)_GUARD_LATCHED_RBV CPP")
     field(DTYP, "asynFloat64")
     field(OUT, "@asyn(GUARDIAN_TEST, $(ID), 0)STORED_SC")
     
 }
 
-record(ai, "$(NAME):TEST:STORED_RBV") {
+record(ai, "$(NAME)_TEST_GUARD_LATCHED_RBV") {
     field(DESC, "$(DESC)")
     field(EGU, "$(EGU)")
     field(PREC, "$(PREC)")
@@ -60,7 +60,7 @@ record(ai, "$(NAME):TEST:STORED_RBV") {
 }
 
 # Trip logic type
-record(longout, "$(NAME):TEST:LOGIC_TYPE") {
+record(longout, "$(NAME)_TEST_GUARD_LOGIC_TYPE") {
     field(DESC, "Trip tolerance logic type")
     field(PINI, "YES")
     field(VAL, "$(LOGIC_TYPE)")
@@ -70,7 +70,7 @@ record(longout, "$(NAME):TEST:LOGIC_TYPE") {
 }
 
 # Tolerance control pv
-record(longout, "$(NAME):TEST:TOL_ID") {
+record(longout, "$(NAME)_TEST_GUARD_TOL_ID") {
     field(DESC, "Optional Tolerance pv id for logic")
     field(PINI, "YES")
     field(VAL, "$(TOLERANCE_ID)")
@@ -80,7 +80,7 @@ record(longout, "$(NAME):TEST:TOL_ID") {
 }
 
 # Optional Condition ID
-record(longout, "$(NAME):TEST:CONDITION_ID") {
+record(longout, "$(NAME)_TEST_GUARD_CONDITION_ID") {
     field(DESC, "Optional condition id for logic")
     field(PINI, "YES")
     field(VAL, "$(CONDITION_ID)")

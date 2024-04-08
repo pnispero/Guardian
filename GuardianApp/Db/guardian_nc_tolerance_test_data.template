@@ -8,7 +8,7 @@
 #   - ID         : ASYN ID                                             #
 #=====================================================================
 
-record(ao, "$(NAME):TEST:TOL") { 
+record(ao, "$(NAME)_TEST") { 
     field(DESC, "$(DESC)")
     field(PINI, "YES")
     field(VAL, "$(VAL)")

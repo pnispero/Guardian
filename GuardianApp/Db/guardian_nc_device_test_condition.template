@@ -8,7 +8,7 @@
 #   - ID         : ASYN ID                                             #
 #=====================================================================
 
-record(bo, "$(NAME):TEST:CONDITION") {
+record(bo, "$(NAME)_TEST_GUARD_CONDITION") {
     field(DESC, "$(DESC)")
     field(DTYP, "asynUInt32Digital")
     field(PINI, "YES")
@@ -17,7 +17,7 @@ record(bo, "$(NAME):TEST:CONDITION") {
     field(OUT, "@asynMask(GUARDIAN_TEST, $(ID), 1, 0)CONDITION_TEST_NC")
 }
 
-record(bi, "$(NAME):TEST:CONDITION_RBV") {
+record(bi, "$(NAME)_TEST_GUARD_CONDITION_RBV") {
     field(DESC, "$(DESC)")
     field(DTYP, "asynUInt32Digital")
     field(ZNAM, "OFF")
@@ -26,10 +26,10 @@ record(bi, "$(NAME):TEST:CONDITION_RBV") {
     field(INP, "@asynMask(GUARDIAN_TEST, $(ID), 1, 0)CONDITION_TEST_NC")
 }
 
-record(bo, "$(NAME):TEST:CONDITION_TRG") {
+record(bo, "$(NAME)_TEST_GUARD_CONDITION_TRG") {
     field(ZNAM, "Done")
     field(ONAM, "Update")
     field(OMSL, "closed_loop") 
-    field(DOL, "$(BASE):CONDITION_TEST_UPDATE CPP") 
-    field(FLNK, "$(NAME):TEST:CONDITION_RBV")
+    field(DOL, "$(BASE):GUARD_CONDITION_TEST_UPDATE CPP") 
+    field(FLNK, "$(NAME)_TEST_GUARD_CONDITION_RBV")
 }

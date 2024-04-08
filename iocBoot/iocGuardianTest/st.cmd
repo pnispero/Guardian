@@ -12,11 +12,11 @@ GuardianTest_registerRecordDeviceDriver pdbbase
 
 ## Load record instances
 #dbLoadRecords("db/xxx.db","user=GUARDIAN_TEST")
-dbLoadRecords("db/guardian_test.db", "BASE=SIOC:B34:GD_PATRICK") 
-dbLoadRecords("db/guardian_mps_test.db", "BASE=SIOC:B34:GD_PATRICK") 
-dbLoadRecords("db/guardian_device_test_data.db", "BASE=SIOC:B34:GD_PATRICK") 
-dbLoadRecords("db/guardian_tolerance_test_data.db", "BASE=SIOC:B34:GD_PATRICK")
-dbLoadRecords("db/guardian_device_test_condition.db", "BASE=SIOC:B34:GD_PATRICK") 
+dbLoadRecords("db/guardian_test.db", "BASE=SIOC:MCC0:MP00") 
+dbLoadRecords("db/guardian_mps_test.db", "BASE=SIOC:MCC0:MP00") 
+dbLoadRecords("db/guardian_device_test_data.db", "BASE=SIOC:MCC0:MP00") 
+dbLoadRecords("db/guardian_tolerance_test_data.db", "BASE=SIOC:MCC0:MP00")
+dbLoadRecords("db/guardian_device_test_condition.db", "BASE=SIOC:MCC0:MP00") 
 
 
 ## Configure GuardianTest driver
