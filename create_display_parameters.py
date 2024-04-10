@@ -5,6 +5,12 @@
 #  1.2) msi tolerances_msi.txt for tolerance ids, tolerance names
 #  1.3) Call this python script to do the rest
 
+warning_message = "**ATTENTION** Please add special devices (15,16) manually to guardian_nc_parameters.json since they are not in the guardian_device_data.substitutions\n\
+                        You can grab it from the existing guardian_nc_parameters.json\n\
+**ATTENTION** Please manually move undulator pvs to guardian_nc_und_parameters.json\n\
+**ATTENTION** Please replace every \"'\" with a quotation mark instead \"\n\
+**ATTENTION** Please keep the existing SPECIAL_CASE_DESC for each device from guardian_nc_parameters.json (unless you changed a special case)"
+
 #  1.4) split devices_msi.txt and tolerances_msi.txt into 2 seperate (1 for sc and 1 for nc)
     #  1.4.1) loop through each line until you find the next id of 0, then add in 'split here'
     #  1.4.2) Split the file based off 'split here'
@@ -63,9 +69,8 @@ def process_devices(devices_filename, tolerances_filename, output_json_filename)
 
     tolerances_file.close()
 
-# NEW >>>>>>>>>>>>>>>>>>>>
-# 5) Get the devices affected for each tolerance and add it to dictionary
-# 5.1) Loop through each tolerance, and grab the device name by matching tol_dict[tol_id] == device_dict[tol_id] 
+# 3) Get the devices affected for each tolerance and add it to dictionary
+# 3.1) Loop through each tolerance, and grab the device name by matching tol_dict[tol_id] == device_dict[tol_id] 
     # this can be more than 1 device
     tolerance_devices_affected_full_list = []
     tolerance_devices_affected_list = []
@@ -86,12 +91,10 @@ def process_devices(devices_filename, tolerances_filename, output_json_filename)
         tolerance_devices_affected_full_list.append([])
     
 # Goal: "TOLERANCE_DEVICES_AFFECTED": [device1, device2]
- 
-# <<<<<<<<<<<<<<<<<<<<<<<        
 
-    # 3) Create a final dictionary with structure [ID, DEVICE, TOLERANCE]
-    # 3.1) Loop through each device, and grab the tolerance name by matching device_dict[tol_id] == tol_dict[tol_id]
-    # 3.2) Then fill in [ID, DEVICE, TOLERANCE, TOLERANCE_AFFECTED_DEVICES}
+# 4) Create a final dictionary with structure [ID, DEVICE, TOLERANCE]
+    # 4.1) Loop through each device, and grab the tolerance name by matching device_dict[tol_id] == tol_dict[tol_id]
+    # 4.2) Then fill in [ID, DEVICE, TOLERANCE, TOLERANCE_AFFECTED_DEVICES}
     final_list = []
     tol_index = 0
     for device in devices_list:
@@ -103,7 +106,7 @@ def process_devices(devices_filename, tolerances_filename, output_json_filename)
         tol_index = 0
 
 
-# 4) Write the final dictionary to JSON
+# 5) Write the final dictionary to JSON
     # Format ex: {"ID": 2, "DEVICE": "FBCK:BCI0:1:CHRGSP", "TOLERANCE": "SIOC:MCC0:MP00:GUARD_TOL0", "TOLERANCE_AFFECTED_DEVICES": ["", ""]},
     full_output_filename = output_json_filename
     with open(full_output_filename, "w") as out_file:
@@ -122,108 +125,13 @@ def process_devices(devices_filename, tolerances_filename, output_json_filename)
             # print(write_line)
         last_line = "]\n"
         out_file.write(last_line)
-        manual_messages = "**ATTENTION** Please add special devices (15,16) manually to generated_guardian_nc_parameters.json since they are not in the guardian_device_data.substitutions\n\
-                        You can grab it from the existing guardian_nc_parameters.json\
-                        **ATTENTION** Please manually move undulator pvs to guardian_nc_und_parameters.json\n\
-                        **ATTENTION** Please replace every \"''\" with a quotation mark instead \""
-        out_file.write(manual_messages)
+        out_file.write(warning_message)
 
     # Spit message to user to manually add in special devices (15,16)
     print("Successfully generated " + str(full_output_filename) + ". Can almost directly replace guardian_nc_parameters.json/guardian_sc_parameters.json with some caveats below")
-
-
-# 6) Get the conditions for each device if it exists and add it to dictionary (May just make this manually considering
-# the variability)
 
 split_nc_sc_files("./generated/devices_msi")
 split_nc_sc_files("./generated/tolerances_msi")
 process_devices("./generated/devices_msi_sc.txt", "./generated/tolerances_msi_sc.txt", "./generated/generated_guardian_sc_parameters.json")
 process_devices("./generated/devices_msi_nc.txt", "./generated/tolerances_msi_nc.txt", "./generated/generated_guardian_nc_parameters.json")
-print("**ATTENTION** Please add special devices (15,16) manually to guardian_nc_parameters.json since they are not in the guardian_device_data.substitutions.\n\
-      You can grab it from the existing guardian_nc_parameters.json")
-print("**ATTENTION** Please manually move undulator pvs to guardian_nc_und_parameters.json")
-print("**ATTENTION** Please replace every \"''\" with a quotation mark instead \"")
-
-
-# <<<<<<<<<<<<<<<<<<<<<<<<< OLD for reference <<<<<<<<<<<<<<<<<<<
-
-
-# # PYTHON script to  automatically create .json file
-# from collections import defaultdict
-
-# # 1) Create bash script that will call msi twice and call this python script (15m)
-# #  1.1) msi devices_msi.txt for device ids, device names, tolerance ids
-# #  1.2) msi tolerances_msi.txt for tolerance ids, tolerance names
-# #  1.3) Call this python script to do the rest
-
-
-# # 2) Parse the msi generated files into 2 dictionaries (20m)
-# # 2.1) Get each device in devices_msi.txt [device_id, device_name, tol_id]
-# # 2.2) Get each device in tolerances_msi.txt [tol_id, tol_name]
-
-# # Parse the devices
-# devices_file = open("devices_msi.txt", "r")
-# devices_read = devices_file.read().splitlines()
-# device_ids = []
-# devices_dict = defaultdict(list)
-# for device_line in devices_read:
-#     device_line_contents = device_line.split(',') # [device_id, device_name, tol_id]
-#     devices_dict["device_id"].append(device_line_contents[0])
-#     devices_dict["device_name"].append(device_line_contents[1])
-#     devices_dict["tol_id"].append(device_line_contents[2])
-#     device_ids.append(device_line_contents[0])
-#     # devices_contents.append(device_line_contents[1])
-
-# print(devices_contents)
-# # print(devices_dict)
-
-# devices_file.close()
-
-# # Parse the tolerances
-# tolerances_file = open("tolerances_msi.txt", "r") 
-# tolerances_read = tolerances_file.read().splitlines()
-# tolerances_dict = defaultdict(list)
-# for tolerance_line in tolerances_read:
-#     tolerance_line_contents = tolerance_line.split(',') # [tol_id, tol_name]
-#     tolerances_dict["tol_id"].append(tolerance_line_contents[0])
-#     tolerances_dict["tol_name"].append(tolerance_line_contents[1])
-
-# # print(tolerances_dict)
-# # print(tolerances_dict["tol_id"][2])
-# # print(tolerances_dict["tol_name"][2])
-
-# tolerances_file.close()
-
-
-# # 3) Create a final dictionary with structure [ID, DEVICE, TOLERANCE] (15m)
-# # 3.1) Loop through each device, and grab the tolerance name by matching device_dict[tol_id] == tol_dict[tol_id]
-# # 3.2) Then fill in [ID, DEVICE, TOLERANCE}
-
-# for device_ids, device_names in devices_dict.items():
-#     print (f"{device_ids}, {device_names}")
-#     for device_tol_id in device_names:
-#         # print(device_tol_id)
-#         pass
-
-# for tol_names in tolerances_dict.items():
-#     pass
-#     # print(tol_names[0])
-#     # print (f"{tol_names}")
-
-
-
-
-# # YOU ARE HERE ON STEP 3
-
-
-# # 4) Write the final dictionary to JSON (10m)
-
-# Once step 1-4 done then move on here (20m)
-# # 5.0) Try out a single TOLERANCE_AFFECTED_DEVICES nested object of the .JSON to make sure it loads properly
-
-# # 5) Get the devices affected for each tolerance and add it to dictionary
-# # 5.1) Loop through each tolerance, and grab the device name by matching tol_dict[tol_id] == device_dict[tol_id] 
-#     # this can be more than 1 device
-
-# # 6) Get the conditions for each device if it exists and add it to dictionary (May just make this manually considering
-# # the variablility)
+print(warning_message)
