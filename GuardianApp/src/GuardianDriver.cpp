@@ -255,13 +255,13 @@ bool GuardianDriver::outsideCollimatorTolerance() {
 }
 
 // These special cases will have hardcoded numbers here (can't generalize these unfortunately)
-std::tuple<bool, std::string> GuardianDriver::tripSpecialCase(int deviceIndex) {
+std::tuple<bool, std::string, int> GuardianDriver::tripSpecialCase(int deviceIndex) {
 
     // Special cases have a condition
     // Get value of condition
 
     uint32_t conditionVal, conditionVal2;
-    bool tripped = false; std::string tripMsg;
+    bool tripped = false; std::string tripMsg; int deviceTrippedId = -1;
     if (guardianMode == NC) { // Normal conducting special cases
         switch (deviceIndex) 
         {
@@ -271,24 +271,24 @@ std::tuple<bool, std::string> GuardianDriver::tripSpecialCase(int deviceIndex) {
             if (conditionVal == 1) {
                 tripped = pGDriver->outsidePercentageTolerance(0); // Check bunch charge feedback setpoint unchanged
                 if (tripped) {
-                    getStringParam(0, TripMsgIndex, tripMsg);
+                    getStringParam(0, TripMsgIndex, tripMsg); deviceTrippedId = 0;
                     break;
                 }
                 tripped = pGDriver->outsidePercentageTolerance(1, 0); // Check bunch charge feedback state within user entered % of stored setpt
                 if (tripped) {
-                    getStringParam(1, TripMsgIndex, tripMsg);
+                    getStringParam(1, TripMsgIndex, tripMsg); deviceTrippedId = 1;
                     break;
                 }
             } 
             else if (conditionVal2 == 1) {
                 tripped = pGDriver->outsidePercentageTolerance(2); // Check matlab bunch charge feedback setpoint unchanged
                 if (tripped) {
-                    getStringParam(2, TripMsgIndex, tripMsg);
+                    getStringParam(2, TripMsgIndex, tripMsg); deviceTrippedId = 2;
                     break;
                 }
                 tripped = pGDriver->outsidePercentageTolerance(3, 2); // Check matlab bunch charge feedback state within user entered % of stored
                 if (tripped) {
-                    getStringParam(3, TripMsgIndex, tripMsg);
+                    getStringParam(3, TripMsgIndex, tripMsg); deviceTrippedId = 3;
                     break;
                 }
             }
@@ -299,12 +299,12 @@ std::tuple<bool, std::string> GuardianDriver::tripSpecialCase(int deviceIndex) {
             if (conditionVal == 1) {
                 tripped = pGDriver->outsidePercentageTolerance(5, 4); // Check if BC1 energy feedback is on, then check that the SXR state is within (tols)% of stored setpoint
                 if (tripped) {
-                    getStringParam(5, TripMsgIndex, tripMsg);
+                    getStringParam(5, TripMsgIndex, tripMsg); deviceTrippedId = 5;
                     break;
                 }
                 tripped = pGDriver->outsidePercentageTolerance(6); // Check BC1 vernier setpoint unchanged 
                 if (tripped) {
-                    getStringParam(6, TripMsgIndex, tripMsg);
+                    getStringParam(6, TripMsgIndex, tripMsg); deviceTrippedId = 6; 
                     break;
                 }
             }
@@ -321,12 +321,12 @@ std::tuple<bool, std::string> GuardianDriver::tripSpecialCase(int deviceIndex) {
                     tripped = pGDriver->outsidePercentageTolerance(8, 9); 
                 }
                 if (tripped) {
-                    getStringParam(8, TripMsgIndex, tripMsg);
+                    getStringParam(8, TripMsgIndex, tripMsg); deviceTrippedId = 8;
                     break;
                 }
                 tripped = pGDriver->outsidePercentageTolerance(7);
                 if (tripped) {
-                    getStringParam(7, TripMsgIndex, tripMsg);
+                    getStringParam(7, TripMsgIndex, tripMsg); deviceTrippedId = 7;
                     break;
                 }
             }
@@ -337,7 +337,7 @@ std::tuple<bool, std::string> GuardianDriver::tripSpecialCase(int deviceIndex) {
             getUIntDigitalParam(7, ConditionValueIndex, &conditionVal2, 1);
             if (conditionVal == 1) {
                 double curVal;
-                getDoubleParam(12, CurrentValueIndex, &curVal);
+                getDoubleParam(12, CurrentValueIndex, &curVal); 
                 if (curVal > 25000) { // only check if BLEN reading is OK
                     tripMsg = "WARNING: BC2 bunch current reading is Garbage!";
                     break;
@@ -348,14 +348,14 @@ std::tuple<bool, std::string> GuardianDriver::tripSpecialCase(int deviceIndex) {
                 if (conditionVal2 == 1) {
                     tripped = pGDriver->outsidePercentageTolerance(11);
                     if (tripped) {
-                        getStringParam(11, TripMsgIndex, tripMsg);
+                        getStringParam(11, TripMsgIndex, tripMsg); deviceTrippedId = 11;
                         break;
                     }
                 }
                 else {
                     tripped = pGDriver->outsidePercentageTolerance(10);
                     if (tripped) {
-                        getStringParam(10, TripMsgIndex, tripMsg);
+                        getStringParam(10, TripMsgIndex, tripMsg); deviceTrippedId = 10;
                         break;
                     }
                     break;
@@ -366,7 +366,7 @@ std::tuple<bool, std::string> GuardianDriver::tripSpecialCase(int deviceIndex) {
         case 13: // devices 14 as well
             tripped = pGDriver->outsideCollimatorTolerance();
             if (tripped) {
-                getStringParam(13, TripMsgIndex, tripMsg);
+                getStringParam(13, TripMsgIndex, tripMsg); deviceTrippedId = 13;
             }
             break;
         default:
@@ -377,7 +377,7 @@ std::tuple<bool, std::string> GuardianDriver::tripSpecialCase(int deviceIndex) {
 
     }
 
-    return std::make_tuple(tripped, tripMsg);
+    return std::make_tuple(tripped, tripMsg, deviceTrippedId);
 }
 
 void GuardianDriver::tripLogic() {
@@ -389,10 +389,11 @@ void GuardianDriver::tripLogic() {
         // get value of logic type
         int logicType;
         getIntegerParam(deviceIndex, LogicTypeValueIndex, &logicType);
+        int deviceTrippedId = deviceIndex;
         switch (logicType)
         {
         case 0: // special case
-            std::tie(tripped, tripMsg) = pGDriver->tripSpecialCase(deviceIndex);
+            std::tie(tripped, tripMsg, deviceTrippedId) = pGDriver->tripSpecialCase(deviceIndex);
             break;
         case outsidePercentageToleranceEnum:
             tripped = pGDriver->outsidePercentageTolerance(deviceIndex);
@@ -422,7 +423,7 @@ void GuardianDriver::tripLogic() {
             
             // 3) write to out message pv - only on initial trip
             setStringParam(DisplayMsgIndex, tripMsg);
-            setIntegerParam(tripIdIndex, deviceIndex); // Used for display
+            setIntegerParam(tripIdIndex, deviceTrippedId); // Used for display
             #ifdef TEST
                 std::cout << "OFF BEAM\n";
                 std::cout << "Trip Msg: " << tripMsg << "\n";
