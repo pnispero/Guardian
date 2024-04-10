@@ -9,15 +9,17 @@ from pydm.widgets.channel import PyDMChannel
 import numpy as np
 from PyQt5.QtWidgets import QListWidgetItem
 
-class FELMonitorHelp(Display):
+class GuardianHelp(Display):
     def __init__(self, parent=None, args=[], macros=None):
-        super(FELMonitorHelp, self).__init__(parent=parent, args=args, macros=macros)
+        super(GuardianHelp, self).__init__(parent=parent, args=args, macros=macros)
 
         logic_type_name = "ca://{DEVICE}_GUARD_LOGIC_TYPE".format(**macros)
         self.logic_type_pv = PyDMChannel(address=logic_type_name, value_slot=self.logic_type_val_change) 
         self.logic_type_pv.connect()
 
         # TODO: fill in special case conditions
+        special_case_string = "{SPECIAL_CASE_DESC}".format(**macros)
+        self.ui.special_case_desc_label.setText(special_case_string)
 
         # Fill in other devices affected by tolerance
         devices_string = "{TOLERANCE_AFFECTED_DEVICES}".format(**macros)
@@ -64,7 +66,7 @@ tolerance = tolerance * 0.01                                    // Percentage\n
 
     @staticmethod
     def ui_filename():
-        return 'FELmonitor_help.ui'
+        return 'guardian_help.ui'
 
     def ui_filepath(self):
         return path.join(path.dirname(path.realpath(__file__)), self.ui_filename())

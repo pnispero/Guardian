@@ -8,9 +8,9 @@ from pyqtgraph import InfiniteLine
 from pydm.widgets.channel import PyDMChannel
 import numpy as np
 
-class FELMonitorMain(Display):
+class GuardianMain(Display):
     def __init__(self, parent=None, args=[], macros=None):
-        super(FELMonitorMain, self).__init__(parent=parent, args=args, macros=macros)
+        super(GuardianMain, self).__init__(parent=parent, args=args, macros=macros)
 
         guardian_arm_name = "ca://{BASE}:GUARD_ARM".format(**macros)
         self.guardian_arm_pv = PyDMChannel(address=guardian_arm_name, value_slot=self.guardian_arm_val_change) 
@@ -47,7 +47,7 @@ class FELMonitorMain(Display):
 
     @staticmethod
     def ui_filename():
-        return 'FELmonitor.ui'
+        return 'guardian.ui'
 
     def ui_filepath(self):
         return path.join(path.dirname(path.realpath(__file__)), self.ui_filename())

@@ -65,6 +65,6 @@
 {"ID": 65, "DEVICE": "FBCK:FB04:TR02:S3DES", "TOLERANCE": "SIOC:MCC0:MP00:GUARD_TOL19", "TOLERANCE_AFFECTED_DEVICES": ['FBCK:FB04:TR02:S1DES', 'FBCK:FB04:TR02:S2DES', 'FBCK:FB04:TR02:S3DES', 'FBCK:FB04:TR02:S4DES']},
 {"ID": 66, "DEVICE": "FBCK:FB04:TR02:S4DES", "TOLERANCE": "SIOC:MCC0:MP00:GUARD_TOL19", "TOLERANCE_AFFECTED_DEVICES": ['FBCK:FB04:TR02:S1DES', 'FBCK:FB04:TR02:S2DES', 'FBCK:FB04:TR02:S3DES', 'FBCK:FB04:TR02:S4DES']}
 ]
-**ATTENTION** Please add special devices (15,16) manually to generated_FELmonitor_nc_parameters.json since they are not in the guardian_device_data.substitutions
-                        You can grab it from the existing FELmonitor_nc_parameters.json                        **ATTENTION** Please manually move undulator pvs to FELmonitor_nc_und_parameters.json
+**ATTENTION** Please add special devices (15,16) manually to generated_guardian_nc_parameters.json since they are not in the guardian_device_data.substitutions
+                        You can grab it from the existing guardian_nc_parameters.json                        **ATTENTION** Please manually move undulator pvs to guardian_nc_und_parameters.json
                         **ATTENTION** Please replace every "''" with a quotation mark instead "

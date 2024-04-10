@@ -18,7 +18,7 @@ record(bi, "$(BASE):GUARD_MPS_PERMIT") {
 record(bo, "$(BASE):GUARD_MPS_PERMIT_OUT") { 
     field(DESC, "Push out mps permit to actual mps pv")
     field(OMSL, "closed_loop") 
-    field(DOL, "$(BASE):MPS_PERMIT CPP")
+    field(DOL, "$(BASE):GUARD_MPS_PERMIT CPP")
     field(OUT, "MPS:UNDS:1:SXRSS_GUARDIAN_OK")
 }
 

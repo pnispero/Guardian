@@ -10,9 +10,9 @@ import numpy as np
 
 from PyQt5.QtGui import QIcon
 
-class FELMonitorTemplate(Display):
+class GuardianTemplate(Display):
     def __init__(self, parent=None, args=[], macros=None):
-        super(FELMonitorTemplate, self).__init__(parent=parent, args=args, macros=macros)
+        super(GuardianTemplate, self).__init__(parent=parent, args=args, macros=macros)
 
         # What we want in the FELmonitor_template.ui (used for template repeater)
         # Have a seperate thread that updates the qlabels of Lower tol and Upper tol
@@ -137,7 +137,7 @@ class FELMonitorTemplate(Display):
 
     @staticmethod
     def ui_filename():
-        return 'FELmonitor_template.ui'
+        return 'guardian_template.ui'
 
     def ui_filepath(self):
         return path.join(path.dirname(path.realpath(__file__)), self.ui_filename())

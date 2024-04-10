@@ -158,10 +158,10 @@ bold</string>
      <number>9</number>
     </property>
     <property name="templateFilename" stdset="0">
-     <string>/u/cd/pnispero/guardian/guardian/displays/FELmonitor_template.py</string>
+     <string>guardian_template.py</string>
     </property>
     <property name="dataSource" stdset="0">
-     <string>/u/cd/pnispero/guardian/guardian/displays/FELmonitor_nc_und_parameters.json</string>
+     <string>guardian_nc_und_parameters.json</string>
     </property>
    </widget>
    <widget class="QScrollArea" name="scrollArea">
@@ -235,10 +235,10 @@ bold</string>
          <number>30</number>
         </property>
         <property name="templateFilename" stdset="0">
-         <string>/u/cd/pnispero/guardian/guardian/displays/FELmonitor_template.py</string>
+         <string>guardian_template.py</string>
         </property>
         <property name="dataSource" stdset="0">
-         <string>/u/cd/pnispero/guardian/guardian/displays/FELmonitor_nc_parameters.json</string>
+         <string>guardian_nc_parameters.json</string>
         </property>
        </widget>
       </item>

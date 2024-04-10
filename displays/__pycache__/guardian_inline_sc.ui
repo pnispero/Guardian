@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>836</width>
+    <height>872</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>35</y>
+     <width>831</width>
+     <height>831</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="PyDMDrawingRectangle" name="PyDMDrawingRectangle_1">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>-1</y>
+      <width>831</width>
+      <height>590</height>
+     </rect>
+    </property>
+    <property name="alarmSensitiveContent" stdset="0">
+     <bool>false</bool>
+    </property>
+    <property name="alarmSensitiveBorder" stdset="0">
+     <bool>false</bool>
+    </property>
+    <property name="brush" stdset="0">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>244</red>
+       <green>218</green>
+       <blue>168</blue>
+      </color>
+     </brush>
+    </property>
+    <property name="penStyle" stdset="0">
+     <enum>Qt::SolidLine</enum>
+    </property>
+    <property name="penColor" stdset="0">
+     <color>
+      <red>90</red>
+      <green>90</green>
+      <blue>90</blue>
+     </color>
+    </property>
+    <property name="penWidth" stdset="0">
+     <double>2.000000000000000</double>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>590</y>
+      <width>391</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:transparent
+bold</string>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+    <property name="text">
+     <string>Undulator K Values</string>
+    </property>
+   </widget>
+   <widget class="PyDMDrawingRectangle" name="PyDMDrawingRectangle_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>620</y>
+      <width>831</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <property name="alarmSensitiveContent" stdset="0">
+     <bool>false</bool>
+    </property>
+    <property name="alarmSensitiveBorder" stdset="0">
+     <bool>false</bool>
+    </property>
+    <property name="brush" stdset="0">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>175</red>
+       <green>217</green>
+       <blue>248</blue>
+      </color>
+     </brush>
+    </property>
+    <property name="penStyle" stdset="0">
+     <enum>Qt::SolidLine</enum>
+    </property>
+    <property name="penColor" stdset="0">
+     <color>
+      <red>90</red>
+      <green>90</green>
+      <blue>90</blue>
+     </color>
+    </property>
+    <property name="penWidth" stdset="0">
+     <double>2.000000000000000</double>
+    </property>
+   </widget>
+   <widget class="PyDMTemplateRepeater" name="PyDMTemplateRepeater_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>620</y>
+      <width>821</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string/>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:transparent
+</string>
+    </property>
+    <property name="layoutType" stdset="0">
+     <enum>PyDMTemplateRepeater::Vertical</enum>
+    </property>
+    <property name="layoutSpacing" stdset="0">
+     <number>0</number>
+    </property>
+    <property name="countShownInDesigner" stdset="0">
+     <number>9</number>
+    </property>
+    <property name="templateFilename" stdset="0">
+     <string/>
+    </property>
+    <property name="dataSource" stdset="0">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QScrollArea" name="scrollArea">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>831</width>
+      <height>581</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:transparent;</string>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="sizeAdjustPolicy">
+     <enum>QAbstractScrollArea::AdjustToContents</enum>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>829</width>
+       <height>579</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="leftMargin">
+       <number>3</number>
+      </property>
+      <property name="topMargin">
+       <number>3</number>
+      </property>
+      <property name="rightMargin">
+       <number>3</number>
+      </property>
+      <property name="bottomMargin">
+       <number>3</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="label_12">
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: transparent;</string>
+        </property>
+        <property name="text">
+         <string>* SC Under Construction * </string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="PyDMTemplateRepeater" name="PyDMTemplateRepeater_3">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background:transparent
+</string>
+        </property>
+        <property name="layoutType" stdset="0">
+         <enum>PyDMTemplateRepeater::Vertical</enum>
+        </property>
+        <property name="layoutSpacing" stdset="0">
+         <number>0</number>
+        </property>
+        <property name="countShownInDesigner" stdset="0">
+         <number>30</number>
+        </property>
+        <property name="templateFilename" stdset="0">
+         <string/>
+        </property>
+        <property name="dataSource" stdset="0">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <zorder>PyDMDrawingRectangle_1</zorder>
+   <zorder>PyDMDrawingRectangle_2</zorder>
+   <zorder>label_9</zorder>
+   <zorder>PyDMTemplateRepeater_2</zorder>
+   <zorder>scrollArea</zorder>
+  </widget>
+  <widget class="QWidget" name="horizontalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>10</y>
+     <width>451</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="spacing">
+     <number>8</number>
+    </property>
+    <item>
+     <widget class="QLabel" name="label_6">
+      <property name="font">
+       <font>
+        <pointsize>9</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Stored Value</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_7">
+      <property name="font">
+       <font>
+        <pointsize>9</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Present Value</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_10">
+      <property name="font">
+       <font>
+        <pointsize>9</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Lower Tolerance</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_11">
+      <property name="font">
+       <font>
+        <pointsize>9</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Upper Tolerance</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>-10</y>
+     <width>361</width>
+     <height>54</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:transparent
+bold</string>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Plain</enum>
+   </property>
+   <property name="text">
+    <string>Electron Beam Parameters</string>
+   </property>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PyDMDrawingRectangle</class>
+   <extends>QWidget</extends>
+   <header>pydm.widgets.drawing</header>
+  </customwidget>
+  <customwidget>
+   <class>PyDMTemplateRepeater</class>
+   <extends>QFrame</extends>
+   <header>pydm.widgets.template_repeater</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

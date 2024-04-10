@@ -122,28 +122,26 @@ def process_devices(devices_filename, tolerances_filename, output_json_filename)
             # print(write_line)
         last_line = "]\n"
         out_file.write(last_line)
-        manual_messages = "**ATTENTION** Please add special devices (15,16) manually to generated_FELmonitor_nc_parameters.json since they are not in the guardian_device_data.substitutions\n\
-                        You can grab it from the existing FELmonitor_nc_parameters.json\
-                        **ATTENTION** Please manually move undulator pvs to FELmonitor_nc_und_parameters.json\n\
+        manual_messages = "**ATTENTION** Please add special devices (15,16) manually to generated_guardian_nc_parameters.json since they are not in the guardian_device_data.substitutions\n\
+                        You can grab it from the existing guardian_nc_parameters.json\
+                        **ATTENTION** Please manually move undulator pvs to guardian_nc_und_parameters.json\n\
                         **ATTENTION** Please replace every \"''\" with a quotation mark instead \""
         out_file.write(manual_messages)
 
     # Spit message to user to manually add in special devices (15,16)
-    print("Successfully generated " + str(full_output_filename) + ". Can almost directly replace FELMonitor_nc_parameters.json/FELmonitor_sc_parameters.json with some caveats below")
+    print("Successfully generated " + str(full_output_filename) + ". Can almost directly replace guardian_nc_parameters.json/guardian_sc_parameters.json with some caveats below")
 
 
 # 6) Get the conditions for each device if it exists and add it to dictionary (May just make this manually considering
 # the variability)
 
-
-# YOU ARE HERE ON STEP 5
 split_nc_sc_files("./generated/devices_msi")
 split_nc_sc_files("./generated/tolerances_msi")
-process_devices("./generated/devices_msi_sc.txt", "./generated/tolerances_msi_sc.txt", "./generated/generated_FELmonitor_sc_parameters.json")
-process_devices("./generated/devices_msi_nc.txt", "./generated/tolerances_msi_nc.txt", "./generated/generated_FELmonitor_nc_parameters.json")
-print("**ATTENTION** Please add special devices (15,16) manually to FELmonitor_nc_parameters.json since they are not in the guardian_device_data.substitutions.\n\
-      You can grab it from the existing FELmonitor_nc_parameters.json")
-print("**ATTENTION** Please manually move undulator pvs to FELmonitor_nc_und_parameters.json")
+process_devices("./generated/devices_msi_sc.txt", "./generated/tolerances_msi_sc.txt", "./generated/generated_guardian_sc_parameters.json")
+process_devices("./generated/devices_msi_nc.txt", "./generated/tolerances_msi_nc.txt", "./generated/generated_guardian_nc_parameters.json")
+print("**ATTENTION** Please add special devices (15,16) manually to guardian_nc_parameters.json since they are not in the guardian_device_data.substitutions.\n\
+      You can grab it from the existing guardian_nc_parameters.json")
+print("**ATTENTION** Please manually move undulator pvs to guardian_nc_und_parameters.json")
 print("**ATTENTION** Please replace every \"''\" with a quotation mark instead \"")
 
 
