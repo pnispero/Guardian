@@ -260,7 +260,7 @@ std::tuple<bool, std::string, int> GuardianDriver::tripSpecialCase(int deviceInd
     // Special cases have a condition
     // Get value of condition
 
-    uint32_t conditionVal, conditionVal2;
+    epicsUInt32 conditionVal, conditionVal2;
     bool tripped = false; std::string tripMsg; int deviceTrippedId = -1;
     if (guardianMode == NC) { // Normal conducting special cases
         switch (deviceIndex) 
@@ -511,7 +511,7 @@ void GuardianDriver::initGuardian() {
 void GuardianDriver::FELpulseEnergyMonitor(void)
 {
     pGDriver->initGuardian();
-    uint32_t snapshotTriggerVal, snapshotResetVal, mpsPermitVal, guardianOnVal, armVal=0, prevGuardianMode=2;
+    epicsUInt32 snapshotTriggerVal, snapshotResetVal, mpsPermitVal, guardianOnVal, armVal=0, prevGuardianMode=2;
     while (true) {
         // Cycle time, snapshots, and mode switching can only occur when guardian is 'unarmed'
         // once 'armed' then tripLogic applies every cycle
