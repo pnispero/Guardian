@@ -120,7 +120,7 @@ class GuardianDriver : public asynPortDriver {
     uint32_t heartbeatCnt; // Heartbeat of the guardian
     int DEVICE_PARAMS_SIZE; // number of device data pv asyn parameters - This will be seperated by mode soon
     double MONITOR_CYCLE_TIME; // Used to control the sleep() in the FELpulseMonitor thread
-    uint32_t guardianMode; // 0 - Normal conducting, 1 - Super conducting
+    epicsUInt32 guardianMode; // 0 - Normal conducting, 1 - Super conducting
 };
 
 enum logicType {
