@@ -139,7 +139,7 @@ void GuardianTestDriver::testUpperTolerance(int deviceIndex, int logicType, doub
     callParamCallbacks();
     usleep(MONITOR_CYCLE_TIME); // sleep to give time for epics records to be written, adjust if needed
 
-    uint32_t mpsPermitVal = 3; int trippedDeviceId;
+    epicsUInt32 mpsPermitVal = 3; int trippedDeviceId;
     getUIntDigitalParam(MpsPermitIndex, &mpsPermitVal, 1);
     getIntegerParam(DeviceIdIndex, &trippedDeviceId);
     std::ostringstream oss;
@@ -195,7 +195,7 @@ void GuardianTestDriver::testLowerTolerance(int deviceIndex, int logicType, doub
     callParamCallbacks();
     usleep(MONITOR_CYCLE_TIME); // sleep to give time for epics records to be written, adjust if needed
 
-    uint32_t mpsPermitVal = 3; int trippedDeviceId;
+    epicsUInt32 mpsPermitVal = 3; int trippedDeviceId;
     getUIntDigitalParam(MpsPermitIndex, &mpsPermitVal, 1);
     getIntegerParam(DeviceIdIndex, &trippedDeviceId);
     std::ostringstream oss;
@@ -384,7 +384,7 @@ void GuardianTestDriver::GuardianTestThread(void)
         prevGuardianMode = guardianMode;
 
         // Check test_trg param, take test then reset if true
-        uint32_t testTriggerVal;
+        epicsUInt32 testTriggerVal;
         getUIntDigitalParam(TestTriggerIndex, &testTriggerVal, 1);
         if (testTriggerVal == 1) {
             pGDriver->runTestCases();

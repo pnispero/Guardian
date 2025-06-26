@@ -1,4 +1,4 @@
-#!../../bin/rhel7-x86_64/GuardianTest
+#!../../bin/rhel9-x86_64/GuardianTest
 
 #- You may have to change GuardianTest to something else
 #- everywhere it appears in this file
