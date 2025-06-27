@@ -102,7 +102,7 @@ class GuardianTestDriver : public asynPortDriver {
     int GuardianModeIndex;
 
     int DEVICE_PARAMS_SIZE;
-    uint32_t guardianMode; // 0 - Normal conducting, 1 - Super conducting
+    epicsUInt32 guardianMode; // 0 - Normal conducting, 1 - Super conducting
 };
 
 enum logicType {
