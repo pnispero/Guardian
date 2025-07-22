@@ -20,7 +20,8 @@ record(ao, "$(NAME)_GUARD_ACT") { # actual
     field(PREC, "$(PREC)")
     field(DTYP, "asynFloat64")
 	field(OMSL, "closed_loop") 
-    field(DOL, "$(NAME) CPP")
+    $(NOT_TEST) field(DOL, "$(NAME) CPP") 
+    $(TEST) field(DOL, "$(NAME)_TEST_GUARD_ACT_RBV CPP")
     field(OUT, "@asyn(GUARDIAN, $(ID), 0)CURRENT_SC") 
 }
 

@@ -19,7 +19,8 @@ record(bo, "$(NAME)_GUARD_CONDITION") {
     field(ZNAM, "OFF")
     field(ONAM, "ON")
     field(OMSL, "closed_loop") 
-    field(DOL, "$(NAME) CPP")
+    $(NOT_TEST) field(DOL, "$(NAME) CPP")
+    $(TEST) field(DOL, "$(NAME)_TEST_GUARD_CONDITION_RBV CPP")
     field(OUT, "@asynMask(GUARDIAN, $(ID), 1, 0)CONDITION_SC")
 }
 

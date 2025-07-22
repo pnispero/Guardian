@@ -19,7 +19,8 @@ record(bo, "$(BASE):GUARD_MPS_PERMIT_OUT") {
     field(DESC, "Push out mps permit to actual mps pv")
     field(OMSL, "closed_loop") 
     field(DOL, "$(BASE):GUARD_MPS_PERMIT CPP")
-    field(OUT, "MPS:UNDS:1:SXRSS_GUARDIAN_OK")
+    $(NOT_TEST) field(OUT, "MPS:UNDS:1:SXRSS_GUARDIAN_OK")
+    $(TEST) field(OUT, "MPS:UNDS:1:SXRSS_GUARDIAN_OK:TEST")
 }
 
 record(bi, "$(BASE):GUARD_ON") { 
@@ -35,5 +36,6 @@ record(bo, "$(BASE):GUARD_ON_OUT") {
     field(DESC, "Push out guardian on to mps")
     field(OMSL, "closed_loop") 
     field(DOL, "$(BASE):GUARD_ON CPP")
-    field(OUT, "MPS:UNDS:1:SXRSS_GUARDIAN_ON")
+    $(NOT_TEST) field(OUT, "MPS:UNDS:1:SXRSS_GUARDIAN_ON")
+    $(TEST) field(OUT, "MPS:UNDS:1:SXRSS_GUARDIAN_ON:TEST")
 }
