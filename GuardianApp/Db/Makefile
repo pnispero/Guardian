@@ -23,3 +23,16 @@ include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
 
+ifeq ($(TEST),1)
+  # make TEST=1: enable test line, disable normal line
+  USR_DBFLAGS += -M "TEST=" -M "PROD=\#"
+else
+  # make: enable normal line, disable test line
+  USR_DBFLAGS += -M "TEST=\#" -M "PROD="
+endif
+
+# $(warning In Db/Makefile: TEST='$(TEST)')
+# $(warning In Db/Makefile: USR_DBFLAGS='$(USR_DBFLAGS)')
+# $(warning In Db/Makefile: DBFLAGS='$(DBFLAGS)')
+# $(warning In Db/Makefile: MSI_FLAGS='$(MSI_FLAGS)')
+# $(warning In Db/Makefile: USR_MSI_FLAGS='$(USR_MSI_FLAGS)')

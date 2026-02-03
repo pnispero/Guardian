@@ -16,7 +16,9 @@ record(ao, "$(NAME)") {
     field(PREC, "$(PREC)")
     field(DTYP, "asynFloat64")
     field(ASG, "MCC")
-    field(OUT, "@asyn(GUARDIAN, $(ID), 0)TOLERANCE_SC") 
+    field(OUT, "@asyn(GUARDIAN, $(ID), 0)TOLERANCE_SC")   
+    $(TEST) field(OMSL, "closed_loop")
+    $(TEST) field(DOL, "$(NAME)_TEST CPP") 
     info(autosaveFields, "VAL")
 }
 
