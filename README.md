@@ -1,3 +1,6 @@
+# **ATTENTION** 
+## This repo officially moved to slaclab/MpsSupport on 10/21/2026, please do not use this repo anymore, it will be archived.
+
 # SXRSS Guardian
 
 ## Description
